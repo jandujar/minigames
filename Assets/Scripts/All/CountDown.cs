@@ -17,18 +17,18 @@ public class CountDown : MonoBehaviour {
     public IEnumerator BeginCountDown()
     {
         text.text = "3";
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
 
         text.text = "2";
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
 
         text.text = "1";
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
 
         text.text = "Go!";
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
     }
 }
