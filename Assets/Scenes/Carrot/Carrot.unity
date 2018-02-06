@@ -619,7 +619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1052270246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,7 +706,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1460516886064934, guid: 3ead1508950f7e94c921970a52af1be5, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ead1508950f7e94c921970a52af1be5, type: 2}
@@ -814,7 +814,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1693045668524228, guid: accbdb4284a3cc84db41e410c0d99900,
     type: 2}
   m_PrefabInternal: {fileID: 1704637349}
---- !u!114 &1329406022
+--- !u!114 &1329406024
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -822,16 +822,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1329406021}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35df02782b75b4c4fa2dac495e5e1124, type: 3}
+  m_Script: {fileID: 11500000, guid: c4814a70c6e7b294195d0d485f34da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carrotParts:
-  - {fileID: 826918633}
-  - {fileID: 826918632}
-  - {fileID: 826918631}
-  - {fileID: 826918630}
-  - {fileID: 826918629}
-  keyToPress: {fileID: 1960168596}
 --- !u!1 &1509927889
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,7 +965,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1704692376
 Transform:
   m_ObjectHideFlags: 0
@@ -994,10 +987,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1704692375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6ca0487df789bc42844e0653be03823, type: 3}
+  m_Script: {fileID: 11500000, guid: 35df02782b75b4c4fa2dac495e5e1124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carrot: {fileID: 0}
+  carrotParts:
+  - {fileID: 826918632}
+  - {fileID: 826918631}
+  - {fileID: 826918630}
+  - {fileID: 826918629}
+  - {fileID: 826918633}
+  keyToPress: {fileID: 1960168596}
 --- !u!1001 &1819561351
 Prefab:
   m_ObjectHideFlags: 0

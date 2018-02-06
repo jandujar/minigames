@@ -2,62 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System;
 
-public class cutCarrot : MonoBehaviour {
+public class CutCarrot : IMiniGame {
 
     public GameObject[] carrotParts;
     public Text keyToPress;
 
     int randomInt;
-    KeyCode myButton;
+    int current;
+    bool playing = false;
+    bool canPress = true;
 
-    IEnumerator StartGame()
+    IEnumerator setPress()
     {
-        yield return new WaitForSeconds(4);
-        GamePlay();
+        canPress = false;
+        yield return new WaitForSeconds(1);
+        canPress = true;
     }
-
-    void GamePlay()
-    {
-        
-        switch (randomInt)
-        {
-            case 0:
-                myButton = KeyCode.X;
-                keyToPress.text = "X";
-                break;
-            case 1:
-                myButton = KeyCode.Y;
-                keyToPress.text = "Y";
-                break;
-            case 2:
-                myButton = KeyCode.B;
-                keyToPress.text = "B";
-                break;
-            case 3:
-                myButton = KeyCode.A;
-                keyToPress.text = "A";
-                break;
-            default:
-                print("Algo o alguien huele mal");
-                break;
-        }
-    }
-
-	void Start () {
-        StartCoroutine(StartGame());
-        GamePlay();
-	}
 
     void Update()
     {
-        randomInt = Random.Range(0, 4);
-        for (int i = 0; i < carrotParts.Length; i++)
+        if(!playing) { return; }
+
+        if (canPress)
         {
-            if (Input.GetKeyUp(myButton))
+            if (Input.GetButton("Fire1"))
             {
-                carrotParts[i].SetActive(false);
+                Debug.Log("Has pulsado " + keyToPress.text);
+                carrotParts[current].SetActive(false);
+                current++;
+                StartCoroutine(setPress());
             }
         }
+
+    }
+
+    public override void initGame(MiniGameDificulty difficulty, GameManager gm)
+    {
+        current = 0;
+        randomInt = UnityEngine.Random.Range(0, 4);
+    }
+
+    public override void beginGame()
+    {
+        playing = true;
     }
 }
