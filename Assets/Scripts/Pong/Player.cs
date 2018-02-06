@@ -9,7 +9,7 @@ public class Player : MonoBehaviour {
     public float maxposy = 5.9f;
 	// Update is called once per frame
 	void Update () {
-        move = Input.GetAxis("Vertical");
+        move = InputManager.Instance.GetAxisVertical();
 
         transform.Translate(0, move * vely * Time.deltaTime, 0);
 
