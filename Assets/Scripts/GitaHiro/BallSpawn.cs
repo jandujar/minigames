@@ -15,6 +15,8 @@ public class BallSpawn : MonoBehaviour {
     public GameObject m_SoundX;
     public GameObject m_SoundY;
 
+    public Transform m_Parent;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -39,16 +41,16 @@ public class BallSpawn : MonoBehaviour {
             switch(l_Rand)
             {
                 case 1:
-                    Instantiate(m_SoundX, m_X.transform.position, Quaternion.identity);
+                    Instantiate(m_SoundX, m_X.transform.position, Quaternion.identity, m_Parent);
                     break;
                 case 2:
-                    Instantiate(m_SoundY, m_Y.transform.position, Quaternion.identity);
+                    Instantiate(m_SoundY, m_Y.transform.position, Quaternion.identity, m_Parent);
                     break;
                 case 3:
-                    Instantiate(m_SoundA, m_A.transform.position, Quaternion.identity);
+                    Instantiate(m_SoundA, m_A.transform.position, Quaternion.identity, m_Parent);
                     break;
                 case 4:
-                    Instantiate(m_SoundB, m_B.transform.position, Quaternion.identity);
+                    Instantiate(m_SoundB, m_B.transform.position, Quaternion.identity, m_Parent);
                     break;
             }
             if(l_NotesCount>=5)

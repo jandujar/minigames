@@ -2,39 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Prayeru : MonoBehaviour {
-    /*
-    private float move;
-    public float vely = 5;
-    private Vector3 tmpPosition;
-    public float maxposy = 5.9f;
-    */
+public class Prayeru : MonoBehaviour
+{
 	// Update is called once per frame
-	void Update () {
-        /*
-        move = Input.GetAxis("Vertical");
-
-        transform.Translate(0, move * vely * Time.deltaTime, 0);
-
-        if(transform.position.y > maxposy)
-        {
-            tmpPosition = new Vector3(transform.position.x, maxposy, transform.position.z);
-            transform.position = tmpPosition;
-        }
-
-        if (transform.position.y < -maxposy)
-        {
-            tmpPosition = new Vector3(transform.position.x, -maxposy, transform.position.z);
-            transform.position = tmpPosition;
-        }
-        */
+	void Update ()
+    {
+        
     }
-
+    /*
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Holi");
     }
-    void OnTriggerStay(Collider other)
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("Adeu siau");
+        Debug.LogError("Fail!");
+    }
+    */
+    /*void OnTriggerStay(Collider other)
     {
         //X BUTTON
         if (Input.GetKeyDown(KeyCode.A) && other.gameObject.name == "X(Clone)")
@@ -57,11 +43,7 @@ public class Prayeru : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.F) && other.gameObject.name != "B(Clone)")
             Debug.LogError("Fail!");
     }
-    private void OnTriggerExit(Collider other)
-    {
-        Debug.Log("Adeu siau");
-        Debug.LogError("Fail!")
-    }
+    */
 
     void destroyGameObject(GameObject _object)
     {
