@@ -5,6 +5,7 @@ using UnityEngine;
 public class KnifeFingers : IMiniGame {
 
     [SerializeField]private Knife knife;
+    [SerializeField]private KnifeAttack knifeAtk;
 
     void Awake()
     {
@@ -15,18 +16,17 @@ public class KnifeFingers : IMiniGame {
     {
         //Pong Begins
         Debug.Log(this.ToString() + " game Begin");
-        //ball.enableBall = true;
+        knife.enableKnife = true;
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
         //this.gameManager = gm;
-        //ball.init(gm);
+        knifeAtk.init(gm);
     }
 
     public override string ToString()
     {
-        knife.enableKnife = true;
         return "Knife finger roulette by Adrian (idea by Didac)";
     }
 }

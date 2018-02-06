@@ -15,6 +15,12 @@ public class KnifeAttack : MonoBehaviour {
     [SerializeField]private float speed = 5;
     private Vector3 startPos;
     [SerializeField]private GameObject blood;
+    private GameManager gameManager;
+
+    public void init(GameManager gm)
+    {
+        gameManager = gm;
+    }
 
     private enum state { moving, attack, back, damage };
     private state attack;
@@ -88,10 +94,22 @@ public class KnifeAttack : MonoBehaviour {
     {
         if (col.gameObject == hand || isAFinger(col))
         {
+            stopKnife();
             blood.transform.position = gameObject.transform.position;
             blood.SetActive(true);
-            attack = state.damage;
+            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
         }
+    }
+
+    public void stopKnife()
+    {
+        attack = state.damage;
+        knife.enableKnife = false;
+    }
+
+    public void setVictory()
+    {
+        gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
     }
 
     bool isAFinger(Collider col)
