@@ -42,5 +42,7 @@ public class GameManager : MonoBehaviour {
     {
         //Minigame end Status
         Debug.Log("Result of " + game.ToString() + " = " + result.ToString());
+
+        MenuManager.Instance.LaunchMiniGame();
     }
 }
