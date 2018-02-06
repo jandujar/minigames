@@ -9,7 +9,7 @@ public class InputManager : Singleton<InputManager> {
     }
 
     public float GetAxisVertical(){
-        return Input.GetAxis("Horizontal");
+        return Input.GetAxis("Vertical");
     }
 
     public enum MiniGameButtons{
