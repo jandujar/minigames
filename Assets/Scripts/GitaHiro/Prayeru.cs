@@ -34,8 +34,38 @@ public class Prayeru : MonoBehaviour {
     {
         Debug.Log("Holi");
     }
+    void OnTriggerStay(Collider other)
+    {
+        //X BUTTON
+        if (Input.GetKeyDown(KeyCode.A) && other.gameObject.name == "X(Clone)")
+            Destroy(other.gameObject);
+        else if (Input.GetKeyDown(KeyCode.A) && other.gameObject.name != "X(Clone)")
+            Debug.LogError("Fail!");
+        //Y BUTTON
+        if (Input.GetKeyDown(KeyCode.S) && other.gameObject.name == "Y(Clone)")
+            Destroy(other.gameObject);
+        else if (Input.GetKeyDown(KeyCode.S) && other.gameObject.name != "Y(Clone)")
+            Debug.LogError("Fail!");
+        //A BUTTON
+        if (Input.GetKeyDown(KeyCode.D) && other.gameObject.name == "A(Clone)")
+            Destroy(other.gameObject);
+        else if (Input.GetKeyDown(KeyCode.D) && other.gameObject.name != "A(Clone)")
+            Debug.LogError("Fail!");
+        //B BUTTON
+        if (Input.GetKeyDown(KeyCode.F) && other.gameObject.name == "B(Clone)")
+            Destroy(other.gameObject);
+        else if (Input.GetKeyDown(KeyCode.F) && other.gameObject.name != "B(Clone)")
+            Debug.LogError("Fail!");
+    }
     private void OnTriggerExit(Collider other)
     {
         Debug.Log("Adeu siau");
+        Debug.LogError("Fail!")
+    }
+
+    void destroyGameObject(GameObject _object)
+    {
+        Debug.Log("Destroying " + _object.name);
+        Destroy(_object.gameObject);
     }
 }

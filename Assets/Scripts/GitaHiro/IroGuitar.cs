@@ -8,11 +8,12 @@ public class IroGuitar : IMiniGame {
 
     public GameObject m_X;
     public GameObject m_Sound;
-    public Ball baru;
 
     public float m_Time;
     public int m_MinRand;
     public int m_MaxRand;
+
+    public BallSpawn m_NoteSpawner;
 
     void Awake()
     {
@@ -24,14 +25,14 @@ public class IroGuitar : IMiniGame {
     {
         //Pong Begins
         Debug.Log(this.ToString() + " game Begin");
-        baru.enableBall = true;
-        StartCoroutine(generateRandom(m_Time, m_MinRand, m_MaxRand));
+        //baru.enableBall = true;
+        StartCoroutine(m_NoteSpawner.generateRandom(m_Time, m_MinRand, m_MaxRand));
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
         this.gameManager = gm;
-        baru.init(gm); 
+        //baru.init(gm); 
     }
 
     public override string ToString()
@@ -43,17 +44,9 @@ public class IroGuitar : IMiniGame {
     {
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            Instantiate(m_Sound, m_X.transform.position, Quaternion.identity);
+            
         }
     }
 
-    IEnumerator generateRandom(float _time,int _maxValue,int _minValue)
-    {
-        while(true)
-        {
-            yield return new WaitForSecondsRealtime(_time);
-            int l_Rand = 0;
-            Debug.Log(l_Rand);
-        }
-    }
+    
 }
