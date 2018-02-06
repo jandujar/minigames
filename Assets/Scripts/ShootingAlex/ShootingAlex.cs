@@ -17,7 +17,7 @@ public class ShootingAlex: IMiniGame {
     {
         //Pong Begins
         Debug.Log(this.ToString() + " game Begin");
-		shooting.GetComponent<ShootingManager> ().InitGame ();
+		shooting.GetComponent<ShootingManager> ().InitGame (gameManager);
         //ball.enableBall = true;
 
     }
