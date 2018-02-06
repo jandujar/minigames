@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Prayeru : MonoBehaviour {
+    /*
     private float move;
     public float vely = 5;
     private Vector3 tmpPosition;
     public float maxposy = 5.9f;
+    */
 	// Update is called once per frame
 	void Update () {
+        /*
         move = Input.GetAxis("Vertical");
 
         transform.Translate(0, move * vely * Time.deltaTime, 0);
@@ -24,5 +27,15 @@ public class Prayeru : MonoBehaviour {
             tmpPosition = new Vector3(transform.position.x, -maxposy, transform.position.z);
             transform.position = tmpPosition;
         }
+        */
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Holi");
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("Adeu siau");
     }
 }
