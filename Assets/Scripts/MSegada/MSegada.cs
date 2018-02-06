@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MSegada : IMiniGame
 {
+    [SerializeField]
     private GameManager gameManager;
     [SerializeField]
     private GameObject NEWcanvas;
@@ -26,99 +27,137 @@ public class MSegada : IMiniGame
     public void Start()
     {
         NEWcanvas.SetActive (false);
-        GameStatus = 0;
+        //GameStatus = 0;
+         
     }
     public override void beginGame()                                                    //empieza ahora
     {
         //throw new NotImplementedException();
         NEWcanvas.SetActive(true);
-        
-
+       
+       
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)         
     {
         //throw new NotImplementedException();
+        //StartCoroutine(WaitGame());
+        gameManager = gm;
+       
     }
-    void Update()
+    public void checkGameStatus()
     {
         switch (GameStatus)                                                     //game control
         {
             case 0:
-                PassBox.GetComponent<Text>().text = "";
+                PassBox.GetComponent<Text>().text = "Wait...";
                 break;
             case 1:
                 PassBox.GetComponent<Text>().text = "Passed!";
+                gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
                 break;
             case 2:
+                Debug.Log("FAIL");
                 PassBox.GetComponent<Text>().text = "FAIL!";
+                //gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
                 break;
             default: break;
         }        
-
+    }
+    public void TimerToAction()
+    {
+        WaitGame(10f);
         if (waitForKey == 0)
         {
             GameStatus = 0;
             RandomResponse = UnityEngine.Random.Range(1, 4);
             countingDown = 1;
             StartCoroutine(CountDown());
-
             switch (RandomResponse)
             {
                 case 1:
+                    //WaitGame(3.0f);
                     waitForKey = 1;
-                    DisplayBox.GetComponent<Text>().text = "1";
-                    timerCD = 3.0f;
-                    break;
+                    DisplayBox.GetComponent<Text>().text = "Press Any key!   1";
+                    timerCD = 3.0f;                             
+                    break;                                      
                 case 2:
-                    waitForKey = 2;
-                    DisplayBox.GetComponent<Text>().text = "2";
-                    timerCD = 2.5f;
-                    break;
+                    //WaitGame(4.0f);
+                    waitForKey = 2;                                
+                    DisplayBox.GetComponent<Text>().text = "Press Any key!   2";
+                    timerCD = 2.5f;                              
+                    break;                                       
                 case 3:
-                    waitForKey = 3;
-                    DisplayBox.GetComponent<Text>().text = "3";
+                    //WaitGame(6.0f);
+                    waitForKey = 3;                                 
+                    DisplayBox.GetComponent<Text>().text = "Press Any key!   3";
                     timerCD = 2.0f;
                     break;
                 default:
                     break;
             }            
         }
-        
-        if (RandomResponse >= 1)
+    } 
+    void Update()
+    {
+        checkGameStatus();
+        TimerToAction();
+       
+        switch (RandomResponse)
+        {
+            case 1:
+                if (Input.anyKeyDown)
+                {
+                    CorrectKey = true;
+                    StartCoroutine(KeyPressing());
+                }
+                break;
+            case 2:
+                if (Input.anyKeyDown)
+                {
+                    CorrectKey = true;
+                    StartCoroutine(KeyPressing());
+                }
+                break;
+            case 3:
+                if (Input.anyKeyDown)
+                {
+                    CorrectKey = true;
+                    StartCoroutine(KeyPressing());
+                }
+                break;
+
+        }/*
+        if (RandomResponse == 1)
         {
             if (Input.anyKeyDown)
             {
                     CorrectKey = true;
                     StartCoroutine(KeyPressing());
             }
-            else { CorrectKey = false; }
-        }/*
+        }
         if (RandomResponse == 2)
         {
             if (Input.anyKeyDown)
             {
                     CorrectKey = true;
                     StartCoroutine(KeyPressing());
-               
             }
         }
         if (RandomResponse == 3)
         {
             if (Input.anyKeyDown)
-            {
-               
+            {               
                     CorrectKey = true;
-                    StartCoroutine(KeyPressing());
-               
+                    StartCoroutine(KeyPressing());               
             }
-        }*/
-        
+        }   */
     }
 
 
     IEnumerator KeyPressing()
     {
+        //yield return new WaitForSeconds(3.0f);
         RandomResponse = 10;
         if (CorrectKey == true)
         {
@@ -154,5 +193,11 @@ public class MSegada : IMiniGame
             countingDown = 1;
         }
         GameStatus = 0;
+    }
+    IEnumerator WaitGame(float timer)
+    {
+        Debug.Log("wololo");
+        yield return new WaitForSeconds(timer);
+        
     }
 }
