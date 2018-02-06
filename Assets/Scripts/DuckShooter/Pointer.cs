@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Pointer : MonoBehaviour
+{
     private float moveVer;
     private float moveHor;
     public float vely = 5;
@@ -11,7 +12,9 @@ public class Player : MonoBehaviour {
     public float maxposx = 10f;
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
+
         moveVer = Input.GetAxis("Vertical");
         moveHor = Input.GetAxis("Horizontal");
 
