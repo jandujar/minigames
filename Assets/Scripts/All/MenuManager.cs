@@ -19,6 +19,6 @@ public class MenuManager : Singleton<MenuManager> {
 
     public void LaunchMiniGame(){
         //TODO: Load next minigame
-        SceneManager.LoadScene("Pong");
+        SceneManager.LoadScene("MSegada");
     }
 }

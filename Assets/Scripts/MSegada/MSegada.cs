@@ -18,17 +18,19 @@ public class MSegada : IMiniGame
 
     public int GameStatus;
 
-    public int RandomResponse;
-    public int waitForKey;
-    public bool CorrectKey;
+    public int RandomResponse;      //gets a random value to determinate the difficulty 
+    public int waitForKey;          //determinates the state
+    public bool CorrectKey;         //win or lose
     public int countingDown;
 
     public float timerCD;
     public void Start()
     {
+        //countingDown = 0;
         NEWcanvas.SetActive (false);
         //GameStatus = 0;
-         
+        Invoke("GameFlow", 5);
+
     }
     public override void beginGame()                                                    //empieza ahora
     {
@@ -45,8 +47,17 @@ public class MSegada : IMiniGame
         gameManager = gm;
        
     }
+
+    public void GameFlow()
+    {
+        Debug.Log("finally");
+       
+        TimerToAction();
+    }
+
     public void checkGameStatus()
     {
+        
         switch (GameStatus)                                                     //game control
         {
             case 0:
@@ -59,21 +70,28 @@ public class MSegada : IMiniGame
             case 2:
                 Debug.Log("FAIL");
                 PassBox.GetComponent<Text>().text = "FAIL!";
-                //gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+                gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
                 break;
             default: break;
         }        
     }
+
     public void TimerToAction()
     {
-        WaitGame(10f);
         if (waitForKey == 0)
         {
             GameStatus = 0;
             RandomResponse = UnityEngine.Random.Range(1, 4);
             countingDown = 1;
             StartCoroutine(CountDown());
-            switch (RandomResponse)
+            compareResponse();
+        }
+        checkGameStatus();
+    } 
+
+    void compareResponse()              
+    {
+    switch (RandomResponse)
             {
                 case 1:
                     //WaitGame(3.0f);
@@ -95,22 +113,24 @@ public class MSegada : IMiniGame
                     break;
                 default:
                     break;
-            }            
-        }
-    } 
-    void Update()
+            }           
+    }
+    void Update()                                   
     {
-        checkGameStatus();
-        TimerToAction();
        
-        switch (RandomResponse)
+        checkGameStatus();
+        if (RandomResponse != 0)
+        {
+        if (Input.anyKeyDown)
+            {
+                CorrectKey = true;
+                StartCoroutine(KeyPressing());
+            }
+        }/*
+        switch (RandomResponse)                                 //depending on the number
         {
             case 1:
-                if (Input.anyKeyDown)
-                {
-                    CorrectKey = true;
-                    StartCoroutine(KeyPressing());
-                }
+                
                 break;
             case 2:
                 if (Input.anyKeyDown)
@@ -127,7 +147,9 @@ public class MSegada : IMiniGame
                 }
                 break;
 
-        }/*
+        }*/
+
+       /*
         if (RandomResponse == 1)
         {
             if (Input.anyKeyDown)
@@ -162,7 +184,7 @@ public class MSegada : IMiniGame
         if (CorrectKey == true)
         {
             countingDown = 2;
-            //PassBox.GetComponent<Text>().text = "Passed!";
+            PassBox.GetComponent<Text>().text = "Passed!";
             GameStatus = 1;
             yield return new WaitForSeconds(1.5f);
             //CorrectKey = 0;
@@ -177,7 +199,7 @@ public class MSegada : IMiniGame
     }
     IEnumerator CountDown()
     {
-        yield return new WaitForSeconds(timerCD);
+        //yield return new WaitForSeconds(timerCD);
         if (countingDown == 1)
         {
             RandomResponse = 4;
@@ -193,11 +215,5 @@ public class MSegada : IMiniGame
             countingDown = 1;
         }
         GameStatus = 0;
-    }
-    IEnumerator WaitGame(float timer)
-    {
-        Debug.Log("wololo");
-        yield return new WaitForSeconds(timer);
-        
     }
 }
