@@ -10,11 +10,16 @@ public class Pointer : MonoBehaviour
     private Vector3 tmpPosition;
     public float maxposy = 5.9f;
     public float maxposx = 10f;
-
+    private bool canShoot = false;
+    private InputManager bttns;
+    
     // Update is called once per frame
     void Update()
     {
+        canShoot = Input.GetButtonDown("Fire1");
 
+
+        //Pointer Movement
         moveVer = Input.GetAxis("Vertical");
         moveHor = Input.GetAxis("Horizontal");
 
@@ -43,6 +48,32 @@ public class Pointer : MonoBehaviour
         {
             tmpPosition = new Vector3(-maxposx, transform.position.y, transform.position.z);
             transform.position = tmpPosition;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Duck")
+        {
+            Debug.Log("Touched");
+            if(canShoot)
+            {
+                Debug.Log("Shooted");
+                other.GetComponent<Duck>().Death();
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Duck")
+        {
+            Debug.Log("Touched");
+            if (canShoot)
+            {
+                Debug.Log("Shooted");
+                other.GetComponent<Duck>().Death();
+            }
         }
     }
 }

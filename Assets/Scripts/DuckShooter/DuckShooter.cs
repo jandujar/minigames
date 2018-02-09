@@ -6,6 +6,7 @@ using UnityEngine;
 public class DuckShooter : IMiniGame{
     private GameManager gameManager;
     public DuckSpawn spawn;
+    private int ducksToKill = 6;
     
 
     public override void beginGame()
