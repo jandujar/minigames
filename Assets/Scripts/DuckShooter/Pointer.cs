@@ -11,7 +11,8 @@ public class Pointer : MonoBehaviour
     public float maxposy = 5.9f;
     public float maxposx = 10f;
     private bool canShoot = false;
-    private InputManager bttns;
+    //private InputManager bttns;
+    public DuckShooter gameEnginge;
     
     // Update is called once per frame
     void Update()
@@ -73,6 +74,8 @@ public class Pointer : MonoBehaviour
             {
                 Debug.Log("Shooted");
                 other.GetComponent<Duck>().Death();
+                other.gameObject.GetComponent<Collider>().enabled = false;
+                gameEnginge.DuckKilled();
             }
         }
     }

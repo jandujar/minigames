@@ -28,7 +28,7 @@ public class DuckSpawn : MonoBehaviour {
 
     IEnumerator SecondsToSpawn()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         Spawn();
     }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 221321912}
   - component: {fileID: 221321913}
   m_Layer: 0
-  m_Name: DuckLifes
+  m_Name: DuckLifes6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 255104059}
   - component: {fileID: 255104060}
   m_Layer: 0
-  m_Name: DuckLifes
+  m_Name: DuckLifes1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -732,9 +732,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 923d5882a76132340971bebacc9d8c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vely: 20
+  vely: 30
   maxposy: 5.9
   maxposx: 13
+  gameEnginge: {fileID: 1704692377}
 --- !u!212 &1281084374
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -979,7 +980,7 @@ GameObject:
   - component: {fileID: 1537533146}
   - component: {fileID: 1537533147}
   m_Layer: 0
-  m_Name: DuckLifes
+  m_Name: DuckLifes5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1050,7 +1051,7 @@ GameObject:
   - component: {fileID: 1626789549}
   - component: {fileID: 1626789550}
   m_Layer: 0
-  m_Name: DuckLifes
+  m_Name: DuckLifes2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1228,6 +1229,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 1078664970}
+  screenLifes: {fileID: 1686146765}
+--- !u!1001 &1789162790
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4374917602609360, guid: 3b6a494c143e170438a253e2231e47d2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -20.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374917602609360, guid: 3b6a494c143e170438a253e2231e47d2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374917602609360, guid: 3b6a494c143e170438a253e2231e47d2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374917602609360, guid: 3b6a494c143e170438a253e2231e47d2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374917602609360, guid: 3b6a494c143e170438a253e2231e47d2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374917602609360, guid: 3b6a494c143e170438a253e2231e47d2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374917602609360, guid: 3b6a494c143e170438a253e2231e47d2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374917602609360, guid: 3b6a494c143e170438a253e2231e47d2, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114781283442453024, guid: 3b6a494c143e170438a253e2231e47d2,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3b6a494c143e170438a253e2231e47d2, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1819561351
 Prefab:
   m_ObjectHideFlags: 0
@@ -1280,7 +1329,7 @@ GameObject:
   - component: {fileID: 1848260869}
   - component: {fileID: 1848260870}
   m_Layer: 0
-  m_Name: DuckLifes
+  m_Name: DuckLifes3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1351,7 +1400,7 @@ GameObject:
   - component: {fileID: 1880767397}
   - component: {fileID: 1880767398}
   m_Layer: 0
-  m_Name: DuckLifes
+  m_Name: DuckLifes4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

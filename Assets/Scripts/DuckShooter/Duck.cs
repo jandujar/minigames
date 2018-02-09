@@ -35,10 +35,17 @@ public class Duck : MonoBehaviour {
     {
         anim.SetBool("Death", true);
         death = true;
+        StartCoroutine(DestroyTemp());
     }
 
-    public void DuckDestroy()
+    IEnumerator DestroyTemp()
     {
-        Destroy(this);
+        yield return new WaitForSeconds(0.5f);
+        DuckDestroy();
+    }
+
+    private void DuckDestroy()
+    {
+        Destroy(gameObject);
     }
 }
