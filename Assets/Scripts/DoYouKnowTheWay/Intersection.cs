@@ -5,6 +5,7 @@ using UnityEngine;
 public class Intersection : MonoBehaviour {
 	public bool enterMode = true;
 
+
 	// Use this for initialization
 	void Start () {
 		

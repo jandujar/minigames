@@ -63,7 +63,7 @@ public class DoYouKnowTheWay : IMiniGame {
 		//Start Moving
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			movementStarted = true;
-			knuckles.GetComponent<Knuckles> ().StartMoving (this);
+			knuckles.GetComponent<Knuckles> ().StartMoving (this,knucklesPos);
 		}
 	}
 
