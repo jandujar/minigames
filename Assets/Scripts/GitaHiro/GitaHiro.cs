@@ -3,15 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IroGuitar : IMiniGame
+public class GitaHiro : IMiniGame
 {
     private GameManager gameManager;
     
+    [Header("Note Spawner")]
     public float m_Time;
     public int m_MinRand;
     public int m_MaxRand;
-
     public BallSpawn m_NoteSpawner;
+    [Header("Score")]
+    public int m_Score;
 
     void Awake()
     {
@@ -28,17 +30,25 @@ public class IroGuitar : IMiniGame
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
         this.gameManager = gm;
-        //baru.init(gm); 
     }
 
     public override string ToString()
     {
-        return "Pong by Jandujar";
+        return "Gita Hiro by Saltimbanqi";
     }
 
     private void Update()
     {
 
+    }
+
+    public void setEndGame()
+    {
+        gameManager.EndGame(MiniGameResult.LOSE);
+    }
+    public void addScore(int _score)
+    {
+        m_Score += _score;
     }
 
     
