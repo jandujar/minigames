@@ -29,15 +29,14 @@ public class MSegada : IMiniGame
         //countingDown = 0;
         NEWcanvas.SetActive (false);
         //GameStatus = 0;
-        Invoke("GameFlow", 5);
+        
 
     }
     public override void beginGame()                                                    //empieza ahora
     {
         //throw new NotImplementedException();
         NEWcanvas.SetActive(true);
-       
-       
+        Invoke("GameFlow", 5);          
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)         
@@ -94,19 +93,16 @@ public class MSegada : IMiniGame
     switch (RandomResponse)
             {
                 case 1:
-                    //WaitGame(3.0f);
                     waitForKey = 1;
                     DisplayBox.GetComponent<Text>().text = "Press Any key!   1";
                     timerCD = 3.0f;                             
                     break;                                      
                 case 2:
-                    //WaitGame(4.0f);
                     waitForKey = 2;                                
                     DisplayBox.GetComponent<Text>().text = "Press Any key!   2";
                     timerCD = 2.5f;                              
                     break;                                       
                 case 3:
-                    //WaitGame(6.0f);
                     waitForKey = 3;                                 
                     DisplayBox.GetComponent<Text>().text = "Press Any key!   3";
                     timerCD = 2.0f;
@@ -116,8 +112,7 @@ public class MSegada : IMiniGame
             }           
     }
     void Update()                                   
-    {
-       
+    {       
         checkGameStatus();
         if (RandomResponse != 0)
         {
@@ -126,54 +121,7 @@ public class MSegada : IMiniGame
                 CorrectKey = true;
                 StartCoroutine(KeyPressing());
             }
-        }/*
-        switch (RandomResponse)                                 //depending on the number
-        {
-            case 1:
-                
-                break;
-            case 2:
-                if (Input.anyKeyDown)
-                {
-                    CorrectKey = true;
-                    StartCoroutine(KeyPressing());
-                }
-                break;
-            case 3:
-                if (Input.anyKeyDown)
-                {
-                    CorrectKey = true;
-                    StartCoroutine(KeyPressing());
-                }
-                break;
-
-        }*/
-
-       /*
-        if (RandomResponse == 1)
-        {
-            if (Input.anyKeyDown)
-            {
-                    CorrectKey = true;
-                    StartCoroutine(KeyPressing());
-            }
         }
-        if (RandomResponse == 2)
-        {
-            if (Input.anyKeyDown)
-            {
-                    CorrectKey = true;
-                    StartCoroutine(KeyPressing());
-            }
-        }
-        if (RandomResponse == 3)
-        {
-            if (Input.anyKeyDown)
-            {               
-                    CorrectKey = true;
-                    StartCoroutine(KeyPressing());               
-            }
-        }   */
     }
 
 
