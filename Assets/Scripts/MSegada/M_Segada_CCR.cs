@@ -13,6 +13,8 @@ public class M_Segada_CCR : IMiniGame
     private GameObject DisplayBox;
     [SerializeField]
     private GameObject PassBox;
+    [SerializeField]
+    private GameObject EnemyIMG;
 
     public enum QTState { Ready, Delay, Ongoing, Done };            //game status
     public QTState qtState = QTState.Ready;
@@ -30,6 +32,7 @@ public class M_Segada_CCR : IMiniGame
 
     public override void beginGame()
     {
+        EnemyIMG.SetActive(false);
         NEWcanvas.SetActive(true);                                  //our game shows 
         StartCoroutine(StateChange());                              //win/loose condition starts
         //throw new NotImplementedException();
@@ -52,12 +55,14 @@ public class M_Segada_CCR : IMiniGame
         qtState = QTState.Delay;        
         yield return new WaitForSeconds(DelayTimer);                // Wait for the Delay        
         DisplayBox.GetComponent<Text>().text = "QUICK! JUMP!";      //shows text to JUMP
+        EnemyIMG.SetActive(true);
         qtState = QTState.Ongoing;
         yield return new WaitForSeconds(CountTimer);
        
         if (qtState == QTState.Ongoing)                             //count.timer gets to 0
         {
             qtResponse = QTResponse.Fail;
+            PassBox.GetComponent<Text>().text = "FAIL";
             gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
             qtState = QTState.Done;           
             DisplayBox.GetComponent<Text>().text = string.Empty;
