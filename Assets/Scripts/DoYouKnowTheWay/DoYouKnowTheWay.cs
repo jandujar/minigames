@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class DoYouKnowTheWay : IMiniGame {
 	//PUBLIC
+	[Tooltip("value btween 1 and 6")]
 	public int numberOfIntersections = 3;
+	public float distanceBtweenIntersections = 0.5f;
+	public GameObject intersection;
+	public float intersectionMaxY;
+	public float intersectionMinY;
+	public Transform[] intersectionPos = new Transform[3];
 	public GameObject uganda;
 	public GameObject knuckles;
 	public Transform[] ways = new Transform[4];
@@ -16,6 +22,12 @@ public class DoYouKnowTheWay : IMiniGame {
 	private float h;
 	private bool alreadyMoved = false;
 	private bool movementStarted = false;
+
+	private float randomPos;
+	private float lastRandomPos;
+	private float[] lastRowPos = new float[3];
+	private int intersectionRow = 0;
+	private float actualDistance;
 
 	//*************************************************************************************************Start game
 	public override void beginGame()
@@ -29,6 +41,7 @@ public class DoYouKnowTheWay : IMiniGame {
 	{
 		this.gameManager = gm;
 		RandomUgandaPosition ();
+		GenerateIntersection ();
 	}
 	//*************************************************************************************************
 	public override string ToString()
@@ -65,6 +78,11 @@ public class DoYouKnowTheWay : IMiniGame {
 			movementStarted = true;
 			knuckles.GetComponent<Knuckles> ().StartMoving (this,knucklesPos);
 		}
+
+		if (Input.GetKeyDown (KeyCode.A)) {
+			RandomUgandaPosition ();
+			GenerateIntersection ();
+		}
 	}
 
 	//*************************************************************************************************Put uganda Randomly
@@ -80,7 +98,29 @@ public class DoYouKnowTheWay : IMiniGame {
 	}
 	//*************************************************************************************************Random Intersection generator
 	private void GenerateIntersection(){
-		
+		for (int i = 0; i < numberOfIntersections; i++) {
+			GameObject go = Instantiate (intersection);
+
+			if (intersectionRow > 2) {
+				intersectionRow = 0;
+			}
+			 
+			do{
+			randomPos = Random.Range (intersectionMinY, intersectionMaxY);
+			actualDistance = Mathf.Abs (lastRandomPos - randomPos);
+			Debug.Log(Mathf.Abs(actualDistance));
+			}while(Mathf.Abs(actualDistance) < distanceBtweenIntersections);
+
+			go.transform.position = new Vector3 (intersectionPos[intersectionRow].transform.position.x,randomPos,0);
+			//guardamos la posicion de la interseccion
+			lastRandomPos = randomPos;
+
+			intersectionRow++;
+
+
+
+
+		}
 	}
 
 	public void MovementFinished(bool _correctWay){
