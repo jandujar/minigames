@@ -10,28 +10,44 @@ public class Game : IMiniGame {
     }
 
     public GameState state = GameState.Countdown;
-
-    public float max_power = 100f;
+    public Transform bottRot, bottPos;
+    public float maxPower = 300f;
     public float power = 0f;
-    private Vector3 initial_pos, inertia;
+    private Vector3 initialPos, inercia, initialRot;
+    [SerializeField]
+    private GameObject canvasSlider;
+    [SerializeField]
+    private GameManager gm;
+
 
     [SerializeField]
     private Rigidbody bottle;
 
     [SerializeField]
-    private bool is_flip = false;
+    private bool isFlip = false;
 
 	// Use this for initialization
 	void Start () {
+        bottRot.transform.eulerAngles = initialRot;
+        bottPos.transform.position = initialPos;
     }
 	
 	// Update is called once per frame
 	void Update () {
-		if (inertia == Vector3.zero) //Si ha parat de moure's
+		if (inercia == Vector3.zero || initialRot != Vector3.zero) //Si ha parat de moure's
         {
+            //gm.EndGame(IMiniGame.MiniGameResult.WIN);
             //comprovar rotació i comprovar si l'hem llançat
             //si la rotació és ~(0,0,0) i comprovar si la rotacio en l'eix Z es < epsilon
             //float.Epsilon
+        }
+        if (initialPos == bottle.transform.position)
+        {
+            //gm.EndGame(IMiniGame.MiniGameResult.WIN);
+        }
+        else
+        {
+            //gm.EndGame(IMiniGame.MiniGameResult.LOSE);
         }
 	}
 
@@ -44,12 +60,19 @@ public class Game : IMiniGame {
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        initial_pos = bottle.transform.position;
+        initialPos= bottle.transform.position;
         state = Game.GameState.Countdown;
+        canvasSlider.SetActive(false);
+
     }
 
     public override void beginGame()
     {
         state = Game.GameState.Playing;
+        canvasSlider.SetActive(true);
+    }
+    private void Reset()
+    {
+        bottPos.transform.position = initialPos;
     }
 }
