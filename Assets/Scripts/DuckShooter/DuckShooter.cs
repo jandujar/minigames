@@ -5,11 +5,17 @@ using UnityEngine;
 
 public class DuckShooter : IMiniGame{
     private GameManager gameManager;
-    public DuckSpawn spawn;
+    private DuckSpawn spawn;
     private int ducksToKill;
     private int timeToLoose = 0;
-    public Transform screenLifes;
-    
+    private Transform screenLifes;
+
+    void Awake()
+    {
+        spawn = transform.Find("Spawn").GetComponent<DuckSpawn>();
+        screenLifes = transform.Find("Lifes");
+    }
+
 
     public override void beginGame()
     {

@@ -11,18 +11,24 @@ public class Pointer : MonoBehaviour
     public float maxposy = 5.9f;
     public float maxposx = 10f;
     private bool canShoot = false;
-    //private InputManager bttns;
-    public DuckShooter gameEnginge;
-    
+    private DuckShooter gameEnginge;
+    private InputManager inputManager;
+
+    void Awake()
+    {
+        gameEnginge = transform.Find("Game").GetComponent<DuckShooter>();
+        inputManager = transform.Find("Game").GetComponent<InputManager>();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        canShoot = Input.GetButtonDown("Fire1");
+        canShoot = inputManager.GetButtonDown(0);
 
 
         //Pointer Movement
-        moveVer = Input.GetAxis("Vertical");
-        moveHor = Input.GetAxis("Horizontal");
+        moveVer = inputManager.GetAxisVertical();
+        moveHor = inputManager.GetAxisHorizontal();
 
         transform.Translate(0, moveVer * vely * Time.deltaTime, 0);
         transform.Translate(moveHor * vely * Time.deltaTime, 0, 0);
