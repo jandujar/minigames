@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Slider : MonoBehaviour {
+public class Sliderc : MonoBehaviour {
     public float power = 50f;
     public Rigidbody rb;
     private bool isWin;
     private Vector3 startPos;
     private GameManager gm;
     private Slider sl;
-    internal float maxValue;
-    internal float value;
-
-    public float minValue { get; internal set; }
 
     void Start()
     {

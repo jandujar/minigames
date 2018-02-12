@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class CountDown : MonoBehaviour {
     private Text text;
 
-
 	void Awake()
     {
         text = transform.Find("CountDown").gameObject.GetComponent<Text>();
