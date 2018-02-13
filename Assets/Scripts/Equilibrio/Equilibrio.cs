@@ -21,6 +21,7 @@ public class Equilibrio : IMiniGame {
     {
         this.gameManager = gm;
         ball.init(gm);
+        ball.StartGame();
     }
 
 }
