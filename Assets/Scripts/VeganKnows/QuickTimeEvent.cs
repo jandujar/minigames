@@ -5,12 +5,21 @@ using UnityEngine.UI;
 
 public class QuickTimeEvent : MonoBehaviour {
 
+    private GameManager gameManager;
     public GameObject DisplayBox;
     public GameObject PassBox;
+    public GameObject CountDown;
     public int QTEGen;
     public int WaitingForKey;
     public int CorrectKey;
-    public int CountingDown;
+    public int timeleft = 10;
+    public int dificultLvl = 1;
+    
+
+    public void init(GameManager gm)
+    {
+        gameManager = gm;
+    }
 
     private void Update()
     {
@@ -18,8 +27,7 @@ public class QuickTimeEvent : MonoBehaviour {
         {
             QTEGen = Random.Range(1, 3);
             Debug.Log(QTEGen);
-            CountingDown = 1;
-            StartCoroutine(CountDown());
+
 
             if (QTEGen == 1)
             {
@@ -31,6 +39,7 @@ public class QuickTimeEvent : MonoBehaviour {
                 WaitingForKey = 1;
                 DisplayBox.GetComponent<Text>().text = "[R]";
             }
+            StartCoroutine(LoseTime());
         }
 
         if (QTEGen == 1){
@@ -59,9 +68,7 @@ public class QuickTimeEvent : MonoBehaviour {
 
     IEnumerator KeyPressing(){
         QTEGen = 3;
-        Debug.Log(CorrectKey);
         if (CorrectKey == 1){
-            CountingDown = 2;
             PassBox.GetComponent<Text>().text = "PASS1";
             yield return new WaitForSeconds(1.5f);
             CorrectKey = 0;
@@ -69,23 +76,16 @@ public class QuickTimeEvent : MonoBehaviour {
             DisplayBox.GetComponent<Text>().text = "";
             yield return new WaitForSeconds(1.5f);
             WaitingForKey = 0;
-            CountingDown = 1;
         }
         if (CorrectKey == 2)
         {
-            CountingDown = 2;
             PassBox.GetComponent<Text>().text = "FAIL2";
-            yield return new WaitForSeconds(1.5f);
-            CorrectKey = 0;
-            PassBox.GetComponent<Text>().text = "";
-            DisplayBox.GetComponent<Text>().text = "";
-            yield return new WaitForSeconds(1.5f);
-            WaitingForKey = 0;
-            CountingDown = 1;
+            //Condicion de derrota
+            Debug.Log("Loser");
+            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
         }
         if (CorrectKey == 3)
         {
-            CountingDown = 2;
             PassBox.GetComponent<Text>().text = "PASS3";
             yield return new WaitForSeconds(1.5f);
             CorrectKey = 0;
@@ -93,35 +93,24 @@ public class QuickTimeEvent : MonoBehaviour {
             DisplayBox.GetComponent<Text>().text = "";
             yield return new WaitForSeconds(1.5f);
             WaitingForKey = 0;
-            CountingDown = 1;
         }
         if (CorrectKey == 4)
         {
-            CountingDown = 2;
             PassBox.GetComponent<Text>().text = "FAIL4";
-            yield return new WaitForSeconds(1.5f);
-            CorrectKey = 0;
-            PassBox.GetComponent<Text>().text = "";
-            DisplayBox.GetComponent<Text>().text = "";
-            yield return new WaitForSeconds(1.5f);
-            WaitingForKey = 0;
-            CountingDown = 1;
+            //Condicion de derrota
+            Debug.Log("Loser");
+            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
         }
     }
-
-    IEnumerator CountDown(){
-        yield return new WaitForSeconds(3.5f);
-        if (CountingDown == 1){
-            QTEGen = 3;
-            CountingDown = 2;
-            PassBox.GetComponent<Text>().text = "FAIL";
-            yield return new WaitForSeconds(1.5f);
-            CorrectKey = 0;
-            PassBox.GetComponent<Text>().text = "";
-            DisplayBox.GetComponent<Text>().text = "";
-            yield return new WaitForSeconds(1.5f);
-            WaitingForKey = 0;
-            CountingDown = 1;
+    IEnumerator LoseTime()
+    {
+        while (timeleft > -1)
+        {
+                CountDown.GetComponent<Text>().text = timeleft.ToString();
+                timeleft = timeleft - 1 * dificultLvl;
+                yield return new WaitForSeconds(1); 
         }
+        Debug.Log("Winner");
+        gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
     }
 }
