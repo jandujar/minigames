@@ -3,25 +3,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class paf_PickAFish : IMiniGame
+public class PafPickAFish : IMiniGame
 {
     private GameManager gameManager;
+    public GameObject game;
 
     void Awake()
     {
-        //Init Pong
-        Debug.LogError("Change this Script for your own Script");
-    }
 
+    }
+    
     public override void beginGame()
     {
         //Pong Begins
         Debug.Log(this.ToString() + " game Begin");
+        game.SetActive(true);
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
         this.gameManager = gm;
+    }
+
+    public void EndGame(bool win)
+    {
+        if (win) {
+            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+        }
+        else {
+            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+        }
     }
 
     public override string ToString()
