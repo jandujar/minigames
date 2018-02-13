@@ -54,10 +54,10 @@ public class GitaHiro : IMiniGame
     public void addScore()
     {
         Debug.LogError("!!!! "+m_HitScore);
-        Debug.Break();
+        //Debug.Break();
         Debug.Log("Adding " + m_HitScore + " to the score");
         m_Score+=m_HitScore;
-        Debug.Log("Score added");
+        Debug.Log("Score added "+m_Score);
     }
 
     
