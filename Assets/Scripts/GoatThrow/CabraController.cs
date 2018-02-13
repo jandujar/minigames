@@ -63,7 +63,7 @@ public class CabraController : MonoBehaviour {
         gameManager = gm;
         Rig = GetComponent<Rigidbody2D>();
         SPR = GetComponent<SpriteRenderer>();
-        maxDisttext.text = maxDistance.ToString() + "m";
+        maxDisttext.text ="Llega a "+ maxDistance.ToString() + "m para ganar";
     }
 	// Update is called once per frame
 	void Update () {
