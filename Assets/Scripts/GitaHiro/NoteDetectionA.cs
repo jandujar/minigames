@@ -28,6 +28,14 @@ public class NoteDetectionA : MonoBehaviour
             {
                 gameScript.addScore();
                 Destroy(gameNote);
+                noteDetected = false;
+            }
+        }
+        else
+        {
+            if ((Input.GetKeyDown(KeyCode.D) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)) && gameNote.gameObject.name != "buttonA(Clone)")
+            {
+                gameScript.setEndGame();
             }
         }
     }

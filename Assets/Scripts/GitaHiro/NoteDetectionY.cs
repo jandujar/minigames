@@ -23,10 +23,18 @@ public class NoteDetectionY : MonoBehaviour
         if(noteDetected == true)
         {
             //Y BUTTON
-            if ((Input.GetKeyDown(KeyCode.S)/* || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)*/) && gameNote.gameObject.name == "buttonY(Clone)")
+            if ((Input.GetKeyDown(KeyCode.S) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)) && gameNote.gameObject.name == "buttonY(Clone)")
             {
                 gameScript.addScore();
                 Destroy(gameNote);
+                noteDetected = false;
+            }
+        }
+        else
+        {
+            if ((Input.GetKeyDown(KeyCode.S) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)) && gameNote.gameObject.name != "buttonY(Clone)")
+            {
+                gameScript.setEndGame();
             }
         }
     }

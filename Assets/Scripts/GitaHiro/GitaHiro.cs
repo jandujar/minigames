@@ -17,7 +17,6 @@ public class GitaHiro : IMiniGame
 
     [Header("Score")]
     public int score = 0;
-    public int hitScore = 50;
     public Text text;
 
     void Awake()
@@ -61,6 +60,6 @@ public class GitaHiro : IMiniGame
 
     public void addScore()
     {
-        score+=hitScore;
+        score+=1;
     }    
 }
