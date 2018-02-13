@@ -9,15 +9,15 @@ public class GitaHiro : IMiniGame
     private GameManager gameManager;
     
     [Header("Note Spawner")]
-    public float m_Time;
-    public int m_MinRand;
-    public int m_MaxRand;
-    public BallSpawn m_NoteSpawner;
+    public float time;
+    public int minRand;
+    public int maxRand;
+    public BallSpawn noteSpawner;
 
     [Header("Score")]
-    public int m_Score = 0;
-    public int m_HitScore = 50;
-    public Text m_Text;
+    public int score = 0;
+    public int hitScore = 50;
+    public Text text;
 
     void Awake()
     {
@@ -28,7 +28,7 @@ public class GitaHiro : IMiniGame
     {
         //Iro Hiro Begins
         Debug.Log(this.ToString() + " game Begin");
-        StartCoroutine(m_NoteSpawner.generateRandom(m_Time, m_MinRand, m_MaxRand));
+        StartCoroutine(noteSpawner.generateRandom(time, minRand, maxRand));
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
@@ -43,22 +43,21 @@ public class GitaHiro : IMiniGame
 
     private void Update()
     {
-        m_Text.text = "Score: "+m_Score;
+        text.text = "Score: "+score;
+        score += 1;
     }
 
     public void setEndGame()
     {
         gameManager.EndGame(MiniGameResult.LOSE);
+        StopAllCoroutines();
     }
 
     public void addScore()
     {
-        Debug.LogError("!!!! "+m_HitScore);
         //Debug.Break();
-        Debug.Log("Adding " + m_HitScore + " to the score");
-        m_Score+=m_HitScore;
-        Debug.Log("Score added "+m_Score);
-    }
-
-    
+        Debug.Log("Adding " + hitScore + " to the score");
+        score+=hitScore;
+        Debug.Log("Score added "+score);
+    }    
 }

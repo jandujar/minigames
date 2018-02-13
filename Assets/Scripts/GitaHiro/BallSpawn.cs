@@ -2,55 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallSpawn : MonoBehaviour {
+public class BallSpawn : MonoBehaviour
+{
     
-    public GameObject m_A;
-    public GameObject m_B;
-    public GameObject m_X;
-    public GameObject m_Y;
+    public GameObject a;
+    public GameObject b;
+    public GameObject x;
+    public GameObject y;
 
-    public GameObject m_SoundA;
-    public GameObject m_SoundB;
-    public GameObject m_SoundX;
-    public GameObject m_SoundY;
+    public GameObject soundA;
+    public GameObject soundB;
+    public GameObject soundX;
+    public GameObject soundY;
 
-    public Transform m_Parent;
+    public Transform parent;
 
-    public bool m_SpawnNotes = true;
-    public List<GameObject> m_Notes;
+    public bool spawnNotes = true;
     
     public IEnumerator generateRandom(float _time, int _maxValue, int _minValue)
     {
-        int l_NotesCount = 0;
-        int l_TotalNotes = 0;
-        while (m_SpawnNotes)
+        int notesCount = 0;
+        int totalNotes = 0;
+        while (spawnNotes)
         {
             yield return new WaitForSecondsRealtime(_time);
             int l_Rand = Random.Range(_minValue, _maxValue);
-            l_NotesCount++;
-            l_TotalNotes++;
-            Debug.Log("Value: "+l_Rand+" - Note num: "+l_NotesCount+" - Time: "+_time+" - Total notes: "+l_TotalNotes);
+            notesCount++;
+            totalNotes++;
+            Debug.Log("Value: "+l_Rand+" - Note num: "+notesCount+" - Time: "+_time+" - Total notes: "+totalNotes);
             switch(l_Rand)
             {
                 case 1:
-                    Instantiate(m_SoundX, m_X.transform.position, Quaternion.identity, m_Parent);
+                    Instantiate(soundX, x.transform.position, Quaternion.identity, parent);
                     break;
                 case 2:
-                    Instantiate(m_SoundY, m_Y.transform.position, Quaternion.identity, m_Parent);
+                    Instantiate(soundY, y.transform.position, Quaternion.identity, parent);
                     break;
                 case 3:
-                    Instantiate(m_SoundA, m_A.transform.position, Quaternion.identity, m_Parent);
+                    Instantiate(soundA, a.transform.position, Quaternion.identity, parent);
                     break;
                 case 4:
-                    Instantiate(m_SoundB, m_B.transform.position, Quaternion.identity, m_Parent);
+                    Instantiate(soundB, b.transform.position, Quaternion.identity, parent);
                     break;
             }
-            if(l_NotesCount>=5)
+            if(notesCount>=5)
             {
                 if(_time>0.65f)
                 {
                     _time -= 0.15f;
-                    l_NotesCount = 0;
+                    notesCount = 0;
                 }
             }            
         }

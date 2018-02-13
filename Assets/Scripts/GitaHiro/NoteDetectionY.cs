@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoteDetectionY : GitaHiro
+public class NoteDetectionY : MonoBehaviour
 {
+    public GitaHiro gameScript;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -18,9 +19,9 @@ public class NoteDetectionY : GitaHiro
     void OnTriggerStay(Collider other)
     {
         //Y BUTTON
-        if ( (Input.GetKeyDown(KeyCode.S) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)) && other.gameObject.name == "Y(Clone)")
+        if ( (Input.GetKeyDown(KeyCode.S)/* || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)*/) && other.gameObject.name == "Y(Clone)")
         {
-            addScore();
+            gameScript.addScore();
             Destroy(other.gameObject);
         }
     }
@@ -32,6 +33,6 @@ public class NoteDetectionY : GitaHiro
     {
         Debug.Log("Adeu siau");
         //Debug.LogError("Fail!");
-        setEndGame();
+        gameScript.setEndGame();
     }
 }

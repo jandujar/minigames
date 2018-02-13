@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoteDetectionB : GitaHiro
+public class NoteDetectionB : MonoBehaviour
 {
-
-	// Use this for initialization
-	void Start () {
+    public GitaHiro gameScript;
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -20,7 +20,7 @@ public class NoteDetectionB : GitaHiro
         //B BUTTON
         if ((Input.GetKeyDown(KeyCode.F) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2)) && other.gameObject.name == "B(Clone)")
         {
-            addScore();
+            gameScript.addScore();
             Destroy(other.gameObject);
         }
     }
@@ -32,6 +32,6 @@ public class NoteDetectionB : GitaHiro
     {
         Debug.Log("Adeu siau");
         //Debug.LogError("Fail!");
-        setEndGame();
+        gameScript.setEndGame();
     }
 }
