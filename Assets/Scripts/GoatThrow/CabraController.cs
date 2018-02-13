@@ -63,7 +63,7 @@ public class CabraController : MonoBehaviour {
         gameManager = gm;
         Rig = GetComponent<Rigidbody2D>();
         SPR = GetComponent<SpriteRenderer>();
-        maxDisttext.text ="Llega a "+ maxDistance.ToString() + "m para ganar";
+        maxDisttext.text ="Reach "+ maxDistance.ToString() + "m to win";
     }
 	// Update is called once per frame
 	void Update () {
@@ -177,7 +177,7 @@ public class CabraController : MonoBehaviour {
         Rig.velocity = new Vector2(0, 0);
         SPR.sprite = IdleSprite;
         flying = false;
-        text.text = "Has hecho: "+ currentDistance.ToString("F2") + "m";
+        text.text = "You have reached "+ currentDistance.ToString("F2") + "m";
         StartCoroutine(StartNewScene());
 
     }
