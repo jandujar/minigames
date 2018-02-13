@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : Singleton<MenuManager> {
 
-    private enum MINIGAMES_ENUM { PONG, GOATTHROW, END };
+    private enum MINIGAMES_ENUM { PONG, GOATTHROW, BILLIARDS, END };
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
 
     //Load all minigames
@@ -28,6 +28,9 @@ public class MenuManager : Singleton<MenuManager> {
                 break;
             case MINIGAMES_ENUM.PONG:
                 SceneManager.LoadScene("Pong");
+                break;
+            case MINIGAMES_ENUM.BILLIARDS:
+                SceneManager.LoadScene("Billiards");
                 break;
             default:
                 SceneManager.LoadScene("Pong");
