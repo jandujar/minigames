@@ -23,6 +23,7 @@ public class DoYouKnowTheWay : IMiniGame {
 	public Transform[] ways = new Transform[4];
 
 	//PRIVATE
+	private AudioSource aSource;
 	private GameManager gameManager;
 	private int knucklesPos = 0;
 	private bool gameStarted = false;
@@ -38,13 +39,16 @@ public class DoYouKnowTheWay : IMiniGame {
 
 	public MyArray[] intersectionRows;
 
+	public AudioClip start;
+	public AudioClip clicking;
 	//*************************************************************************************************Start game
 	public override void beginGame()
 	{
 		Debug.Log(this.ToString() + " game Begin");
 		gameStarted = true;
 		actualTime = maxTime;
-	
+		aSource.clip = start;
+		aSource.Play ();
 	}
 	//*************************************************************************************************Start Loading
 	public override void initGame(MiniGameDificulty difficulty, GameManager gm)
@@ -52,6 +56,8 @@ public class DoYouKnowTheWay : IMiniGame {
 		this.gameManager = gm;
 		RandomUgandaPosition ();
 		GenerateIntersection ();
+		aSource = GetComponent<AudioSource> ();
+	
 	}
 	//*************************************************************************************************
 	public override string ToString()
@@ -105,6 +111,8 @@ public class DoYouKnowTheWay : IMiniGame {
 	private void initMovement(){
 		movementStarted = true;
 		knuckles.GetComponent<Knuckles> ().StartMoving (this,knucklesPos);
+		aSource.clip = clicking;
+		aSource.Play ();
 	}
 	//*************************************************************************************************Put uganda Randomly
 	private void RandomUgandaPosition(){
@@ -157,6 +165,7 @@ public class DoYouKnowTheWay : IMiniGame {
 	}
 
 	public void MovementFinished(bool _correctWay){
+		aSource.Stop ();
 		if (!_correctWay) {
 			gameManager.EndGame (IMiniGame.MiniGameResult.LOSE);
 		}
