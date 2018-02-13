@@ -50,7 +50,7 @@ public class BilliardBall : MonoBehaviour {
     void OnCollisionEnter(Collision other)
     {
         // If the object we hit is the enemy
-        if (other.gameObject.tag == "Walls")
+        if (other.gameObject.tag == "Finish")
         {
             // Calculate Angle Between the collision point and the player
             Vector3 dir = other.contacts[0].point - transform.position;

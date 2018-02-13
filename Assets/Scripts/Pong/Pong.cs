@@ -17,11 +17,13 @@ public class Pong : IMiniGame {
     {
         //Pong Begins
         Debug.Log(this.ToString() + " game Begin");
+        ball.enableBall = true;
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
         this.gameManager = gm;
+        ball.init(gm); 
     }
 
     public override string ToString()
