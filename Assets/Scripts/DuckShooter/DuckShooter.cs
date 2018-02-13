@@ -16,6 +16,7 @@ public class DuckShooter : IMiniGame{
     {
         //Pong Begins
         Debug.Log(this.ToString() + " game Begin");
+        spawn.init();
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
@@ -23,7 +24,7 @@ public class DuckShooter : IMiniGame{
         this.gameManager = gm;
         ducksToKill = 0;
         StartCoroutine(LooseTime());
-        spawn.init(gm);
+        
     }
 
     public void DuckKilled()

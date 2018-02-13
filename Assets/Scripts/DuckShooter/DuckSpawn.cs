@@ -5,7 +5,6 @@ using UnityEngine;
 public class DuckSpawn : MonoBehaviour {
 
     //References
-    private GameManager gameManager;
     public GameObject duckPrefab;
     public Transform leftSpawn;
     public Transform rightSpawn;
@@ -15,8 +14,7 @@ public class DuckSpawn : MonoBehaviour {
     private Quaternion leftDuck = new Quaternion(0, 0, 0, 0);
     private Quaternion rightDuck = new Quaternion(0, -1, 0, 0);
 
-    public void init(GameManager gm) {
-        gameManager = gm;
+    public void init() {
         Spawn();
     }
 

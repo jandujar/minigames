@@ -12,17 +12,16 @@ public class Pointer : MonoBehaviour
     public float maxposx = 10f;
     private bool canShoot = false;
     public DuckShooter gameEnginge;
-    public InputManager inputManager;
 
     // Update is called once per frame
     void Update()
     {
-        canShoot = inputManager.GetButtonDown(0);
+        canShoot = InputManager.Instance.GetButtonDown(0);
 
 
         //Pointer Movement
-        moveVer = inputManager.GetAxisVertical();
-        moveHor = inputManager.GetAxisHorizontal();
+        moveVer = InputManager.Instance.GetAxisVertical();
+        moveHor = InputManager.Instance.GetAxisHorizontal();
 
         transform.Translate(0, moveVer * vely * Time.deltaTime, 0);
         transform.Translate(moveHor * vely * Time.deltaTime, 0, 0);
@@ -54,7 +53,7 @@ public class Pointer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Duck")
+        if (other.gameObject.tag == "GameController")
         {
             Debug.Log("Touched");
             if(canShoot)
@@ -67,7 +66,7 @@ public class Pointer : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Duck")
+        if (other.gameObject.tag == "GameController")
         {
             Debug.Log("Touched");
             if (canShoot)
