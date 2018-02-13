@@ -8,7 +8,6 @@ public class BilliardPlayer : MonoBehaviour {
 
     private float v;
     private float h;
-    private InputManager IpManager;
     [HideInInspector]
     public float Power = 0;
     [SerializeField]
@@ -22,7 +21,6 @@ public class BilliardPlayer : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        IpManager = new InputManager();
         Gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         CountDown.gameObject.SetActive(false);
     }
@@ -42,8 +40,8 @@ public class BilliardPlayer : MonoBehaviour {
 
         ShotLine();
 
-        v = IpManager.GetAxisVertical();
-        h = IpManager.GetAxisHorizontal();
+        v = InputManager.Instance.GetAxisVertical();
+        h = InputManager.Instance.GetAxisHorizontal();
 
         transform.Rotate(0, 0, v * Time.deltaTime * 20);
         if (transform.eulerAngles.z < 40 && transform.eulerAngles.z > 30) {
@@ -54,7 +52,7 @@ public class BilliardPlayer : MonoBehaviour {
             transform.rotation = Quaternion.Euler(0, 0, 360-30);
         }
 
-        if (IpManager.GetButton(InputManager.MiniGameButtons.BUTTON1)) {
+        if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1)) {
             if (PlayerShot) {
                 return;
             }
@@ -70,7 +68,7 @@ public class BilliardPlayer : MonoBehaviour {
             }
         }
 
-        if (IpManager.GetButtonUp(InputManager.MiniGameButtons.BUTTON1)) {
+        if (InputManager.Instance.GetButtonUp(InputManager.MiniGameButtons.BUTTON1)) {
             if (PlayerShot)
             {
                 return;
