@@ -5,18 +5,30 @@ using UnityEngine;
 public class NoteDetectionX : MonoBehaviour
 {
     public GitaHiro gameScript;
+
+    private bool noteDetected = false;
+    private GameObject gameNote;
     
     void OnTriggerStay(Collider other)
     {
-        //X BUTTON
-        if ((Input.GetKeyDown(KeyCode.A) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON3)) && other.gameObject.name == "buttonX(Clone)")
-        {
-            gameScript.addScore();
-            Destroy(other.gameObject);
-        }
+        noteDetected = true;
+        gameNote = other.gameObject;
     }
     private void OnTriggerExit(Collider other)
     {
         gameScript.setEndGame();
+    }
+
+    void Update()
+    {
+        if(noteDetected==true)
+        {
+            //X BUTTON
+            if ((Input.GetKeyDown(KeyCode.A) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON3)) && gameNote.gameObject.name == "buttonX(Clone)")
+            {
+                gameScript.addScore();
+                Destroy(gameNote);
+            }
+        }
     }
 }

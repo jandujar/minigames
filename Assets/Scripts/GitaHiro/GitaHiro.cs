@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GitaHiro : IMiniGame
 {
@@ -28,8 +29,8 @@ public class GitaHiro : IMiniGame
     {
         //Iro Hiro Begins
         Debug.Log(this.ToString() + " game Begin");
-        text.text = " ";
         StartCoroutine(noteSpawner.generateRandom(time, minRand, maxRand));
+        text.enabled = true;
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
@@ -45,13 +46,17 @@ public class GitaHiro : IMiniGame
     private void Update()
     {
         text.text = "Score: "+score;
-        //score += 1;
     }
 
     public void setEndGame()
     {
+#if UNITY_EDITOR
+        SceneManager.LoadScene("GitaHiro");
+        StopAllCoroutines();
+#else
         gameManager.EndGame(MiniGameResult.LOSE);
         StopAllCoroutines();
+#endif
     }
 
     public void addScore()
