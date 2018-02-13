@@ -237,6 +237,7 @@ MonoBehaviour:
   m_MaxRand: 0
   m_NoteSpawner: {fileID: 0}
   m_Score: 0
+  m_HitScore: 50
   m_Text: {fileID: 0}
 --- !u!65 &134738883
 BoxCollider:
@@ -740,27 +741,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4250962408786004, guid: 16c290a8c1d9dea44a3562ee346f0f84, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -10.5
       objectReference: {fileID: 0}
     - target: {fileID: 4250962408786004, guid: 16c290a8c1d9dea44a3562ee346f0f84, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4250962408786004, guid: 16c290a8c1d9dea44a3562ee346f0f84, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.34163466
       objectReference: {fileID: 0}
     - target: {fileID: 4250962408786004, guid: 16c290a8c1d9dea44a3562ee346f0f84, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4250962408786004, guid: 16c290a8c1d9dea44a3562ee346f0f84, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4250962408786004, guid: 16c290a8c1d9dea44a3562ee346f0f84, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.93983287
       objectReference: {fileID: 0}
     - target: {fileID: 4250962408786004, guid: 16c290a8c1d9dea44a3562ee346f0f84, type: 2}
       propertyPath: m_RootOrder
@@ -770,6 +771,10 @@ Prefab:
         type: 2}
       propertyPath: orthographic
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4250962408786004, guid: 16c290a8c1d9dea44a3562ee346f0f84, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -39.953003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16c290a8c1d9dea44a3562ee346f0f84, type: 2}
@@ -934,6 +939,7 @@ MonoBehaviour:
   m_MaxRand: 0
   m_NoteSpawner: {fileID: 0}
   m_Score: 0
+  m_HitScore: 50
   m_Text: {fileID: 0}
 --- !u!65 &771312390
 BoxCollider:
@@ -1172,7 +1178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1348,6 +1354,7 @@ MonoBehaviour:
   m_MaxRand: 0
   m_NoteSpawner: {fileID: 0}
   m_Score: 0
+  m_HitScore: 50
   m_Text: {fileID: 0}
 --- !u!65 &1314336715
 BoxCollider:
@@ -1531,6 +1538,8 @@ MonoBehaviour:
   m_SoundX: {fileID: 1004077354}
   m_SoundY: {fileID: 2025335649}
   m_Parent: {fileID: 1438457670}
+  m_SpawnNotes: 1
+  m_Notes: []
 --- !u!1 &1469102979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,6 +1587,7 @@ MonoBehaviour:
   m_MaxRand: 0
   m_NoteSpawner: {fileID: 0}
   m_Score: 0
+  m_HitScore: 50
   m_Text: {fileID: 0}
 --- !u!65 &1469102982
 BoxCollider:
@@ -2025,6 +2035,7 @@ MonoBehaviour:
   m_MaxRand: 4
   m_NoteSpawner: {fileID: 1468494166}
   m_Score: 0
+  m_HitScore: 50
   m_Text: {fileID: 1181196314}
 --- !u!1 &1782906105
 GameObject:
