@@ -9,6 +9,7 @@ public class JoystickMovement : MonoBehaviour {
 	public Transform target;
 	public Transform mouseposition;
 	public float maxdist;
+	public Vector3 posToLook;
 	// Use this for initialization
 	void Start () {
 		rig = GetComponent<Rigidbody>();
@@ -30,6 +31,8 @@ public class JoystickMovement : MonoBehaviour {
 
 			rig.MovePosition(transform.position + movement / speed);
 		}
+		this.transform.LookAt (posToLook);
 		mouseposition = rig.transform;
-	}  
+	}
+
 }

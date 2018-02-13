@@ -46,6 +46,8 @@ public class Gun : MonoBehaviour {
 		Physics.Raycast (ray, out hitPoint, 100);
 		Debug.DrawRay (Camera.main.transform.position, hitPoint.point - Camera.main.transform.position, Color.green, 10);
 		this.transform.LookAt (hitPoint.point);
+		virtualMousePosition.GetComponent<JoystickMovement> ().posToLook = hitPoint.point;
+		virtualMousePosition.transform.rotation = new Quaternion (virtualMousePosition.transform.rotation.x, this.transform.rotation.y, virtualMousePosition.transform.rotation.z, virtualMousePosition.transform.rotation.w);
 		if (canFire) {
 			bullet.transform.LookAt (hitPoint.point);
 		}
