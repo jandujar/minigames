@@ -5,15 +5,6 @@ using UnityEngine;
 public class NoteDetectionB : MonoBehaviour
 {
     public GitaHiro gameScript;
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     void OnTriggerStay(Collider other)
     {
