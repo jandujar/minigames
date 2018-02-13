@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,14 +33,19 @@ public class BilliardBall : MonoBehaviour {
 
             if (other.GetComponent<Renderer>().material.color == Color.blue)
             {
-                Gm.EndGame(IMiniGame.MiniGameResult.WIN);
+                StartCoroutine(EndGame(IMiniGame.MiniGameResult.WIN));
             }
             else {
-                Gm.EndGame(IMiniGame.MiniGameResult.LOSE);
+                StartCoroutine(EndGame(IMiniGame.MiniGameResult.LOSE));
             }
         }
     }
 
+    IEnumerator EndGame(IMiniGame.MiniGameResult result)
+    {
+        yield return new WaitForSecondsRealtime(3f);
+        Gm.EndGame(result);
+    }
 
     void OnCollisionEnter(Collision other)
     {
