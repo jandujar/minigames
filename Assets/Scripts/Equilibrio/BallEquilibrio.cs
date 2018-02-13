@@ -68,7 +68,7 @@ public class BallEquilibrio : MonoBehaviour {
     {
         lose = true;
         loseSprite.SetActive(true);
-        gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+        StartCoroutine(LoseCorutine());        
     }
 
     public IEnumerator winCountDown()
@@ -84,5 +84,11 @@ public class BallEquilibrio : MonoBehaviour {
             yield return new WaitForSeconds(3f);
             gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
         }
+    }
+
+    public IEnumerator LoseCorutine()
+    {
+        yield return new WaitForSeconds(3f);
+        gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
     }
 }
