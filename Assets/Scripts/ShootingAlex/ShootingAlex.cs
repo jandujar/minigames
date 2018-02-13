@@ -26,12 +26,12 @@ public class ShootingAlex: IMiniGame {
     {
         this.gameManager = gm;
 		if (difficulty == MiniGameDificulty.EASY) {
-			shooting.GetComponent<ShootingManager> ().setTimeRecolectObjective (1.5f);
+			shooting.GetComponent<ShootingManager> ().setTimeRecolectObjective (2.5f);
 		} else {
 			if (difficulty == MiniGameDificulty.NORMAL) {
-				shooting.GetComponent<ShootingManager> ().setTimeRecolectObjective (1);
+				shooting.GetComponent<ShootingManager> ().setTimeRecolectObjective (2f);
 			} else {
-				shooting.GetComponent<ShootingManager> ().setTimeRecolectObjective (0.8f);
+				shooting.GetComponent<ShootingManager> ().setTimeRecolectObjective (1.5f);
 			}
 		}
         //ball.init(gm); 

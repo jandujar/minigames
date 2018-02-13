@@ -16,11 +16,11 @@ public class Objective : MonoBehaviour {
 	public void Awake(){
 		mat = this.GetComponentInChildren<MeshRenderer> ().materials [0];
 		startRotation = this.transform.rotation.eulerAngles;
-		target = false;
+		//target = false;
 	}
 
 	public void moveUp(bool valid, float delay){
-		colision = false;
+		//colision = false;
 
 		randTex = Random.Range (0, texAlly.Length);
 		if (!valid) {
@@ -28,6 +28,8 @@ public class Objective : MonoBehaviour {
 		} else {
 			mat.SetTexture ("_MainTex", texEnemy [randTex]);
 		}
+
+		target = valid;
 
 		this.transform.Rotate (90, 0, 0, Space.Self);
 
@@ -37,7 +39,7 @@ public class Objective : MonoBehaviour {
 	private IEnumerator ObjectiveDesapear(float delay, bool valid){
 		yield return new WaitForSecondsRealtime (delay);
 		this.transform.Rotate (-90, 0, 0, Space.Self);
-		target = valid;
+
 
 		//valid = false;
 
@@ -55,9 +57,12 @@ public class Objective : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter(Collision other){
-		if (other.collider.tag == "Bullet" && target) {
+		if (other.collider.name == "Bullet" && target) {
 			colision = true;
 			Debug.Log ("WIN");
+		} else {
+			Debug.Log ("PIPOOOO");
+			Debug.Log ("oTHER: " + other.collider.name);
 		}
 	}
 }

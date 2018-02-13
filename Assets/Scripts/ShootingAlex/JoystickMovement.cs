@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class JoystickMovement : MonoBehaviour {
-	public float speed = .5f;
-	public float turnSpeed = 60;
+	public float speed;
 	private Rigidbody rig;
 	public float distance;
 	public Transform target;
