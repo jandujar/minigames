@@ -124,6 +124,11 @@ public class DoYouKnowTheWay : IMiniGame {
 	}
 
 	public void MovementFinished(bool _correctWay){
-		Debug.Log ("TERMINAO " + _correctWay);
+		if (!_correctWay) {
+			gameManager.EndGame (IMiniGame.MiniGameResult.LOSE);
+		}
+		else{
+			gameManager.EndGame (IMiniGame.MiniGameResult.WIN);
+		}
 	}
 }
