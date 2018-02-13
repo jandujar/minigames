@@ -10,7 +10,7 @@ public class RandomNumbers : MonoBehaviour {
     {
         //Init Game    
 
-        rand = (int)Random.Range(0f, 9f);
+        rand = (int)Random.Range(0f, 10f);
         Debug.Log(rand);
 
          aNumbers[rand].gameObject.SetActive(true);
