@@ -6,22 +6,14 @@ public class DuckSpawn : MonoBehaviour {
 
     //References
     private GameManager gameManager;
-    private GameObject duckPrefab;
-    private Transform leftSpawn;
-    private Transform rightSpawn;
+    public GameObject duckPrefab;
+    public Transform leftSpawn;
+    public Transform rightSpawn;
     
 
     //Quaternion
     private Quaternion leftDuck = new Quaternion(0, 0, 0, 0);
     private Quaternion rightDuck = new Quaternion(0, -1, 0, 0);
-
-
-    // Use this for initialization
-    void Awake () {
-        leftSpawn = transform.Find("LeftSpawn");
-        rightSpawn = transform.Find("RightSpawn");
-        duckPrefab = Resources.Load<GameObject>("Prefabs/DuckShooter/Duck");
-	}
 
     public void init(GameManager gm) {
         gameManager = gm;

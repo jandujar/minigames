@@ -11,14 +11,8 @@ public class Pointer : MonoBehaviour
     public float maxposy = 5.9f;
     public float maxposx = 10f;
     private bool canShoot = false;
-    private DuckShooter gameEnginge;
-    private InputManager inputManager;
-
-    void Awake()
-    {
-        gameEnginge = transform.Find("Game").GetComponent<DuckShooter>();
-        inputManager = transform.Find("Game").GetComponent<InputManager>();
-    }
+    public DuckShooter gameEnginge;
+    public InputManager inputManager;
 
     // Update is called once per frame
     void Update()

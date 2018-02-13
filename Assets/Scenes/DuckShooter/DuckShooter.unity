@@ -596,6 +596,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a0cbddbff0a5a4494b3feaa9fb4ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duckPrefab: {fileID: 1378069843041104, guid: 3b6a494c143e170438a253e2231e47d2, type: 2}
+  leftSpawn: {fileID: 707835863}
+  rightSpawn: {fileID: 1093112280}
 --- !u!1 &1093112279
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,6 +722,8 @@ MonoBehaviour:
   vely: 30
   maxposy: 5.9
   maxposx: 13
+  gameEnginge: {fileID: 1704692377}
+  inputManager: {fileID: 1704692378}
 --- !u!212 &1281084374
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1212,6 +1217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c412c0d4ab5f7743a19b1b718bde022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  screenLifes: {fileID: 1686146765}
 --- !u!114 &1704692378
 MonoBehaviour:
   m_ObjectHideFlags: 0
