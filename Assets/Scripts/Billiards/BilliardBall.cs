@@ -7,6 +7,7 @@ public class BilliardBall : MonoBehaviour {
 
     private BilliardPlayer Bp;
     private GameManager Gm;
+    public bool VelocityLoose = false;
 
 
     private float force = 40;
@@ -19,9 +20,14 @@ public class BilliardBall : MonoBehaviour {
     }
     void Update()
     {
-
         if (GetComponent<Rigidbody>().velocity.x < 3.2 && GetComponent<Rigidbody>().velocity.x > -3.2) {
             GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        }
+
+        if (VelocityLoose) {
+            if (GetComponent<Rigidbody>().velocity.x == 0) {
+                Gm.EndGame(IMiniGame.MiniGameResult.LOSE);
+            }
         }
     }
 
@@ -29,6 +35,7 @@ public class BilliardBall : MonoBehaviour {
     {
         if (other.transform.parent.name == "Holes") {
             GameObject.Find("Background").GetComponent<Collider>().enabled = false;
+            VelocityLoose = false;
             GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 
             if (other.GetComponent<Renderer>().material.color == Color.blue)
@@ -60,6 +67,14 @@ public class BilliardBall : MonoBehaviour {
             // This will push back the player
             GetComponent<Rigidbody>().AddForce(dir * force * Bp.Power);
             force -= 10;
+            VelocityLoose = false;
+            StartCoroutine(VLoose());
         }
+    }
+
+    IEnumerator VLoose()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        VelocityLoose = true;
     }
 }

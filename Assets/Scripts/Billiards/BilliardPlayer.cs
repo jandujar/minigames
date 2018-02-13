@@ -17,7 +17,8 @@ public class BilliardPlayer : MonoBehaviour {
     private bool PlayerShot = false;
     private GameManager Gm;
     private bool StartCountdown = false;
-    public Text CountDown; 
+    public Text CountDown;
+    public BilliardBall BBall;
 
     // Use this for initialization
     void Start () {
@@ -118,6 +119,7 @@ public class BilliardPlayer : MonoBehaviour {
         yield return new WaitForSecondsRealtime(0.05f);
         BallRb.AddForce(transform.TransformDirection(-Vector3.right) * Power, ForceMode.Impulse);
         HasShot = false;
+        BBall.VelocityLoose = true;
 
     }
 
