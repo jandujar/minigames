@@ -58,7 +58,7 @@ public class DoYouKnowTheWay : IMiniGame {
 
 	//*************************************************************************************************Check Player Inputs
 	private void CheckPlayerInput(){
-		h = Input.GetAxis ("Horizontal");
+		h = InputManager.Instance.GetAxisHorizontal ();
 		//Change Knuckeles Pos
 		if (!alreadyMoved && h <= -0.1 && knucklesPos > 0) {
 			alreadyMoved = true;
@@ -74,7 +74,7 @@ public class DoYouKnowTheWay : IMiniGame {
 			alreadyMoved = false;
 		}
 		//Start Moving
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)) {
 			movementStarted = true;
 			knuckles.GetComponent<Knuckles> ().StartMoving (this,knucklesPos);
 		}
