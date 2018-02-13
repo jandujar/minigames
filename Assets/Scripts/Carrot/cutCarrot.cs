@@ -20,12 +20,6 @@ public class CutCarrot : IMiniGame
     {
         canPress = false;
         yield return new WaitForSeconds(1);
-
-        if (Input.GetButton("Fire1"))
-        {
-            keyToPress.text = "Fire1";
-        }
-
         canPress = true;
     }
 
@@ -35,7 +29,6 @@ public class CutCarrot : IMiniGame
         if (Input.GetButton("Fire1"))
         {
             Debug.Log("Has pulsado " + keyToPress.text);
-            keyToPress.text = "Press " + "Fire1" + " Fast!";
             carrotParts[current].SetActive(false);
             current++;
             StartCoroutine(SetPress());
