@@ -9,7 +9,7 @@ public class NoteDetectionX : MonoBehaviour
     void OnTriggerStay(Collider other)
     {
         //X BUTTON
-        if ((Input.GetKeyDown(KeyCode.A) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON3)) && other.gameObject.name == "X(Clone)")
+        if ((Input.GetKeyDown(KeyCode.A) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON3)) && other.gameObject.name == "buttonX(Clone)")
         {
             gameScript.addScore();
             Destroy(other.gameObject);

@@ -28,6 +28,7 @@ public class GitaHiro : IMiniGame
     {
         //Iro Hiro Begins
         Debug.Log(this.ToString() + " game Begin");
+        text.text = " ";
         StartCoroutine(noteSpawner.generateRandom(time, minRand, maxRand));
     }
 
