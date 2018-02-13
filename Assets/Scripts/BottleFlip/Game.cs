@@ -10,14 +10,16 @@ public class Game : IMiniGame {
     }
 
     public GameState state = GameState.Countdown;
-    public Transform bottRot, bottPos;
     public float maxPower = 300f;
     public float power = 0f;
-    private Vector3 initialPos, inercia, initialRot;
+    private Vector3 initialPos, inercia, currentPos;
     [SerializeField]
     private GameObject canvasSlider;
     [SerializeField]
     private GameManager gm;
+    private Quaternion initialRot, currentRot, rotationZ;
+    private GameObject botella;
+    private bool isLaunched;
 
 
     [SerializeField]
@@ -28,26 +30,22 @@ public class Game : IMiniGame {
 
 	// Use this for initialization
 	void Start () {
-        bottRot.transform.eulerAngles = initialRot;
-        bottPos.transform.position = initialPos;
+        initialPos = botella.transform.position;
+        initialRot = Quaternion.Euler(0, 0, 0); //rot inicial
+        currentPos = botella.transform.position; 
+        currentRot = botella.transform.rotation;
+        rotationZ = Quaternion.Euler(0, 0, 180);
     }
 	
 	// Update is called once per frame
 	void Update () {
-		if (inercia == Vector3.zero || initialRot != Vector3.zero) //Si ha parat de moure's
+        if (power > 0 && isLaunched == true ) //Si ha parat de moure's
         {
+            Reset();
             //gm.EndGame(IMiniGame.MiniGameResult.WIN);
             //comprovar rotació i comprovar si l'hem llançat
             //si la rotació és ~(0,0,0) i comprovar si la rotacio en l'eix Z es < epsilon
             //float.Epsilon
-        }
-        if (initialPos == bottle.transform.position)
-        {
-            //gm.EndGame(IMiniGame.MiniGameResult.WIN);
-        }
-        else
-        {
-            //gm.EndGame(IMiniGame.MiniGameResult.LOSE);
         }
 	}
 
@@ -56,6 +54,7 @@ public class Game : IMiniGame {
         bottle.AddForce(Vector3.up * power);
         bottle.AddRelativeTorque(Vector3.forward * power);
         power = 0f;
+        isLaunched = true;
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
@@ -70,9 +69,13 @@ public class Game : IMiniGame {
     {
         state = Game.GameState.Playing;
         canvasSlider.SetActive(true);
+        isLaunched = false;
     }
     private void Reset()
     {
-        bottPos.transform.position = initialPos;
+        botella.transform.position = initialPos;
+        botella.transform.rotation = initialRot;
+        botella.SetActive(false);
+        isLaunched = false;
     }
 }
