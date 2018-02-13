@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CountDown : MonoBehaviour {
     private Text text;
 
+
 	void Awake()
     {
         text = transform.Find("CountDown").gameObject.GetComponent<Text>();
@@ -16,18 +17,18 @@ public class CountDown : MonoBehaviour {
     public IEnumerator BeginCountDown()
     {
         text.text = "3";
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1);
 
         text.text = "2";
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1);
 
         text.text = "1";
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1);
 
         text.text = "Go!";
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1);
     }
 }
