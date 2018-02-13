@@ -23,8 +23,8 @@ public class JoystickMovement : MonoBehaviour {
 
 		if (Vector2.Distance(transform.position, target.transform.position) <= maxdist)
 		{
-			float rStickX = Input.GetAxis("xbox1");
-			float rStickY = Input.GetAxis("xboxr");
+			float rStickX = InputManager.Instance.GetAxisHorizontal ();
+			float rStickY = InputManager.Instance.GetAxisVertical ();
 
 			Vector3 movement = new Vector3(rStickX, rStickY, 0);
 

@@ -13,7 +13,6 @@ public class Objective : MonoBehaviour {
 	public Texture[] texEnemy;
 	public Texture[] texAlly;
 
-
 	public void Awake(){
 		mat = this.GetComponentInChildren<MeshRenderer> ().materials [0];
 		startRotation = this.transform.rotation.eulerAngles;

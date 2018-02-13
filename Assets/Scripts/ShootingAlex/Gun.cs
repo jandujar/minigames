@@ -46,11 +46,14 @@ public class Gun : MonoBehaviour {
 		Physics.Raycast (ray, out hitPoint, 100);
 		Debug.DrawRay (Camera.main.transform.position, hitPoint.point - Camera.main.transform.position, Color.green, 10);
 		this.transform.LookAt (hitPoint.point);
+		if (canFire) {
+			bullet.transform.LookAt (hitPoint.point);
+		}
 	}
 
 	private void CheckInputs(){
 		//Disparar
-		if(Input.GetMouseButtonDown(0) && canFire){
+		if(InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) && canFire){
 			canFire = false;
 			shooting = true;
 		}
@@ -59,7 +62,7 @@ public class Gun : MonoBehaviour {
 	private void Fire(){
 		shooting = false;
 		collBullet.enabled = true;
-		rbdBullet.AddRelativeForce (bullet.transform.forward * forceShoot);
+		rbdBullet.AddForce (bullet.transform.forward * forceShoot);
 		rbdBullet.useGravity = true;
 		StartCoroutine (Reload ());
 		//bullet.GetComponent<Ri
