@@ -24,14 +24,8 @@ public class NoteDetectionB : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Holi");
-    }
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Adeu siau");
-        //Debug.LogError("Fail!");
         gameScript.setEndGame();
     }
 }

@@ -44,7 +44,7 @@ public class GitaHiro : IMiniGame
     private void Update()
     {
         text.text = "Score: "+score;
-        score += 1;
+        //score += 1;
     }
 
     public void setEndGame()
@@ -55,9 +55,6 @@ public class GitaHiro : IMiniGame
 
     public void addScore()
     {
-        //Debug.Break();
-        Debug.Log("Adding " + hitScore + " to the score");
         score+=hitScore;
-        Debug.Log("Score added "+score);
     }    
 }
