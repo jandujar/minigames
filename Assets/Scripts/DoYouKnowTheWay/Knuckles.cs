@@ -56,7 +56,7 @@ public class Knuckles : MonoBehaviour {
 
 	//*************************************************************************************************
 	void OnTriggerEnter2D(Collider2D col){
-		if (col.gameObject.tag == "Uganda") {
+		if (col.gameObject.tag == "Finish") {
 			correctWay = true;
 		} 
 
@@ -64,7 +64,7 @@ public class Knuckles : MonoBehaviour {
 	}
 	//*************************************************************************************************
 	void OnTriggerStay2D(Collider2D col){
-		if (col.gameObject.tag != "Uganda") {
+		if (col.gameObject.tag != "Finish") {
 			//SI VA HACIA ARRIBA
 			if (vertical) {
 				//SI VA HACIA ARRIBA Y COLISIONA POR IZQUIERDA

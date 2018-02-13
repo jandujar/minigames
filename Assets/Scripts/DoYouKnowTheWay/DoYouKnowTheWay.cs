@@ -1,15 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+[System.Serializable]
+public class MyArray{
+	public GameObject[] myArray;
+}
 
 public class DoYouKnowTheWay : IMiniGame {
 	//PUBLIC
-	[Tooltip("value btween 1 and 6")]
+	[Tooltip("value btween 1 and 9 ")]
 	public int numberOfIntersections = 3;
+	public float maxTime = 5;
+	public Text timerText;
+	private float actualTime;
 	public float distanceBtweenIntersections = 0.5f;
 	public GameObject intersection;
-	public float intersectionMaxY;
-	public float intersectionMinY;
 	public Transform[] intersectionPos = new Transform[3];
 	public GameObject uganda;
 	public GameObject knuckles;
@@ -23,17 +30,20 @@ public class DoYouKnowTheWay : IMiniGame {
 	private bool alreadyMoved = false;
 	private bool movementStarted = false;
 
-	private float randomPos;
+	private int randomPos;
 	private float lastRandomPos;
 	private float[] lastRowPos = new float[3];
-	private int intersectionRow = 0;
+	private int actualRow = 0;
 	private float actualDistance;
+
+	public MyArray[] intersectionRows;
 
 	//*************************************************************************************************Start game
 	public override void beginGame()
 	{
 		Debug.Log(this.ToString() + " game Begin");
 		gameStarted = true;
+		actualTime = maxTime;
 	
 	}
 	//*************************************************************************************************Start Loading
@@ -52,10 +62,18 @@ public class DoYouKnowTheWay : IMiniGame {
 	void Update () {
 		if (gameStarted && !movementStarted) {
 			CheckPlayerInput ();
+			countDown ();
 		}
 		
 	}
-
+	private void countDown(){
+		actualTime -= Time.deltaTime;
+		timerText.text = actualTime.ToString ();
+		if (actualTime < 0) {
+			initMovement();
+			timerText.enabled = false;
+		}
+	}
 	//*************************************************************************************************Check Player Inputs
 	private void CheckPlayerInput(){
 		h = InputManager.Instance.GetAxisHorizontal ();
@@ -75,8 +93,7 @@ public class DoYouKnowTheWay : IMiniGame {
 		}
 		//Start Moving
 		if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)) {
-			movementStarted = true;
-			knuckles.GetComponent<Knuckles> ().StartMoving (this,knucklesPos);
+			initMovement ();
 		}
 
 		if (Input.GetKeyDown (KeyCode.A)) {
@@ -84,7 +101,11 @@ public class DoYouKnowTheWay : IMiniGame {
 			GenerateIntersection ();
 		}
 	}
-
+	//*************************************************************************************************
+	private void initMovement(){
+		movementStarted = true;
+		knuckles.GetComponent<Knuckles> ().StartMoving (this,knucklesPos);
+	}
 	//*************************************************************************************************Put uganda Randomly
 	private void RandomUgandaPosition(){
 		int rNumber = Random.Range (0, 4);
@@ -98,28 +119,40 @@ public class DoYouKnowTheWay : IMiniGame {
 	}
 	//*************************************************************************************************Random Intersection generator
 	private void GenerateIntersection(){
+		bool exit = false;
 		for (int i = 0; i < numberOfIntersections; i++) {
-			GameObject go = Instantiate (intersection);
+			if (actualRow > 2) {
+				actualRow = 0;
+			} 
+		
+			//Bucle generacion
+			while (!exit) {
+				randomPos = Random.Range (0, 8);
 
-			if (intersectionRow > 2) {
-				intersectionRow = 0;
+				switch (actualRow) {
+				case 0:
+					if ((intersectionRows [actualRow].myArray [randomPos].activeSelf == false) && (intersectionRows [actualRow + 1].myArray [randomPos].activeSelf == false)) {
+						exit = true;
+					}
+					break;
+				case 1:
+					if ((intersectionRows [actualRow].myArray [randomPos].activeSelf == false) && 
+						(intersectionRows [actualRow + 1].myArray [randomPos].activeSelf == false) &&
+						(intersectionRows [actualRow-1].myArray [randomPos].activeSelf == false)) {
+						exit = true;
+					}
+					break;
+				case 2:
+					if ((intersectionRows [actualRow].myArray [randomPos].activeSelf == false) && (intersectionRows [actualRow -1].myArray [randomPos].activeSelf == false)) {
+						exit = true;
+					}
+					break;
+				}
 			}
-			 
-			do{
-			randomPos = Random.Range (intersectionMinY, intersectionMaxY);
-			actualDistance = Mathf.Abs (lastRandomPos - randomPos);
-			Debug.Log(Mathf.Abs(actualDistance));
-			}while(Mathf.Abs(actualDistance) < distanceBtweenIntersections);
-
-			go.transform.position = new Vector3 (intersectionPos[intersectionRow].transform.position.x,randomPos,0);
-			//guardamos la posicion de la interseccion
-			lastRandomPos = randomPos;
-
-			intersectionRow++;
-
-
-
-
+			//activa intersection
+			intersectionRows [actualRow].myArray [randomPos].SetActive (true);
+			exit = false;
+			actualRow++;
 		}
 	}
 
