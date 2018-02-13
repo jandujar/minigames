@@ -16,6 +16,7 @@ public class KnifeAttack : MonoBehaviour {
     private Vector3 startPos;
     [SerializeField]private GameObject blood;
     private GameManager gameManager;
+    [SerializeField]private float endTimer = 0.5f;
 
     public void init(GameManager gm)
     {
@@ -97,8 +98,15 @@ public class KnifeAttack : MonoBehaviour {
             stopKnife();
             blood.transform.position = gameObject.transform.position;
             blood.SetActive(true);
-            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+            StartCoroutine("EndMinigame", endTimer);
         }
+    }
+
+    private IEnumerator EndMinigame(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+        yield return null;
     }
 
     public void stopKnife()
