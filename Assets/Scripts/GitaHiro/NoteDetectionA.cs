@@ -19,13 +19,10 @@ public class NoteDetectionA : GitaHiro {
         //A BUTTON
         if ((Input.GetKeyDown(KeyCode.D) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)) && other.gameObject.name == "A(Clone)")
         {
+            addScore();
+            Debug.Log("HIT");
             Destroy(other.gameObject);
-            addScore(50);
         }
-        /*
-        else if ((Input.GetKeyDown(KeyCode.D) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)) && other.gameObject.name != "A(Clone)")
-            Debug.LogError("Fail!");
-        */
     }
     private void OnTriggerEnter(Collider other)
     {

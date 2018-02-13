@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GitaHiro : IMiniGame
 {
@@ -13,7 +14,9 @@ public class GitaHiro : IMiniGame
     public int m_MaxRand;
     public BallSpawn m_NoteSpawner;
     [Header("Score")]
-    public int m_Score;
+    public int m_Score = 0;
+    public int m_HitScore = 50;
+    public Text m_Text;
 
     void Awake()
     {
@@ -39,16 +42,18 @@ public class GitaHiro : IMiniGame
 
     private void Update()
     {
-
+        m_Text.text = "Score: "+m_Score;
     }
 
     public void setEndGame()
     {
         gameManager.EndGame(MiniGameResult.LOSE);
     }
-    public void addScore(int _score)
+
+    public void addScore()
     {
-        m_Score += _score;
+        Debug.LogError("!!!!");
+        m_Score=m_HitScore;
     }
 
     
