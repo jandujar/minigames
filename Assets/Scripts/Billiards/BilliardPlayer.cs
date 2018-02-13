@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BilliardPlayer : MonoBehaviour {
 
@@ -16,11 +17,14 @@ public class BilliardPlayer : MonoBehaviour {
     private bool HasShot = false;
     private bool PlayerShot = false;
     private GameManager Gm;
+    private bool StartCountdown = false;
+    public Text CountDown; 
 
     // Use this for initialization
     void Start () {
         IpManager = new InputManager();
         Gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        CountDown.gameObject.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -28,6 +32,12 @@ public class BilliardPlayer : MonoBehaviour {
 
         if (GameObject.Find("UICanvas").transform.GetChild(0).transform.GetChild(0).gameObject.activeSelf) {
             return;
+        }
+
+        if (!StartCountdown) {
+            CountDown.gameObject.SetActive(true);
+            StartCoroutine(SecondsToWin());
+            StartCountdown = true;
         }
 
         ShotLine();
@@ -67,7 +77,6 @@ public class BilliardPlayer : MonoBehaviour {
             }
 
             StartCoroutine(Shot());
-            StartCoroutine(SecondsToWin());
             HasShot = true;
             PlayerShot = true;
         }
@@ -81,7 +90,28 @@ public class BilliardPlayer : MonoBehaviour {
 
     private IEnumerator SecondsToWin()
     {
-        yield return new WaitForSecondsRealtime(10f);
+        CountDown.text = "Seconds Remaining: 10";
+        yield return new WaitForSecondsRealtime(1f);
+        CountDown.text = "Seconds Remaining: 9";
+        yield return new WaitForSecondsRealtime(1f);
+        CountDown.text = "Seconds Remaining: 8";
+        yield return new WaitForSecondsRealtime(1f);
+        CountDown.text = "Seconds Remaining: 7";
+        yield return new WaitForSecondsRealtime(1f);
+        CountDown.text = "Seconds Remaining: 6";
+        yield return new WaitForSecondsRealtime(1f);
+        CountDown.text = "Seconds Remaining: 5";
+        yield return new WaitForSecondsRealtime(1f);
+        CountDown.text = "Seconds Remaining: 4";
+        yield return new WaitForSecondsRealtime(1f);
+        CountDown.text = "Seconds Remaining: 3";
+        yield return new WaitForSecondsRealtime(1f);
+        CountDown.text = "Seconds Remaining: 2";
+        yield return new WaitForSecondsRealtime(1f);
+        CountDown.text = "Seconds Remaining: 1";
+        yield return new WaitForSecondsRealtime(1f);
+        CountDown.text = "Seconds Remaining: 0";
+        yield return new WaitForSecondsRealtime(1f);
         Gm.EndGame(IMiniGame.MiniGameResult.LOSE);
     }
 
