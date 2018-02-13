@@ -15,7 +15,7 @@ public class PafHand : MonoBehaviour
 
     void Update()
     {
-        if (!mDone && InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) || Input.GetKeyDown("space"))
+        if (!mDone && InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
         {
             Debug.Log("Space pressed!");
             StartCoroutine(MoveTo(0.5f));
