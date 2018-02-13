@@ -30,18 +30,17 @@ public class Game : IMiniGame {
 
 	// Use this for initialization
 	void Start () {
-        initialPos = botella.transform.position;
+        /*initialPos = botella.transform.position;
         initialRot = Quaternion.Euler(0, 0, 0); //rot inicial
         currentPos = botella.transform.position; 
         currentRot = botella.transform.rotation;
-        rotationZ = Quaternion.Euler(0, 0, 180);
+        rotationZ = Quaternion.Euler(0, 0, 180);*/
     }
 	
 	// Update is called once per frame
 	void Update () {
         if (power > 0 && isLaunched == true ) //Si ha parat de moure's
         {
-            Reset();
             //gm.EndGame(IMiniGame.MiniGameResult.WIN);
             //comprovar rotació i comprovar si l'hem llançat
             //si la rotació és ~(0,0,0) i comprovar si la rotacio en l'eix Z es < epsilon
