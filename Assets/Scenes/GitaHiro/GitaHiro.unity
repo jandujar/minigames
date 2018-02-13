@@ -1416,6 +1416,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dda88aa693007840926fa54a2be6e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  discountTime: 0.15
+  minTimeSpawn: 0.65
+  NotesCounted: 5
   a: {fileID: 1848126309}
   b: {fileID: 2008082810}
   x: {fileID: 1185568894}
@@ -1425,7 +1428,6 @@ MonoBehaviour:
   soundX: {fileID: 1526842765}
   soundY: {fileID: 983051143}
   parent: {fileID: 1438457670}
-  spawnNotes: 1
 --- !u!1 &1469102979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1941,12 +1943,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de263436854ddd8418ccb9698d3eb8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 2
+  time: 1.7
   minRand: 0
   maxRand: 4
   noteSpawner: {fileID: 1468494166}
   score: 0
-  hitScore: 50
   text: {fileID: 1181196314}
 --- !u!1 &1782906105
 GameObject:

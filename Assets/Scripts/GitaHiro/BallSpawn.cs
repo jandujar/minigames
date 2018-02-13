@@ -4,32 +4,31 @@ using UnityEngine;
 
 public class BallSpawn : MonoBehaviour
 {
-    
+    [Header("Spawn Times")]
+    public float discountTime;
+    public float minTimeSpawn;
+    public int NotesCounted;
+    [Header("Spawn Point")]
     public GameObject a;
     public GameObject b;
     public GameObject x;
     public GameObject y;
-
+    [Header("Note")]
     public GameObject soundA;
     public GameObject soundB;
     public GameObject soundX;
     public GameObject soundY;
-
+    [Header("Parent")]
     public Transform parent;
-
-    public bool spawnNotes = true;
-    
+            
     public IEnumerator generateRandom(float _time, int _maxValue, int _minValue)
     {
         int notesCount = 0;
-        int totalNotes = 0;
-        while (spawnNotes)
+        while (true)
         {
             yield return new WaitForSecondsRealtime(_time);
             int l_Rand = Random.Range(_minValue, _maxValue);
             notesCount++;
-            totalNotes++;
-            Debug.Log("Value: "+l_Rand+" - Note num: "+notesCount+" - Time: "+_time+" - Total notes: "+totalNotes);
             switch(l_Rand)
             {
                 case 1:
@@ -45,11 +44,11 @@ public class BallSpawn : MonoBehaviour
                     Instantiate(soundB, b.transform.position, Quaternion.identity, parent);
                     break;
             }
-            if(notesCount>=5)
+            if(notesCount>=NotesCounted)
             {
-                if(_time>0.65f)
+                if(_time>minTimeSpawn)
                 {
-                    _time -= 0.15f;
+                    _time -= discountTime;
                     notesCount = 0;
                 }
             }            

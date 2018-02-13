@@ -18,12 +18,7 @@ public class GitaHiro : IMiniGame
     [Header("Score")]
     public int score = 0;
     public Text text;
-
-    void Awake()
-    {
-        //Init Game
-    }
-
+    
     public override void beginGame()
     {
         //Iro Hiro Begins
@@ -49,13 +44,8 @@ public class GitaHiro : IMiniGame
 
     public void setEndGame()
     {
-#if UNITY_EDITOR
-        SceneManager.LoadScene("GitaHiro");
         StopAllCoroutines();
-#else
         gameManager.EndGame(MiniGameResult.LOSE);
-        StopAllCoroutines();
-#endif
     }
 
     public void addScore()
