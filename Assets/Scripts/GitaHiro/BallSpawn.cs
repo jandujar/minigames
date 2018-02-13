@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BallSpawn : MonoBehaviour {
-
-    public enum m_Button{X,Y,A,B};
+    
     public GameObject m_A;
     public GameObject m_B;
     public GameObject m_X;
@@ -17,21 +16,14 @@ public class BallSpawn : MonoBehaviour {
 
     public Transform m_Parent;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        //Debug.Log();
-	}
-
+    public bool m_SpawnNotes = true;
+    public List<GameObject> m_Notes;
+    
     public IEnumerator generateRandom(float _time, int _maxValue, int _minValue)
     {
         int l_NotesCount = 0;
         int l_TotalNotes = 0;
-        while (true)
+        while (m_SpawnNotes)
         {
             yield return new WaitForSecondsRealtime(_time);
             int l_Rand = Random.Range(_minValue, _maxValue);

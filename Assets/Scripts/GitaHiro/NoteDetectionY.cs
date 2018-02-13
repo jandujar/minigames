@@ -21,7 +21,6 @@ public class NoteDetectionY : GitaHiro
         if ( (Input.GetKeyDown(KeyCode.S) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)) && other.gameObject.name == "Y(Clone)")
         {
             addScore();
-            Debug.Log("HIT");
             Destroy(other.gameObject);
         }
     }

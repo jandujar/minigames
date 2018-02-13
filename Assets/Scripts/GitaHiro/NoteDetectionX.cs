@@ -21,7 +21,6 @@ public class NoteDetectionX : GitaHiro
         if ((Input.GetKeyDown(KeyCode.A) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON3)) && other.gameObject.name == "X(Clone)")
         {
             addScore();
-            Debug.Log("HIT");
             Destroy(other.gameObject);
         }
     }

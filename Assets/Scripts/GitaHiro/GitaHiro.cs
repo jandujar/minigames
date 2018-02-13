@@ -13,6 +13,7 @@ public class GitaHiro : IMiniGame
     public int m_MinRand;
     public int m_MaxRand;
     public BallSpawn m_NoteSpawner;
+
     [Header("Score")]
     public int m_Score = 0;
     public int m_HitScore = 50;
@@ -52,8 +53,11 @@ public class GitaHiro : IMiniGame
 
     public void addScore()
     {
-        Debug.LogError("!!!!");
-        m_Score=m_HitScore;
+        Debug.LogError("!!!! "+m_HitScore);
+        Debug.Break();
+        Debug.Log("Adding " + m_HitScore + " to the score");
+        m_Score+=m_HitScore;
+        Debug.Log("Score added");
     }
 
     
