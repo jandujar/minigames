@@ -9,7 +9,9 @@ public class DuckShooter : IMiniGame{
     private int ducksToKill;
     private int timeToLoose = 0;
     public Transform screenLifes;
-    public Transform canvas;    
+    public Transform canvas;
+    public AudioClip backgroundMusic;
+    private AudioSource source;    
 
     public override void beginGame()
     {
@@ -17,6 +19,8 @@ public class DuckShooter : IMiniGame{
         Debug.Log(this.ToString() + " game Begin");
         spawn.init();
         canvas.gameObject.SetActive(true);
+        source = GetComponent<AudioSource>();
+        source.PlayOneShot(backgroundMusic, 1f);
 
     }
 
