@@ -20,7 +20,6 @@ public class AssetsBundleManager: Singleton < AssetsBundleManager > {
 	};
 
 	[SerializeField]
-	private bool _dontDestoyOnLoad = true; /* Shall this object persist accross scenes? */
 	private string ab_path = WIN_AB_PATH; /* Path to be used when loading AssetBundles, inside StreamingAssets */
 	private Dictionary < string,
 	AssetBundleRef > m_dictAssetBundleRefs; /* To keep track of all loaded AssetBundles */
@@ -34,11 +33,8 @@ public class AssetsBundleManager: Singleton < AssetsBundleManager > {
 			return m_dictAssetBundleRefs;
 		}
 	}
-	private void Awake() {
-		if (_dontDestoyOnLoad) {
-			DontDestroyOnLoad(gameObject); // Persist across scenes
-		}
-
+	public override void Awake() {
+		base.Awake ();
 		OnInitialize();
 	}
 

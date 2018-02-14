@@ -8,34 +8,61 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : Singleton<MenuManager> {
 
-    private enum MINIGAMES_ENUM { PONG, GOATTHROW, BILLIARDS, END };
+    private enum MINIGAMES_ENUM { PONG, GOATTHROW, BILLIARDS,BOTTLEFLIP,CARROT,DYKTW,GITAHIRO,KNIFEFINGERS,MSEGADA,PICKFISH,END };
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
-
-    //Load all minigames
-    void Awake(){
-
-    }
 
     void Start(){
         LaunchMiniGame();
     }
 
     public void LaunchMiniGame(){
-        switch (currentGame)
-        {
-            case MINIGAMES_ENUM.GOATTHROW:
-                SceneManager.LoadScene("GoatThrow");
-                break;
-            case MINIGAMES_ENUM.PONG:
-                SceneManager.LoadScene("Pong");
-                break;
-            case MINIGAMES_ENUM.BILLIARDS:
-                SceneManager.LoadScene("Billiards");
-                break;
-            default:
-                SceneManager.LoadScene("Pong");
-                break;
-        }
+
+		Debug.LogError ("Launch MiniGame: " + currentGame.ToString ());
+
+		if (currentGame == MINIGAMES_ENUM.BOTTLEFLIP) {
+			currentGame = MINIGAMES_ENUM.DYKTW;
+		} else if (currentGame == MINIGAMES_ENUM.GITAHIRO) {
+			currentGame = MINIGAMES_ENUM.KNIFEFINGERS;
+		}
+
+        switch (currentGame) {
+		case MINIGAMES_ENUM.PONG:
+			SceneManager.LoadScene("Pong");
+			break;
+		case MINIGAMES_ENUM.GOATTHROW:
+			SceneManager.LoadScene("GoatThrow");
+			break;
+		case MINIGAMES_ENUM.BILLIARDS:
+			SceneManager.LoadScene("Billiards");
+			break;
+		case MINIGAMES_ENUM.BOTTLEFLIP:
+			SceneManager.LoadScene("BottleFlip");
+			break;
+		case MINIGAMES_ENUM.CARROT:
+			SceneManager.LoadScene("Carrot");
+			break;
+		case MINIGAMES_ENUM.DYKTW:
+			SceneManager.LoadScene("DoYouKnowTheWay");
+			break;
+		case MINIGAMES_ENUM.GITAHIRO:
+			SceneManager.LoadScene("GitaHiro");
+			break;
+		case MINIGAMES_ENUM.KNIFEFINGERS:
+			SceneManager.LoadScene("KnifeFingers");
+			break;
+		case MINIGAMES_ENUM.MSEGADA:
+			SceneManager.LoadScene("MSegada");
+			break;
+		case MINIGAMES_ENUM.PICKFISH:
+			SceneManager.LoadScene("PickAFish");
+			break;
+		case MINIGAMES_ENUM.END:
+			SceneManager.LoadScene("Pong");
+			break;
+		default:
+			SceneManager.LoadScene ("Pong");
+			break;
+		}
 
         currentGame = currentGame + 1;
         if (currentGame == MINIGAMES_ENUM.END)
