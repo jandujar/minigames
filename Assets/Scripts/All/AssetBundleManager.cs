@@ -34,7 +34,7 @@ public class AssetsBundleManager: Singleton < AssetsBundleManager > {
 			return m_dictAssetBundleRefs;
 		}
 	}
-	public override void Awake() {
+	private void Awake() {
 		if (_dontDestoyOnLoad) {
 			DontDestroyOnLoad(gameObject); // Persist across scenes
 		}
