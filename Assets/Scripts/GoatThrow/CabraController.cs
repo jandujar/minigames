@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//[RequireComponent(typeof(AudioSource))]
+
 public class CabraController : MonoBehaviour {
 
     public Image barra;
     public Text maxDisttext;
     public Text text;
     public Sprite IdleSprite;
+
+    public AudioClip GoatScream;
 
     public Sprite FlySprite;
 
@@ -53,6 +57,8 @@ public class CabraController : MonoBehaviour {
      bool flying = false;
     private float lastPosition = 0;
     bool spawned = false;
+    private object audioSource;
+
     public void OnEnable()
     {
         Spawn();
@@ -61,9 +67,10 @@ public class CabraController : MonoBehaviour {
     {
 
         gameManager = gm;
+        audioSource = GetComponent<AudioSource>();
         Rig = GetComponent<Rigidbody2D>();
         SPR = GetComponent<SpriteRenderer>();
-        maxDisttext.text ="Reach "+ maxDistance.ToString() + "m to win";
+        //maxDisttext.text ="Reach "+ maxDistance.ToString() + "m to win";
     }
 	// Update is called once per frame
 	void Update () {
@@ -104,6 +111,9 @@ public class CabraController : MonoBehaviour {
         }
         if (flying)
         {
+            //audioSource.AudioClip = GoatScream;
+            //audioSource.Play();
+            //AudioSource.PlayClipAtPoint(GoatScream, );
             currentDistance += transform.position.x - lastPosition;
             lastPosition = transform.position.x;
         }
@@ -197,6 +207,7 @@ public class CabraController : MonoBehaviour {
 
     void Spawn()
     {
+        maxDisttext.text = "Reach " + maxDistance.ToString() + "m to win";
         calcDir = false;
         calcForce = false;
         spawned = true;
