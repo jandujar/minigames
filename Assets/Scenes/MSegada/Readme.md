@@ -1,0 +1,3 @@
+- Nombre del alumno : Carles Condeminas Rovira
+- Nombre del minijjuego : Segada
+- Fecha de creación: 6/2/2018
