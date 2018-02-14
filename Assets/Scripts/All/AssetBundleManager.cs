@@ -51,9 +51,9 @@ public class AssetsBundleManager: Singleton < AssetsBundleManager > {
 		#if UNITY_STANDALONE_WIN
 			ab_path = WIN_AB_PATH;
 		#elif UNITY_STANDALONE_OSX
-			ab_path = OSX_AB_PATH;#
+			ab_path = OSX_AB_PATH;
 		#elif UNITY_STANDALONE_LINUX
-			ab_path = LINUX_AB_PATH;#
+			ab_path = LINUX_AB_PATH;
 		#endif
 	}
 
