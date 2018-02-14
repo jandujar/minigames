@@ -104,7 +104,7 @@ namespace UnityEngine.AssetBundles
                 color.b = 0.12f;
             }
 
-            if (Event.current.type != EventType.Repaint)
+            if (Event.current.type != EventType.repaint)
                 return;
 
             Color orgColor = GUI.color;
