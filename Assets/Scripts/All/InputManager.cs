@@ -23,17 +23,13 @@ public class InputManager : Singleton<InputManager> {
         switch (button)
         {
             case MiniGameButtons.BUTTON1:
-                return Input.GetButton("Fire1");
-                break;
+                return Input.GetButton("Fire1");                
             case MiniGameButtons.BUTTON2:
-                return Input.GetButton("Fire2");
-                break;
+                return Input.GetButton("Fire2");                
             case MiniGameButtons.BUTTON3:
-                return Input.GetButton("Fire3");
-                break;
+                return Input.GetButton("Fire3");                
             case MiniGameButtons.BUTTON4:
-                return Input.GetButton("Fire4");
-                break;
+                return Input.GetButton("Fire4");                
             default:
                 return false;
         }
@@ -43,17 +39,13 @@ public class InputManager : Singleton<InputManager> {
         switch (button)
         {
             case MiniGameButtons.BUTTON1:
-                return Input.GetButtonDown("Fire1");
-                break;
+                return Input.GetButtonDown("Fire1");                
             case MiniGameButtons.BUTTON2:
-                return Input.GetButtonDown("Fire2");
-                break;
+                return Input.GetButtonDown("Fire2");                
             case MiniGameButtons.BUTTON3:
-                return Input.GetButtonDown("Fire3");
-                break;
+                return Input.GetButtonDown("Fire3");                
             case MiniGameButtons.BUTTON4:
-                return Input.GetButtonDown("Fire4");
-                break;
+                return Input.GetButtonDown("Fire4");                
             default:
                 return false;
         }
@@ -63,17 +55,13 @@ public class InputManager : Singleton<InputManager> {
         switch (button)
         {
             case MiniGameButtons.BUTTON1:
-                return Input.GetButtonUp("Fire1");
-                break;
+                return Input.GetButtonUp("Fire1");                
             case MiniGameButtons.BUTTON2:
-                return Input.GetButtonUp("Fire2");
-                break;
+                return Input.GetButtonUp("Fire2");                
             case MiniGameButtons.BUTTON3:
-                return Input.GetButtonUp("Fire3");
-                break;
+                return Input.GetButtonUp("Fire3");                
             case MiniGameButtons.BUTTON4:
-                return Input.GetButtonUp("Fire4");
-                break;
+                return Input.GetButtonUp("Fire4");                
             default:
                 return false;
         }

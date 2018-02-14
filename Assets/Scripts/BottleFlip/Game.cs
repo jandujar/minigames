@@ -54,7 +54,6 @@ public class Game : IMiniGame {
         bottle.AddRelativeTorque(Vector3.forward * power);
         power = 0f;
         isLaunched = true;
-        gm.EndGame(IMiniGame.MiniGameResult.WIN);
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
