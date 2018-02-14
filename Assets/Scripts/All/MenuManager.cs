@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class MenuManager : Singleton<MenuManager> {
 
     //Load all minigames
-    void Awake(){
+    public override void Awake(){
 
     }
 
@@ -19,6 +19,6 @@ public class MenuManager : Singleton<MenuManager> {
 
     public void LaunchMiniGame(){
         //TODO: Load next minigame
-        SceneManager.LoadScene("Pong");
+        SceneManager.LoadScene("BottleFlip");
     }
 }

@@ -12,12 +12,12 @@ public class Game : IMiniGame {
     public GameState state = GameState.Countdown;
     public float maxPower = 300f;
     public float power = 0f;
-    private Vector3 initialPos, inercia, currentPos;
+    //private Vector3 initialPos, inercia, currentPos;
     [SerializeField]
     private GameObject canvasSlider;
     [SerializeField]
     private GameManager gm;
-    private Quaternion initialRot, currentRot, rotationZ;
+    //private Quaternion initialRot, currentRot, rotationZ;
     private GameObject botella;
     private bool isLaunched;
 
@@ -26,7 +26,7 @@ public class Game : IMiniGame {
     private Rigidbody bottle;
 
     [SerializeField]
-    private bool isFlip = false;
+    //private bool isFlip = false;
 
 	// Use this for initialization
 	void Start () {
@@ -54,11 +54,11 @@ public class Game : IMiniGame {
         bottle.AddRelativeTorque(Vector3.forward * power);
         power = 0f;
         isLaunched = true;
+        gm.EndGame(IMiniGame.MiniGameResult.WIN);
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        initialPos= bottle.transform.position;
         state = Game.GameState.Countdown;
         canvasSlider.SetActive(false);
 
@@ -72,8 +72,6 @@ public class Game : IMiniGame {
     }
     private void Reset()
     {
-        botella.transform.position = initialPos;
-        botella.transform.rotation = initialRot;
         botella.SetActive(false);
         isLaunched = false;
     }
