@@ -6,7 +6,6 @@ public class RandomNumbers : MonoBehaviour {
     
     public  GameObject[] aNumbers = new GameObject[10];
     int rand = 0;
-    string nameID = "Num"; 
     void Start()
     {
         //Init Game    
@@ -15,7 +14,7 @@ public class RandomNumbers : MonoBehaviour {
 
          aNumbers[rand].gameObject.SetActive(true);
 
-        MathematicalOperations.instance.setNumberInList(nameID + MathematicalOperations.instance.getCountNumbers(), rand);
+        MathematicalOperations.instance.setNumberInList(rand);
     }
 
     
