@@ -22,7 +22,7 @@ public class ShootingManager : MonoBehaviour {
 
 	void Awake(){
 		//Search for all 
-		objective = GameObject.FindGameObjectsWithTag("Objective");
+		objective = GameObject.FindGameObjectsWithTag("Player");
 		gameReady = false;
 	}
 		
