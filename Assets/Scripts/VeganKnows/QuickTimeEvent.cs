@@ -7,7 +7,6 @@ public class QuickTimeEvent : MonoBehaviour {
 
     private GameManager gameManager;
     public GameObject DisplayBox;
-    public GameObject PassBox;
     public GameObject CountDown;
     public int QTEGen;
     public int WaitingForKey;
@@ -67,29 +66,29 @@ public class QuickTimeEvent : MonoBehaviour {
     IEnumerator KeyPressing(){
         QTEGen = 3;
         if (CorrectKey == 1){
-            PassBox.GetComponent<Text>().text = "TU SI QUE SABES, BRO";
-            yield return new WaitForSeconds(3.0f);
-            WaitingForKey = 0;
+            yield return new WaitForSeconds(1.0f);
+            //Condicion de victoria
+            Debug.Log("WINNER");
+            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
         }
         if (CorrectKey == 2)
         {
-            PassBox.GetComponent<Text>().text = "ASESINO!!";
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(1.0f);
             //Condicion de derrota
-            Debug.Log("Loser");
+            Debug.Log("LOSER");
             gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
         }
-        if (CorrectKey == 3)
-        {
-            PassBox.GetComponent<Text>().text = "¿NO TENDRIAS UN POCO DE SALSA?";
-            yield return new WaitForSeconds(3.0f);
-            WaitingForKey = 0;
+        if (CorrectKey == 3){
+            yield return new WaitForSeconds(1.0f);
+            //Condicion de victoria
+            Debug.Log("WINNER");
+            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
         }
         if (CorrectKey == 4)
         {
-            PassBox.GetComponent<Text>().text = "LO VERDE PARA LOS CONEJOS";
+            yield return new WaitForSeconds(1.0f);
             //Condicion de derrota
-            Debug.Log("Loser");
+            Debug.Log("LOSER");
             gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
         }
     }
@@ -101,7 +100,7 @@ public class QuickTimeEvent : MonoBehaviour {
                 timeleft = timeleft - 1 * dificultLvl;
                 yield return new WaitForSeconds(1); 
         }
-        Debug.Log("Winner");
-        gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+        Debug.Log("LOSER");
+        gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
     }
 }

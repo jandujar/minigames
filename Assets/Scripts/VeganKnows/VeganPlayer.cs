@@ -14,11 +14,11 @@ public class VeganPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         if (enableGame == true)
         {
             Time.timeScale = 0;
         }
-    }
+    }*/
 }

@@ -6,25 +6,30 @@ using UnityEngine;
 public class VeganKnows : IMiniGame
 {
     private GameManager gameManager;
-    private VeganPlayer vegan;
+    public Canvas canvasObject;
 
     void Awake()
     {
         //Init Pong
-        Debug.LogError("Change this Script for your own Script");
+        Debug.Log("init");
+        ActiveCanvas();
     }
 
     public override void beginGame()
     {
         //Pong Begins
         Debug.Log(this.ToString() + " game Begin");
-        vegan.enableGame = false;
+      
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
         this.gameManager = gm;
-        vegan.init(gm);
+        
+    }
+
+    public void ActiveCanvas() {
+        canvasObject.GetComponent<Canvas>().enabled = true;
     }
 
     public override string ToString()
