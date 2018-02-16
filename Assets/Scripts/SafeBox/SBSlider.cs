@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slider : MonoBehaviour {
+public class SBSlider : MonoBehaviour {
 
     private GameManager gameManager;
     public GameObject nail;

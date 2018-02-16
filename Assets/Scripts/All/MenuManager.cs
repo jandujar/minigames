@@ -24,6 +24,7 @@ public class MenuManager : Singleton<MenuManager> {
 		MOVIMIENTO,
 		MATHEMATICS,
 		VEGAN,
+		SAFEBOX,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -91,6 +92,9 @@ public class MenuManager : Singleton<MenuManager> {
 			break;
 		case MINIGAMES_ENUM.VEGAN:
 			SceneManager.LoadScene("VeganKnows");
+			break;
+		case MINIGAMES_ENUM.SAFEBOX:
+			SceneManager.LoadScene("SafeBox");
 			break;
 		case MINIGAMES_ENUM.END:
 		default:

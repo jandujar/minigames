@@ -2,19 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CajaFuerte : IMiniGame
+public class SafeBox : IMiniGame
 {
-
-
-
     private GameManager gameManager;
-    public Slider slider;
+    public SBSlider slider;
 
-    void Awake()
-    {
-        //Init Pong
-        Debug.LogError("Change this Script for your own Script");
-    }
 
     public override void beginGame()
     {
