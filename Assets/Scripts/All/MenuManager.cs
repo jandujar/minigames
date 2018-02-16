@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : Singleton<MenuManager> {
 
-    private enum MINIGAMES_ENUM { PONG, GOATTHROW, BILLIARDS,BOTTLEFLIP,CARROT,DYKTW,GITAHIRO,KNIFEFINGERS,MSEGADA,PICKFISH,END };
+    private enum MINIGAMES_ENUM { PONG, GOATTHROW, BILLIARDS,BOTTLEFLIP,CARROT,DYKTW,GITAHIRO,KNIFEFINGERS,MSEGADA,PICKFISH,DUCKSHOOTER,EQUILIBRIO,MOVIMIENTO,END };
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
 
     void Start(){
@@ -23,6 +23,8 @@ public class MenuManager : Singleton<MenuManager> {
 			currentGame = MINIGAMES_ENUM.DYKTW;
 		} else if (currentGame == MINIGAMES_ENUM.GITAHIRO) {
 			currentGame = MINIGAMES_ENUM.KNIFEFINGERS;
+		} else if (currentGame == MINIGAMES_ENUM.MOVIMIENTO) {
+			currentGame = MINIGAMES_ENUM.PONG;
 		}
 
         switch (currentGame) {
@@ -58,6 +60,15 @@ public class MenuManager : Singleton<MenuManager> {
 			break;
 		case MINIGAMES_ENUM.END:
 			SceneManager.LoadScene("Pong");
+			break;
+		case MINIGAMES_ENUM.DUCKSHOOTER:
+			SceneManager.LoadScene("DuckShooter");
+			break;
+		case MINIGAMES_ENUM.EQUILIBRIO:
+			SceneManager.LoadScene("Equilibrio");
+			break;
+		case MINIGAMES_ENUM.MOVIMIENTO:
+			SceneManager.LoadScene("Movimiento");
 			break;
 		default:
 			SceneManager.LoadScene ("Pong");
