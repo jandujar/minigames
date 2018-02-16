@@ -22,19 +22,19 @@ public class PowerSlider : MonoBehaviour {
 	void Update () {
         if (ga.state != Game.GameState.Playing)
             return;
-
-        if ((Input.GetKey(KeyCode.Space) || InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1)) && ga.power < ga.maxPower)
+        if (!ga.isLaunched)
         {
-            ga.power = ga.power + (ga.maxPower / 2.5f) * Time.deltaTime;
-            sl.value = ga.power;
+            if ((/*Input.GetKey(KeyCode.Space) || */InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1)) && ga.power < ga.maxPower)
+            {
+                ga.power = ga.power + (ga.maxPower / 2.5f) * Time.deltaTime;
+                sl.value = ga.power;
+            }
+            else if (ga.power > 0)
+            {
+                ga.power = Mathf.Min(ga.maxPower, ga.power);
+                ga.Launch();
+            }
         }
-        else if (ga.power > 0)
-        {
-            ga.Launch();
-        }
-        else
-        {
-
-        }
+        
 	}
 }
