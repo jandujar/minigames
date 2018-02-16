@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Game : IMiniGame {
     public enum GameState
@@ -11,54 +12,82 @@ public class Game : IMiniGame {
 
     public GameState state = GameState.Countdown;
     public float maxPower = 300f;
+    public float minPower = 200f;
     public float power = 0f;
-    private Vector3 initialPos, inercia, currentPos;
     [SerializeField]
     private GameObject canvasSlider;
     [SerializeField]
     private GameManager gm;
-    private Quaternion initialRot, currentRot, rotationZ;
-    private GameObject botella;
-    private bool isLaunched;
-
-
+    public bool isLaunched = false;
+    [SerializeField] private Text txt;
     [SerializeField]
     private Rigidbody bottle;
 
     [SerializeField]
-    private bool isFlip = false;
+    private float time;
 
 	// Use this for initialization
 	void Start () {
-        /*initialPos = botella.transform.position;
-        initialRot = Quaternion.Euler(0, 0, 0); //rot inicial
-        currentPos = botella.transform.position; 
-        currentRot = botella.transform.rotation;
-        rotationZ = Quaternion.Euler(0, 0, 180);*/
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (power > 0 && isLaunched == true ) //Si ha parat de moure's
-        {
-            //gm.EndGame(IMiniGame.MiniGameResult.WIN);
-            //comprovar rotació i comprovar si l'hem llançat
-            //si la rotació és ~(0,0,0) i comprovar si la rotacio en l'eix Z es < epsilon
-            //float.Epsilon
-        }
+        
 	}
+
+    IEnumerator CheckEnd()
+    {
+        yield return new WaitForSeconds(0.5f);
+        while (true)
+        {
+            if (isLaunched == true)
+            {  //si s'ha tirat l'ampolla 
+               //Debug.Log("velocity: " + bottle.velocity.magnitude);
+               //Debug.Log("rotation: " + bottle.rotation.eulerAngles.z);
+                if (bottle.position.y < 0f && bottle.velocity.magnitude <= Vector3.kEpsilon)//Si ha parat de moure's
+                {
+                    if (Mathf.Abs(bottle.rotation.eulerAngles.z) <= 15f)
+                    {
+                        StartCoroutine(EndWin());
+                    }
+                    else
+                    {
+                        StartCoroutine(EndLose());
+                    }
+                }
+            }
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    IEnumerator EndWin()
+    {
+        yield return new WaitForSeconds(1f);
+        gm.EndGame(IMiniGame.MiniGameResult.WIN);
+    }
+    IEnumerator EndLose()
+    {
+        yield return new WaitForSeconds(1f);
+        gm.EndGame(IMiniGame.MiniGameResult.LOSE);
+    }
+
 
     public void Launch()
     {
-        bottle.AddForce(Vector3.up * power);
-        bottle.AddRelativeTorque(Vector3.forward * power);
-        power = 0f;
-        isLaunched = true;
+        if (!isLaunched)
+        {
+            //Debug.Log("Power: " + power);
+            power = Mathf.Max(minPower, power);
+            bottle.AddForce(Vector3.up * power);
+            bottle.AddRelativeTorque(Vector3.forward * power);
+            power = 0f;
+            isLaunched = true;
+            StartCoroutine(CheckEnd());
+        }
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        initialPos= bottle.transform.position;
         state = Game.GameState.Countdown;
         canvasSlider.SetActive(false);
 
@@ -69,12 +98,26 @@ public class Game : IMiniGame {
         state = Game.GameState.Playing;
         canvasSlider.SetActive(true);
         isLaunched = false;
+        StartCoroutine(CheckTimeout());
     }
-    private void Reset()
+
+    IEnumerator CheckTimeout()
     {
-        botella.transform.position = initialPos;
-        botella.transform.rotation = initialRot;
-        botella.SetActive(false);
-        isLaunched = false;
+        txt.text = (time).ToString();
+        for (int i = 0; i < time; i++)
+        {
+            txt.text = (time - i).ToString();
+            yield return new WaitForSeconds(1f);
+        }
+        txt.text = (0).ToString();
+
+        if (!isLaunched && power <= 0)
+        {
+            gm.EndGame(IMiniGame.MiniGameResult.LOSE);
+        }
+    }
+    public override string ToString()
+    {
+        return "BottleFlip by Marc";
     }
 }
