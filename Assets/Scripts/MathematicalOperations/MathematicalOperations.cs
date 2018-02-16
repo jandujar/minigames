@@ -24,6 +24,7 @@ public class MathematicalOperations : IMiniGame
     private bool optionChose = false;
     public GameObject failed;
     public GameObject passed;
+    private Coroutine stopCo;
 
 
     void Awake()
@@ -61,6 +62,7 @@ public class MathematicalOperations : IMiniGame
                     if (userWin)
                     {
                         StartCoroutine(waitSecondsPrintPassed(1f));
+                        StopCoroutine(stopCo);
 
                     }
                     else
@@ -96,8 +98,7 @@ public class MathematicalOperations : IMiniGame
         {
             SC_Operators[i].init(gm);
         }
-
-        
+        stopCo = StartCoroutine(waitSecondsPrintFailed(10f));
     }
 
     public override string ToString()
@@ -255,13 +256,27 @@ public class MathematicalOperations : IMiniGame
     IEnumerator waitSecondsPrintPassed(float seconds)
     {
         yield return new WaitForSeconds(seconds);
+        
         passed.SetActive(true);
+        StartCoroutine(waitSecondsWin(2f));
     }
     IEnumerator waitSecondsPrintFailed(float seconds)
     {
         yield return new WaitForSeconds(seconds);
         failed.SetActive(true);
+        StartCoroutine(waitSecondsLose(2f));
     }
 
+    IEnumerator waitSecondsWin(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+    }
+
+    IEnumerator waitSecondsLose(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+    }
 
 }
