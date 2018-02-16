@@ -29,6 +29,6 @@ public class VeganKnows : IMiniGame
 
     public override string ToString()
     {
-        return "By Raul";
+        return "Veggie VS Normal by Raul";
     }
 }

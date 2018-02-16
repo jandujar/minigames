@@ -26,25 +26,23 @@ public class QuickTimeEvent : MonoBehaviour {
         if (WaitingForKey == 0)
         {
             QTEGen = Random.Range(1, 3);
-            Debug.Log(QTEGen);
-
 
             if (QTEGen == 1)
             {
                 WaitingForKey = 1;
-                DisplayBox.GetComponent<Text>().text = "A";
+                DisplayBox.GetComponent<Text>().text = "C";
             }
             if (QTEGen == 2)
             {
                 WaitingForKey = 1;
-                DisplayBox.GetComponent<Text>().text = "B";
+                DisplayBox.GetComponent<Text>().text = "H";
             }
             StartCoroutine(LoseTime());
         }
 
         if (QTEGen == 1){
             if (Input.anyKeyDown){
-                if (Input.GetButton("E_Key")){
+                if (Input.GetButton("Carrot_B")){
                     CorrectKey = 1;
                     StartCoroutine(KeyPressing ());
                 }else{
@@ -55,7 +53,7 @@ public class QuickTimeEvent : MonoBehaviour {
         }
         if (QTEGen == 2){
             if (Input.anyKeyDown){
-                if (Input.GetButton("R_Key")){
+                if (Input.GetButton("Hamburger_B")){
                     CorrectKey = 3;
                     StartCoroutine(KeyPressing());
                 }else{
@@ -90,7 +88,6 @@ public class QuickTimeEvent : MonoBehaviour {
         if (CorrectKey == 4)
         {
             PassBox.GetComponent<Text>().text = "LO VERDE PARA LOS CONEJOS";
-            yield return new WaitForSeconds(3.0f);
             //Condicion de derrota
             Debug.Log("Loser");
             gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);

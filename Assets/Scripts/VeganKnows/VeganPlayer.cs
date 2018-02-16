@@ -5,7 +5,7 @@ using UnityEngine;
 public class VeganPlayer : MonoBehaviour
 {
 
-    public bool enableGame = false;
+    public bool enableGame;
     private GameManager gameManager;
 
     public void init(GameManager gm)
@@ -16,7 +16,7 @@ public class VeganPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enableGame)
+        if (enableGame == true)
         {
             Time.timeScale = 0;
         }
