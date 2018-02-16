@@ -20,8 +20,12 @@ public class BallSpawn : MonoBehaviour
     public GameObject soundY;
     [Header("Parent")]
     public Transform parent;
-            
-    public IEnumerator generateRandom(float _time, int _maxValue, int _minValue)
+    
+	public void GenerateRandomJand(float time, int minValue, int maxValue){
+		StartCoroutine(generateRandom(time, minValue, maxValue));
+	}
+
+	public IEnumerator generateRandom(float _time, int _minValue, int _maxValue)
     {
         int notesCount = 0;
         while (true)

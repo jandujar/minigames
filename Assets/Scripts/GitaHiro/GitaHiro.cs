@@ -22,8 +22,10 @@ public class GitaHiro : IMiniGame
     public override void beginGame()
     {
         //Iro Hiro Begins
+		minRand = 1;
+		maxRand = 5;
         Debug.Log(this.ToString() + " game Begin");
-        StartCoroutine(noteSpawner.generateRandom(time, minRand, maxRand));
+        noteSpawner.GenerateRandomJand(time, minRand, maxRand);
         text.enabled = true;
     }
 
