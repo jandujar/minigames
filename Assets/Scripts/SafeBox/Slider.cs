@@ -27,7 +27,7 @@ public class Slider : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        nail.transform.Rotate(0, 0, Time.deltaTime * 100 * direction, Space.Self);
+        nail.transform.Rotate(0, 0, Time.deltaTime * 250 * direction, Space.Self);
         //Debug.Log(nail.transform.rotation.z);
 
         if (nail.transform.rotation.z >= 0.82 && nail.transform.rotation.z <= 0.85)
@@ -40,9 +40,9 @@ public class Slider : MonoBehaviour {
             direction = 1;
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
         {
-            if(nail.transform.rotation.z <= 0.2 && nail.transform.rotation.z >= -0.2)
+            if(nail.transform.rotation.z <= 0.15 && nail.transform.rotation.z >= -0.15)
             {
                 safeBox.GetComponent<SpriteRenderer>().sprite = winEndGameSprite;
                 Debug.Log("WIN");
