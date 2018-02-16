@@ -7,39 +7,51 @@ public class PrintNum1Result: MonoBehaviour {
     public GameObject[] aNumbers = new GameObject[11];
     private int result = 0;
     private string resultString = " ";
-  
+    public bool printNum1ResultEnabled = false;
+    bool printNum1ResultFinished = false;
+
 
     void Update()
     {
         //Init Game    
-        result = MathematicalOperations.instance.getResultOperation();
-        Debug.Log("Resultado: " + result);
-        resultString = result.ToString();
-        
-        Debug.Log("Resultado a String: " + resultString);
-        for(int i = 0; i < 11; i++)
+        if (printNum1ResultEnabled)
         {
-            if(resultString[0] != '-')
+            result = MathematicalOperations.instance.getResultOperation();
+            Debug.Log("Resultado: " + result);
+            resultString = result.ToString();
+
+            Debug.Log("Resultado a String: " + resultString);
+            for (int i = 0; i < 11; i++)
             {
-                if (resultString[0] == i.ToString()[0])
+                if (resultString[0] != '-')
                 {
-                    aNumbers[i].gameObject.SetActive(true);
-                    Debug.Log("Número1 mostrado: " + i);
+                    if (resultString[0] == i.ToString()[0])
+                    {
+                        aNumbers[i].gameObject.SetActive(true);
+                        Debug.Log("Número1 mostrado: " + i);
+                        break;
+                    }
                 }
-            }else
-            {
-                aNumbers[10].gameObject.SetActive(true);
-                if (resultString[1] == i.ToString()[0])
+                else
                 {
-                    aNumbers[i].gameObject.SetActive(true);
-                    Debug.Log("Número1 mostrado: " + i);
+                    aNumbers[10].gameObject.SetActive(true);
+                    if (resultString[1] == i.ToString()[0])
+                    {
+                        aNumbers[i].gameObject.SetActive(true);
+                        Debug.Log("Número1 mostrado: " + i);
+                        break;
+                    }
                 }
             }
-            Debug.Log("Número1: " + resultString[0]);
-            Debug.Log("(Int)Número1: " + resultString[0]);
-            Debug.Log("(Char)Número1: " + i.ToString()[0]);
-            
+
+            printNum1ResultFinished = true;
+
         }
 
+    }
+
+    public bool getPrintNum1ResultFinished()
+    {
+        return printNum1ResultFinished;
     }
 }

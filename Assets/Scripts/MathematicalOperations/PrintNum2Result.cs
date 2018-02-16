@@ -7,28 +7,35 @@ public class PrintNum2Result : MonoBehaviour {
     public GameObject[] aNumbers = new GameObject[10];
     private int result = 0;
     private string resultString = " ";
+    public bool printNum2ResultEnabled = false;
 
 
     void Update()
     {
         //Init Game    
-        result = MathematicalOperations.instance.getResultOperation();
-        resultString = result.ToString();
-        for (int i = 0; i < 10; i++)
+        if (printNum2ResultEnabled)
         {
-            if (resultString[0] == '-')
+            result = MathematicalOperations.instance.getResultOperation();
+            resultString = result.ToString();
+            for (int i = 0; i < 10; i++)
             {
-                if (resultString[2] == i.ToString()[0])
+                if (resultString[0] != '-')
                 {
-                    aNumbers[i].gameObject.SetActive(true);
-                    Debug.Log("Número1 mostrado: " + i);
+                    if (resultString[1] == i.ToString()[0])
+                    {
+                        aNumbers[i].gameObject.SetActive(true);
+                        Debug.Log("Número1 mostrado: " + i);
+                        break;
+                    }
                 }
-            }else
-            {
-                if (resultString[1] == i.ToString()[0])
+                else
                 {
-                    aNumbers[i].gameObject.SetActive(true);
-                    Debug.Log("Número1 mostrado: " + i);
+                    if (resultString[2] == i.ToString()[0])
+                    {
+                        aNumbers[i].gameObject.SetActive(true);
+                        Debug.Log("Número1 mostrado: " + i);
+                        break;
+                    }
                 }
             }
         }

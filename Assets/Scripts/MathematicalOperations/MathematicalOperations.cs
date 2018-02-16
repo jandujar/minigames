@@ -6,11 +6,17 @@ public class MathematicalOperations : IMiniGame
 {
     private GameManager gameManager;
     public static MathematicalOperations instance = null;
+    public RandomNumbers[] SC_Numbers = new RandomNumbers[4];
+    public RandomOperators[] SC_Operators = new RandomOperators[2];
+    public PrintNum1Result SC_PrintNum1Result;
+    public PrintNum2Result SC_PrintNum2Result;
+
     private List<int> listNumbers = new List<int>();
     private List<char> listOperators = new List<char>();
     private int countNumbers = 4;
     private int countOperators = 2;
     private int result = 0;
+    private bool mathOperationCalculated = false;
 
 
     void Awake()
@@ -24,10 +30,23 @@ public class MathematicalOperations : IMiniGame
         
     }
 
-    void Start()
+    void Update()
     {
-        calculateMathOperation();
-        Debug.Log("Result: " + result);
+        if (listNumbers.Count == countNumbers && listOperators.Count == countOperators)
+        {
+            if (!mathOperationCalculated)
+            {
+                calculateMathOperation();
+                Debug.Log("Result: " + result);
+                SC_PrintNum1Result.printNum1ResultEnabled = true;
+            }
+
+            if (SC_PrintNum1Result.getPrintNum1ResultFinished())
+            {
+                SC_PrintNum2Result.printNum2ResultEnabled = true;
+            }
+            
+        }
     }
     
 
@@ -40,7 +59,16 @@ public class MathematicalOperations : IMiniGame
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
         this.gameManager = gm;
-        //ball.init(gm);
+        for(int i = 0; i < countNumbers; i++)
+        {
+            SC_Numbers[i].init(gm);
+        }
+        for (int i = 0; i < countOperators; i++)
+        {
+            SC_Operators[i].init(gm);
+        }
+
+        
     }
 
     public override string ToString()
@@ -56,7 +84,7 @@ public class MathematicalOperations : IMiniGame
 
         if (listNumbers.Count == 4)
         {
-           invertOrderList();
+     //      invertOrderList();
 
             foreach (int i in listNumbers)
             {
@@ -144,6 +172,9 @@ public class MathematicalOperations : IMiniGame
         {
             result = num1 + num2 - (num3 * num4);
         }
+
+        mathOperationCalculated = true;
+
     }
 
     public int getResultOperation()
