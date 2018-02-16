@@ -26,22 +26,5 @@ public class RandomOperators : MonoBehaviour {
 
         MathematicalOperations.instance.setOperatorInList(op);
     }
-
-  /*  void Start()
-    {
-        //Init Game    
-
-        rand = (int)Random.Range(0f, 2f);
-        if(rand == 0)
-        {
-            op = '-';
-        }else
-        {
-            op = '+';
-        }
-
-        aOperators[rand].gameObject.SetActive(true);
-
-        MathematicalOperations.instance.setOperatorInList(op);
-    }*/
+    
 }

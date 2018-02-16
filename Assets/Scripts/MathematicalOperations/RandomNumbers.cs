@@ -17,18 +17,5 @@ public class RandomNumbers : MonoBehaviour {
 
         MathematicalOperations.instance.setNumberInList(rand);
     }
-
- /*   void Start()
-    {
-        //Init Game    
-
-        rand = (int)Random.Range(0f, 10f);
-
-         aNumbers[rand].gameObject.SetActive(true);
-
-        MathematicalOperations.instance.setNumberInList(rand);
-    }*/
-
-    
-    
+        
 }

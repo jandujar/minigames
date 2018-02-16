@@ -6,6 +6,7 @@ public class MathematicalOperations : IMiniGame
 {
     private GameManager gameManager;
     public static MathematicalOperations instance = null;
+
     public RandomNumbers[] SC_Numbers = new RandomNumbers[4];
     public RandomOperators[] SC_Operators = new RandomOperators[2];
     public PrintNum1Result SC_PrintNum1Result;
@@ -19,7 +20,10 @@ public class MathematicalOperations : IMiniGame
     private int countOperators = 2;
     private int result = 0;
     private bool mathOperationCalculated = false;
-    private bool printResult = false;
+    private bool userWin = false;
+    private bool optionChose = false;
+    public GameObject failed;
+    public GameObject passed;
 
 
     void Awake()
@@ -46,54 +50,30 @@ public class MathematicalOperations : IMiniGame
                 
             }
 
-            
-
-            if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1))//InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
+            if (!optionChose)
             {
-                Debug.Log("Correct Option: " + SC_Options.getCorrectOption() + " Button pressed: " + (int)InputManager.MiniGameButtons.BUTTON1 + " = A ");
-                SC_OptionPressed[(int)InputManager.MiniGameButtons.BUTTON1].setEnableSprite(true);
-                if (SC_Options.getCorrectOption() == (int)InputManager.MiniGameButtons.BUTTON1)
-                {
-                    Debug.Log("Resultado Correcto");
-                    
-
-                }
-            }else if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON2))//InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
-            {
-                Debug.Log("Correct Option: " + SC_Options.getCorrectOption() + " Button pressed: " + (int)InputManager.MiniGameButtons.BUTTON2 + " = B ");
-                SC_OptionPressed[(int)InputManager.MiniGameButtons.BUTTON2].setEnableSprite(true);
-                if (SC_Options.getCorrectOption() == (int)InputManager.MiniGameButtons.BUTTON2)
-                {
-                    Debug.Log("Resultado Correcto");
-                }
-            }else  if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON3))//InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
-            {
-                Debug.Log("Correct Option: " + SC_Options.getCorrectOption() + " Button pressed: " + (int)InputManager.MiniGameButtons.BUTTON3 + " = X ");
-                SC_OptionPressed[(int)InputManager.MiniGameButtons.BUTTON3].setEnableSprite(true);
-                if (SC_Options.getCorrectOption() == (int)InputManager.MiniGameButtons.BUTTON3)
-                {
-                    Debug.Log("Resultado Correcto");
-                }
-            }else if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON4))//InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
-            {
-                Debug.Log("Correct Option: " + SC_Options.getCorrectOption() + " Button pressed: " + (int)InputManager.MiniGameButtons.BUTTON4 + " = Y ");
-                SC_OptionPressed[(int)InputManager.MiniGameButtons.BUTTON4].setEnableSprite(true);
-                if (SC_Options.getCorrectOption() == (int)InputManager.MiniGameButtons.BUTTON4)
-                {
-                    Debug.Log("Resultado Correcto");
-                }
-            }
-
-
-            if (printResult)
-            {
-                SC_PrintNum1Result.printNum1ResultEnabled = true;
+                
+                checkInputs();
+                printResult();
 
                 if (SC_PrintNum1Result.getPrintNum1ResultFinished())
                 {
-                    SC_PrintNum2Result.printNum2ResultEnabled = true;
+                    if (userWin)
+                    {
+                        StartCoroutine(waitSecondsPrintPassed(1f));
+
+                    }
+                    else
+                    {
+                        StartCoroutine(waitSecondsPrintFailed(1f));
+
+                    }
+                    optionChose = true;
                 }
             }
+            
+
+            
             
         }
     }
@@ -133,8 +113,6 @@ public class MathematicalOperations : IMiniGame
 
         if (listNumbers.Count == 4)
         {
-     //      invertOrderList();
-
             foreach (int i in listNumbers)
             {
                 Debug.Log("ListNumbers: " + i);
@@ -146,21 +124,6 @@ public class MathematicalOperations : IMiniGame
     public int getCountNumbers()
     {
         return countNumbers--;
-    }
-
-    private void invertOrderList()
-    {
-        //Coge el primero y segundo 
-        int aux = listNumbers[0]; 
-        int aux2 = listNumbers[1];
-
-        //Subtituye los 2 últimos por los 2 primeros
-        listNumbers[0] = listNumbers[3];
-        listNumbers[1] = listNumbers[2];
-
-        //Subtituye los 2 primeros por los 2 últimos
-        listNumbers[2] = aux2;
-        listNumbers[3] = aux;
     }
 
     public void setOperatorInList(char op)
@@ -230,5 +193,75 @@ public class MathematicalOperations : IMiniGame
     {
         return result;
     }
+
+    void checkInputs()
+    {
+
+        if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1))
+        {
+            Debug.Log("Correct Option: " + SC_Options.getCorrectOption() + " Button pressed: " + (int)InputManager.MiniGameButtons.BUTTON1 + " = A ");
+            SC_OptionPressed[(int)InputManager.MiniGameButtons.BUTTON1].setEnableSprite(true);
+            if (SC_Options.getCorrectOption() == (int)InputManager.MiniGameButtons.BUTTON1)
+            {
+                Debug.Log("Resultado Correcto");
+                userWin = true;
+
+            }
+        }
+        else if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON2))
+        {
+            Debug.Log("Correct Option: " + SC_Options.getCorrectOption() + " Button pressed: " + (int)InputManager.MiniGameButtons.BUTTON2 + " = B ");
+            SC_OptionPressed[(int)InputManager.MiniGameButtons.BUTTON2].setEnableSprite(true);
+            if (SC_Options.getCorrectOption() == (int)InputManager.MiniGameButtons.BUTTON2)
+            {
+                Debug.Log("Resultado Correcto");
+                userWin = true;
+            }
+        }
+        else if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON3))
+        {
+            Debug.Log("Correct Option: " + SC_Options.getCorrectOption() + " Button pressed: " + (int)InputManager.MiniGameButtons.BUTTON3 + " = X ");
+            SC_OptionPressed[(int)InputManager.MiniGameButtons.BUTTON3].setEnableSprite(true);
+            if (SC_Options.getCorrectOption() == (int)InputManager.MiniGameButtons.BUTTON3)
+            {
+                Debug.Log("Resultado Correcto");
+                userWin = true;
+            }
+        }
+        else if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON4))
+        {
+            Debug.Log("Correct Option: " + SC_Options.getCorrectOption() + " Button pressed: " + (int)InputManager.MiniGameButtons.BUTTON4 + " = Y ");
+            SC_OptionPressed[(int)InputManager.MiniGameButtons.BUTTON4].setEnableSprite(true);
+            if (SC_Options.getCorrectOption() == (int)InputManager.MiniGameButtons.BUTTON4)
+            {
+                Debug.Log("Resultado Correcto");
+                userWin = true;
+            }
+        }
+
+    }
+
+    void printResult()
+    {
+        SC_PrintNum1Result.printNum1ResultEnabled = true;
+
+        if (SC_PrintNum1Result.getPrintNum1ResultFinished())
+        {
+            SC_PrintNum2Result.printNum2ResultEnabled = true;
+        }
+    }
+
+   
+    IEnumerator waitSecondsPrintPassed(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        passed.SetActive(true);
+    }
+    IEnumerator waitSecondsPrintFailed(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        failed.SetActive(true);
+    }
+
 
 }

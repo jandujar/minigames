@@ -54,4 +54,5 @@ public class PrintNum1Result: MonoBehaviour {
     {
         return printNum1ResultFinished;
     }
+
 }

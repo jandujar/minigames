@@ -8,6 +8,7 @@ public class PrintNum2Result : MonoBehaviour {
     private int result = 0;
     private string resultString = " ";
     public bool printNum2ResultEnabled = false;
+    private bool printNum2ResultFinished = false;
 
 
     void Update()
@@ -38,7 +39,16 @@ public class PrintNum2Result : MonoBehaviour {
                     }
                 }
             }
-        }
 
+            printNum2ResultFinished = true;
+
+        }
     }
+
+    public bool getPrintNum2ResultFinished()
+    {
+        return printNum2ResultFinished;
+    }
+
 }
+
