@@ -10,7 +10,7 @@ public class Pong : IMiniGame {
     void Awake()
     {
         //Init Pong
-        Debug.LogError("Change this Script for your own Script");
+       
     }
 
     public override void beginGame()

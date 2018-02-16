@@ -12,7 +12,7 @@ public class VeganKnows : IMiniGame
     {
         //Init Pong
         Debug.Log("init");
-        ActiveCanvas();
+        canvasObject.GetComponent<Canvas>().enabled = true;
     }
 
     public override void beginGame()
@@ -25,11 +25,17 @@ public class VeganKnows : IMiniGame
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
         this.gameManager = gm;
-        
+        Debug.Log("!");
     }
 
-    public void ActiveCanvas() {
-        canvasObject.GetComponent<Canvas>().enabled = true;
+    public void Lose()
+    {
+        gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+    }
+
+    public void Win()
+    {
+        gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
     }
 
     public override string ToString()

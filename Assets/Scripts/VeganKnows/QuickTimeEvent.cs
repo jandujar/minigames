@@ -5,20 +5,15 @@ using UnityEngine.UI;
 
 public class QuickTimeEvent : MonoBehaviour {
 
-    private GameManager gameManager;
     public GameObject DisplayBox;
     public GameObject CountDown;
+    public VeganKnows vegan;
     public int QTEGen;
     public int WaitingForKey;
     public int CorrectKey;
     public int timeleft = 10;
     public int dificultLvl = 1;
     
-
-    public void init(GameManager gm)
-    {
-        gameManager = gm;
-    }
 
     private void Update()
     {
@@ -69,27 +64,27 @@ public class QuickTimeEvent : MonoBehaviour {
             yield return new WaitForSeconds(1.0f);
             //Condicion de victoria
             Debug.Log("WINNER");
-            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+            vegan.Win();
         }
         if (CorrectKey == 2)
         {
             yield return new WaitForSeconds(1.0f);
             //Condicion de derrota
             Debug.Log("LOSER");
-            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+            vegan.Lose();
         }
         if (CorrectKey == 3){
             yield return new WaitForSeconds(1.0f);
             //Condicion de victoria
             Debug.Log("WINNER");
-            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+            vegan.Win();
         }
         if (CorrectKey == 4)
         {
             yield return new WaitForSeconds(1.0f);
             //Condicion de derrota
             Debug.Log("LOSER");
-            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+            vegan.Lose();
         }
     }
     IEnumerator LoseTime()
@@ -101,6 +96,6 @@ public class QuickTimeEvent : MonoBehaviour {
                 yield return new WaitForSeconds(1); 
         }
         Debug.Log("LOSER");
-        gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+        vegan.Lose();
     }
 }
