@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using System;
 
-public class CutCarrot : IMiniGame
+public class CutTheCarrot : IMiniGame
 {
 
     public GameObject[] carrotParts;

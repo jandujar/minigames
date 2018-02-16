@@ -3,34 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//[RequireComponent(typeof(AudioSource))]
+
 public class CabraController : MonoBehaviour {
 
     public Image barra;
     public Text maxDisttext;
     public Text text;
-    public Sprite IdleSprite;
+    public Sprite idleSprite;
 
-    public Sprite FlySprite;
+    public Sprite flySprite;
 
-    public Transform InitPos;
+    public Transform initPos;
 
-    public Transform DirectionSprite;
+    public Transform directionSprite;
 
     public float maxDistance = 100;
-    [Header("Fuerza")]
-    public float StartForce = 80;
 
-    public float MaxForce = 100;
+    [Header("Audio")]
+    public AudioClip goatScream;
+    public AudioClip goatSplat;
+    private AudioSource source;
+    public bool canPlay;
+    public bool splatCanPlay;
+
+    [Header("Fuerza")]
+    public float startForce = 80;
+    public float maxForce = 100;
     public float incrementSpeed = 0;
+
     [Header("Angulo")]
-    public float MaxAngle = 60;
-    public float MinAngle = 0;
-    
+    public float maxAngle = 60;
+    public float minAngle = 0;
     public float angleSpeed = 1;
 
-    Rigidbody2D Rig;
+    Rigidbody2D rig;
 
-    SpriteRenderer SPR;
+    SpriteRenderer spr;
 
      float foreCounter = 0;
    // public float potencia = 0;
@@ -44,7 +53,7 @@ public class CabraController : MonoBehaviour {
      int multiply = 1;
 
 
-
+    
 
     GameManager gameManager;
 
@@ -53,6 +62,11 @@ public class CabraController : MonoBehaviour {
      bool flying = false;
     private float lastPosition = 0;
     bool spawned = false;
+  
+
+
+    
+
     public void OnEnable()
     {
         Spawn();
@@ -61,12 +75,17 @@ public class CabraController : MonoBehaviour {
     {
 
         gameManager = gm;
-        Rig = GetComponent<Rigidbody2D>();
-        SPR = GetComponent<SpriteRenderer>();
-        maxDisttext.text ="Reach "+ maxDistance.ToString() + "m to win";
+        source = GetComponent<AudioSource>();
+        rig = GetComponent<Rigidbody2D>();
+        spr = GetComponent<SpriteRenderer>();
+        canPlay = true;
+        splatCanPlay = false;
+
+        //maxDisttext.text ="Reach "+ maxDistance.ToString() + "m to win";
     }
-	// Update is called once per frame
-	void Update () {
+    
+    // Update is called once per frame
+    void Update () {
         if (spawned)
         {
             if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
@@ -77,7 +96,7 @@ public class CabraController : MonoBehaviour {
                 }
                 else if(!calcDir)
                 {
-                    DirectionSprite.gameObject.SetActive(true);
+                    directionSprite.gameObject.SetActive(true);
                     calcDir = true;
                     multiply = 1;
                 }
@@ -104,6 +123,12 @@ public class CabraController : MonoBehaviour {
         }
         if (flying)
         {
+            if (canPlay)
+            {
+                source.PlayOneShot(goatScream, .5f);
+                canPlay = false;
+            }
+            
             currentDistance += transform.position.x - lastPosition;
             lastPosition = transform.position.x;
         }
@@ -128,17 +153,17 @@ public class CabraController : MonoBehaviour {
 
     void IncrementDirection()
     {
-        DirectionSprite.Rotate(0, 0, angleSpeed * Time.deltaTime * multiply);
+        directionSprite.Rotate(0, 0, angleSpeed * Time.deltaTime * multiply);
         if(multiply == 1)
         {
-            if (DirectionSprite.rotation.eulerAngles.z > MaxAngle)
+            if (directionSprite.rotation.eulerAngles.z > maxAngle)
             {
                 multiply = -1;
             }
         }
         else
         {
-             if (DirectionSprite.rotation.eulerAngles.z > 180 && DirectionSprite.rotation.eulerAngles.z < 360 - MinAngle)
+             if (directionSprite.rotation.eulerAngles.z > 180 && directionSprite.rotation.eulerAngles.z < 360 - minAngle)
             {
                 multiply = 1;
             }
@@ -152,21 +177,28 @@ public class CabraController : MonoBehaviour {
 
         //Rig.AddForce(Direction * StartForce * potencia);
 
-        Rig.AddForce(DirectionSprite.right * (StartForce + MaxForce * foreCounter));
+        rig.AddForce(directionSprite.right * (startForce + maxForce * foreCounter));
         foreCounter = 0;
         multiply = 1;
         barra.gameObject.SetActive(false);
-        DirectionSprite.gameObject.SetActive(false);
+        directionSprite.gameObject.SetActive(false);
         lastPosition = transform.position.x;
         flying = true;
-        SPR.sprite = FlySprite;
+        spr.sprite = flySprite;
         spawned = false;
+        splatCanPlay = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Suelo"))
+        if (collision.gameObject.CompareTag("GameController"))
         {
+            if (splatCanPlay)
+            {
+                source.PlayOneShot(goatSplat, .5f);
+                splatCanPlay = false;
+            }
+            
             EndGame();
             //Spawn();
         }
@@ -174,8 +206,8 @@ public class CabraController : MonoBehaviour {
 
     void EndGame()
     {
-        Rig.velocity = new Vector2(0, 0);
-        SPR.sprite = IdleSprite;
+        rig.velocity = new Vector2(0, 0);
+        spr.sprite = idleSprite;
         flying = false;
         text.text = "You have reached "+ currentDistance.ToString("F2") + "m";
         StartCoroutine(StartNewScene());
@@ -197,16 +229,17 @@ public class CabraController : MonoBehaviour {
 
     void Spawn()
     {
+        maxDisttext.text = "Reach " + maxDistance.ToString() + "m to win";
         calcDir = false;
         calcForce = false;
         spawned = true;
-        SPR.sprite = IdleSprite;
+        spr.sprite = idleSprite;
         currentDistance = 0;
-        transform.position = InitPos.position;
-        Rig.velocity = new Vector2(0, 0);
+        transform.position = initPos.position;
+        rig.velocity = new Vector2(0, 0);
         barra.fillAmount = 0;
         barra.gameObject.SetActive(true);
-        DirectionSprite.gameObject.SetActive(false);
+        directionSprite.gameObject.SetActive(false);
     }
 
 }
