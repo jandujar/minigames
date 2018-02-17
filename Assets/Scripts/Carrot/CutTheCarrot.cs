@@ -58,7 +58,7 @@ public class CutTheCarrot : IMiniGame
     public override void beginGame()
     {
         playing = true;
-        keyToPress.text = "Press Fire1 Fast!";
+        keyToPress.text = "Press the magic button fast!";
         MyInput();
     }
 }
