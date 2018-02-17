@@ -43,11 +43,9 @@ public class MenuManager : Singleton<MenuManager> {
 			currentGame = MINIGAMES_ENUM.KNIFEFINGERS;
 		} else if (currentGame == MINIGAMES_ENUM.MOVIMIENTO) {
 			currentGame = MINIGAMES_ENUM.PONG;
-		} else if (currentGame == MINIGAMES_ENUM.MATHEMATICS) {
-			currentGame = MINIGAMES_ENUM.PONG;
 		}
 
-        switch (currentGame) {
+		switch (currentGame) {
 		case MINIGAMES_ENUM.PONG:
 			SceneManager.LoadScene("Pong");
 			break;
