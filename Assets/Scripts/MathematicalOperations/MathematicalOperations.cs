@@ -53,11 +53,12 @@ public class MathematicalOperations : IMiniGame
 
             if (!optionChose)
             {
-                
                 checkInputs();
+                
+            }else
+            {
                 printResult();
-
-                if (SC_PrintNum1Result.getPrintNum1ResultFinished())
+                if (SC_PrintNum1Result.getPrintNum1ResultFinished() && SC_PrintNum2Result.getPrintNum2ResultFinished())
                 {
                     if (userWin)
                     {
@@ -70,13 +71,8 @@ public class MathematicalOperations : IMiniGame
                         StartCoroutine(waitSecondsPrintFailed(1f));
 
                     }
-                    optionChose = true;
                 }
-            }
-            
-
-            
-            
+            }            
         }
     }
     
@@ -208,6 +204,7 @@ public class MathematicalOperations : IMiniGame
                 userWin = true;
 
             }
+            optionChose = true;
         }
         else if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON2))
         {
@@ -218,6 +215,7 @@ public class MathematicalOperations : IMiniGame
                 Debug.Log("Resultado Correcto");
                 userWin = true;
             }
+            optionChose = true;
         }
         else if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON3))
         {
@@ -228,6 +226,7 @@ public class MathematicalOperations : IMiniGame
                 Debug.Log("Resultado Correcto");
                 userWin = true;
             }
+            optionChose = true;
         }
         else if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON4))
         {
@@ -238,6 +237,7 @@ public class MathematicalOperations : IMiniGame
                 Debug.Log("Resultado Correcto");
                 userWin = true;
             }
+            optionChose = true;
         }
 
     }
