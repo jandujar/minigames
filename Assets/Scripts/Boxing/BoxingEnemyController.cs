@@ -22,6 +22,13 @@ public class BoxingEnemyController : MonoBehaviour {
         boxingBell = GetComponent<AudioSource>();
     }
 
+    IEnumerator LoseMatch()
+    {
+        Instantiate(GameObject.Find("Lose"), new Vector3(-0.2f, 0, 0), Quaternion.identity);
+        yield return new WaitForSeconds(2);
+        gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+    }
+
     IEnumerator MiUpdate()
     {
         yield return new WaitForSeconds(3.5f);
@@ -38,7 +45,7 @@ public class BoxingEnemyController : MonoBehaviour {
             if (boxingPlayer.transform.position.x == transform.position.x)
             {
                GameObject.Find("Player").SetActive(false);
-               gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+                StartCoroutine(LoseMatch());
             }
             yield return new WaitForSeconds(1);
             transform.GetChild(1).gameObject.SetActive(false);

@@ -40,12 +40,20 @@ public class BoxingPlayerController : MonoBehaviour {
         yield return new WaitForSeconds(4);
         boxingAudience.Play();
     }
+
+    IEnumerator WinMatch()
+    {
+        Instantiate(GameObject.Find("Win"), new Vector3(-0.2f, 0, 0), Quaternion.identity);
+        yield return new WaitForSeconds(2);
+        gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
 		move = InputManager.Instance.GetAxisHorizontal();
 
+        
 
         if (move > 0)
         {
@@ -93,9 +101,9 @@ public class BoxingPlayerController : MonoBehaviour {
             transform.GetChild(0).gameObject.SetActive(true);
 
             if (boxingEnemy.transform.position.x == transform.position.x)
-            {     
+            {
+                StartCoroutine(WinMatch());  
                 GameObject.Find("Enemy").SetActive(false);
-                gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
             }
         }
 
