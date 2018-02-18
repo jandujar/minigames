@@ -6,6 +6,7 @@ public class BoxingEnemyController : MonoBehaviour {
 
     public GameManager gameManager;
     public BoxingPlayerController boxingPlayer;
+    private AudioSource boxingBell;
     private int move;
     public float speed = 1;
     public int lastMove;
@@ -18,11 +19,14 @@ public class BoxingEnemyController : MonoBehaviour {
     void Start()
     {
         StartCoroutine(MiUpdate());
+        boxingBell = GetComponent<AudioSource>();
     }
 
     IEnumerator MiUpdate()
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(3.5f);
+        boxingBell.Play();
+        yield return new WaitForSeconds(2);
         while (true)
         {
             GenerateRandom();

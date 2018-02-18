@@ -10,11 +10,6 @@ public class Boxing : IMiniGame {
     public BoxingEnemyController enemy;
     public BoxingCanKo button;
 
-    void Awake()
-    {
-        //Init Pong
-        Debug.LogError("Change this Script for your own Script");
-    }
 
     public override void beginGame()
     {

@@ -6,6 +6,7 @@ public class BoxingPlayerController : MonoBehaviour {
 
     public GameManager gameManager;
     public BoxingEnemyController boxingEnemy;
+    private AudioSource boxingAudience;
     private float move;
     private float posX;
     private float posY;
@@ -23,8 +24,10 @@ public class BoxingPlayerController : MonoBehaviour {
     void Start () {       
         posX = transform.position.x;
         posY = transform.position.y;
+        boxingAudience = GetComponent<AudioSource>();
         StartCoroutine(DisablePunch());
-	}
+        StartCoroutine(StartSound());
+    }
 
     IEnumerator DisablePunch()
     {
@@ -32,6 +35,11 @@ public class BoxingPlayerController : MonoBehaviour {
         transform.GetChild(0).gameObject.SetActive(false);
     }
 
+    IEnumerator StartSound()
+    {
+        yield return new WaitForSeconds(4);
+        boxingAudience.Play();
+    }
 	
 	// Update is called once per frame
 	void Update () {
