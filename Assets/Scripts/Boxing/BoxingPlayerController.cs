@@ -65,7 +65,7 @@ public class BoxingPlayerController : MonoBehaviour {
 
         releaseKo = InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2);
 
-        if (chargueKo > 500 && chargueKo < 800)
+        if (chargueKo > 500)
         {
             aviableKo = true;
         }
