@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class BoxingPlayerController : MonoBehaviour {
 
+    public BoxingEnemyController boxingEnemy;
     private float move;
     private float posX;
     private float posY;
     private bool charguePunch;
     public int chargueKo = 0;
     public bool aviableKo;
+    public bool releaseKo;
 
 
 	// Use this for initialization
@@ -26,11 +28,11 @@ public class BoxingPlayerController : MonoBehaviour {
 
         if (move > 0)
         {
-            transform.position = new Vector2(posX + 1,posY);
+            transform.position = new Vector2(posX + 3,posY);
         }
         else if (move < 0)
         {
-            transform.position = new Vector2(posX - 1, posY);
+            transform.position = new Vector2(posX - 3, posY);
         }
         else
         {
@@ -53,6 +55,8 @@ public class BoxingPlayerController : MonoBehaviour {
             
         }
 
+        releaseKo = InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2);
+
         if (chargueKo > 500 && chargueKo < 800)
         {
             aviableKo = true;
@@ -62,6 +66,14 @@ public class BoxingPlayerController : MonoBehaviour {
             aviableKo = false;
         }
 
+        if (aviableKo && releaseKo)
+        {
+            chargueKo = 0;
 
+            if (boxingEnemy.transform.position.x == transform.position.x)
+            {
+                GameObject.Find("Enemy").SetActive(false);
+            }
+        }
 	}
 }

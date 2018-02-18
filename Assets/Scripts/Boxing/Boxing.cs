@@ -22,7 +22,6 @@ public class Boxing : IMiniGame {
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
         this.gameManager = gm;
-
     }
 
     public override string ToString()

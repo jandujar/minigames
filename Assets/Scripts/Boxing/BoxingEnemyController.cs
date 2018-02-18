@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BoxingEnemyController : MonoBehaviour {
 
+    public BoxingPlayerController boxingPlayer;
     private int move;
     public float speed = 1;
     public int lastMove;
@@ -24,10 +25,13 @@ public class BoxingEnemyController : MonoBehaviour {
             yield return new WaitForSeconds(1);
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(true);
+            if (boxingPlayer.transform.position.x == transform.position.x)
+            {
+               GameObject.Find("Player").SetActive(false);
+            }
             yield return new WaitForSeconds(1);
             transform.GetChild(1).gameObject.SetActive(false);
-        }
-     
+        }    
     }
 
     void GenerateRandom()
@@ -44,7 +48,6 @@ public class BoxingEnemyController : MonoBehaviour {
             move = 1;
         }
        
-
         switch (move)
         {
             case 1:
@@ -57,7 +60,5 @@ public class BoxingEnemyController : MonoBehaviour {
                 lastMove--;
                 break;
         }
-
-
     }
 }
