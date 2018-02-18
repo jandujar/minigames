@@ -18,7 +18,15 @@ public class BoxingPlayerController : MonoBehaviour {
 	void Start () {       
         posX = transform.position.x;
         posY = transform.position.y;
+        StartCoroutine(DisablePunch());
 	}
+
+    IEnumerator DisablePunch()
+    {
+        yield return new WaitForSeconds(1);
+        transform.GetChild(0).gameObject.SetActive(false);
+    }
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -69,11 +77,18 @@ public class BoxingPlayerController : MonoBehaviour {
         if (aviableKo && releaseKo)
         {
             chargueKo = 0;
+            transform.GetChild(0).gameObject.SetActive(true);
 
             if (boxingEnemy.transform.position.x == transform.position.x)
-            {
+            {     
                 GameObject.Find("Enemy").SetActive(false);
             }
         }
+
+        if (transform.GetChild(0).gameObject.activeSelf)
+        {
+            StartCoroutine(DisablePunch());
+        }
+
 	}
 }
