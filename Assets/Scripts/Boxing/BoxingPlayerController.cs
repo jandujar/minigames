@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BoxingPlayerController : MonoBehaviour {
 
+    public GameManager gameManager;
     public BoxingEnemyController boxingEnemy;
     private float move;
     private float posX;
@@ -13,9 +14,13 @@ public class BoxingPlayerController : MonoBehaviour {
     public bool aviableKo;
     public bool releaseKo;
 
+    public void init(GameManager gm)
+    {
+        gameManager = gm;
+    }
 
-	// Use this for initialization
-	void Start () {       
+    // Use this for initialization
+    void Start () {       
         posX = transform.position.x;
         posY = transform.position.y;
         StartCoroutine(DisablePunch());
@@ -82,6 +87,7 @@ public class BoxingPlayerController : MonoBehaviour {
             if (boxingEnemy.transform.position.x == transform.position.x)
             {     
                 GameObject.Find("Enemy").SetActive(false);
+                gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
             }
         }
 

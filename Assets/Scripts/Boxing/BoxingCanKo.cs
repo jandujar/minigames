@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class BoxingCanKo : MonoBehaviour {
 
+    public GameManager gameManager;
     public BoxingPlayerController boxingPlayer;
     private Animator anim;
+
+    public void init(GameManager gm)
+    {
+        gameManager = gm;
+    }
 
     void Start()
     {

@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class BoxingEnemyController : MonoBehaviour {
 
+    public GameManager gameManager;
     public BoxingPlayerController boxingPlayer;
     private int move;
     public float speed = 1;
     public int lastMove;
 
+    public void init(GameManager gm)
+    {
+        gameManager = gm;
+    }
     // Use this for initialization
     void Start()
     {
@@ -17,6 +22,7 @@ public class BoxingEnemyController : MonoBehaviour {
 
     IEnumerator MiUpdate()
     {
+        yield return new WaitForSeconds(6);
         while (true)
         {
             GenerateRandom();
@@ -28,6 +34,7 @@ public class BoxingEnemyController : MonoBehaviour {
             if (boxingPlayer.transform.position.x == transform.position.x)
             {
                GameObject.Find("Player").SetActive(false);
+               gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
             }
             yield return new WaitForSeconds(1);
             transform.GetChild(1).gameObject.SetActive(false);

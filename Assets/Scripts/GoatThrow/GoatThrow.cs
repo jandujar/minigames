@@ -6,6 +6,7 @@ public class GoatThrow : IMiniGame
 {
     private GameManager gameManager;
     public CabraController cabra;
+
     public override void beginGame()
     {
         
