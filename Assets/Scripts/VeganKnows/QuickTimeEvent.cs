@@ -36,7 +36,7 @@ public class QuickTimeEvent : MonoBehaviour {
 
         if (QTEGen == 1){
             if (Input.anyKeyDown){
-                if (Input.GetButton("Carrot_B")){
+                if (Input.GetButton("Fire1")){
                     CorrectKey = 1;
                     StartCoroutine(KeyPressing ());
                 }else{
@@ -47,7 +47,7 @@ public class QuickTimeEvent : MonoBehaviour {
         }
         if (QTEGen == 2){
             if (Input.anyKeyDown){
-                if (Input.GetButton("Hamburger_B")){
+                if (Input.GetButton("Fire2")){
                     CorrectKey = 3;
                     StartCoroutine(KeyPressing());
                 }else{
