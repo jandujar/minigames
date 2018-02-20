@@ -36,19 +36,24 @@ public class BoxingEnemyController : MonoBehaviour {
         yield return new WaitForSeconds(2);
         while (true)
         {
-            GenerateRandom();
-            yield return new WaitForSeconds(1);  
-            transform.GetChild(0).gameObject.SetActive(true);
-            yield return new WaitForSeconds(1);
-            transform.GetChild(0).gameObject.SetActive(false);
-            transform.GetChild(1).gameObject.SetActive(true);
+            if (!GameObject.Find("KO"))
+            {
+                GenerateRandom();
+                yield return new WaitForSeconds(1);
+                transform.GetChild(0).gameObject.SetActive(true);
+                yield return new WaitForSeconds(1);
+                transform.GetChild(0).gameObject.SetActive(false);
+                transform.GetChild(1).gameObject.SetActive(true);
+            }
             if (boxingPlayer.transform.position.x == transform.position.x)
             {
-               GameObject.Find("Player").SetActive(false);
+                GameObject.Find("Player").SetActive(false);
                 StartCoroutine(LoseMatch());
             }
             yield return new WaitForSeconds(1);
             transform.GetChild(1).gameObject.SetActive(false);
+            
+
         }    
     }
 
