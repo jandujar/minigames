@@ -7,6 +7,7 @@ public class Gun : MonoBehaviour {
 	public GameObject virtualMousePosition;
 	public GameObject bullet;
 	public int forceShoot;
+	public AudioClip shoot;
 
 	private bool canFire;
 	private bool shooting;
@@ -14,6 +15,7 @@ public class Gun : MonoBehaviour {
 	private Rigidbody rbdBullet;
 	private Vector3 startPosBullet;
 	private Animator animController;
+	private AudioSource source;
 
 
 	void Awake(){
@@ -25,6 +27,7 @@ public class Gun : MonoBehaviour {
 		rbdBullet.useGravity = false;
 		startPosBullet = bullet.transform.position;
 		animController = this.GetComponent<Animator> ();
+		source = this.GetComponent<AudioSource> ();
 	}
 
 
@@ -56,6 +59,7 @@ public class Gun : MonoBehaviour {
 	private void CheckInputs(){
 		//Disparar
 		if(InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) && canFire){
+			source.PlayOneShot (shoot, 0.5f);
 			canFire = false;
 			shooting = true;
 		}

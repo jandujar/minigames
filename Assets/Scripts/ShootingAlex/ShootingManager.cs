@@ -19,14 +19,17 @@ public class ShootingManager : MonoBehaviour {
 	private bool gameReady;
 	//Random is valid or not objective
 	private bool valid;
+	private AudioSource source;
 
 	void Awake(){
 		//Search for all 
 		objective = GameObject.FindGameObjectsWithTag("Player");
 		gameReady = false;
+		source = this.GetComponent<AudioSource> ();
 	}
 		
 	public void InitGame(GameManager manager){
+		source.Play ();
 		gm = manager;
 		tmpTime = Time.time;
 		lapsusTime = Random.Range (0.5f, 1.5f);

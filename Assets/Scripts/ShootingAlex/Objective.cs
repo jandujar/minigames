@@ -10,12 +10,15 @@ public class Objective : MonoBehaviour {
 	private bool colision;
 	private bool target;
 	private Vector3 startRotation;
+	private AudioSource source;
 	public Texture[] texEnemy;
 	public Texture[] texAlly;
+	public AudioClip[] scream;
 
 	public void Awake(){
 		mat = this.GetComponentInChildren<MeshRenderer> ().materials [0];
 		startRotation = this.transform.rotation.eulerAngles;
+		source = this.GetComponent<AudioSource> ();
 		//target = false;
 	}
 
@@ -25,8 +28,10 @@ public class Objective : MonoBehaviour {
 		randTex = Random.Range (0, texAlly.Length);
 		if (!valid) {
 			mat.SetTexture ("_MainTex", texAlly [randTex]);
+			source.PlayOneShot (scream[0], 0.5f);
 		} else {
 			mat.SetTexture ("_MainTex", texEnemy [randTex]);
+			source.PlayOneShot (scream[1], 0.5f);
 		}
 
 		target = valid;
@@ -52,17 +57,20 @@ public class Objective : MonoBehaviour {
 				manageShooting.GetComponent<ShootingManager>().endGame(IMiniGame.MiniGameResult.LOSE);
 			}
 		} else {
-			manageShooting.GetComponent<ShootingManager> ().InitGame ();
+			if (colision) {
+				//LOSE
+				manageShooting.GetComponent<ShootingManager>().endGame(IMiniGame.MiniGameResult.LOSE);
+			} else {
+				//WIN
+				manageShooting.GetComponent<ShootingManager> ().InitGame ();
+			}
+
 		}
 	}
 
 	private void OnCollisionEnter(Collision other){
-		if (other.collider.name == "Bullet" && target) {
+		if (other.collider.name == "Bullet") {
 			colision = true;
-			Debug.Log ("WIN");
-		} else {
-			Debug.Log ("PIPOOOO");
-			Debug.Log ("oTHER: " + other.collider.name);
 		}
 	}
 }
