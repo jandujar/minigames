@@ -18,7 +18,17 @@ public class GitaHiro : IMiniGame
     [Header("Score")]
     public int score = 0;
     public Text text;
-    
+
+    [Header("Game Time")]
+    public int gameTime = 10;
+    public bool gameSpawnStop = false;
+    public Text gameTimeText;
+    private AudioSource gameSound;
+
+    void Start()
+    {
+        gameSound = GetComponent<AudioSource>();
+    }
     public override void beginGame()
     {
         //Iro Hiro Begins
@@ -27,6 +37,8 @@ public class GitaHiro : IMiniGame
         Debug.Log(this.ToString() + " game Begin");
         noteSpawner.GenerateRandomJand(time, minRand, maxRand);
         text.enabled = true;
+        StartCoroutine(gameTimer());
+        gameSound.Play();
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
@@ -53,5 +65,23 @@ public class GitaHiro : IMiniGame
     public void addScore()
     {
         score+=1;
-    }    
+    }
+
+    public IEnumerator gameTimer()
+    {
+        for(int i=gameTime;i!=0;--i)
+        {
+            yield return new WaitForSeconds(1f);
+            //gameTimeText.text = i.ToString();
+            Debug.Log(i);
+            if(i==0)
+            {
+                gameSpawnStop = true;
+            }
+        }
+    }
+    public bool getEndTime()
+    {
+        return gameSpawnStop;
+    }
 }

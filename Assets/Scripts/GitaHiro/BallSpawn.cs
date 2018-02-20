@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BallSpawn : MonoBehaviour
 {
+    public GitaHiro gitaHiroManager;
     [Header("Spawn Times")]
     public float discountTime;
     public float minTimeSpawn;
@@ -55,7 +56,15 @@ public class BallSpawn : MonoBehaviour
                     _time -= discountTime;
                     notesCount = 0;
                 }
-            }            
+            }       
+        }
+    }
+    void Update()
+    {
+        if (gitaHiroManager.getEndTime())
+        {
+            StopAllCoroutines();
+            Destroy(parent);
         }
     }
 }
