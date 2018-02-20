@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class QuickTimeEvent : MonoBehaviour {
 
+    Animator animator;
     public GameObject DisplayBox;
     public GameObject CountDown;
     public VeganKnows vegan;
@@ -61,6 +62,7 @@ public class QuickTimeEvent : MonoBehaviour {
     IEnumerator KeyPressing(){
         QTEGen = 3;
         if (CorrectKey == 1){
+            animator.SetTrigger("ThrowCG");
             yield return new WaitForSeconds(1.0f);
             //Condicion de victoria
             Debug.Log("WINNER");
