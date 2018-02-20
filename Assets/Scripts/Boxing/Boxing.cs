@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Boxing : IMiniGame {
 
-    private GameManager gameManager;
     public BoxingPlayerController player;
     public BoxingEnemyController enemy;
     public BoxingCanKo button;
@@ -22,10 +21,8 @@ public class Boxing : IMiniGame {
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        this.gameManager = gm;
         player.init(gm);
         enemy.init(gm);
-        button.init(gm);
     }
 
     public override string ToString()
