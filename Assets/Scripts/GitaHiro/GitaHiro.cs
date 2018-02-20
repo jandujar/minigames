@@ -23,6 +23,7 @@ public class GitaHiro : IMiniGame
     public int gameTime = 10;
     public bool gameSpawnStop = false;
     public Text gameTimeText;
+    public Text gameWinText;
     private AudioSource gameSound;
 
     void Start()
@@ -61,6 +62,12 @@ public class GitaHiro : IMiniGame
         StopAllCoroutines();
         gameManager.EndGame(MiniGameResult.LOSE);
     }
+    
+    void setEndGameWin()
+    {
+        StopAllCoroutines();
+        gameManager.EndGame(MiniGameResult.WIN);
+    }
 
     public void addScore()
     {
@@ -69,19 +76,29 @@ public class GitaHiro : IMiniGame
 
     public IEnumerator gameTimer()
     {
-        for(int i=gameTime;i!=0;--i)
+        for(int i=gameTime;i>-1;--i)
         {
             yield return new WaitForSeconds(1f);
             //gameTimeText.text = i.ToString();
-            Debug.Log(i);
             if(i==0)
             {
                 gameSpawnStop = true;
             }
+            Debug.Log(i+" "+gameSpawnStop);
         }
     }
     public bool getEndTime()
     {
         return gameSpawnStop;
+    }
+    public void setEndTime(bool _value)
+    {
+        gameSpawnStop = _value;
+    }
+    public  IEnumerator endGame()
+    {
+        gameWinText.enabled = true;
+        yield return new WaitForSeconds(2f);
+        setEndGameWin();
     }
 }
