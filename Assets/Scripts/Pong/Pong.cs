@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Pong : IMiniGame {
-    private GameManager gameManager;
     public Ball ball;
 
     void Awake()
@@ -22,7 +21,6 @@ public class Pong : IMiniGame {
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        this.gameManager = gm;
         ball.init(gm); 
     }
 
