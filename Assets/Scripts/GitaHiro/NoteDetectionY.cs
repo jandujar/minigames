@@ -30,12 +30,5 @@ public class NoteDetectionY : MonoBehaviour
                 noteDetected = false;
             }
         }
-        else
-        {
-            if ((Input.GetKeyDown(KeyCode.S) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)) && gameNote.gameObject.name != "buttonY(Clone)")
-            {
-                gameScript.setEndGame();
-            }
-        }
     }
 }
