@@ -8,7 +8,25 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : Singleton<MenuManager> {
 
-    private enum MINIGAMES_ENUM { PONG, GOATTHROW, BILLIARDS,BOTTLEFLIP,CARROT,DYKTW,GITAHIRO,KNIFEFINGERS,MSEGADA,PICKFISH,DUCKSHOOTER,EQUILIBRIO,MOVIMIENTO,END };
+    private enum MINIGAMES_ENUM { 
+		PONG, 
+		GOATTHROW, 
+		BILLIARDS,
+		BOTTLEFLIP,
+		CARROT,
+		DYKTW,
+		GITAHIRO,
+		KNIFEFINGERS,
+		MSEGADA,
+		PICKFISH,
+		DUCKSHOOTER,
+		EQUILIBRIO,
+		MOVIMIENTO,
+		MATHEMATICS,
+		VEGAN,
+		SAFEBOX,
+		END };
+	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
 
     void Start(){
@@ -27,7 +45,7 @@ public class MenuManager : Singleton<MenuManager> {
 			currentGame = MINIGAMES_ENUM.PONG;
 		}
 
-        switch (currentGame) {
+		switch (currentGame) {
 		case MINIGAMES_ENUM.PONG:
 			SceneManager.LoadScene("Pong");
 			break;
@@ -58,9 +76,6 @@ public class MenuManager : Singleton<MenuManager> {
 		case MINIGAMES_ENUM.PICKFISH:
 			SceneManager.LoadScene("PickAFish");
 			break;
-		case MINIGAMES_ENUM.END:
-			SceneManager.LoadScene("Pong");
-			break;
 		case MINIGAMES_ENUM.DUCKSHOOTER:
 			SceneManager.LoadScene("DuckShooter");
 			break;
@@ -70,6 +85,16 @@ public class MenuManager : Singleton<MenuManager> {
 		case MINIGAMES_ENUM.MOVIMIENTO:
 			SceneManager.LoadScene("Movimiento");
 			break;
+		case MINIGAMES_ENUM.MATHEMATICS:
+			SceneManager.LoadScene("MathematicalOperations");
+			break;
+		case MINIGAMES_ENUM.VEGAN:
+			SceneManager.LoadScene("VeganKnows");
+			break;
+		case MINIGAMES_ENUM.SAFEBOX:
+			SceneManager.LoadScene("SafeBox");
+			break;
+		case MINIGAMES_ENUM.END:
 		default:
 			SceneManager.LoadScene ("Pong");
 			break;
