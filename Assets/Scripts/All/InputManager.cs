@@ -24,16 +24,12 @@ public class InputManager : Singleton<InputManager> {
         {
             case MiniGameButtons.BUTTON1:
                 return Input.GetButton("Fire1");
-                break;
             case MiniGameButtons.BUTTON2:
                 return Input.GetButton("Fire2");
-                break;
             case MiniGameButtons.BUTTON3:
                 return Input.GetButton("Fire3");
-                break;
             case MiniGameButtons.BUTTON4:
                 return Input.GetButton("Fire4");
-                break;
             default:
                 return false;
         }
@@ -44,16 +40,12 @@ public class InputManager : Singleton<InputManager> {
         {
             case MiniGameButtons.BUTTON1:
                 return Input.GetButtonDown("Fire1");
-                break;
             case MiniGameButtons.BUTTON2:
                 return Input.GetButtonDown("Fire2");
-                break;
             case MiniGameButtons.BUTTON3:
                 return Input.GetButtonDown("Fire3");
-                break;
             case MiniGameButtons.BUTTON4:
                 return Input.GetButtonDown("Fire4");
-                break;
             default:
                 return false;
         }
@@ -64,16 +56,12 @@ public class InputManager : Singleton<InputManager> {
         {
             case MiniGameButtons.BUTTON1:
                 return Input.GetButtonUp("Fire1");
-                break;
             case MiniGameButtons.BUTTON2:
                 return Input.GetButtonUp("Fire2");
-                break;
             case MiniGameButtons.BUTTON3:
                 return Input.GetButtonUp("Fire3");
-                break;
             case MiniGameButtons.BUTTON4:
                 return Input.GetButtonUp("Fire4");
-                break;
             default:
                 return false;
         }
