@@ -21,8 +21,7 @@ public class GitaHiro : IMiniGame
 
     [Header("Game Time")]
     public int gameTime = 10;
-    public bool gameSpawnStop = false;
-    public Text gameTimeText;
+    private bool gameSpawnStop = false;
     public Text gameWinText;
     private AudioSource gameSound;
 
@@ -32,12 +31,12 @@ public class GitaHiro : IMiniGame
     }
     public override void beginGame()
     {
-        //Iro Hiro Begins
+        //Gita Hiro Begins
 		minRand = 1;
 		maxRand = 5;
         Debug.Log(this.ToString() + " game Begin");
         noteSpawner.GenerateRandomJand(time, minRand, maxRand);
-        text.enabled = true;
+        //text.enabled = true;
         StartCoroutine(gameTimer());
         gameSound.Play();
     }
@@ -79,12 +78,9 @@ public class GitaHiro : IMiniGame
         for(int i=gameTime;i>-1;--i)
         {
             yield return new WaitForSeconds(1f);
-            //gameTimeText.text = i.ToString();
             if(i==0)
-            {
                 gameSpawnStop = true;
-            }
-            Debug.Log(i+" "+gameSpawnStop);
+            
         }
     }
     public bool getEndTime()
@@ -95,10 +91,19 @@ public class GitaHiro : IMiniGame
     {
         gameSpawnStop = _value;
     }
-    public  IEnumerator endGame()
+    public IEnumerator endGame()
     {
         gameWinText.enabled = true;
-        yield return new WaitForSeconds(2f);
+        StartCoroutine(volumeDown());
+        yield return new WaitForSecondsRealtime(2f);
         setEndGameWin();
+    }
+    public IEnumerator volumeDown()
+    {
+        while(true)
+        {
+            yield return new WaitForSecondsRealtime(0.25f);
+            gameSound.volume -= 0.05f;
+        }
     }
 }

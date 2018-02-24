@@ -60,14 +60,13 @@ public class BallSpawn : MonoBehaviour
         }
     }
     void Update()
-    {
-        gitaHiroManager.getEndTime();
+    {        
         if (gitaHiroManager.getEndTime()==true)
         {
             StopAllCoroutines();
             Destroy(parent);
+            StartCoroutine(gitaHiroManager.endGame());
             gitaHiroManager.setEndTime(false);
-            gitaHiroManager.endGame();
         }
     }
 }

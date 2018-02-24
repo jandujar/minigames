@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -783,7 +783,7 @@ RectTransform:
   m_GameObject: {fileID: 659421906}
   m_LocalRotation: {x: -0, y: -0, z: 0.14805612, w: 0.98897904}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 345274171}
   m_RootOrder: 1
@@ -2351,9 +2351,7 @@ MonoBehaviour:
   noteSpawner: {fileID: 1468494166}
   score: 0
   text: {fileID: 1181196314}
-  gameTime: 5
-  gameSpawnStop: 0
-  gameTimeText: {fileID: 0}
+  gameTime: 15
   gameWinText: {fileID: 659421908}
 --- !u!82 &1704692378
 AudioSource:
@@ -2366,7 +2364,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3bfdac450f30d5b40a360a1b151aa557, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2450,7 +2448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1782906106
 Transform:
   m_ObjectHideFlags: 0
