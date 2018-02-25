@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TroncoInstance : MonoBehaviour {
-
+    public Squirrel player;
     public GameObject troncoCortado;
     public GameObject[] wood = new GameObject[5];
     private Rigidbody2D[] rdbWood = new Rigidbody2D[5];
@@ -35,10 +35,20 @@ public class TroncoInstance : MonoBehaviour {
             wood[count].gameObject.SetActive(true);
             rdbWood[count].AddTorque(power);
             rdbWood[count].AddForce(Vector2.up * power);
-            rdbWood[count].AddForce(Vector2.right * power);
+
+            if (player.getIsFlipped())
+            {
+                rdbWood[count].AddForce(Vector2.right * power);
+            }
+            else
+            {
+                rdbWood[count].AddForce(Vector2.left * power);
+            }
+
+            
 
             for (int i = 0; i < 5; i++) {
-                if (wood[i].transform.position.x > -1)
+                if (wood[i].transform.position.x > -1 || wood[i].transform.position.x < -11)
                 {
                     wood[i].transform.position = pos;
                     wood[i].gameObject.SetActive(false);
