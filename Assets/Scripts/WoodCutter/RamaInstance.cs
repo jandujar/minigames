@@ -20,9 +20,4 @@ public class RamaInstance : MonoBehaviour {
 
         ramas[(int)rand].gameObject.SetActive(true);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

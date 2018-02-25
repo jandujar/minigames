@@ -17,8 +17,6 @@ public class Rama : MonoBehaviour {
          * */
          
         pos = this.transform.position;
-
-
     }
 	
 	// Update is called once per frame
@@ -32,11 +30,8 @@ public class Rama : MonoBehaviour {
         if (WoodCutter.instance.getIsCutting())
         {
             StartCoroutine(waitSecondsToMove(0.25f));
-            
+
         }
-
-        
-
     }
 
     IEnumerator waitSecondsToMove(float seconds)
