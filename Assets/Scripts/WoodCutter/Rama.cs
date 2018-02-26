@@ -58,6 +58,7 @@ public class Rama : MonoBehaviour {
         {
             Debug.LogError("Muerto");
             anim.SetBool("isDead", true);
+            WoodCutter.instance.setPlayerDead(true);
         }
     }
 }

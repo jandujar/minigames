@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WoodCutter : IMiniGame {
+    private GameManager gameManager;
+
     public static WoodCutter instance = null;
     public RamaInstance ramaInstance;
 
     bool isCutting = false;
+    bool playerDead = false;
     int cuttedCount = 0;
     public int cuttedToWin = 20;
+
+    public TextMesh tTimer;
+    float timer = 10;
 
     void Awake()
     {
@@ -22,17 +28,31 @@ public class WoodCutter : IMiniGame {
 
     void Update()
     {
+        //Timer - DeltaTime para ver el tiempo que queda
+        timer += Time.deltaTime;
+        tTimer.text = timer.ToString();
+
         if (getIsCutting())
         {
             ramaInstance.init();
+        }
+
+        if (playerDead)
+        {
+            StartCoroutine(waitSecondsLose(1f));
+        }
+        else
+        {
+            if (cuttedCount == cuttedToWin)
+            {
+                StartCoroutine(waitSecondsWin(1f));
+            }
         }
     }
 
     public override void beginGame()
     {
-        //Pong Begins
         Debug.Log(this.ToString() + " game Begin");
-        //ball.enableBall = true;
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
@@ -67,6 +87,23 @@ public class WoodCutter : IMiniGame {
     public int getCuttedToWin()
     {
         return cuttedToWin;
+    }
+
+    public void setPlayerDead(bool dead)
+    {
+        playerDead = dead;
+    }
+    
+    IEnumerator waitSecondsWin(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+    }
+
+    IEnumerator waitSecondsLose(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
     }
 
 }
