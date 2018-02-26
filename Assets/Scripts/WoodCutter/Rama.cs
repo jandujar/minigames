@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Rama : MonoBehaviour {
+    public GameObject player;
+    public Animator anim;
+
     public Transform reset;
     Vector2 pos;
 
@@ -24,19 +27,37 @@ public class Rama : MonoBehaviour {
 
         if (this.transform.position.y <= reset.position.y)
         {
-            this.transform.position = pos;
+            StartCoroutine(waitSecondsToInActive(0.25f));
         } 
 
-        if (WoodCutter.instance.getIsCutting())
+        if (WoodCutter.instance.getIsCutting() && this.gameObject.activeSelf)
         {
             StartCoroutine(waitSecondsToMove(0.25f));
 
         }
+
     }
 
     IEnumerator waitSecondsToMove(float seconds)
     {
         yield return new WaitForSeconds(seconds);
         this.transform.position = new Vector2(this.transform.position.x, this.transform.position.y - playerHeight);
+    }
+
+    IEnumerator waitSecondsToInActive(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        this.transform.position = pos;
+        this.gameObject.SetActive(false);
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision == player.GetComponent<BoxCollider2D>())
+        {
+            Debug.LogError("Muerto");
+            anim.SetBool("isDead", true);
+        }
     }
 }

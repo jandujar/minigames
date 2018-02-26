@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WoodCutter : IMiniGame {
     public static WoodCutter instance = null;
+    public RamaInstance ramaInstance;
 
     bool isCutting = false;
     int cuttedCount = 0;
@@ -18,7 +19,15 @@ public class WoodCutter : IMiniGame {
             instance = this;
         }
     }
-    
+
+    void Update()
+    {
+        if (getIsCutting())
+        {
+            ramaInstance.init();
+        }
+    }
+
     public override void beginGame()
     {
         //Pong Begins
@@ -28,7 +37,7 @@ public class WoodCutter : IMiniGame {
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-       // ball.init(gm);
+       ramaInstance.init();
     }
 
     public override string ToString()

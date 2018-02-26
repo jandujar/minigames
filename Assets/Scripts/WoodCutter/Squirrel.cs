@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Squirrel : MonoBehaviour {
     public Animator anim;
-    Vector2 posButton1 = new Vector2(-9f, -0.07f);
-    Vector2 posButton2 = new Vector2(-3.77f, -0.07f);
+    Vector2 posButton1 = new Vector2(-10.21f, -3.52f);
+    Vector2 posButton2 = new Vector2(-4.95f, -3.52f);
     bool isFlipped = false;
 
     void Update()

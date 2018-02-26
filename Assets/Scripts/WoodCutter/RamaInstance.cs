@@ -5,7 +5,8 @@ using UnityEngine;
 public class RamaInstance : MonoBehaviour {
 
     public GameObject[] ramas = new GameObject[3];
-    TypeRama rand = TypeRama.NONE;
+    TypeRama type = TypeRama.RIGHT;
+    float rand = 0f;
 
     private enum TypeRama
     {
@@ -15,9 +16,18 @@ public class RamaInstance : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Awake () {
-        rand = (TypeRama)Random.Range(0f, 3f);
-
-        ramas[(int)rand].gameObject.SetActive(true);
+    public void init () {
+        rand = Random.Range(0f, 10f);
+        if(rand >= 6)
+        {
+            type = TypeRama.RIGHT;
+        }else if(rand >= 2 && rand < 6)
+        {
+            type = TypeRama.LEFT;
+        }else
+        {
+            type = TypeRama.NONE;
+        }
+        ramas[(int)type].gameObject.SetActive(true);
     }
 }

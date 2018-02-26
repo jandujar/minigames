@@ -69,7 +69,6 @@ public class TroncoInstance : MonoBehaviour {
     IEnumerator waitSecondsToActive(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        Debug.Log("ello co");
         troncoCortado.gameObject.SetActive(true);
     }
 
