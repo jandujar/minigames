@@ -24,7 +24,8 @@ public class Bird : MonoBehaviour {
 	void Update () {
 		transform.rotation = Quaternion.Lerp(transform.rotation, maxDownRot, rotSpeed * Time.deltaTime);
 
-		if (Input.GetMouseButtonDown(0)) {
+		if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)) {
+			flappyManager.playTap ();
 			rigidBody.velocity = Vector2.zero;
 			rigidBody.AddForce(Vector2.up * tapForce, ForceMode2D.Force);
 			transform.rotation = upRotation;

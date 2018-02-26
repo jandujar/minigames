@@ -19,6 +19,8 @@ public class FlappyBird : IMiniGame {
 	public float minPosY;
 	public Text scoreTxt;
 	public Bird bird;
+	public AudioSource aSource;
+	public AudioClip destroy, score, tap;
 
 	//*************************************************************************************************Start game
 	public override void beginGame()
@@ -32,6 +34,7 @@ public class FlappyBird : IMiniGame {
 	public override void initGame(MiniGameDificulty difficulty, GameManager gm)
 	{
 		this.gameManager = gm;
+		aSource = GetComponent<AudioSource> ();
 
 	}
 	//*************************************************************************************************
@@ -69,6 +72,8 @@ public class FlappyBird : IMiniGame {
 	//*************************************************************************************************
 	public void EndGame(bool result){
 		if (!result) {
+			aSource.clip = destroy;
+			aSource.Play ();
 			gameManager.EndGame (IMiniGame.MiniGameResult.LOSE);
 		}
 		else{
@@ -77,10 +82,16 @@ public class FlappyBird : IMiniGame {
 	}
 	//*************************************************************************************************
 	public void UpdateScore(){
+		aSource.clip = score;
+		aSource.Play ();
 		actualScore++;
 		scoreTxt.text = actualScore.ToString();
 		if (actualScore >= maxScore) {
 			EndGame (true);
 		}
+	}
+	public void playTap(){
+		aSource.clip = tap;
+		aSource.Play ();
 	}
 }
