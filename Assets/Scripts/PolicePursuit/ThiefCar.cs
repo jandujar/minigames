@@ -14,6 +14,11 @@ public class ThiefCar : MonoBehaviour {
 	private bool correctWay = false;
 	private Collider2D myCollider = null;
 
+    private bool goUp = true;
+
+    [SerializeField]
+    private bool isPolice;
+
 	//*************************************************************************************************
 	void Update () {
 		if (moving) {
@@ -35,9 +40,16 @@ public class ThiefCar : MonoBehaviour {
 	}
 	//*************************************************************************************************
 	private void Move(){
-		if (transform.position.y < endPosition) {
+		if (transform.position.y < endPosition && !correctWay) {
 			if (vertical) {
-				transform.Translate (0, moveSpeed * Time.deltaTime, 0);
+                if (!goUp)
+                {
+                    transform.Translate(0, -moveSpeed * Time.deltaTime, 0);
+                }
+                else
+                {
+                    transform.Translate(0, moveSpeed * Time.deltaTime, 0);
+                }
 			} else {
 				transform.Translate (moveSpeed * Time.deltaTime, 0, 0);
 			}
@@ -46,6 +58,21 @@ public class ThiefCar : MonoBehaviour {
             policePursuit.MovementFinished (correctWay);
 		}
 	}
+
+    public bool getGoUp()
+    {
+        return goUp;
+    }
+
+    public void setGoUp(bool newGoUp)
+    {
+        goUp = newGoUp;
+    }
+
+    public void setVertical(bool newVertical)
+    {
+        vertical = newVertical;
+    }
 
 	//*************************************************************************************************
 	public IEnumerator desactivateCollider(){
@@ -56,21 +83,19 @@ public class ThiefCar : MonoBehaviour {
 
 	//*************************************************************************************************
 	void OnTriggerEnter2D(Collider2D col){
-		if (col.gameObject.tag == "Finish") {
+		if (col.gameObject.tag == "Finish" && !isPolice) {
 			correctWay = true;
-		} 
-
-
+		}
 	}
 	//*************************************************************************************************
 	void OnTriggerStay2D(Collider2D col){
-		if (col.gameObject.tag != "Finish") {
+		if (col.gameObject.tag != "Finish" && !col.gameObject.GetComponent<InverseSpeed>()) {
 			//SI VA HACIA ARRIBA
 			if (vertical) {
 				//SI VA HACIA ARRIBA Y COLISIONA POR IZQUIERDA
 				if (col.gameObject.name == "Left") {
 					if (transform.position.y >= col.transform.parent.transform.position.y -0.05f) {
-						transform.position = new Vector3 (transform.position.x, col.transform.parent.transform.position.y, transform.position.z);
+						//transform.position = new Vector3 (transform.position.x, col.transform.parent.transform.position.y, transform.position.z);
 						vertical = false;
 						moveSpeed = Mathf.Abs (moveSpeed);
 						lastWay = actualWay;
@@ -81,7 +106,7 @@ public class ThiefCar : MonoBehaviour {
 			//SI VA HACIA ARRIBA Y COLISIONA POR DERECHA
 			else {
 					if (transform.position.y >= col.transform.parent.transform.position.y-0.05f) {
-						transform.position = new Vector3 (transform.position.x, col.transform.parent.transform.position.y, transform.position.z);
+						//transform.position = new Vector3 (transform.position.x, col.transform.parent.transform.position.y, transform.position.z);
 						vertical = false;
 						moveSpeed = moveSpeed * -1;
 						lastWay = actualWay;
