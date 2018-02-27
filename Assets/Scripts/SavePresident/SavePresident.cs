@@ -12,6 +12,8 @@ public class SavePresident : IMiniGame
     private GameManager gameManager;
     public Text myText;
     public int countdown;
+    bool startCountdown;
+    bool stopCountdown;
 
     public GameObject slider;
     bool moveAgent;
@@ -26,8 +28,15 @@ public class SavePresident : IMiniGame
 
     void Update()
     {
+        if (startCountdown) { 
+            myText.text = "" + countdown;
+        }
 
-        myText.text = "" + countdown;
+        if (stopCountdown)
+        {
+            myText.text = "";
+            countdown = 999;
+        }
 
         if (countdown <= 0)
         {
@@ -36,6 +45,7 @@ public class SavePresident : IMiniGame
 
         if (moveAgent)
         {
+            stopCountdown = true;
             agent.GetComponent<Animation>().Play();
             toWin = true;
         }
@@ -71,11 +81,10 @@ public class SavePresident : IMiniGame
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
         this.gameManager = gm;
-        myText.text = "";
     }
 
     public override void beginGame()
     {
-        myText.text = "";
+        startCountdown = true;
     }
 }
