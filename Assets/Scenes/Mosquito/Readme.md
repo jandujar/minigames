@@ -1,9 +1,9 @@
 Roger Quesada
 
-Press A to put the force, then press A again to put the direction and press A again to throw your beautiful goat.
+Press A to hit the mosquito, you have 3 tries to kill him.
 
 
 
-Goat Throw
-13/02/2018
+Mosquito
+06/03/2018
 rogerk.1996@gmail.com
