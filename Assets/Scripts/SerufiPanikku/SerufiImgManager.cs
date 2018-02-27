@@ -4,31 +4,36 @@ using UnityEngine;
 
 public class SerufiImgManager : MonoBehaviour {
 
-    public List<Material> selfieToPrint;
+    public List<Material> selfieToPrint = new List<Material>();
 
-    Material gameMaterial;
-	
+    public GameObject gamePhone;
+    private Renderer gameRenderer;
     // Use this for initialization
 	void Start ()
     {
-        selfieToPrint = new List<Material>();
-        gameMaterial = this.GetComponent<Renderer>().material;
+        gameRenderer = this.gameObject.GetComponent<Renderer>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public void changeImgGame()
+    {
+        StartCoroutine(changeImgTest());
+    }
+
     public IEnumerator changeImgTest()
     {
         while(true)
         {
             yield return new WaitForSecondsRealtime(1f);
-            Debug.Log("Img 1");
-            gameMaterial = selfieToPrint[1];
-            yield return new WaitForSecondsRealtime(1f);
             Debug.Log("Img 0");
-            gameMaterial = selfieToPrint[0];
+            gameRenderer.material = selfieToPrint[0];
+            yield return new WaitForSecondsRealtime(1f);
+            Debug.Log("Img 1");
+            gameRenderer.material = selfieToPrint[1];
         }        
     }
 }
