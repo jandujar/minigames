@@ -7,7 +7,7 @@ public class FroggerGame : MonoBehaviour {
     public int rows = 9;
     public int cols = 7;
     public float scale = 1.1f;
-    public float moveSpeed = 2;
+    public float moveSpeed = 5;
     public GameObject prefabTerrain;
     public GameObject player;
 
@@ -25,9 +25,15 @@ public class FroggerGame : MonoBehaviour {
             for (int j = 0; j < cols; j++) {
                 grid[i, j] = Instantiate(prefabTerrain, new Vector3(i * scale, 0, initZ + (j * scale)), transform.rotation);
                 grid[i, j].transform.SetParent(gameObject.transform);
+                grid[i, j].GetComponent<FroggerTerrain>().initialState = cols / 3;
+                grid[i, j].GetComponent<FroggerTerrain>().currentState = (cols - j) % 3;
+                if (i > 0 && i < 4) {
+                    grid[i, j].GetComponent<FroggerTerrain>().type = 1;
+                }
             }
         }
-	}
+        StartCoroutine(UpdateStates());
+    }
 
 
     void Update() {
@@ -52,5 +58,22 @@ public class FroggerGame : MonoBehaviour {
         player.transform.position = new Vector3(target_pos, player.transform.position.y, player.transform.position.z);
         moving = false;
     }
-	
+
+    IEnumerator UpdateStates()
+    {
+        float t = Time.deltaTime;
+        while (true)
+        {
+            Debug.Log((Time.deltaTime - t )/ 1000);
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+                    grid[i, j].GetComponent<FroggerTerrain>().UpdateState();
+                }
+            }
+            t = Time.deltaTime;
+            yield return new WaitForSeconds(1);
+        }
+
+    }
+
 }
