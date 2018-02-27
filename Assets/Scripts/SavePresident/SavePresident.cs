@@ -14,9 +14,6 @@ public class SavePresident : IMiniGame
     public int countdown;
 
     public GameObject slider;
-
-
-    public AudioSource agentSound;
     bool moveAgent;
 
     bool toWin;
@@ -25,19 +22,21 @@ public class SavePresident : IMiniGame
     {
         StartCoroutine(countToDie());
         moveAgent = false;
-        myText.text = ""+ countdown;
     }
 
     void Update()
     {
-        if(countdown <= 0)
+
+        myText.text = "" + countdown;
+
+        if (countdown <= 0)
         {
             gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
         }
 
         if (moveAgent)
         {
-                agent.GetComponent<Animation>().Play();
+            agent.GetComponent<Animation>().Play();
             toWin = true;
         }
 
@@ -54,7 +53,7 @@ public class SavePresident : IMiniGame
     IEnumerator countToDie()
     {
         yield return new WaitForSeconds(1);
-        if (countdown >= 0)
+        if (countdown > 0)
         {
             countdown--;
         }
@@ -64,7 +63,6 @@ public class SavePresident : IMiniGame
     IEnumerator Winner()
     {
         moveAgent = true;
-        agentSound.Play();
         yield return new WaitForSeconds(3);
         gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
 
@@ -73,10 +71,11 @@ public class SavePresident : IMiniGame
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
         this.gameManager = gm;
+        myText.text = "";
     }
 
     public override void beginGame()
     {
-        //keyToPress.text = "Press the magic button fast!";
+        myText.text = "";
     }
 }

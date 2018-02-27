@@ -10,6 +10,7 @@ public class checkTrigger : MonoBehaviour
     bool theBool;
     public bool gameStop;
     public bool win;
+    public AudioSource agentSound;
 
     void Start()
     {
@@ -55,6 +56,7 @@ public class checkTrigger : MonoBehaviour
         if (triggered && Input.GetButtonDown("Fire1"))
         {
             win = true;
+            agentSound.Play();
         }
         
     }
