@@ -28,12 +28,10 @@ public class SerufiImgManager : MonoBehaviour {
     {
         while(true)
         {
+            int imgRand = Random.Range(0, 10);
             yield return new WaitForSecondsRealtime(1f);
-            Debug.Log("Img 0");
-            gameRenderer.material = selfieToPrint[0];
-            yield return new WaitForSecondsRealtime(1f);
-            Debug.Log("Img 1");
-            gameRenderer.material = selfieToPrint[1];
+            Debug.Log("Img "+imgRand);
+            gameRenderer.material = selfieToPrint[imgRand];
         }        
     }
 }
