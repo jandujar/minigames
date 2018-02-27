@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class QuickTimeEvent : MonoBehaviour {
 
-    Animator animator;
+    public Animator animatorC;
+    public Animator animatorH;
     public GameObject DisplayBox;
     public GameObject CountDown;
     public VeganKnows vegan;
@@ -15,7 +16,6 @@ public class QuickTimeEvent : MonoBehaviour {
     public int timeleft = 10;
     public int dificultLvl = 1;
     
-
     private void Update()
     {
         if (WaitingForKey == 0)
@@ -59,10 +59,11 @@ public class QuickTimeEvent : MonoBehaviour {
         }
     }
 
+
     IEnumerator KeyPressing(){
         QTEGen = 3;
         if (CorrectKey == 1){
-            animator.SetTrigger("ThrowCG");
+            animatorC.SetTrigger("throwCG");
             yield return new WaitForSeconds(1.0f);
             //Condicion de victoria
             Debug.Log("WINNER");
@@ -70,12 +71,14 @@ public class QuickTimeEvent : MonoBehaviour {
         }
         if (CorrectKey == 2)
         {
+            animatorC.SetTrigger("throwCB");
             yield return new WaitForSeconds(1.0f);
             //Condicion de derrota
             Debug.Log("LOSER");
             vegan.Lose();
         }
         if (CorrectKey == 3){
+            animatorH.SetTrigger("throwHG");
             yield return new WaitForSeconds(1.0f);
             //Condicion de victoria
             Debug.Log("WINNER");
@@ -83,6 +86,7 @@ public class QuickTimeEvent : MonoBehaviour {
         }
         if (CorrectKey == 4)
         {
+            animatorH.SetTrigger("throwHB");
             yield return new WaitForSeconds(1.0f);
             //Condicion de derrota
             Debug.Log("LOSER");
