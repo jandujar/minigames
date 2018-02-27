@@ -5,11 +5,18 @@ using UnityEngine.UI;
 
 public class QuickTimeEvent : MonoBehaviour {
 
+    [Header("Animations")]
     public Animator animatorC;
     public Animator animatorH;
+
+    [Header("CanvasText")]
     public GameObject DisplayBox;
     public GameObject CountDown;
+
+    [Header("Classes")]
     public VeganKnows vegan;
+
+    [Header("Variables")]
     public int QTEGen;
     public int WaitingForKey;
     public int CorrectKey;
