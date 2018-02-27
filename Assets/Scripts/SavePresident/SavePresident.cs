@@ -7,60 +7,76 @@ using System;
 public class SavePresident : IMiniGame
 {
 
-    public GameObject[] carrotParts;
+    public GameObject agent;
+    public GameObject agentTargetPos;
     private GameManager gameManager;
-    public Text keyToPress;
+    public Text myText;
+    public int countdown;
 
-    int randomInt;
-    int current;
-    bool playing = false;
-    public AudioSource cut;
-    bool canPress = true;
+    public GameObject slider;
 
-    IEnumerator SetPress()
+
+    public AudioSource agentSound;
+    bool moveAgent;
+
+    bool toWin;
+
+    void Start()
     {
-        canPress = false;
-        cut.Play();
-        yield return new WaitForSeconds(1);
-        canPress = true;
-    }
-
-    void MyInput()
-    {
-
-        if (Input.GetButton("Fire1"))
-        {
-            Debug.Log("Has pulsado " + keyToPress.text);
-            carrotParts[current].SetActive(false);
-            current++;
-            StartCoroutine(SetPress());
-        }
-
+        StartCoroutine(countToDie());
+        moveAgent = false;
+        myText.text = ""+ countdown;
     }
 
     void Update()
     {
-        if (!playing) { return; }
-
-        if (current >= 5) { gameManager.EndGame(IMiniGame.MiniGameResult.WIN); }
-
-        if (canPress && current < carrotParts.Length)
+        if(countdown <= 0)
         {
-            MyInput();
+            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
         }
+
+        if (moveAgent)
+        {
+                agent.GetComponent<Animation>().Play();
+            toWin = true;
+        }
+
+        toWin = slider.GetComponent<checkTrigger>().win;
+
+        if (toWin)
+        {
+            StartCoroutine(Winner());
+
+        }
+
+    }
+
+    IEnumerator countToDie()
+    {
+        yield return new WaitForSeconds(1);
+        if (countdown >= 0)
+        {
+            countdown--;
+        }
+        StartCoroutine(countToDie());
+    }
+
+    IEnumerator Winner()
+    {
+        moveAgent = true;
+        agentSound.Play();
+        yield return new WaitForSeconds(3);
+        gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
 
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        current = 0;
         this.gameManager = gm;
     }
 
     public override void beginGame()
     {
-        playing = true;
-        keyToPress.text = "Press the magic button fast!";
-        MyInput();
+        //keyToPress.text = "Press the magic button fast!";
     }
 }

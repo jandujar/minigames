@@ -8,8 +8,8 @@ public class checkTrigger : MonoBehaviour
 
     bool triggered;
     bool theBool;
-    bool gameStop;
-    bool win;
+    public bool gameStop;
+    public bool win;
 
     void Start()
     {
