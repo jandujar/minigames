@@ -20,7 +20,7 @@ public class dog_src : MonoBehaviour {
     private float circularWidth;
 
     //Public
-    public Transform endPosition;
+    public GameObject endPosition;
     public float jumpSpeed;
 
 
@@ -41,7 +41,7 @@ public class dog_src : MonoBehaviour {
         initPos = transform.position;
         isJumping = false;
         startTime = Time.time;
-        distanceTototalDistanceToDestination = Vector3.Distance(transform.position, endPosition.position);
+        distanceTototalDistanceToDestination = Vector3.Distance(transform.position, endPosition.transform.position);
     }
 
 	void Update () {
@@ -56,8 +56,8 @@ public class dog_src : MonoBehaviour {
         {
             float currentDuration = (Time.time - startTime);
             float journeyFraction = currentDuration / distanceTototalDistanceToDestination;
-            transform.position = Vector3.Lerp(transform.position, endPosition.position, journeyFraction);
-            if(Vector3.Distance(transform.position, endPosition.position) <= 3)
+            transform.position = Vector3.Lerp(transform.position, endPosition.transform.position, journeyFraction);
+            if(Vector3.Distance(transform.position, endPosition.transform.position) <= 3)
             {
                 isJumping = false;
             }
@@ -73,21 +73,6 @@ public class dog_src : MonoBehaviour {
                gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
            }*/
 
-    }
-
-
-
-    void rotateEndpoint()
-    {
-        rotationCicleCount = Time.deltaTime * circularSpeed;
-        //endPosition.transform.Rotate();
-        /*
-
-        float x = Mathf.Cos(rotationCicleCount) * circularWidth;
-        float y = Mathf.Sin(rotationCicleCount) * circularHeight;
-        float z = 80;
-        Debug.Log("x: " + x + "y: " + y);
-        endPosition.transform.position = new Vector3(x,y,z);*/
     }
 
 }

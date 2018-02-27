@@ -20,4 +20,8 @@ public class endPointRotation : MonoBehaviour {
     {
         transform.RotateAround(sun.transform.position, Vector3.forward, speed * Time.deltaTime);
     }
+    public void ResetPos()
+    {
+
+    }
 }
