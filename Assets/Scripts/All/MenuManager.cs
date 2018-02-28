@@ -26,6 +26,7 @@ public class MenuManager : Singleton<MenuManager> {
 		VEGAN,
 		SAFEBOX,
         BOXING,
+        FLAPPY,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -97,6 +98,9 @@ public class MenuManager : Singleton<MenuManager> {
 			break;
         case MINIGAMES_ENUM.BOXING:
             SceneManager.LoadScene("Boxing");
+            break;
+        case MINIGAMES_ENUM.FLAPPY:
+                SceneManager.LoadScene("FlappyBird");
             break;
 		case MINIGAMES_ENUM.END:
 		default:
