@@ -12,8 +12,6 @@ public class BombPiece : MonoBehaviour {
     private float move;
     private int randomOut;
     private bool openWhile;
-    private int prepareRandom;
-
 
     // Use this for initialization
     void Start () {
@@ -21,8 +19,7 @@ public class BombPiece : MonoBehaviour {
         if (this.name == "PieceStart1" || this.name == "PieceStart4")
         {
             arrayInOut[0].gameObject.name = "in";
-            //randomOut = Random.Range(1, 4);
-            randomOut = 1;
+            randomOut = Random.Range(1, 4);            
             arrayInOut[randomOut].gameObject.name = "out";
             arraySpriteInOut[randomOut].enabled = true;
         }
@@ -33,24 +30,42 @@ public class BombPiece : MonoBehaviour {
             arrayInOut[randomOut].gameObject.name = "out";
             arraySpriteInOut[randomOut].enabled = true;
         }
-        if (this.name == "PieceLvl1_1")
-        {
-            prepareRandom = Random.Range(0, 0);
-        }
+
+
     }
     void Update()
     {
-        if (this.name == "PieceLvl1_1")
+        if (this.name == "PieceLvl1_1" || this.name == "PieceLvl1_4")
         {
-            if (arrayInOut[prepareRandom].gameObject.name != "in" && arrayInOut[prepareRandom].gameObject.name != "out")
+            for (int i = 0; i < 4; i++)
             {
-                arrayInOut[prepareRandom].gameObject.name = "out";
+                if (arrayInOut[i].gameObject.name == "in" && arrayInOut[i].gameObject.tag != "Finish")
+                {
+                    int randome = Random.Range(0, 5);
+                    
+                    if (arrayInOut[randome].gameObject.name != "in" && arrayInOut[randome].gameObject.name != "out")
+                    {
+                        arrayInOut[randome].gameObject.name = "out";
+                        arrayInOut[i].gameObject.tag = "Finish";
+                    }
+                }
             }
-            else if (arrayInOut[prepareRandom].gameObject.name == "in")
+        }
+        if (this.name == "PieceLvl1_2" || this.name == "PieceLvl1_3")
+        {
+            for (int i = 0; i < 8; i++)
             {
-                prepareRandom = Random.Range(0, 5);
-            }
+                if (arrayInOut[i].gameObject.name == "in" && arrayInOut[i].gameObject.tag != "Finish")
+                {
+                    int randome = Random.Range(0, 7);
 
+                    if (arrayInOut[randome].gameObject.name != "in" && arrayInOut[randome].gameObject.name != "out")
+                    {
+                        arrayInOut[randome].gameObject.name = "out";
+                        arrayInOut[i].gameObject.tag = "Finish";
+                    }
+                }
+            }
         }
     }
 }
