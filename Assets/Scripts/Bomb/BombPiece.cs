@@ -35,7 +35,7 @@ public class BombPiece : MonoBehaviour {
         }
         if (this.name == "PieceLvl1_1")
         {
-            prepareRandom = Random.Range(0, 5);
+            prepareRandom = Random.Range(0, 0);
         }
     }
     void Update()
