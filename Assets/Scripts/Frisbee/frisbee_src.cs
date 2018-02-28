@@ -4,25 +4,27 @@ using UnityEngine;
 
 public class frisbee_src : MonoBehaviour {
 
-    float speedX = 10;
-    float speedY = 18;
+    float speedX = 30;
+    float speedY = 30;
     float maxSpeedX = 30;
     float maxSpeedY = 36;
-    float direction = 1;
+    float Ydirecction = 1;
+    public float Xdirection = 1;
+    public float topRange = 20;
+    public float bottomRange = 0;
 
     void Update () {
-        Debug.Log(" frisbeePOS:" + transform.position);
-        transform.Translate(speedX * Time.deltaTime, speedY * Time.deltaTime * direction, 0);
+        transform.Translate(speedX * Time.deltaTime, speedY * Time.deltaTime * Ydirecction, 0);
         if (speedX >= maxSpeedX)
         {
             speedX = maxSpeedX;
         }
-        if (transform.position.y >= 16)
+        if (transform.position.y >= 24)
         {
-            direction = -1;
-        }else if(transform.position.y <= -17)
+            Ydirecction = -1;
+        }else if(transform.position.y <= 0)
         {
-            direction = 1;
+            Ydirecction = 1;
         }
         
 	}

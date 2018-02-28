@@ -11,17 +11,14 @@ public class dog_src : MonoBehaviour {
     private float startTime;
     private float distanceTototalDistanceToDestination;
     private bool isJumping;
-    private bool isFalling;
     private Vector3 initPos;
-    private int direction;
-    private float rotationCicleCount;
-    private float circularSpeed;
-    private float circularHeight;
-    private float circularWidth;
+    private float distance;
+    float x;
+    float y;
+    int directionEndPos;
 
     //Public
     public GameObject endPosition;
-    public float jumpSpeed;
 
 
 
@@ -32,16 +29,14 @@ public class dog_src : MonoBehaviour {
 
 
     void Start () {
-        //circular
-        circularSpeed = 2;
-        circularHeight = 10;
-        circularWidth = 10;
-
-        direction = 1;
         initPos = transform.position;
         isJumping = false;
         startTime = Time.time;
         distanceTototalDistanceToDestination = Vector3.Distance(transform.position, endPosition.transform.position);
+        distance = Vector3.Distance(endPosition.transform.position, initPos);
+        x = endPosition.transform.position.x - initPos.x;
+        y = endPosition.transform.position.y - initPos.y;
+        directionEndPos = -1;
     }
 
 	void Update () {
@@ -60,6 +55,11 @@ public class dog_src : MonoBehaviour {
             if(Vector3.Distance(transform.position, endPosition.transform.position) <= 3)
             {
                 isJumping = false;
+                endPosition.transform.Translate(x * directionEndPos, y * directionEndPos, 0);
+                //endPosition.transform.eulerAngles = new Vector3(0, 0, -90);
+                //int dir = endPosition.GetComponent<endPointRotation>().getDirection();
+                //endPosition.GetComponent<endPointRotation>().setDirection(dir * -1);
+                switchDir();
             }
         }
 
@@ -73,6 +73,18 @@ public class dog_src : MonoBehaviour {
                gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
            }*/
 
+    }
+
+    void switchDir()
+    {
+        if (directionEndPos == 1)
+        {
+            directionEndPos = -1;
+        }
+        else if (directionEndPos == -1)
+        {
+            directionEndPos = 1;
+        }
     }
 
 }
