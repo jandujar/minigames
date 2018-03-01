@@ -19,7 +19,7 @@ public class BombPiece : MonoBehaviour {
         if (this.name == "PieceStart1" || this.name == "PieceStart4")
         {
             arrayInOut[0].gameObject.name = "in";
-            randomOut = Random.Range(1, 4);            
+            randomOut = Random.Range(1, 1);            
             arrayInOut[randomOut].gameObject.name = "out";
             arraySpriteInOut[randomOut].enabled = true;
         }
@@ -37,11 +37,11 @@ public class BombPiece : MonoBehaviour {
     {
         if (this.name == "PieceLvl1_1" || this.name == "PieceLvl1_4")
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 6; i++)
             {
                 if (arrayInOut[i].gameObject.name == "in" && arrayInOut[i].gameObject.tag != "Finish")
                 {
-                    int randome = Random.Range(0, 5);
+                    int randome = Random.Range(2,5);
                     
                     if (arrayInOut[randome].gameObject.name != "in" && arrayInOut[randome].gameObject.name != "out")
                     {
@@ -57,7 +57,39 @@ public class BombPiece : MonoBehaviour {
             {
                 if (arrayInOut[i].gameObject.name == "in" && arrayInOut[i].gameObject.tag != "Finish")
                 {
-                    int randome = Random.Range(0, 7);
+                    int randome = Random.Range(1,6);
+
+                    if (arrayInOut[randome].gameObject.name != "in" && arrayInOut[randome].gameObject.name != "out")
+                    {
+                        arrayInOut[randome].gameObject.name = "out";
+                        arrayInOut[i].gameObject.tag = "Finish";
+                    }
+                }
+            }
+        }
+        if (this.name == "PieceLvl2_1" || this.name == "PieceLvl2_4")
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                if (arrayInOut[i].gameObject.name == "in" && arrayInOut[i].gameObject.tag != "Finish")
+                {
+                    int randome = Random.Range(0, 5);
+
+                    if (arrayInOut[randome].gameObject.name != "in" && arrayInOut[randome].gameObject.name != "out")
+                    {
+                        arrayInOut[randome].gameObject.name = "out";
+                        arrayInOut[i].gameObject.tag = "Finish";
+                    }
+                }
+            }
+        }
+        if (this.name == "PieceLvl2_2" || this.name == "PieceLvl2_3")
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                if (arrayInOut[i].gameObject.name == "in" && arrayInOut[i].gameObject.tag != "Finish")
+                {
+                    int randome = Random.Range(1, 2);
 
                     if (arrayInOut[randome].gameObject.name != "in" && arrayInOut[randome].gameObject.name != "out")
                     {
