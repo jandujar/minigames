@@ -5,6 +5,7 @@ using UnityEngine;
 public class BombStartCable1 : MonoBehaviour {
 
     public GameObject[] arrayInOut;
+    public GameObject[] arraySprite;
     public bool cable2On;
     private int randomOut;
     private IEnumerator myCorutine;
@@ -22,6 +23,7 @@ public class BombStartCable1 : MonoBehaviour {
         arrayInOut[0].gameObject.tag = "Finish";
         randomOut = Random.Range(1, 4);
         arrayInOut[randomOut].gameObject.name = "out";
+        arraySprite[randomOut].SetActive(true);
         cable2On = true;
         StopCoroutine(myCorutine);
         yield return new WaitForSeconds(0.2f);
