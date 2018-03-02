@@ -6,6 +6,7 @@ using UnityEngine;
 public class BurgerBuilder : IMiniGame{
     private GameManager gameManager;
     private int timeToLoose = 0;
+    public IngredientSpawn spawn;
     public Transform canvas;
     public AudioClip backgroundMusic;
     private AudioSource source;    
@@ -23,7 +24,9 @@ public class BurgerBuilder : IMiniGame{
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
         this.gameManager = gm;
+        spawn.StartSpawn();
         StartCoroutine(LooseTime());
+
         
     }
 
@@ -45,6 +48,6 @@ public class BurgerBuilder : IMiniGame{
 
     public override string ToString()
     {
-        return "Duck Shooter by DarkJoe";
+        return "Burger Builder by DarkJoe";
     }
 }
