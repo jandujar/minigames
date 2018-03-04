@@ -22,6 +22,9 @@ public class KauboiDueru : IMiniGame
     //If player dont shoots, enemy shoots
     public float enemyShootCounter;
 
+    public RevolverGun playerGun;
+    public RevolverGun enemyGun;
+
     [Header("Game Time")]
     public int gameTime = 10;
     private bool gameSpawnStop = false;
@@ -51,7 +54,8 @@ public class KauboiDueru : IMiniGame
 
     private void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space))
+            StartCoroutine(playerGun.shoot());
     }
 
     public void setEndGame()

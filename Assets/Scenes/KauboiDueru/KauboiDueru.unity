@@ -217,7 +217,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 322592209}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -517,6 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c71c45147ae1704881dbf2f97317bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootEffect: {fileID: 322592209}
   shootVFX: {fileID: 322592211}
   shootSFX: {fileID: 687240325}
 --- !u!95 &687240328
@@ -952,6 +953,8 @@ MonoBehaviour:
   minShootTime: 1.5
   maxShootTime: 3
   enemyShootCounter: 2
+  playerGun: {fileID: 687240326}
+  enemyGun: {fileID: 0}
   gameTime: 10
   gameWinText: {fileID: 0}
 --- !u!1001 &1819561351

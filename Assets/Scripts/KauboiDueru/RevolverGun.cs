@@ -5,34 +5,30 @@ using UnityEngine.UI;
 
 public class RevolverGun : MonoBehaviour {
 
+    public GameObject shootEffect;
     public Image shootVFX;
     public AudioSource shootSFX;
     Animator shootAnimator;
 
 	// Use this for initialization
 	void Start () {
-        shootVFX = GetComponent<Image>();
+        shootVFX = shootEffect.GetComponent<Image>();
         shootSFX = GetComponent<AudioSource>();
 
         shootAnimator = this.GetComponent<Animator>();
+
+        shootVFX.enabled = false;
 	}
 	
-	// Update is called once per frame
-	void Update ()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            StartCoroutine(shoot());
-	}
-
     public IEnumerator shoot()
     {
-        //shootVFX.enabled = true;
+        shootVFX.enabled = true;
         shootSFX.Play();
         shootAnimator.SetBool("Shoot", true);
         yield return new WaitForSecondsRealtime(0.05f);
         shootAnimator.SetBool("Shoot", false);
-        yield return new WaitForSecondsRealtime(2f);
-        //shootVFX.enabled = false;
+        yield return new WaitForSecondsRealtime(0.1f);
+        shootVFX.enabled = false;
     }
 
 }
