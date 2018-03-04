@@ -13,7 +13,6 @@ public class Equilibrio : IMiniGame {
 
    public override void beginGame()
     {
-        //Pong Begins
         Debug.Log(this.ToString() + " game Begin");
     }
 
