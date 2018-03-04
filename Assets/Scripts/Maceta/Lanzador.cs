@@ -6,7 +6,8 @@ public class Lanzador : MonoBehaviour {
     private float move;
     public float vely = 5;
     private Vector3 tmpPosition;
-    public float maxposx = 5.9f;
+    public float maxposx = 14f;
+    [SerializeField] private GameObject maceta;
     // Use this for initialization
     void Start () {
 		
@@ -28,6 +29,11 @@ public class Lanzador : MonoBehaviour {
         {
             tmpPosition = new Vector3(-maxposx, transform.position.y, transform.position.z);
             transform.position = tmpPosition;
+        }
+
+        if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
+        {
+            Instantiate(maceta,this.transform.position, Quaternion.identity);
         }
     }
 }
