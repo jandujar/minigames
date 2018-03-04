@@ -10,8 +10,15 @@ public class Maceta : MonoBehaviour {
 	}
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.name == "Down")
+        {
+            DestroyObject(this.gameObject);
+        }
+        else if(collision.gameObject.name == "Enemy")
+        {
+            Debug.Log("hit");
+        }
         
-        DestroyObject(this.gameObject);
     
     }
     // Update is called once per frame
