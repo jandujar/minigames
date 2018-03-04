@@ -5,6 +5,9 @@ using UnityEngine;
 public class BombPiece : MonoBehaviour
 {
 
+    public BombSpriteDoor test;
+
+
     //PUBLIC
     public GameObject[] arrayInOut;
 
@@ -25,6 +28,7 @@ public class BombPiece : MonoBehaviour
                     {
                         arrayInOut[randome].gameObject.name = "out";
                         arrayInOut[i].gameObject.tag = "Finish";
+                        arrayInOut[i].GetComponent<BombSpriteDoor>().test[randome].SetActive(true);                                                  
                     }
                 }
             }

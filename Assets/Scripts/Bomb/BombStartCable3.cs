@@ -6,6 +6,7 @@ public class BombStartCable3 : MonoBehaviour {
 
     public BombStartCable2 cable2;
     public GameObject[] arrayInOut;
+    public GameObject[] arraySprite;
     public bool cable4On = false;
     private int randomOut;
     private IEnumerator myCorutine;
@@ -26,6 +27,7 @@ public class BombStartCable3 : MonoBehaviour {
         arrayInOut[0].gameObject.tag = "Finish";
         randomOut = Random.Range(1, 7);
         arrayInOut[randomOut].gameObject.name = "out";
+        arraySprite[randomOut].SetActive(true);
         cable4On = true;
         cable2.cable3On = false;
         StopCoroutine(myCorutine);

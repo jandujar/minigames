@@ -21,7 +21,7 @@ public class BombStartCable1 : MonoBehaviour {
         Debug.Log("cable1");
         arrayInOut[0].gameObject.name = "in";
         arrayInOut[0].gameObject.tag = "Finish";
-        randomOut = Random.Range(1, 4);
+        randomOut = Random.Range(1,4);
         arrayInOut[randomOut].gameObject.name = "out";
         arraySprite[randomOut].SetActive(true);
         cable2On = true;
