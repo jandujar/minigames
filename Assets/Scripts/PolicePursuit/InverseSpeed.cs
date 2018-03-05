@@ -33,11 +33,18 @@ public class InverseSpeed : MonoBehaviour {
         if (target.getGoUp())
         {
             target.setGoUp(false);
+            rotateInverse(target.gameObject.transform.GetChild(0).gameObject, 180);
         }
         else
         {
             target.setGoUp(true);
+            rotateInverse(target.gameObject.transform.GetChild(0).gameObject, 0);
         }
         target.setVertical(true);
+    }
+
+    void rotateInverse(GameObject target, float rotation)
+    {
+        target.transform.eulerAngles = new Vector3(target.transform.eulerAngles.x, target.transform.eulerAngles.y, rotation);
     }
 }

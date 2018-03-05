@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ThiefCar : MonoBehaviour {
-	public float moveSpeed = 2;
+
+    public float moveSpeed = 2;
 	public float endPosition = 2.2f;
 	public int actualWay = 0;
 	public int lastWay = 0;
@@ -16,8 +17,15 @@ public class ThiefCar : MonoBehaviour {
 
     private bool goUp = true;
 
+    private GameObject falseObject;
+
     [SerializeField]
     private bool isPolice;
+
+    void Start()
+    {
+        falseObject = gameObject.transform.GetChild(0).gameObject;
+    }
 
 	//*************************************************************************************************
 	void Update () {
@@ -86,37 +94,52 @@ public class ThiefCar : MonoBehaviour {
 		if (col.gameObject.tag == "Finish" && !isPolice) {
 			correctWay = true;
 		}
+        if (isPolice && col.gameObject.GetComponent<ThiefCar>())
+        {
+            Debug.LogError("Police Caught you!");
+            policePursuit.MovementFinished(false);
+        }
 	}
 	//*************************************************************************************************
 	void OnTriggerStay2D(Collider2D col){
-		if (col.gameObject.tag != "Finish" && !col.gameObject.GetComponent<InverseSpeed>()) {
+		if (col.gameObject.tag != "Finish" && !col.gameObject.GetComponent<InverseSpeed>() && !col.gameObject.GetComponent<TrafficLights>()) {
 			//SI VA HACIA ARRIBA
 			if (vertical) {
-				//SI VA HACIA ARRIBA Y COLISIONA POR IZQUIERDA
-				if (col.gameObject.name == "Left") {
+                if (col.gameObject.name == "Left") {
 					if (transform.position.y >= col.transform.parent.transform.position.y -0.05f) {
 						//transform.position = new Vector3 (transform.position.x, col.transform.parent.transform.position.y, transform.position.z);
 						vertical = false;
 						moveSpeed = Mathf.Abs (moveSpeed);
 						lastWay = actualWay;
 						actualWay++;
-
-					}
-				} 
-			//SI VA HACIA ARRIBA Y COLISIONA POR DERECHA
-			else {
+                        falseObject.transform.eulerAngles = new Vector3(falseObject.transform.eulerAngles.x, falseObject.transform.eulerAngles.y, -90);
+                    }
+				}
+			    else if (col.gameObject.name == "Right"){
 					if (transform.position.y >= col.transform.parent.transform.position.y-0.05f) {
 						//transform.position = new Vector3 (transform.position.x, col.transform.parent.transform.position.y, transform.position.z);
 						vertical = false;
 						moveSpeed = moveSpeed * -1;
 						lastWay = actualWay;
 						actualWay--;
-					}
+                        falseObject.transform.eulerAngles = new Vector3(falseObject.transform.eulerAngles.x, falseObject.transform.eulerAngles.y, 90);
+                    }
 				}
 			}
 		//SI VA EN HORIZONTAL
 		else {
-				if (lastWay < actualWay) {
+                if (col.gameObject.name == "Up")
+                {
+                    if (goUp)
+                    {
+                        falseObject.transform.eulerAngles = new Vector3(falseObject.transform.eulerAngles.x, falseObject.transform.eulerAngles.y, 0);
+                    }
+                    else
+                    {
+                        falseObject.transform.eulerAngles = new Vector3(falseObject.transform.eulerAngles.x, falseObject.transform.eulerAngles.y, 180);
+                    }
+                }
+                if (lastWay < actualWay) {
 					if (transform.position.x >= policePursuit.getWays(actualWay).transform.position.x-0.05f) {
 						transform.position = new Vector3 (policePursuit.getWays(actualWay).transform.position.x, transform.position.y, transform.position.z);
 						moveSpeed = Mathf.Abs (moveSpeed);

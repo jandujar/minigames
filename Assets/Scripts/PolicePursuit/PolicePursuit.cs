@@ -12,12 +12,10 @@ public class PolicePursuit : IMiniGame {
 	//PUBLIC
 	[Tooltip("value btween 1 and 9 ")]
 	public int numberOfIntersections = 3;
-	public float maxTime = 5;
-	public Text timerText;
-	private float actualTime;
 	public float distanceBtweenIntersections = 0.5f;
 	//public GameObject intersection;
-	public GameObject ownObject;
+	public GameObject thief;
+    public GameObject police;
     [SerializeField]private GameObject roadsParent;
     private Transform[] roads = new Transform[4];
 
@@ -42,11 +40,13 @@ public class PolicePursuit : IMiniGame {
 	public override void beginGame()
 	{
 		Debug.Log(this.ToString() + " game Begin");
-		gameStarted = true;
-		actualTime = maxTime;
-		aSource.clip = start;
-		aSource.Play ();
-	}
+        knucklesPos = 0;
+        thief.transform.position = new Vector3(roads[0].transform.position.x, thief.transform.position.y, thief.transform.position.z);
+        police.transform.position = new Vector3(roads[0].transform.position.x, police.transform.position.y, police.transform.position.z);
+        initMovement();
+        //aSource.clip = start;
+        //aSource.Play ();
+    }
 	//*************************************************************************************************Start Loading
 	public override void initGame(MiniGameDificulty difficulty, GameManager gm)
 	{
@@ -67,51 +67,18 @@ public class PolicePursuit : IMiniGame {
 	{
 		return "Police Pursuit! (Idea by Roger)";
 	}
-	//*************************************************************************************************Update
-	void Update () {
-		if (gameStarted && !movementStarted) {
-			CheckPlayerInput ();
-			//countDown ();
-		}
-	}
-	//*************************************************************************************************Check Player Inputs
-	private void CheckPlayerInput(){
-		h = InputManager.Instance.GetAxisHorizontal ();
-		if (!alreadyMoved && h <= -0.1 && knucklesPos > 0) {
-			alreadyMoved = true;
-			knucklesPos--;
-			UpdateKnucklesPos ();
-		}
-		if (!alreadyMoved && h >= 0.1 && knucklesPos < 3) {
-			alreadyMoved = true;
-			knucklesPos++;
-			UpdateKnucklesPos ();
-		}
-		if (alreadyMoved && h < 0.1 && h > -0.1) {
-			alreadyMoved = false;
-		}
-		//Start Moving
-		if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)) {
-			initMovement ();
-		}
-	}
 	//*************************************************************************************************
 	private void initMovement(){
 		movementStarted = true;
-		ownObject.GetComponent<ThiefCar> ().StartMoving (this,knucklesPos);
-		aSource.clip = clicking;
+		thief.GetComponent<ThiefCar> ().StartMoving (this,knucklesPos);
+        police.GetComponent<ThiefCar>().StartMoving(this, knucklesPos);
+        aSource.clip = clicking;
 		aSource.Play ();
 	}
 
-	//*************************************************************************************************Moves Knuckes to start way
-	private void UpdateKnucklesPos(){
-		ownObject.transform.position = new Vector3 (roads [knucklesPos].transform.position.x, ownObject.transform.position.y, ownObject.transform.position.z);
-
-	}
-
-	public void MovementFinished(bool _correctWay){
+	public void MovementFinished(bool gameResult){
 		aSource.Stop ();
-		if (!_correctWay) {
+		if (!gameResult) {
 			gameManager.EndGame (IMiniGame.MiniGameResult.LOSE);
 		}
 		else{

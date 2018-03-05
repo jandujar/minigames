@@ -11,7 +11,7 @@ public class TrafficLights : MonoBehaviour
 
     private float[] baseSpeed;
 
-    private bool isRed = false;
+    [SerializeField]private bool isRed = false;
 
     private bool cooldown = false;
 
@@ -22,6 +22,7 @@ public class TrafficLights : MonoBehaviour
     private Sprite[] colorSprite;
 
     private SpriteRenderer render;
+    private AudioSource audio;
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class TrafficLights : MonoBehaviour
             baseSpeed[i] = script[i].moveSpeed;
         }
         render = gameObject.GetComponent<SpriteRenderer>();
+        audio = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -43,6 +45,15 @@ public class TrafficLights : MonoBehaviour
              InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)) && !cooldown)
         {
             isRed = (isRed == true) ? false : true;
+            if (isRed)
+            {
+                render.sprite = colorSprite[0];
+            }
+            else
+            {
+                render.sprite = colorSprite[1];
+            }
+            audio.Play();
             cooldown = true;
             StartCoroutine("ResetCooldown", wait);
         }
