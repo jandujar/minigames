@@ -4,23 +4,17 @@ using UnityEngine;
 
 public class dog_src : MonoBehaviour {
 
-
-
     //Private
-    private GameManager gameManager;
+    private bool isRunning;
+    private bool isJumping;
+    private int maxDistanceToRun;
     private float startTime;
     private float distanceTototalDistanceToDestination;
-    private bool isJumping;
-    private Vector3 initPos;
-    private float distance;
-    float x;
-    float y;
-    int directionEndPos;
+    private GameManager gameManager;
 
-    //Public
+    //public
+    public float runingSpeed;
     public GameObject endPosition;
-
-
 
     public void init(GameManager gm)
     {
@@ -29,25 +23,28 @@ public class dog_src : MonoBehaviour {
 
 
     void Start () {
-        initPos = transform.position;
+        isRunning = false;
         isJumping = false;
         startTime = Time.time;
         distanceTototalDistanceToDestination = Vector3.Distance(transform.position, endPosition.transform.position);
-        distance = Vector3.Distance(endPosition.transform.position, initPos);
-        x = endPosition.transform.position.x - initPos.x;
-        y = endPosition.transform.position.y - initPos.y;
-        directionEndPos = -1;
     }
 
 	void Update () {
         //InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)
 
-        if (Input.GetKeyDown(KeyCode.Space)) //el perro salta
+        if (isRunning && !isJumping)
         {
-            isJumping = true;
+            transform.Translate(runingSpeed * Time.deltaTime, 0, 0);
         }
 
-        if (isJumping)
+        if (Input.GetKeyDown(KeyCode.A)) //el perro salta
+        {
+            isJumping = true;
+            isRunning = false;
+            endPosition.GetComponent<endPointRotation>().stopRun();
+        }
+
+        if (isJumping && !isRunning)
         {
             float currentDuration = (Time.time - startTime);
             float journeyFraction = currentDuration / distanceTototalDistanceToDestination;
@@ -55,36 +52,27 @@ public class dog_src : MonoBehaviour {
             if(Vector3.Distance(transform.position, endPosition.transform.position) <= 3)
             {
                 isJumping = false;
-                endPosition.transform.Translate(x * directionEndPos, y * directionEndPos, 0);
-                //endPosition.transform.eulerAngles = new Vector3(0, 0, -90);
-                //int dir = endPosition.GetComponent<endPointRotation>().getDirection();
-                //endPosition.GetComponent<endPointRotation>().setDirection(dir * -1);
-                switchDir();
             }
         }
-
-        /*if(win)
-           {
-               Debug.Log("WIN");
-               gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
-           }
-           else
-           {
-               gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
-           }*/
+       if(transform.position.x > maxDistanceToRun)
+        {
+            Debug.Log("lose");
+            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+        }
+        
 
     }
 
-    void switchDir()
+    public void StartRun()
     {
-        if (directionEndPos == 1)
+        isRunning = true;
+    }
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.name == "frisbee")
         {
-            directionEndPos = -1;
-        }
-        else if (directionEndPos == -1)
-        {
-            directionEndPos = 1;
+            Debug.Log("WIN");
+            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
         }
     }
-
 }
