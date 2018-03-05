@@ -18,13 +18,13 @@ public class BurgerBuilder : IMiniGame{
         canvas.gameObject.SetActive(true);
         source = GetComponent<AudioSource>();
         source.PlayOneShot(backgroundMusic, 1f);
+        spawn.StartSpawn();
 
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
         this.gameManager = gm;
-        spawn.StartSpawn();
         StartCoroutine(LooseTime());
 
         

@@ -20,19 +20,19 @@ public class IngredientSpawn : MonoBehaviour {
     public GameObject upBreadPrefab;
 
     //Array
-    private static ArrayList ingredients;
+    private static GameObject[] ingredients;
 
     //Int
     private int counter = 0;
 
     void Awake()
     {
-        ingredients = new ArrayList();
-        ingredients.Add(burgerPrefab);
-        ingredients.Add(cheesePrefab);
-        ingredients.Add(baconPrefab);
-        ingredients.Add(ketchupPrefab);
-        ingredients.Add(upBreadPrefab);
+        ingredients = new GameObject[5];
+        ingredients.SetValue(burgerPrefab, 0);
+        ingredients.SetValue(cheesePrefab, 1);
+        ingredients.SetValue(baconPrefab, 2);
+        ingredients.SetValue(ketchupPrefab, 3);
+        ingredients.SetValue(upBreadPrefab, 4);
     }
 
     public void StartSpawn()
@@ -43,13 +43,13 @@ public class IngredientSpawn : MonoBehaviour {
     IEnumerator SpawnIngredient()
     {
         float xPosition = Random.Range(leftLimit.position.x, rightLimit.position.x);
-        GameObject actualIngredient = (GameObject)ingredients[counter];
+        GameObject actualIngredient = ingredients[counter];
         Instantiate(actualIngredient, new Vector3(xPosition, transform.position.y, transform.position.z), new Quaternion(0,0,0,0));
         yield return new WaitForSeconds(1);
-        if (counter < ingredients.Count - 1)
+        if (counter < ingredients.Length - 1)
         {
-            StartCoroutine(SpawnIngredient());
             counter++;
+            StartCoroutine(SpawnIngredient());
         }        
     }
 }
