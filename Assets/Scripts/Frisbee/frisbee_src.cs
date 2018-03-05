@@ -8,6 +8,7 @@ using UnityEngine;
 public class frisbee_src : MonoBehaviour {
 
     public float speed;
+    public GameObject dog;
 
     private bool shoot;
     private float Xspeed;
@@ -42,6 +43,10 @@ public class frisbee_src : MonoBehaviour {
         }else
         {
             GetComponent<Rigidbody>().useGravity = false;;
+        }
+        if(transform.position.y <=  7)
+        {
+            dog.GetComponent<dog_src>().LooseGame();
         }
     }
 

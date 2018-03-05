@@ -7,14 +7,26 @@ public class dog_src : MonoBehaviour {
     //Private
     private bool isRunning;
     private bool isJumping;
+    private bool hasLoose;
     private int maxDistanceToRun;
+    private float volume;
     private float startTime;
     private float distanceTototalDistanceToDestination;
     private GameManager gameManager;
+    private AudioSource source;
 
     //public
     public float runingSpeed;
     public GameObject endPosition;
+    public GameObject winGameMeme;
+
+    public AudioClip startSoundDog;
+    public AudioClip startSoundHuman;
+    public AudioClip winSound;
+    public AudioClip looseSound;
+    public AudioClip runningDog;
+    public AudioClip jump;
+
 
     public void init(GameManager gm)
     {
@@ -25,8 +37,12 @@ public class dog_src : MonoBehaviour {
     void Start () {
         isRunning = false;
         isJumping = false;
+        hasLoose = false;
         startTime = Time.time;
         distanceTototalDistanceToDestination = Vector3.Distance(transform.position, endPosition.transform.position);
+        maxDistanceToRun = 340;
+        volume = 1;
+        source = GetComponent<AudioSource>();
     }
 
 	void Update () {
@@ -35,6 +51,7 @@ public class dog_src : MonoBehaviour {
         if (isRunning && !isJumping)
         {
             transform.Translate(runingSpeed * Time.deltaTime, 0, 0);
+
         }
 
         if (Input.GetKeyDown(KeyCode.A)) //el perro salta
@@ -42,6 +59,7 @@ public class dog_src : MonoBehaviour {
             isJumping = true;
             isRunning = false;
             endPosition.GetComponent<endPointRotation>().stopRun();
+            PlayJump();
         }
 
         if (isJumping && !isRunning)
@@ -56,12 +74,10 @@ public class dog_src : MonoBehaviour {
         }
        if(transform.position.x > maxDistanceToRun)
         {
-            Debug.Log("lose");
-            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+            LooseGame();
         }
-        
-
     }
+
 
     public void StartRun()
     {
@@ -71,8 +87,83 @@ public class dog_src : MonoBehaviour {
     {
         if (col.name == "frisbee")
         {
-            Debug.Log("WIN");
+            WinGame();
+        }
+    }
+    void WinGame()
+    {
+        Debug.Log("WIN");
+        PlayWinSound();
+        winGameMeme.transform.position = transform.position;
+        winGameMeme.SetActive(true);
+        if (!source.isPlaying)
+        {
             gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
         }
     }
+
+    public void LooseGame()
+    {
+        if (!hasLoose)
+        {
+            Debug.Log("lose");
+            StartCoroutine(playLooseClip());
+            hasLoose = true;
+        }
+    }
+
+    //******************************************************Sound Methods
+
+    IEnumerator playLooseClip()
+    {
+        PlayLooseSound();
+        yield return new WaitForSeconds(looseSound.length);
+        gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+    }
+    void PlayLooseSound()
+    {
+        source.Stop();
+        source.clip = looseSound;
+        source.Play();
+        source.loop = false;
+    }
+    void PlayWinSound()
+    {
+        source.Stop();
+        source.clip = winSound;
+        source.Play();
+        source.loop = false;
+    }
+   
+    public void PlayStart()
+    {
+        StartCoroutine(playInitClips());
+    }
+    IEnumerator playInitClips()
+    {
+        source.Stop();
+        source.clip = startSoundHuman;
+        source.Play();
+        yield return new WaitForSeconds(startSoundHuman.length);
+        source.clip = startSoundDog;
+        source.Play();
+        yield return new WaitForSeconds(startSoundDog.length);
+        source.clip = runningDog;
+        source.Play();
+        source.loop = true;
+    }
+    void PlayJump()
+    {
+        source.Stop();
+        source.clip = jump;
+        source.Play();
+        source.loop = false;
+    }
 }
+
+
+/*ToDO
+    speedDogControlable o endpoint controlable
+    Music
+    Graphics
+    */
