@@ -1103,7 +1103,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 330.6, y: 156.9}
+  m_AnchoredPosition: {x: 330.6, y: 152.13}
   m_SizeDelta: {x: 160, y: 44.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1321374653
@@ -1138,7 +1138,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: TIME(10s)
+  m_Text: 5
 --- !u!222 &1321374654
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1327,8 +1327,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f85ef1eb6318b488294e542e0c64d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   anim: {fileID: 1704692377}
   animator: {fileID: 0}
+  txt: {fileID: 1321374653}
+  Knife: {fileID: 8300000, guid: 6575b6838bb92614e8cc00486e759bd1, type: 3}
+  canvasText: {fileID: 856512770}
 --- !u!95 &1704692379
 Animator:
   serializedVersion: 3
