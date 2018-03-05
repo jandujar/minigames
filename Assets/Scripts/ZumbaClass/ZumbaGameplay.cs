@@ -8,34 +8,77 @@ public class ZumbaGameplay : MonoBehaviour {
     public GameObject x;
     public GameObject y;
 
-    public AudioClip music;
     AudioSource myAudio;
 
-    private bool hasBeenClicked;
+    private bool aClicked;
+    private bool bClicked;
+    private bool xClicked;
+    private bool yClicked;
     private int num;
 
 
     // Use this for initialization
     void Start () {
         myAudio = GetComponent<AudioSource>();
-        hasBeenClicked = false;
         StartCoroutine(GameBegins());
     }
 	
 	// Update is called once per frame
 	void Update () {
-	}
+        //CORRECT
+        if(Input.GetButtonDown("Fire1") && num == 0)
+        {
+            a.SetActive(false);
+            Debug.Log("Yea");
+        }
+
+        if (Input.GetButtonDown("Fire2") && num == 1)
+        {
+            b.SetActive(false);
+            Debug.Log("Yea");
+        }
+
+        if (Input.GetButtonDown("Fire3") && num == 2)
+        {
+            x.SetActive(false);
+            Debug.Log("Yea");
+        }
+        if (Input.GetButtonDown("Fire4") && num == 3)
+        {
+            y.SetActive(false);
+            Debug.Log("Yea");
+        }
+        //WRONG
+        if (Input.GetButtonDown("Fire1") && num != 0)
+        {
+            Debug.Log("Wrong");
+        }
+        if (Input.GetButtonDown("Fire2") && num != 1)
+        {
+            Debug.Log("Wrong");
+        }
+
+        if (Input.GetButtonDown("Fire3") && num != 2)
+        {
+            Debug.Log("Wrong");
+        }
+        if (Input.GetButtonDown("Fire4") && num != 3)
+        {
+            Debug.Log("Wrong");
+        }
+    }
 
     IEnumerator GameBegins()
     {
         yield return new WaitForSeconds(3);
         myAudio.Play();
-        for(int i = 0; i < 9; i++)
+        for(int i = 0; i < 12; i++)
         {
             yield return new WaitForSeconds(0.2f);
             getOneButton();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
             PutActiveFalse();
+            num = 10;
         }
 
     }
@@ -64,7 +107,6 @@ public class ZumbaGameplay : MonoBehaviour {
     private void getOneButton()
     {
         num = Random.Range(0, 3);
-        Debug.Log(num);
 
         switch (num)
         {
