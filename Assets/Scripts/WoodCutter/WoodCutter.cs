@@ -15,6 +15,7 @@ public class WoodCutter : IMiniGame {
 
     public TextMesh tTimer;
     float timer = 10;
+    int timerInt = 0; 
 
     void Awake()
     {
@@ -29,10 +30,16 @@ public class WoodCutter : IMiniGame {
     void Update()
     {
         //Timer - DeltaTime para ver el tiempo que queda
-        timer += Time.deltaTime;
-        tTimer.text = timer.ToString();
+        timer -= Time.deltaTime;
+        timerInt = (int)timer; 
+        tTimer.text = timerInt.ToString();
 
-        if (getIsCutting())
+        if (timerInt == 0)
+        {
+            playerDead = true;
+        }
+
+        if (getIsCutting() && !playerDead)
         {
             ramaInstance.init();
         }
@@ -92,6 +99,11 @@ public class WoodCutter : IMiniGame {
     public void setPlayerDead(bool dead)
     {
         playerDead = dead;
+    }
+
+    public bool getPlayerDead()
+    {
+        return playerDead;
     }
     
     IEnumerator waitSecondsWin(float seconds)

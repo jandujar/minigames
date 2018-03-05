@@ -3,52 +3,68 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Squirrel : MonoBehaviour {
+    public AudioSource cutSource;
+
     public Animator anim;
     Vector2 posButton1 = new Vector2(-10.21f, -3.52f);
     Vector2 posButton2 = new Vector2(-4.95f, -3.52f);
     bool isFlipped = false;
 
+    void Awake()
+    {
+        cutSource = GetComponent<AudioSource>();
+    }
+
     void Update()
     {
-        if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2))
+        if (!WoodCutter.instance.getPlayerDead())
         {
-            if (isFlipped)
+            if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2))
             {
-                this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
-                isFlipped = false;
+
+                cutSource.Play();
+
+                if (isFlipped)
+                {
+                    this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                    isFlipped = false;
+                }
+
+
+                Debug.Log("Pulsando Botton Derecho");
+                this.gameObject.transform.position = posButton2;
+
+
+                WoodCutter.instance.setIsCutting(true);
+                anim.SetBool("isCutting", true);
+                WoodCutter.instance.setCuttedCount(WoodCutter.instance.getCuttedCount() + 1);
             }
-
-
-            Debug.Log("Pulsando Botton Derecho");
-            this.gameObject.transform.position = posButton2;
-
-
-            WoodCutter.instance.setIsCutting(true);
-            anim.SetBool("isCutting", true);
-            WoodCutter.instance.setCuttedCount(WoodCutter.instance.getCuttedCount() + 1);
-        }
-        else if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
-        {
-            if (!isFlipped)
+            else if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
             {
-                this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-                isFlipped = true;
+
+                cutSource.Play();
+
+                if (!isFlipped)
+                {
+                    this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                    isFlipped = true;
+                }
+
+                Debug.Log("Pulsando Botton Izquierdo");
+                this.gameObject.transform.position = posButton1;
+
+
+                WoodCutter.instance.setIsCutting(true);
+                anim.SetBool("isCutting", true);
+                WoodCutter.instance.setCuttedCount(WoodCutter.instance.getCuttedCount() + 1);
+
             }
-
-            Debug.Log("Pulsando Botton Izquierdo");
-            this.gameObject.transform.position = posButton1;
-
-
-            WoodCutter.instance.setIsCutting(true);
-            anim.SetBool("isCutting", true);
-            WoodCutter.instance.setCuttedCount(WoodCutter.instance.getCuttedCount() + 1);
-
-        }
-        else 
-        {
-            Debug.Log("Sin Pulsar");
-            WoodCutter.instance.setIsCutting(false);
-            anim.SetBool("isCutting", false);
+            else
+            {
+                Debug.Log("Sin Pulsar");
+                WoodCutter.instance.setIsCutting(false);
+                anim.SetBool("isCutting", false);
+            }
         }
     }
 
