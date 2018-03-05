@@ -10,6 +10,8 @@ public class RevolverGun : MonoBehaviour {
     public AudioSource shootSFX;
     Animator shootAnimator;
 
+    public KauboiDueru kauboiGame;
+
 	// Use this for initialization
 	void Start () {
         shootVFX = shootEffect.GetComponent<Image>();
@@ -20,15 +22,33 @@ public class RevolverGun : MonoBehaviour {
         shootVFX.enabled = false;
 	}
 	
-    public IEnumerator shoot()
+    public IEnumerator playerShoot()
     {
-        shootVFX.enabled = true;
+        kauboiGame.playerHasShoot = true;
+
         shootSFX.Play();
+        shootVFX.enabled = true;
         shootAnimator.SetBool("Shoot", true);
         yield return new WaitForSecondsRealtime(0.05f);
         shootAnimator.SetBool("Shoot", false);
         yield return new WaitForSecondsRealtime(0.1f);
         shootVFX.enabled = false;
+        //EndGame
+        yield return new WaitForSecondsRealtime(1.5f);
+        kauboiGame.setEndGame();
+    }
+    public IEnumerator enemyShoot()
+    {
+        shootSFX.Play();
+        shootVFX.enabled = true;
+        shootAnimator.SetBool("Shoot", true);
+        yield return new WaitForSecondsRealtime(0.05f);
+        shootAnimator.SetBool("Shoot", false);
+        yield return new WaitForSecondsRealtime(0.1f);
+        shootVFX.enabled = false;
+        //EndGame
+        yield return new WaitForSecondsRealtime(1.5f);
+        kauboiGame.setEndGame();
     }
 
 }
