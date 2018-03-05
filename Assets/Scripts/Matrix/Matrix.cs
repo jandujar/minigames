@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Matrix : IMiniGame {
+public class Matrix : IMiniGame
+{
 
     public bool started = true;
     public SPlayer Player;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         started = true;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     public override void beginGame()
     {
@@ -24,7 +27,7 @@ public class Matrix : IMiniGame {
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        Player.gamemanager = gm;
+        Player.gm = gm;
     }
 
     public override string ToString()

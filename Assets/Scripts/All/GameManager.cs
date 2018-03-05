@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour {
     private CountDown countDown;
     private IMiniGame game;
 
-
 	void Awake(){
 		ui = GameObject.Find ("UICanvas/Canvas").GetComponent<Canvas>();
         game = GameObject.Find("Game").GetComponent<IMiniGame>();
