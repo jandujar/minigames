@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,41 +12,75 @@ public class KnifeThrow : IMiniGame
     }
 
     public GameState state = GameState.Countdown;
-    public Animation anim;
-    public Animator animator;
+    /*public Animation anim;
+    public Animator animator;*/
     [SerializeField] private Text txt;
-    private float time;
+    public float time;
     private GameManager gm;
     public AudioClip Knife;
     private AudioSource source;
     [SerializeField] private GameObject canvasText;
-
-    // Use this for initialization
+    private bool isThrowing = false;
+    
     void Start()
     {
-        anim = GetComponent<Animation>();
+        /*anim = GetComponent<Animation>();
         animator = GetComponent<Animator>();
-        animator.SetBool("Shoot", false);
+        animator.SetBool("Shoot", false);*/
         source = GetComponent<AudioSource>();
 
     }
-
-
-    // Update is called once per frame
     void Update()
     {
 
 
     }
-
-    void PressSpace()
+    void ThrowKnife()
     {
-        if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1) || Input.GetKeyDown(KeyCode.A))
+        if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1))
 
-        //anim.Stop("Shoot");
+        //anim.Play("animacion de lanzar cuchillo");
         Debug.Log("key pressed");
         //animator.SetBool("Shoot", true);
     }
+
+
+    IEnumerator CheckTimeout()
+    {
+        txt.text = (time).ToString();
+        for (int i = 0; i < time; i++)
+        {
+            txt.text = (time - i).ToString();
+            yield return new WaitForSeconds(1f);
+        }
+        txt.text = (0).ToString();
+
+        /*if (!InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1))
+        {
+            gm.EndGame(IMiniGame.MiniGameResult.LOSE);
+
+        }*/
+        if(txt.text == "0")
+        {
+            StartCoroutine(EndLose());
+        }
+    }
+    IEnumerator CheckEnd()
+    {
+        yield return new WaitForSeconds(0.5f);
+    }
+    IEnumerator EndWin()
+    {
+        yield return new WaitForSeconds(0.5f);
+        gm.EndGame(IMiniGame.MiniGameResult.WIN);
+    }
+    IEnumerator EndLose()
+    {
+        yield return new WaitForSeconds(0.5f);
+        gm.EndGame(MiniGameResult.LOSE);
+    }
+
+
 
     public override void beginGame()
     {
@@ -62,33 +95,6 @@ public class KnifeThrow : IMiniGame
         canvasText.SetActive(false);
     }
 
-    IEnumerator CheckTimeout()
-    {
-        txt.text = (time).ToString();
-        for (int i = 0; i < time; i++)
-        {
-            txt.text = (time - i).ToString();
-            yield return new WaitForSeconds(1f);
-        }
-        txt.text = (0).ToString();
-
-        if (!InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1))
-        {
-            gm.EndGame(IMiniGame.MiniGameResult.LOSE);
-
-        }
-    }
-
-    IEnumerator EndWin()
-    {
-        yield return new WaitForSeconds(1f);
-        gm.EndGame(IMiniGame.MiniGameResult.WIN);
-    }
-    IEnumerator EndLose()
-    {
-        yield return new WaitForSeconds(1f);
-        gm.EndGame(IMiniGame.MiniGameResult.LOSE);
-    }
     public override string ToString()
     {
         return "KnifeThrow by Marc";
