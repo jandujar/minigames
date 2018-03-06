@@ -27,6 +27,7 @@ public class MenuManager : Singleton<MenuManager> {
 		SAFEBOX,
         BOXING,
         FLAPPY,
+        POLICE,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -100,7 +101,10 @@ public class MenuManager : Singleton<MenuManager> {
             SceneManager.LoadScene("Boxing");
             break;
         case MINIGAMES_ENUM.FLAPPY:
-                SceneManager.LoadScene("FlappyBird");
+            SceneManager.LoadScene("FlappyBird");
+            break;
+        case MINIGAMES_ENUM.POLICE:
+            SceneManager.LoadScene("PolicePursuit");
             break;
 		case MINIGAMES_ENUM.END:
 		default:
