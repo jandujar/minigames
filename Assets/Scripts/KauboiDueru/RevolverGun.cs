@@ -5,21 +5,28 @@ using UnityEngine.UI;
 
 public class RevolverGun : MonoBehaviour {
 
+    [Header("Guns")]
+    public GameObject playerGunObj;
+    public GameObject enemyGunObj;
+    public Animator playerGunAnim;
+    public Animator enemyGunAnim;
+
+    [Header("Effects")]
     public GameObject shootEffect;
     public Image shootVFX;
     public AudioSource shootSFX;
-    Animator shootAnimator;
-
+    [Header("Others")]
     public KauboiDueru kauboiGame;
+
 
 	// Use this for initialization
 	void Start () {
         shootVFX = shootEffect.GetComponent<Image>();
+        shootVFX.enabled = false;
         shootSFX = GetComponent<AudioSource>();
 
-        shootAnimator = this.GetComponent<Animator>();
-
-        shootVFX.enabled = false;
+        playerGunAnim = playerGunObj.GetComponent<Animator>();
+        enemyGunAnim = enemyGunObj.GetComponent<Animator>();
 	}
 	
     public IEnumerator playerShoot()
@@ -28,9 +35,10 @@ public class RevolverGun : MonoBehaviour {
 
         shootSFX.Play();
         shootVFX.enabled = true;
-        shootAnimator.SetBool("Shoot", true);
+        playerGunAnim.SetBool("Shoot", true);
+        enemyGunAnim.SetBool("Death", true);
         yield return new WaitForSecondsRealtime(0.05f);
-        shootAnimator.SetBool("Shoot", false);
+        playerGunAnim.SetBool("Shoot", false);
         yield return new WaitForSecondsRealtime(0.1f);
         shootVFX.enabled = false;
         //EndGame
@@ -41,9 +49,10 @@ public class RevolverGun : MonoBehaviour {
     {
         shootSFX.Play();
         shootVFX.enabled = true;
-        shootAnimator.SetBool("Shoot", true);
+        enemyGunAnim.SetBool("Shoot", true);
+        playerGunAnim.SetBool("Death", true);
         yield return new WaitForSecondsRealtime(0.05f);
-        shootAnimator.SetBool("Shoot", false);
+        enemyGunAnim.SetBool("Shoot", false);
         yield return new WaitForSecondsRealtime(0.1f);
         shootVFX.enabled = false;
         //EndGame
