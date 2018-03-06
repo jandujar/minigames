@@ -57,16 +57,17 @@ public class IngredientSpawn : MonoBehaviour {
         {
             counter++;
             StartCoroutine(SpawnIngredient());
-            if (counter >= ingredients.Length)
-            {
-                gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
-            }
         }
     }
 
     public void GameOver()
     {
         gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+    }
+
+    public void WinGame()
+    {
+        gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
     }
 
 }
