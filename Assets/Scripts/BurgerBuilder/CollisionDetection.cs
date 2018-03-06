@@ -11,10 +11,13 @@ public class CollisionDetection : MonoBehaviour {
     public AudioClip victoryClip;
     private AudioSource source;
     private Vector3 pos;
+    private Rigidbody2D rb2d;
 
     private void Awake()
     {
         ingredientBelow = GetComponent<GameObject>();
+        rb2d = GetComponent<Rigidbody2D>();
+        rb2d.gravityScale = 3;
         spawnObject = GameObject.Find("IngredientSpawn").GetComponent<IngredientSpawn>();
         source = GetComponent<AudioSource>();
     }

@@ -655,7 +655,7 @@ Transform:
   m_GameObject: {fileID: 1213589256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -7, z: 22}
-  m_LocalScale: {x: 5, y: 1.5, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 670871186}
   m_RootOrder: 1
@@ -690,14 +690,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.01, y: 0.21}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.01, y: 0.21}
   m_EdgeRadius: 0
 --- !u!212 &1213589260
 SpriteRenderer:
@@ -733,8 +733,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9f67e8d4b6cec4c3fbbcbf34acfabebd, type: 3}
-  m_Color: {r: 0.6764706, g: 0.415213, b: 0.08455882, a: 1}
+  m_Sprite: {fileID: 21300010, guid: a21697471ec11b24fa8915bc168b626e, type: 3}
+  m_Color: {r: 0.8235294, g: 0.72575474, b: 0.58131486, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -791,9 +791,9 @@ MonoBehaviour:
     type: 2}
   cheesePrefab: {fileID: 1654641687348736, guid: 6a5a6fde90ff58440b7525dc7008b9db,
     type: 2}
-  baconPrefab: {fileID: 1065071459743742, guid: 24ca31d798bd9c74aadfb5e6d0607b53,
+  lettucePrefab: {fileID: 1065071459743742, guid: 24ca31d798bd9c74aadfb5e6d0607b53,
     type: 2}
-  ketchupPrefab: {fileID: 1220060404209556, guid: 9156be26229ae6945b4c4f27bd3fa306,
+  tomatoPrefab: {fileID: 1220060404209556, guid: 9156be26229ae6945b4c4f27bd3fa306,
     type: 2}
   upBreadPrefab: {fileID: 1298495205386248, guid: 6e6ebd70605b880449d7e38adef5f7c8,
     type: 2}
