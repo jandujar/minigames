@@ -23,8 +23,7 @@ public class KnifeThrow : IMiniGame
     public GameObject diana;
     private float diana_rotationSpeed = 60.0f;
     public GameObject win_knife;
-    private bool isThrowing = false;
-    
+
     void Start()
     {
         bgMusic = GetComponent<AudioSource>();
@@ -73,14 +72,13 @@ public class KnifeThrow : IMiniGame
                 shoot_button.GetComponent<Text>().enabled = true;
                 shoot_button.GetComponentInChildren<Image>().enabled = true;
             }
-
             yield return new WaitForSeconds(1f);
 
         }
         txt.text = remaining_time.ToString();
 
 
-         StartCoroutine(EndLose());
+        StartCoroutine(EndLose());
     }
     IEnumerator CheckEnd()
     {
@@ -88,7 +86,7 @@ public class KnifeThrow : IMiniGame
     }
     IEnumerator EndWin()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         gm.EndGame(IMiniGame.MiniGameResult.WIN);
     }
     IEnumerator EndLose()
@@ -98,7 +96,7 @@ public class KnifeThrow : IMiniGame
     }
     IEnumerator EndLoseLong()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         gm.EndGame(MiniGameResult.LOSE);
     }
 
