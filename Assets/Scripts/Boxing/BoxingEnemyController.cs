@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class BoxingEnemyController : MonoBehaviour {
 
+
+    //  PUBLIC 
     public GameManager gameManager;
     public BoxingPlayerController boxingPlayer;
-    private AudioSource boxingBell;
+    public Coroutine enemyCorutine = null;
+    // PRIVATE
+    private float speed = 3;
+    private int lastMove;
+    public AudioSource boxingBell;
     private int move;
-    public float speed = 1;
-    public int lastMove;
+
 
     public void init(GameManager gm)
     {
@@ -18,12 +23,17 @@ public class BoxingEnemyController : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        StartCoroutine(MiUpdate());
+        enemyCorutine = StartCoroutine(MiUpdate());
         boxingBell = GetComponent<AudioSource>();
     }
 
     IEnumerator LoseMatch()
     {
+        boxingBell.Play();
+        GameObject.Find("PlayerKo").transform.position = new Vector3(0, 0, 0);
+        StopCoroutine(enemyCorutine);
+        yield return new WaitForSeconds(2);
+        GameObject.Find("PlayerKo").transform.position = new Vector3(0, 0, 25);
         Instantiate(GameObject.Find("Lose"), new Vector3(-0.2f, 0, 0), Quaternion.identity);
         yield return new WaitForSeconds(2);
         gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
@@ -36,19 +46,24 @@ public class BoxingEnemyController : MonoBehaviour {
         yield return new WaitForSeconds(2);
         while (true)
         {
-            GenerateRandom();
-            yield return new WaitForSeconds(1);  
-            transform.GetChild(0).gameObject.SetActive(true);
-            yield return new WaitForSeconds(1);
-            transform.GetChild(0).gameObject.SetActive(false);
-            transform.GetChild(1).gameObject.SetActive(true);
+            if (!GameObject.Find("KO"))
+            {
+                GenerateRandom();
+                yield return new WaitForSeconds(1);
+                transform.GetChild(0).gameObject.SetActive(true);
+                yield return new WaitForSeconds(1);
+                transform.GetChild(0).gameObject.SetActive(false);
+                transform.GetChild(1).gameObject.SetActive(true);
+            }
             if (boxingPlayer.transform.position.x == transform.position.x)
             {
-               GameObject.Find("Player").SetActive(false);
+                GameObject.Find("Player").SetActive(false);
                 StartCoroutine(LoseMatch());
             }
             yield return new WaitForSeconds(1);
             transform.GetChild(1).gameObject.SetActive(false);
+            
+
         }    
     }
 
