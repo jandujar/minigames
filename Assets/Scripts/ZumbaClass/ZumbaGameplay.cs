@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ZumbaGameplay : MonoBehaviour {
+
+    private GameManager gameManager;
+  
     public GameObject a;
     public GameObject b;
     public GameObject x;
@@ -11,6 +14,7 @@ public class ZumbaGameplay : MonoBehaviour {
     public GameObject winSound;
     public GameObject loseSound;
     public GameObject missSound;
+    public GameObject ggSound;
 
     AudioSource myAudio;
 
@@ -23,13 +27,21 @@ public class ZumbaGameplay : MonoBehaviour {
 
     private int lifes;
 
+    private IEnumerator myCorutine;
+
+    public void init(GameManager gm)
+    {
+        gameManager = gm;
+    }
+
 
     // Use this for initialization
     void Start () {
         lifes = 3;
         hasBeenClicked = false;
         myAudio = GetComponent<AudioSource>();
-        StartCoroutine(GameBegins());
+        myCorutine = GameBegins();
+        StartCoroutine(myCorutine);
     }
 	
 	// Update is called once per frame
@@ -40,27 +52,27 @@ public class ZumbaGameplay : MonoBehaviour {
             //CORRECT
             if (Input.GetButtonDown("Fire1") && num == 0)
             {
-                a.GetComponent<AudioSource>().Play();
+                ggSound.GetComponent<AudioSource>().Play();
                 hasBeenClicked = true;
                 a.SetActive(false);
             }
 
             if (Input.GetButtonDown("Fire2") && num == 1)
             {
-                b.GetComponent<AudioSource>().Play();
+                ggSound.GetComponent<AudioSource>().Play();
                 hasBeenClicked = true;
                 b.SetActive(false);
             }
 
             if (Input.GetButtonDown("Fire3") && num == 2)
             {
-                x.GetComponent<AudioSource>().Play();
+                ggSound.GetComponent<AudioSource>().Play();
                 hasBeenClicked = true;
                 x.SetActive(false);
             }
             if (Input.GetButtonDown("Fire4") && num == 3)
             {
-                y.GetComponent<AudioSource>().Play();
+                ggSound.GetComponent<AudioSource>().Play();
                 hasBeenClicked = true;
                 y.SetActive(false);
             }
@@ -87,32 +99,34 @@ public class ZumbaGameplay : MonoBehaviour {
                 hasBeenClicked = false;
                 Debug.Log("Wrong");
             }
-        }
-        else
-        {
-            Debug.Log("LOSER");
-            loseSound.GetComponent<AudioSource>().Play();
-        }        
+        }       
     }
 
     IEnumerator GameBegins()
     {
         yield return new WaitForSeconds(4);
-        myAudio.Play();
         for(int i = 0; i < 12; i++)
         {
-            yield return new WaitForSeconds(0.2f);
+            
+            yield return new WaitForSeconds(0.1f);
             hasBeenClicked = false;
-            getOneButton();
-            yield return new WaitForSeconds(0.3f);
+            GetOneButton();
+            yield return new WaitForSeconds(0.4f);
             PutActiveFalse();
             num = 10;
-            returnIfClicked(hasBeenClicked);
+            ReturnIfClicked(hasBeenClicked);
+            CheckLifes();
+            if (CheckLifes())
+            {
+                StopCoroutine(myCorutine);
+            }
         }
         yield return new WaitForSeconds(0.5f);
         if(lifes > 0)
         {
             winSound.GetComponent<AudioSource>().Play();
+            yield return new WaitForSeconds(4);
+            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
         }
 
     }
@@ -138,9 +152,9 @@ public class ZumbaGameplay : MonoBehaviour {
         }
     }
 
-    private void getOneButton()
+    private void GetOneButton()
     {
-        num = Random.Range(0, 3);
+        num = Random.Range(0, 4);
 
         switch (num)
         {
@@ -161,13 +175,33 @@ public class ZumbaGameplay : MonoBehaviour {
         }
     }
 
-    private void returnIfClicked(bool clicked)
+    private void ReturnIfClicked(bool clicked)
     {
         if (!clicked)
         {
             missSound.GetComponent<AudioSource>().Play();
             lifes--;
         }
+    }
+    
+    private bool CheckLifes()
+    {
+        if(lifes <= 0)
+        {
+            loseSound.GetComponent<AudioSource>().Play();
+            StartCoroutine(LoseCorutine());
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private IEnumerator LoseCorutine()
+    {
+        yield return new WaitForSeconds(3);
+        gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
     }
 }
 

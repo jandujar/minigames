@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ZumbaStart : IMiniGame {
     private GameManager gameManager;
+    public ZumbaGameplay zumbaObject;
 
-	// Use this for initialization
-	void Awake () {
+
+    // Use this for initialization
+    void Awake () {
         Debug.Log("Maded by Fabio Scarcella");
 	}
 
@@ -18,11 +20,6 @@ public class ZumbaStart : IMiniGame {
     public override void initGame(MiniGameDificulty dificulty, GameManager gm)
     {
         this.gameManager = gm;
-        //call functions to start the game
+        zumbaObject.init(gm);
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 }
