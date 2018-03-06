@@ -25,6 +25,8 @@ public class KauboiDueru : IMiniGame
 
     public RevolverGun playerGun;
     public RevolverGun enemyGun;
+    public Animator flagAnimator;
+    public GameObject gameSceneObject;
 
     [Header("Game Time")]
     public int gameTime = 10;
@@ -39,6 +41,7 @@ public class KauboiDueru : IMiniGame
     {
         //KauboiDueru Begins
         Debug.Log(this.ToString() + " game Begin");
+        gameSceneObject.SetActive(true);
         StartCoroutine(gameTimer());
         StartCoroutine(shootTime());
     }
@@ -115,7 +118,9 @@ public class KauboiDueru : IMiniGame
         }
         Debug.Log("Player shoots now!!");
         playerCanShoot = true;
-
+        flagAnimator.SetBool("FlagDown", true);
+        yield return new WaitForSecondsRealtime(0.0000001f);
+        flagAnimator.SetBool("FlagDown", false);
         //Check if player has shoot, else:
         yield return new WaitForSecondsRealtime(enemyShootCounter);
         if(!playerHasShoot)
