@@ -53,9 +53,9 @@ public class KauboiDueru : IMiniGame
     {
         if(gameStarted)
         {
-            if ( (Input.GetKeyDown(KeyCode.Space) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2) ) && playerCanShoot == true)
+            if ( (Input.GetKeyDown(KeyCode.Space) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) ) && playerCanShoot == true)
                 StartCoroutine(playerGun.playerShoot());
-            else if ( (Input.GetKeyDown(KeyCode.Space) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2) ) && playerCanShoot == false)
+            else if ( (Input.GetKeyDown(KeyCode.Space) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) ) && playerCanShoot == false)
                 StartCoroutine(enemyGun.enemyShoot());
 
             if (enemyShoots)
@@ -81,11 +81,8 @@ public class KauboiDueru : IMiniGame
     public IEnumerator shootTime()
     {
         for(int i=0;i<3;++i)
-        {
             yield return new WaitForSecondsRealtime(UnityEngine.Random.Range(minShootTime,maxShootTime));
-            Debug.Log(i + 1);
-        }
-        Debug.Log("Player shoots now!!");
+        
         playerCanShoot = true;
         flagAnimator.SetBool("FlagDown", true);
         yield return new WaitForSecondsRealtime(0.0000001f);
@@ -94,10 +91,8 @@ public class KauboiDueru : IMiniGame
         yield return new WaitForSecondsRealtime(enemyShootCounter);
         if(!playerHasShoot)
         {
-            Debug.Log("Player loses!");
             playerCanShoot = false;
             enemyShoots = true;
-            Debug.LogError("BANG!");
         }
     }
 }
