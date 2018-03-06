@@ -17,9 +17,11 @@ public class QuickTimeEvent : MonoBehaviour {
     public VeganKnows vegan;
 
     [Header("Variables")]
-    public int QTEGen;
-    public int WaitingForKey;
-    public int CorrectKey;
+    private int QTEGen;
+    private int WaitingForKey;
+    private int CorrectKey;
+    public string butt1;
+    public string butt2;
     public int timeleft = 10;
     public int dificultLvl = 1;
     
@@ -32,12 +34,12 @@ public class QuickTimeEvent : MonoBehaviour {
             if (QTEGen == 1)
             {
                 WaitingForKey = 1;
-                DisplayBox.GetComponent<Text>().text = "C";
+                DisplayBox.GetComponent<Text>().text = butt1;
             }
             if (QTEGen == 2)
             {
                 WaitingForKey = 1;
-                DisplayBox.GetComponent<Text>().text = "H";
+                DisplayBox.GetComponent<Text>().text = butt2;
             }
             StartCoroutine(LoseTime());
         }
@@ -71,7 +73,7 @@ public class QuickTimeEvent : MonoBehaviour {
         QTEGen = 3;
         if (CorrectKey == 1){
             animatorC.SetTrigger("throwCG");
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(1.5f);
             //Condicion de victoria
             Debug.Log("WINNER");
             vegan.Win();
@@ -79,14 +81,14 @@ public class QuickTimeEvent : MonoBehaviour {
         if (CorrectKey == 2)
         {
             animatorC.SetTrigger("throwCB");
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(1.5f);
             //Condicion de derrota
             Debug.Log("LOSER");
             vegan.Lose();
         }
         if (CorrectKey == 3){
             animatorH.SetTrigger("throwHG");
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(1.5f);
             //Condicion de victoria
             Debug.Log("WINNER");
             vegan.Win();
@@ -94,7 +96,7 @@ public class QuickTimeEvent : MonoBehaviour {
         if (CorrectKey == 4)
         {
             animatorH.SetTrigger("throwHB");
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(1.5f);
             //Condicion de derrota
             Debug.Log("LOSER");
             vegan.Lose();
