@@ -12,10 +12,12 @@ public class Maceta : MonoBehaviour {
     {
         if (collision.gameObject.name == "Down")
         {
+            GetComponent<Lanzador>().TryCount--;
             DestroyObject(this.gameObject);
         }
         else if(collision.gameObject.name == "Enemy")
         {
+            GetComponent<Lanzador>().win = true;
             Debug.Log("hit");
         }
         

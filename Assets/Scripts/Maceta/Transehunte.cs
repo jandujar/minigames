@@ -8,10 +8,8 @@ public class Transehunte : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
         min = transform.position.x+min;
         max = transform.position.x + max;
-
     }
 
     // Update is called once per frame
