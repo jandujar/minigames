@@ -20,15 +20,18 @@ public class ShootingManager : MonoBehaviour {
 	//Random is valid or not objective
 	private bool valid;
 	private AudioSource source;
+	private bool startGame;
 
 	void Awake(){
 		//Search for all 
 		objective = GameObject.FindGameObjectsWithTag("Player");
 		gameReady = false;
 		source = this.GetComponent<AudioSource> ();
+		startGame = false;
 	}
 		
 	public void InitGame(GameManager manager){
+		startGame = true;
 		source.Play ();
 		gm = manager;
 		tmpTime = Time.time;
@@ -46,7 +49,7 @@ public class ShootingManager : MonoBehaviour {
 		tmpTime = Time.time;
 		lapsusTime = Random.Range (0.5f, 1.5f);
 		numObjective = Random.Range (0, objective.Length);
-		if (Random.Range (0, 10) <= 5) {
+		if (Random.Range (0, 10) <= 3) {
 			valid = true;
 		} else {
 			valid = false;
@@ -70,6 +73,10 @@ public class ShootingManager : MonoBehaviour {
 
 	public void endGame(IMiniGame.MiniGameResult res){
 		gm.EndGame (res);
+	}
+
+	public bool getStartGame(){
+		return startGame;
 	}
 
 }
