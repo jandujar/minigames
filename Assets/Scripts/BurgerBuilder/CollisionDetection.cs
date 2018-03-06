@@ -5,16 +5,18 @@ using UnityEngine;
 public class CollisionDetection : MonoBehaviour {
 
     private IngredientSpawn spawnObject;
-    private GameObject bread;
     private bool detected = false;
     private GameObject ingredientBelow;
+    public AudioClip splashClip;
+    public AudioClip victoryClip;
+    private AudioSource source;
     private Vector3 pos;
 
     private void Awake()
     {
         ingredientBelow = GetComponent<GameObject>();
         spawnObject = GameObject.Find("IngredientSpawn").GetComponent<IngredientSpawn>();
-        bread = GameObject.Find("Bread");
+        source = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -27,7 +29,7 @@ public class CollisionDetection : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (!detected)
+        if (!detected && coll.gameObject.tag != "Finish")
         {
             if (coll.transform.position.x + 20 > transform.position.x && coll.transform.position.x - 20 < transform.position.x)
             {
@@ -39,10 +41,11 @@ public class CollisionDetection : MonoBehaviour {
                 ingredientBelow = coll.gameObject;
                 detected = true;
                 spawnObject.ingredientsCaught++;
+                source.PlayOneShot(splashClip, 1f);
                 if (gameObject.name == "UpBread(Clone)")
                 {
                     if (spawnObject.ingredientsCaught == spawnObject.GetIngredientSize()) {
-                        spawnObject.WinGame();
+                        StartCoroutine(VictorySound());
                     }
                 }
             }
@@ -51,5 +54,12 @@ public class CollisionDetection : MonoBehaviour {
                 gameObject.GetComponent<Collider2D>().enabled = false;
             }
         }
+    }
+
+    IEnumerator VictorySound()
+    {
+        source.PlayOneShot(victoryClip, 1f);
+        yield return new WaitForSeconds(1);
+        spawnObject.WinGame();
     }
 }

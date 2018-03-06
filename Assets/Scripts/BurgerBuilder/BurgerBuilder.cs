@@ -17,7 +17,7 @@ public class BurgerBuilder : IMiniGame{
         Debug.Log(this.ToString() + " game Begin");
         canvas.gameObject.SetActive(true);
         source = GetComponent<AudioSource>();
-        source.PlayOneShot(backgroundMusic, 1f);
+        source.PlayOneShot(backgroundMusic, 0.5f);
         spawn.StartSpawn(gameManager);
 
     }

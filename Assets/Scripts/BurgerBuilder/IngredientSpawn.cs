@@ -52,7 +52,7 @@ public class IngredientSpawn : MonoBehaviour {
         float xPosition = Random.Range(leftLimit.position.x, rightLimit.position.x);
         GameObject actualIngredient = ingredients[counter];
         Instantiate(actualIngredient, new Vector3(xPosition, transform.position.y, transform.position.z), new Quaternion(0,0,0,0));
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.75f);
         
         if (counter < ingredients.Length - 1)
         {
@@ -70,7 +70,7 @@ public class IngredientSpawn : MonoBehaviour {
     {
         gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
     }
-
+    
     public int GetIngredientSize()
     {
         return ingredients.Length;
