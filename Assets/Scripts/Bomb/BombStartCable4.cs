@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class BombStartCable4 : MonoBehaviour {
 
+    public BombStartCable3 cable1;
+    public BombStartCable3 cable2;
     public BombStartCable3 cable3;
     public GameObject[] arrayInOut;
     public GameObject[] arraySprite;
+    public bool colorSet;
     private int randomOut;
     private IEnumerator myCorutine;
 
@@ -21,12 +24,17 @@ public class BombStartCable4 : MonoBehaviour {
 
     IEnumerator StartCable()
     {
+        if (!cable1.colorSet && !cable2.colorSet && !cable3.colorSet && cable3.cable4On)
+        {
+            arrayInOut[0].GetComponent<Renderer>().material.color = Color.red;
+        }
         Debug.Log("cable4");
         arrayInOut[0].gameObject.name = "in";
         arrayInOut[0].gameObject.tag = "Finish";
         randomOut = Random.Range(1, 4);
         arrayInOut[randomOut].gameObject.name = "out";
-        arraySprite[randomOut].SetActive(true);
+        // arraySprite[randomOut].SetActive(true);
+
         cable3.cable4On = false;
         StopCoroutine(myCorutine);
         yield return new WaitForSeconds(0.2f);

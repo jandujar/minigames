@@ -5,7 +5,7 @@ using UnityEngine;
 public class BombPiece : MonoBehaviour
 {
 
-    public BombSpriteDoor test;
+    public BombSpriteDoor spriteArray;
 
 
     //PUBLIC
@@ -28,7 +28,8 @@ public class BombPiece : MonoBehaviour
                     {
                         arrayInOut[randome].gameObject.name = "out";
                         arrayInOut[i].gameObject.tag = "Finish";
-                        arrayInOut[i].GetComponent<BombSpriteDoor>().test[randome].SetActive(true);                                                  
+                       // arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].SetActive(true); 
+                        //arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].GetComponent<SpriteRenderer>().color = Color.blue ; 
                     }
                 }
             }
@@ -45,6 +46,7 @@ public class BombPiece : MonoBehaviour
                     {
                         arrayInOut[randome].gameObject.name = "out";
                         arrayInOut[i].gameObject.tag = "Finish";
+                       // arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].SetActive(true);
                     }
                 }
             }
@@ -61,6 +63,9 @@ public class BombPiece : MonoBehaviour
                     {
                         arrayInOut[randome].gameObject.name = "out";
                         arrayInOut[i].gameObject.tag = "Finish";
+                       // arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].SetActive(true);
+                        arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color = arrayInOut[i].gameObject.GetComponent<Renderer>().material.color;
+
                     }
                 }
             }
@@ -77,6 +82,8 @@ public class BombPiece : MonoBehaviour
                     {
                         arrayInOut[randome].gameObject.name = "out";
                         arrayInOut[i].gameObject.tag = "Finish";
+                       // arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].SetActive(true);
+                        arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color = arrayInOut[i].gameObject.GetComponent<Renderer>().material.color;
                     }
                 }
             }

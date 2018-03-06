@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BombSpriteDoor : MonoBehaviour {
 
-    public GameObject[] test;
+    public GameObject[] spriteArray;
+
 
 }
