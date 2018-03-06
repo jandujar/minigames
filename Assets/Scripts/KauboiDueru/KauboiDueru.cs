@@ -53,9 +53,9 @@ public class KauboiDueru : IMiniGame
     {
         if(gameStarted)
         {
-            if ( (Input.GetKeyDown(KeyCode.Space) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2) ) && playerCanShoot == true)
+            if ( (Input.GetKeyDown(KeyCode.Space) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) ) && playerCanShoot == true)
                 StartCoroutine(playerGun.playerShoot());
-            else if ( (Input.GetKeyDown(KeyCode.Space) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2) ) && playerCanShoot == false)
+            else if ( (Input.GetKeyDown(KeyCode.Space) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) ) && playerCanShoot == false)
                 StartCoroutine(enemyGun.enemyShoot());
 
             if (enemyShoots)
