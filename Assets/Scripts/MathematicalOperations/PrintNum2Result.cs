@@ -22,11 +22,14 @@ public class PrintNum2Result : MonoBehaviour {
             {
                 if (resultString[0] != '-')
                 {
-                    if (resultString[1] == i.ToString()[0])
+                    if (result > 9)
                     {
-                        aNumbers[i].gameObject.SetActive(true);
-                        Debug.Log("Número2 mostrado: " + i);
-                        break;
+                        if (resultString[1] == i.ToString()[0])
+                        {
+                            aNumbers[i].gameObject.SetActive(true);
+                            Debug.Log("Número2 mostrado: " + i);
+                            break;
+                        }
                     }
                 }
                 else
