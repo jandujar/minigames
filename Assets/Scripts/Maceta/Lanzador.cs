@@ -13,6 +13,7 @@ public class Lanzador : IMiniGame{
     [SerializeField] public int MacetaCount;
     [SerializeField] public int TryCount;
     [SerializeField] public bool win;
+    [SerializeField] private AudioClip spawnSound;
     // Use this for initialization
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
@@ -26,7 +27,8 @@ public class Lanzador : IMiniGame{
     }
     void Start () {
         MacetaCount = 3;
-	}
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -62,8 +64,10 @@ public class Lanzador : IMiniGame{
         {
             if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
             {
-                    Instantiate(maceta,this.transform.position, Quaternion.identity);
-                    MacetaCount--;
+                AudioSource audio = GetComponent<AudioSource>();
+                audio.Play();
+                Instantiate(maceta,this.transform.position, Quaternion.identity);
+                MacetaCount--;
             }
         }
         
