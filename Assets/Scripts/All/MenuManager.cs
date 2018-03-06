@@ -25,6 +25,8 @@ public class MenuManager : Singleton<MenuManager> {
 		MATHEMATICS,
 		VEGAN,
 		SAFEBOX,
+        BOXING,
+        FLAPPY,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -42,7 +44,7 @@ public class MenuManager : Singleton<MenuManager> {
 		} else if (currentGame == MINIGAMES_ENUM.GITAHIRO) {
 			currentGame = MINIGAMES_ENUM.KNIFEFINGERS;
 		} else if (currentGame == MINIGAMES_ENUM.MOVIMIENTO) {
-			currentGame = MINIGAMES_ENUM.PONG;
+            currentGame = MINIGAMES_ENUM.MATHEMATICS;
 		}
 
 		switch (currentGame) {
@@ -94,6 +96,12 @@ public class MenuManager : Singleton<MenuManager> {
 		case MINIGAMES_ENUM.SAFEBOX:
 			SceneManager.LoadScene("SafeBox");
 			break;
+        case MINIGAMES_ENUM.BOXING:
+            SceneManager.LoadScene("Boxing");
+            break;
+        case MINIGAMES_ENUM.FLAPPY:
+                SceneManager.LoadScene("FlappyBird");
+            break;
 		case MINIGAMES_ENUM.END:
 		default:
 			SceneManager.LoadScene ("Pong");
