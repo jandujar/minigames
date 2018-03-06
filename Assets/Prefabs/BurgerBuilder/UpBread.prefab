@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 50738431286512734}
   - component: {fileID: 212390211669857706}
   - component: {fileID: 61045320162275932}
+  - component: {fileID: 114859286053336338}
   m_Layer: 0
   m_Name: UpBread
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114859286053336338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1298495205386248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e91c0e64cd4504689b1ea75909f13e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnObject: {fileID: 0}
 --- !u!212 &212390211669857706
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -122,7 +135,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9f67e8d4b6cec4c3fbbcbf34acfabebd, type: 3}
-  m_Color: {r: 0.5441177, g: 0.30428648, b: 0.12002595, a: 1}
+  m_Color: {r: 0.7205882, g: 0.4271641, b: 0.1377595, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

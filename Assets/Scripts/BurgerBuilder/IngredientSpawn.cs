@@ -19,11 +19,14 @@ public class IngredientSpawn : MonoBehaviour {
     public GameObject ketchupPrefab;
     public GameObject upBreadPrefab;
 
+    //GameManager
+    private GameManager gameManager;
+
     //Array
     private static GameObject[] ingredients;
 
     //Int
-    private int counter = 0;
+    public int counter = 0;
 
     void Awake()
     {
@@ -35,10 +38,13 @@ public class IngredientSpawn : MonoBehaviour {
         ingredients.SetValue(upBreadPrefab, 4);
     }
 
-    public void StartSpawn()
+    public void StartSpawn(GameManager gm)
     {
+        gameManager = gm;
         StartCoroutine(SpawnIngredient());
     }
+
+
 
     IEnumerator SpawnIngredient()
     {
@@ -46,10 +52,21 @@ public class IngredientSpawn : MonoBehaviour {
         GameObject actualIngredient = ingredients[counter];
         Instantiate(actualIngredient, new Vector3(xPosition, transform.position.y, transform.position.z), new Quaternion(0,0,0,0));
         yield return new WaitForSeconds(1);
+        
         if (counter < ingredients.Length - 1)
         {
             counter++;
             StartCoroutine(SpawnIngredient());
-        }        
+            if (counter >= ingredients.Length)
+            {
+                gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+            }
+        }
     }
+
+    public void GameOver()
+    {
+        gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+    }
+
 }
