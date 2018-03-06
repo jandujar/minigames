@@ -5,13 +5,11 @@ using UnityEngine;
 public class RandomOperators : MonoBehaviour {
 
     public GameObject[] aOperators = new GameObject[2];
-    private GameManager gameManager;
     int rand = 0;
     char op = ' ';
 
-    public void init(GameManager gm)
+    public void init()
     {
-        gameManager = gm;
         rand = (int)Random.Range(0f, 2f);
         if (rand == 0)
         {
