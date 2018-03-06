@@ -22,5 +22,21 @@ public class FroggerTerrain : MonoBehaviour {
                 currentState--;
             }
         }
+        else if (type == 2)
+        {
+            if (currentState <= 0)
+            {
+                GetComponent<Renderer>().material.color = Color.blue;
+                currentState = initialState;
+            }
+            else
+            {
+                GetComponent<Renderer>().material.color = Color.red;
+                currentState--;
+            }
+        }
+        else if (type == 3) {
+            GetComponent<Renderer>().material.color = Color.yellow;
+        }
     }
 }
