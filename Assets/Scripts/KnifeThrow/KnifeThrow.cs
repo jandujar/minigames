@@ -12,15 +12,13 @@ public class KnifeThrow : IMiniGame
     }
 
     public GameState state = GameState.Countdown;
-    /*public Animation anim;
-    public Animator animator;*/
     public Text shoot_button;
     [SerializeField] private Text txt;
     public float time;
     private float remaining_time;
     public GameManager gm;
-    public AudioClip Knife;
-    private AudioSource source;
+    public AudioClip Knife, Lose;
+    private AudioSource bgMusic;
     [SerializeField] private GameObject canvasText;
     public GameObject diana;
     private float diana_rotationSpeed = 60.0f;
@@ -29,10 +27,7 @@ public class KnifeThrow : IMiniGame
     
     void Start()
     {
-        /*anim = GetComponent<Animation>();
-        animator = GetComponent<Animator>();
-        animator.SetBool("Shoot", false);*/
-        source = GetComponent<AudioSource>();
+        bgMusic = GetComponent<AudioSource>();
         remaining_time = time;
     }
     void Update()
@@ -48,21 +43,19 @@ public class KnifeThrow : IMiniGame
         if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1))
         {
             diana_rotationSpeed = 0f;
-            //anim.Play("animacion de lanzar cuchillo");
-            Debug.Log("key pressed");
-            //animator.SetBool("Shoot", true);
             if (remaining_time <= 6 && remaining_time > 0)
             {
                 win_knife.SetActive(true);
                 win_knife.GetComponent<Animator>().Play("ShootWinç");
                 win_knife.GetComponent<AudioSource>().Play();
+                StartCoroutine(EndWin());
             }
             else
             {
-                //Animacio lose
                 win_knife.SetActive(true);
                 win_knife.GetComponent<Animator>().Play("Shoot");
                 win_knife.GetComponent<AudioSource>().Play();
+                StartCoroutine(EndLoseLong());
             }
         }
     }
@@ -86,11 +79,6 @@ public class KnifeThrow : IMiniGame
         }
         txt.text = remaining_time.ToString();
 
-        /*if (!InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1))
-        {
-            gm.EndGame(IMiniGame.MiniGameResult.LOSE);
-
-        }*/
 
          StartCoroutine(EndLose());
     }
@@ -100,12 +88,17 @@ public class KnifeThrow : IMiniGame
     }
     IEnumerator EndWin()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         gm.EndGame(IMiniGame.MiniGameResult.WIN);
     }
     IEnumerator EndLose()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
+        gm.EndGame(MiniGameResult.LOSE);
+    }
+    IEnumerator EndLoseLong()
+    {
+        yield return new WaitForSeconds(2f);
         gm.EndGame(MiniGameResult.LOSE);
     }
 
@@ -114,6 +107,7 @@ public class KnifeThrow : IMiniGame
     public override void beginGame()
     {
         state = KnifeThrow.GameState.Playing;
+        bgMusic.Play();
         canvasText.SetActive(true);
         StartCoroutine(CheckTimeout());
     }
