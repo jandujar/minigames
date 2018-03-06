@@ -19,7 +19,7 @@ public class ZumbaStart : IMiniGame {
 
     public override void initGame(MiniGameDificulty dificulty, GameManager gm)
     {
-        this.gameManager = gm;
+        gameManager = gm;
         zumbaObject.init(gm);
     }
 }

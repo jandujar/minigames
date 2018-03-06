@@ -16,8 +16,6 @@ public class ZumbaGameplay : MonoBehaviour {
     public GameObject missSound;
     public GameObject ggSound;
 
-    AudioSource myAudio;
-
     private bool hasBeenClicked;
     private bool aClicked;
     private bool bClicked;
@@ -39,7 +37,6 @@ public class ZumbaGameplay : MonoBehaviour {
     void Start () {
         lifes = 3;
         hasBeenClicked = false;
-        myAudio = GetComponent<AudioSource>();
         myCorutine = GameBegins();
         StartCoroutine(myCorutine);
     }
@@ -81,23 +78,19 @@ public class ZumbaGameplay : MonoBehaviour {
             if (Input.GetButtonDown("Fire1") && num != 0)
             {
                 hasBeenClicked = false;
-                Debug.Log("Wrong");
             }
             if (Input.GetButtonDown("Fire2") && num != 1)
             {
                 hasBeenClicked = false;
-                Debug.Log("Wrong");
             }
 
             if (Input.GetButtonDown("Fire3") && num != 2)
             {
                 hasBeenClicked = false;
-                Debug.Log("Wrong");
             }
             if (Input.GetButtonDown("Fire4") && num != 3)
             {
                 hasBeenClicked = false;
-                Debug.Log("Wrong");
             }
         }       
     }
@@ -111,7 +104,7 @@ public class ZumbaGameplay : MonoBehaviour {
             yield return new WaitForSeconds(0.1f);
             hasBeenClicked = false;
             GetOneButton();
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.7f);
             PutActiveFalse();
             num = 10;
             ReturnIfClicked(hasBeenClicked);
@@ -124,6 +117,7 @@ public class ZumbaGameplay : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         if(lifes > 0)
         {
+            winSound.SetActive(true);
             winSound.GetComponent<AudioSource>().Play();
             yield return new WaitForSeconds(4);
             gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
@@ -188,6 +182,7 @@ public class ZumbaGameplay : MonoBehaviour {
     {
         if(lifes <= 0)
         {
+            loseSound.SetActive(true);
             loseSound.GetComponent<AudioSource>().Play();
             StartCoroutine(LoseCorutine());
             return true;
