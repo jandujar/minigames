@@ -8,7 +8,13 @@ public class NoteDetectionX : MonoBehaviour
 
     private bool noteDetected = false;
     private GameObject gameNote;
-    
+    private AudioSource gameSound;
+
+    void Start()
+    {
+        gameSound = GetComponent<AudioSource>();
+    }
+
     void OnTriggerStay(Collider other)
     {
         noteDetected = true;
@@ -29,6 +35,7 @@ public class NoteDetectionX : MonoBehaviour
                 gameScript.addScore();
                 Destroy(gameNote);
                 noteDetected = false;
+                gameSound.Play();
             }
         }
     }
