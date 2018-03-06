@@ -20,13 +20,9 @@ public class KauboiDueru : IMiniGame
     [Header("Game Components")]
     public RevolverGun playerGun;
     public RevolverGun enemyGun;
-    public Animator flagAnimator;
     public GameObject gameSceneObject;
-
-    [Header("Game Time")]
-    public int gameTime = 10;
-    private bool gameSpawnStop = false;
-    public Text gameWinText;
+    public Animator flagAnimator;
+    public AudioSource backgroundSound;
 
     void Start()
     {
@@ -35,11 +31,11 @@ public class KauboiDueru : IMiniGame
     }
     public override void beginGame()
     {
+        backgroundSound.Play();
         gameStarted = true;
         //KauboiDueru Begins
         Debug.Log(this.ToString() + " game Begin");
         gameSceneObject.SetActive(true);
-        StartCoroutine(gameTimer());
         StartCoroutine(shootTime());
     }
 
@@ -76,39 +72,12 @@ public class KauboiDueru : IMiniGame
         gameManager.EndGame(MiniGameResult.LOSE);
     }
     
-    void setEndGameWin()
+    public void setEndGameWin()
     {
         StopAllCoroutines();
         gameManager.EndGame(MiniGameResult.WIN);
     }
     
-    public IEnumerator gameTimer()
-    {
-        for(int i=gameTime;i>-1;--i)
-        {
-            yield return new WaitForSeconds(1f);
-            if(i==0)
-                gameSpawnStop = true;
-            
-        }
-    }
-
-    public bool getEndTime()
-    {
-        return gameSpawnStop;
-    }
-
-    public void setEndTime(bool _value)
-    {
-        gameSpawnStop = _value;
-    }
-    public IEnumerator endGame()
-    {
-        gameWinText.enabled = true;
-        yield return new WaitForSecondsRealtime(2f);
-        setEndGameWin();
-    }
-
     public IEnumerator shootTime()
     {
         for(int i=0;i<3;++i)
@@ -129,8 +98,6 @@ public class KauboiDueru : IMiniGame
             playerCanShoot = false;
             enemyShoots = true;
             Debug.LogError("BANG!");
-            //Debug.Break();
-            //setEndGame();
         }
     }
 }

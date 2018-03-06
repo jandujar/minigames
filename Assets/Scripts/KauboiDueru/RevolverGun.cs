@@ -43,7 +43,7 @@ public class RevolverGun : MonoBehaviour {
         shootVFX.enabled = false;
         //EndGame
         yield return new WaitForSecondsRealtime(1.5f);
-        kauboiGame.setEndGame();
+        kauboiGame.setEndGameWin();
     }
     public IEnumerator enemyShoot()
     {
