@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class endPointRotation : MonoBehaviour {
-    public float speed;
 
     private bool isRunning;
-
+    private float speed;
+    
 	// Use this for initialization
 	void Start () {
         isRunning = false;
-
+        speed = 0;
     }
 	
 	// Update is called once per frame
@@ -30,4 +30,10 @@ public class endPointRotation : MonoBehaviour {
     {
         isRunning = false;
     }
+
+    public void setSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
 }

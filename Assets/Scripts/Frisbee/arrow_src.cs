@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class arrow_src : MonoBehaviour {
 
+    private bool hasThrow;
     private int direction;
     private float angle;
-    private bool hasThrow;
+    
 
     public GameObject dog;
     public GameObject endpoint;
@@ -32,18 +33,27 @@ public class arrow_src : MonoBehaviour {
         }
 
         //InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)
-
-        if (Input.GetKeyDown(KeyCode.Space) && !hasThrow) //el perro salta
+        if (!hasThrow)
         {
-            Debug.Log(hasThrow);
-            dog.GetComponent<dog_src>().StartRun();
-            dog.GetComponent<dog_src>().PlayStart();
-            endpoint.GetComponent<endPointRotation>().startRun();
-            fresbee.GetComponent<frisbee_src>().setShoot(true);
-            angle = transform.eulerAngles.z;
-            fresbee.GetComponent<frisbee_src>().setAngle(angle);
+            StartCoroutine(throwFrisbee());
             hasThrow = true;
-            
         }
+        
+
     }
+
+    IEnumerator throwFrisbee()
+    {
+        float random = Random.Range(5f,6f);
+        yield return new WaitForSeconds(random);
+        Debug.Log(hasThrow);
+        dog.GetComponent<dog_src>().StartRun();
+        dog.GetComponent<dog_src>().PlayStart();
+        endpoint.GetComponent<endPointRotation>().startRun();
+        fresbee.GetComponent<frisbee_src>().setShoot(true);
+        angle = transform.eulerAngles.z;
+        fresbee.GetComponent<frisbee_src>().setAngle(angle);
+        
+    }
+
 }

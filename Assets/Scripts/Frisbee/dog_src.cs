@@ -7,19 +7,18 @@ public class dog_src : MonoBehaviour {
     //Private
     private bool isRunning;
     private bool isJumping;
-    private bool hasLoose;
+    private bool hasWin;
     private int maxDistanceToRun;
-    private float volume;
+    private float runingSpeed;
     private float startTime;
     private float distanceTototalDistanceToDestination;
     private GameManager gameManager;
     private AudioSource source;
 
     //public
-    public float runingSpeed;
+    
     public GameObject endPosition;
     public GameObject winGameMeme;
-
     public AudioClip startSoundDog;
     public AudioClip startSoundHuman;
     public AudioClip winSound;
@@ -37,21 +36,26 @@ public class dog_src : MonoBehaviour {
     void Start () {
         isRunning = false;
         isJumping = false;
-        hasLoose = false;
+        hasWin = false;
+        maxDistanceToRun = 340;
+        runingSpeed = 0;
         startTime = Time.time;
         distanceTototalDistanceToDestination = Vector3.Distance(transform.position, endPosition.transform.position);
-        maxDistanceToRun = 340;
-        volume = 1;
         source = GetComponent<AudioSource>();
     }
 
 	void Update () {
         //InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)
 
+
         if (isRunning && !isJumping)
         {
             transform.Translate(runingSpeed * Time.deltaTime, 0, 0);
-
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                runingSpeed += 5;
+                endPosition.GetComponent<endPointRotation>().setSpeed(runingSpeed);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.A)) //el perro salta
@@ -76,6 +80,13 @@ public class dog_src : MonoBehaviour {
         {
             LooseGame();
         }
+        if (hasWin)
+        {
+            if (!source.isPlaying)
+            {
+                gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+            }
+        }
     }
 
 
@@ -93,22 +104,19 @@ public class dog_src : MonoBehaviour {
     void WinGame()
     {
         Debug.Log("WIN");
+        hasWin = true;
         PlayWinSound();
         winGameMeme.transform.position = transform.position;
         winGameMeme.SetActive(true);
-        if (!source.isPlaying)
-        {
-            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
-        }
     }
 
     public void LooseGame()
     {
-        if (!hasLoose)
+        if (!hasWin)
         {
             Debug.Log("lose");
             StartCoroutine(playLooseClip());
-            hasLoose = true;
+            hasWin = true;
         }
     }
 
