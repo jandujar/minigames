@@ -151,7 +151,6 @@ public class FroggerGame : MonoBehaviour {
 
     IEnumerator UpdateStates()
     {
-        float t = Time.deltaTime;
         while (true)
         {
             if (!playing) break;
@@ -160,9 +159,8 @@ public class FroggerGame : MonoBehaviour {
                     grid[i, j].GetComponent<FroggerTerrain>().UpdateState();
                 }
             }
-            t = Time.deltaTime;
             CheckGameState();
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1.0909f);
         }
 
     }

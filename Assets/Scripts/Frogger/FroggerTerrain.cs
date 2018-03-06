@@ -35,7 +35,8 @@ public class FroggerTerrain : MonoBehaviour {
                 currentState--;
             }
         }
-        else if (type == 3) {
+        else if (type == 3)
+        {
             GetComponent<Renderer>().material.color = Color.yellow;
         }
     }
