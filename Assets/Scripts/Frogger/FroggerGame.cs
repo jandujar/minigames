@@ -160,7 +160,7 @@ public class FroggerGame : MonoBehaviour {
                 }
             }
             CheckGameState();
-            yield return new WaitForSeconds(1.0909f);
+            yield return new WaitForSeconds(0.5454545454545455f);
         }
 
     }
