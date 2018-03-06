@@ -5,6 +5,7 @@ using UnityEngine;
 public class CollisionDetection : MonoBehaviour {
 
     private IngredientSpawn spawnObject;
+    private GameObject bread;
     private bool detected = false;
     private GameObject ingredientBelow;
     private Vector3 pos;
@@ -13,6 +14,7 @@ public class CollisionDetection : MonoBehaviour {
     {
         ingredientBelow = GetComponent<GameObject>();
         spawnObject = GameObject.Find("IngredientSpawn").GetComponent<IngredientSpawn>();
+        bread = GameObject.Find("Bread");
     }
 
     private void Update()
@@ -36,9 +38,12 @@ public class CollisionDetection : MonoBehaviour {
                 gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
                 ingredientBelow = coll.gameObject;
                 detected = true;
+                spawnObject.ingredientsCaught++;
                 if (gameObject.name == "UpBread(Clone)")
                 {
-                    spawnObject.WinGame();
+                    if (spawnObject.ingredientsCaught == spawnObject.GetIngredientSize()) {
+                        spawnObject.WinGame();
+                    }
                 }
             }
             else

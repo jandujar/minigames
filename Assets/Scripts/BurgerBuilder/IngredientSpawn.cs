@@ -22,11 +22,12 @@ public class IngredientSpawn : MonoBehaviour {
     //GameManager
     private GameManager gameManager;
 
-    //Array
-    private static GameObject[] ingredients;
+    [Header("Array")]
+    public static GameObject[] ingredients;
 
-    //Int
+    [Header("Int")]
     public int counter = 0;
+    public int ingredientsCaught = 0;
 
     void Awake()
     {
@@ -68,6 +69,11 @@ public class IngredientSpawn : MonoBehaviour {
     public void WinGame()
     {
         gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+    }
+
+    public int GetIngredientSize()
+    {
+        return ingredients.Length;
     }
 
 }
