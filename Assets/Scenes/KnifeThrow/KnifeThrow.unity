@@ -296,7 +296,6 @@ GameObject:
   - component: {fileID: 149088307}
   - component: {fileID: 149088309}
   - component: {fileID: 149088308}
-  - component: {fileID: 149088310}
   m_Layer: 5
   m_Name: PressButton
   m_TagString: Untagged
@@ -361,23 +360,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 149088306}
---- !u!95 &149088310
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 149088306}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aff430a86f9147146ab5201262b181db, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &184668495
 GameObject:
   m_ObjectHideFlags: 0
@@ -1223,7 +1205,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1460516886064934, guid: 3ead1508950f7e94c921970a52af1be5, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ead1508950f7e94c921970a52af1be5, type: 2}
