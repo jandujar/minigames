@@ -16,7 +16,7 @@ public class KnifeThrow : IMiniGame
     public Animator animator;*/
     [SerializeField] private Text txt;
     public float time;
-    private GameManager gm;
+    public GameManager gm;
     public AudioClip Knife;
     private AudioSource source;
     [SerializeField] private GameObject canvasText;
