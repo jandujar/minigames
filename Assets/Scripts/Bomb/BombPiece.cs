@@ -16,7 +16,7 @@ public class BombPiece : MonoBehaviour
 
     void Update()
     {
-        if (this.name == "PieceStart1" || this.name == "PieceStart4")
+        if (this.name == "PieceStart1" || this.name == "PieceStart3")
         {
             for (int i = 0; i < 5; i++)
             {
@@ -24,17 +24,18 @@ public class BombPiece : MonoBehaviour
                 {
                     int randome = Random.Range(1, 4);
 
-                    if (arrayInOut[randome].gameObject.name != "in" && arrayInOut[randome].gameObject.name != "out")
+                    if (arrayInOut[randome].gameObject.name != "in" && arrayInOut[randome].gameObject.name != "out" && arrayInOut[randome].gameObject.tag != "Finish")
                     {
                         arrayInOut[randome].gameObject.name = "out";
+                        arrayInOut[randome].gameObject.tag = "Finish";
                         arrayInOut[i].gameObject.tag = "Finish";
-                       // arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].SetActive(true); 
-                        //arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].GetComponent<SpriteRenderer>().color = Color.blue ; 
+                        //arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].SetActive(true); 
+                        arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color = arrayInOut[i].gameObject.GetComponent<Renderer>().material.color;
                     }
                 }
             }
         }
-        if (this.name == "PieceStart2" || this.name == "PieceStart3")
+        if (this.name == "PieceStart2")
         {
             for (int i = 0; i < 7; i++)
             {
@@ -46,7 +47,9 @@ public class BombPiece : MonoBehaviour
                     {
                         arrayInOut[randome].gameObject.name = "out";
                         arrayInOut[i].gameObject.tag = "Finish";
-                       // arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].SetActive(true);
+                        arrayInOut[randome].gameObject.tag = "Finish";
+                        //arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].SetActive(true);
+                        arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color = arrayInOut[i].gameObject.GetComponent<Renderer>().material.color;
                     }
                 }
             }
@@ -63,7 +66,8 @@ public class BombPiece : MonoBehaviour
                     {
                         arrayInOut[randome].gameObject.name = "out";
                         arrayInOut[i].gameObject.tag = "Finish";
-                       // arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].SetActive(true);
+                        arrayInOut[randome].gameObject.tag = "Finish";
+                        //arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].SetActive(true);
                         arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color = arrayInOut[i].gameObject.GetComponent<Renderer>().material.color;
 
                     }
@@ -82,7 +86,8 @@ public class BombPiece : MonoBehaviour
                     {
                         arrayInOut[randome].gameObject.name = "out";
                         arrayInOut[i].gameObject.tag = "Finish";
-                       // arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].SetActive(true);
+                        arrayInOut[randome].gameObject.tag = "Finish";
+                        //arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].SetActive(true);
                         arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color = arrayInOut[i].gameObject.GetComponent<Renderer>().material.color;
                     }
                 }

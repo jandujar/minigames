@@ -9,12 +9,14 @@ public class BombStartCable3 : MonoBehaviour {
     public GameObject[] arraySprite;
     public bool cable4On = false;
     public bool colorSet;
+    private bool exitWhile = false;
     private int randomOut;
+    private int enumeratorCount = 0;
     private IEnumerator myCorutine;
 
     void Update()
     {
-        if (cable2.cable3On)
+        if (cable2.cable3On && enumeratorCount == 0)
         {
             myCorutine = StartCable();
             StartCoroutine(myCorutine);
@@ -23,30 +25,26 @@ public class BombStartCable3 : MonoBehaviour {
 
     IEnumerator StartCable()
     {
-        if (!cable2.colorSet && cable2.cable3On)
-        {
-            switch (Random.Range(1, 3))
-            {
-                case 1:
-                    Debug.Log("ok");
-                    colorSet = true;
-                    arrayInOut[0].GetComponent<Renderer>().material.color = Color.red;
-                    break;
-                case 2:
-                    colorSet = false;
-                    Debug.Log("fail");
-                    break;
-            }
-        }
+        enumeratorCount++;
         Debug.Log("cable3");
         arrayInOut[0].gameObject.name = "in";
         arrayInOut[0].gameObject.tag = "Finish";
-        randomOut = Random.Range(1, 7);
-        arrayInOut[randomOut].gameObject.name = "out";
-        // arraySprite[randomOut].SetActive(true);
+        while (!exitWhile)
+        {
+            randomOut = Random.Range(1, 4);
+            Debug.Log("random " + randomOut);
+            if (arrayInOut[randomOut].gameObject.tag != "Finish")
+            {
+                arrayInOut[randomOut].gameObject.name = "out";
+                arrayInOut[randomOut].gameObject.tag = "Finish";
+                arraySprite[randomOut].SetActive(true);
+                arrayInOut[randomOut].GetComponent<Renderer>().material.color = arrayInOut[0].GetComponent<Renderer>().material.color;
+                exitWhile = true;
+            }
+        }
+        yield return new WaitForSeconds(0.5f);
         cable4On = true;
         cable2.cable3On = false;
         StopCoroutine(myCorutine);
-        yield return new WaitForSeconds(0.2f);
     }
 }
