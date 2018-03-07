@@ -62,7 +62,7 @@ public class FroggerGame : MonoBehaviour {
     void Update()
     {
         if (!playing) return;
-        if (Input.GetKeyDown("space"))
+        if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
         {
             Debug.Log("SPACE: " + playerX + " " + playerZ);
             if (!moving && playerX < rows - 1)
