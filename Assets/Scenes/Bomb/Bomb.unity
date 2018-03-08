@@ -12023,13 +12023,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 670871185}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4e105eb072b8974eac697d50d9f4099, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  cable1: {fileID: 1803591727}
-  cable2: {fileID: 1125516392}
-  cable3: {fileID: 976654577}
-  cable4: {fileID: 194600497}
 --- !u!1 &671067796
 GameObject:
   m_ObjectHideFlags: 0
@@ -32061,6 +32057,7 @@ GameObject:
   - component: {fileID: 1619779228}
   - component: {fileID: 1619779227}
   - component: {fileID: 1619779226}
+  - component: {fileID: 1619779229}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -32135,6 +32132,26 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1619779224}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1619779229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1619779224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad5fc0f6ec453474a99e36e2e8c55b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrayExit:
+  - {fileID: 75963065}
+  - {fileID: 171820857}
+  - {fileID: 458316893}
+  - {fileID: 1580086277}
+  - {fileID: 1611419312}
+  - {fileID: 2134951397}
+  - {fileID: 1116736322}
+  - {fileID: 257259330}
 --- !u!1 &1620571172
 GameObject:
   m_ObjectHideFlags: 0
