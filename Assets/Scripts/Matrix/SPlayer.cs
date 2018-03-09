@@ -6,19 +6,24 @@ public class SPlayer : MonoBehaviour
 {
 
     public GameManager gm;
+    private Animator anim;
+    private AudioSource audio;
 
     // Use this for initialization
     void Start()
     {
-
+        anim = GetComponent<Animator>();
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 movement = new Vector3();
-        movement.x = Input.GetAxis("Horizontal");
-        movement.y = Input.GetAxis("Vertical");
+        movement.y = -Input.GetAxis("Horizontal");
+        movement.x = Input.GetAxis("Vertical");
+
+        anim.SetFloat("Speed", movement.magnitude);
 
         RaycastHit2D rc = Physics2D.Raycast(transform.position, movement.normalized, movement.magnitude, LayerMask.NameToLayer("Default"), 1.0f);
 
@@ -34,7 +39,15 @@ public class SPlayer : MonoBehaviour
     {
         if (other.collider.tag == "Finish")
         {
-            gm.EndGame(IMiniGame.MiniGameResult.LOSE);
+            StartCoroutine(Death());
         }
+    }
+
+    private IEnumerator Death()
+    {
+        Time.timeScale = 0.1f;
+        audio.Play();
+        yield return new WaitForSecondsRealtime(1);
+        gm.EndGame(IMiniGame.MiniGameResult.LOSE);
     }
 }

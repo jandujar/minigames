@@ -1,17 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Matrix : IMiniGame
 {
-
-    public bool started = true;
+    public float timer;
     public SPlayer Player;
+    public BulletSpawner bspawner;
+    public Text countdown;
 
     // Use this for initialization
     void Start()
     {
-        started = true;
+
     }
 
     // Update is called once per frame
@@ -22,7 +24,8 @@ public class Matrix : IMiniGame
 
     public override void beginGame()
     {
-        throw new System.NotImplementedException();
+        StartCoroutine(bspawner.SpawnBullet());
+        StartCoroutine(Win());
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
@@ -33,5 +36,14 @@ public class Matrix : IMiniGame
     public override string ToString()
     {
         return "Matrix by Luka";
+    }
+
+    private IEnumerator Win() {
+        for (int i = (int)timer; i >= 0; i--)
+        {
+            countdown.text = i.ToString();
+            yield return new WaitForSeconds(1);
+        }
+        Player.gm.EndGame(MiniGameResult.WIN);
     }
 }
