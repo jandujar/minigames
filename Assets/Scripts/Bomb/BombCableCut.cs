@@ -8,7 +8,7 @@ public class BombCableCut : MonoBehaviour {
 
     private int cableSelect = 0;
     private int preMove;
-
+    public Color cableSelected;
     void Update()
     {
         float move = InputManager.Instance.GetAxisHorizontal();
@@ -39,12 +39,15 @@ public class BombCableCut : MonoBehaviour {
         {
             case 0:
                 this.transform.GetChild(3).transform.position = new Vector3(-1.68f, -3.53f, 7.554f);
+                cableSelected = Color.red;
                 break;
             case 1:
                 this.transform.GetChild(3).transform.position = new Vector3(-0.24f, -3.53f, 7.554f);
+                cableSelected = Color.blue;
                 break;
             case 2:
                 this.transform.GetChild(3).transform.position = new Vector3(1.14f, -3.53f, 7.554f);
+                cableSelected = Color.yellow;
                 break;
         }
 

@@ -5,12 +5,9 @@ using UnityEngine;
 public class BombPiece : MonoBehaviour
 {
 
-    public BombSpriteDoor spriteArray;
-
-
     //PUBLIC
     public GameObject[] arrayInOut;
-
+    public BombSpriteDoor spriteArray;
     //PRIVATE
     private int randomOut;
 
@@ -31,6 +28,18 @@ public class BombPiece : MonoBehaviour
                         arrayInOut[i].gameObject.tag = "Finish";
                         arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].SetActive(true); 
                         arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color = arrayInOut[i].gameObject.GetComponent<Renderer>().material.color;
+                        if (arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color == Color.red)
+                        {
+                            arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].name = "red";
+                        }
+                        else if (arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color == Color.blue)
+                        {
+                            arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].name = "blue";
+                        }
+                        else if (arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color == Color.yellow)
+                        {
+                            arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].name = "yellow";
+                        }
                     }
                 }
             }
@@ -48,8 +57,20 @@ public class BombPiece : MonoBehaviour
                         arrayInOut[randome].gameObject.name = "out";
                         arrayInOut[i].gameObject.tag = "Finish";
                         arrayInOut[randome].gameObject.tag = "Finish";
-                        arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].SetActive(true);
+                        arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].SetActive(true);                    
                         arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color = arrayInOut[i].gameObject.GetComponent<Renderer>().material.color;
+                        if (arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color == Color.red)
+                        {
+                            arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].name = "red";
+                        }
+                        else if (arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color == Color.blue)
+                        {
+                            arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].name = "blue";
+                        }
+                        else if (arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color == Color.yellow)
+                        {
+                            arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].name = "yellow";
+                        }
                     }
                 }
             }
@@ -69,7 +90,18 @@ public class BombPiece : MonoBehaviour
                         arrayInOut[randome].gameObject.tag = "Finish";
                         arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].SetActive(true);
                         arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color = arrayInOut[i].gameObject.GetComponent<Renderer>().material.color;
-
+                        if (arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color == Color.red)
+                        {
+                            arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].name = "red";
+                        }
+                        else if (arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color == Color.blue)
+                        {
+                            arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].name = "blue";
+                        }
+                        else if (arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color == Color.yellow)
+                        {
+                            arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].name = "yellow";
+                        }
                     }
                 }
             }
@@ -89,6 +121,18 @@ public class BombPiece : MonoBehaviour
                         arrayInOut[randome].gameObject.tag = "Finish";
                         arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].SetActive(true);
                         arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color = arrayInOut[i].gameObject.GetComponent<Renderer>().material.color;
+                        if (arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color == Color.red)
+                        {
+                            arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].name = "red";
+                        }
+                        else if (arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color == Color.blue)
+                        {
+                            arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].name = "blue";
+                        }
+                        else if (arrayInOut[randome].gameObject.GetComponent<Renderer>().material.color == Color.yellow)
+                        {
+                            arrayInOut[i].GetComponent<BombSpriteDoor>().spriteArray[randome].name = "yellow";
+                        }
                     }
                 }
             }

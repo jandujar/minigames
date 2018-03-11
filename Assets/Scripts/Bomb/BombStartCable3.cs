@@ -29,7 +29,7 @@ public class BombStartCable3 : MonoBehaviour {
         Debug.Log("cable3");
         arrayInOut[0].gameObject.name = "in";
         arrayInOut[0].gameObject.tag = "Finish";
-        arrayInOut[0].GetComponent<Renderer>().material.color = Color.green;
+        arrayInOut[0].GetComponent<Renderer>().material.color = Color.yellow;
         while (!exitWhile)
         {
             randomOut = Random.Range(1, 4);
@@ -39,6 +39,7 @@ public class BombStartCable3 : MonoBehaviour {
                 arrayInOut[randomOut].gameObject.name = "out";
                 arrayInOut[randomOut].gameObject.tag = "Finish";
                 arraySprite[randomOut].SetActive(true);
+                arraySprite[randomOut].name = "yellow";
                 arrayInOut[randomOut].GetComponent<Renderer>().material.color = arrayInOut[0].GetComponent<Renderer>().material.color;
                 exitWhile = true;
             }

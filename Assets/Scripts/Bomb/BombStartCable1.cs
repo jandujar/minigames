@@ -26,6 +26,7 @@ public class BombStartCable1 : MonoBehaviour {
         arrayInOut[randomOut].gameObject.name = "out";
         arrayInOut[randomOut].gameObject.tag = "Finish";
         arraySprite[randomOut].SetActive(true);
+        arraySprite[randomOut].name = "red";
         arrayInOut[randomOut].GetComponent<Renderer>().material.color = arrayInOut[0].GetComponent<Renderer>().material.color;
         yield return new WaitForSeconds(0.5f);
         cable2On = true;
