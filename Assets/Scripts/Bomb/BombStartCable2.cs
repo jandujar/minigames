@@ -29,7 +29,8 @@ public class BombStartCable2 : MonoBehaviour {
         Debug.Log("cable2");
         arrayInOut[0].gameObject.name = "in";
         arrayInOut[0].gameObject.tag = "Finish";
-        while(!exitWhile){
+        arrayInOut[0].GetComponent<Renderer>().material.color = Color.blue;
+        while (!exitWhile){
             randomOut = Random.Range(1, 6);
             if (arrayInOut[randomOut].gameObject.tag != "Finish" )
             {

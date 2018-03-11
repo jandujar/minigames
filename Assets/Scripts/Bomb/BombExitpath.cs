@@ -16,17 +16,16 @@ public class BombExitpath : MonoBehaviour {
 
     IEnumerator myUpdate()
     {
+        yield return new WaitForSeconds(2f);
         while (true)
         {
-            for (int i = 0; i < 8; i++)
+            int rando = Random.Range(0, 7);
+            if (arrayExit[rando].GetComponent<Renderer>().material.color != Color.white)
             {
-                if (arrayExit[i].GetComponent<Renderer>().material.color == Color.red)
-                {
-                    this.transform.position = new Vector3(arrayExit[i].transform.position.x, this.transform.position.y, this.transform.position.z);
-                    StopCoroutine(bombCorutine);
-                    yield return false;
-                }
-            }
+                this.transform.position = new Vector3(arrayExit[rando].transform.position.x, this.transform.position.y, this.transform.position.z);
+                StopCoroutine(bombCorutine);
+                yield return false;
+            }            
             yield return true;
         }
 
