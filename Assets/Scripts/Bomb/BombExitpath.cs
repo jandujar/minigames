@@ -19,11 +19,12 @@ public class BombExitpath : MonoBehaviour {
     {
         bombCorutine = myUpdate();
         StartCoroutine(bombCorutine);
+        StartCoroutine(StartCountdown());
     }
 
     IEnumerator myUpdate()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2);
         while (true)
         {
             int rando = Random.Range(0, 7);
@@ -36,8 +37,17 @@ public class BombExitpath : MonoBehaviour {
             }            
             yield return true;
         }
-
     }
+
+    IEnumerator StartCountdown()
+    {
+        yield return new WaitForSeconds(3);
+        this.GetComponent<Animation>().Play("countdown");
+        yield return new WaitForSeconds(10);
+        this.GetComponent<Animation>().Stop("countdown");
+    }
+
+
 
     void Update()
     {
