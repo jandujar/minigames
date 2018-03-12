@@ -41,12 +41,9 @@ public class BombExitpath : MonoBehaviour {
 
     IEnumerator StartCountdown()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         this.transform.GetChild(1).gameObject.SetActive(true);
-        yield return new WaitForSeconds(10);
     }
-
-
 
     void Update()
     {
