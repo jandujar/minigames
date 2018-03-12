@@ -42,9 +42,8 @@ public class BombExitpath : MonoBehaviour {
     IEnumerator StartCountdown()
     {
         yield return new WaitForSeconds(3);
-        this.GetComponent<Animation>().Play("countdown");
+        this.transform.GetChild(1).gameObject.SetActive(true);
         yield return new WaitForSeconds(10);
-        this.GetComponent<Animation>().Stop("countdown");
     }
 
 
