@@ -6,12 +6,16 @@ public class stickMovement : MonoBehaviour {
 
     public GameObject leftSpawn;
     public GameObject rightSpawn;
-    public GameObject[] meat;
+    public GameObject meatA;
+    public GameObject meatB;
+    public GameObject meatC;
+    public GameObject meatD;
     Color halfDone;
     Color almostDone;
     Color done;
     int intShader;
     bool canGo;
+    bool win;
 
 
     void Start()
@@ -21,6 +25,11 @@ public class stickMovement : MonoBehaviour {
         almostDone = new Color(107, 61, 31);
         done = new Color(79, 34, 5);
         canGo = true;
+        meatA.SetActive(true);
+        meatB.SetActive(false);
+        meatC.SetActive(false);
+        meatD.SetActive(false);
+        win = false;
     }
 
     void move()
@@ -45,34 +54,23 @@ public class stickMovement : MonoBehaviour {
         Debug.Log(intShader);
         move();
 
-        if(intShader >= 0 && intShader <= 3)
+        if(intShader >= 3 && intShader <= 5)
         {
-            for(int i = 0; i < meat.Length; i++)
-            {
-                Renderer rend = meat[i].GetComponent<Renderer>();
-                rend.material.shader = Shader.Find("Specular");
-                rend.material.SetColor("__MainColor", halfDone);
-            }
+            meatA.SetActive(false);
+            meatB.SetActive(true);
         }
         else
-        if (intShader > 3 && intShader <= 6)
+        if (intShader > 5 && intShader <= 9)
         {
-            for (int i = 0; i < meat.Length; i++)
-            {
-                Renderer rend = meat[i].GetComponent<Renderer>();
-                rend.material.shader = Shader.Find("Specular");
-                rend.material.SetColor("__MainColor", almostDone);
-            }
+            meatB.SetActive(false);
+            meatC.SetActive(true);
         }
         else
-        if (intShader > 6)
+        if (intShader > 9)
         {
-            for (int i = 0; i < meat.Length; i++)
-            {
-                Renderer rend = meat[i].GetComponent<Renderer>();
-                rend.material.shader = Shader.Find("Specular");
-                rend.material.SetColor("__MainColor", done);
-            }
+                meatC.SetActive(false);
+                meatD.SetActive(true);
+                win = true;
         }
 
     }

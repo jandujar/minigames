@@ -9,6 +9,7 @@ public class Brocheta : IMiniGame
 
     private GameManager gameManager;
     public ParticleSystem[] smokes;
+    public GameObject[] area;
     public GameObject stick;
     bool actSmoke;
     int rand;
@@ -19,6 +20,10 @@ public class Brocheta : IMiniGame
     void Start()
     {
         actSmoke = true;
+        for(int i = 0; i < area.Length; i++)
+        {
+            area[rand].SetActive(false);
+        }
     }
     void Update()
     {
@@ -28,6 +33,7 @@ public class Brocheta : IMiniGame
         if (actSmoke)
         {
             smokes[rand].Play();
+            area[rand].SetActive(true);
             StartCoroutine(startSmoke());
         }
 
@@ -41,6 +47,7 @@ public class Brocheta : IMiniGame
         lastRand = rand;
         yield return new WaitForSeconds(1.3f);
         smokes[lastRand].Stop();
+        area[lastRand].SetActive(false);
         actSmoke = true;
     }
 
