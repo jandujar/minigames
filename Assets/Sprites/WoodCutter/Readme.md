@@ -1,0 +1,1 @@
+Realmente la animación de cortar, en el animation solo se coge el primer y último sprite, el del medio no porue es muy lenta la animación sino 
