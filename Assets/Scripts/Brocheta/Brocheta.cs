@@ -9,6 +9,7 @@ public class Brocheta : IMiniGame
 
     private GameManager gameManager;
     public ParticleSystem[] smokes;
+    public GameObject stick;
     bool actSmoke;
     int rand;
     int lastRand;
@@ -21,8 +22,8 @@ public class Brocheta : IMiniGame
     }
     void Update()
     {
+
         rand = UnityEngine.Random.Range(0, smokes.Length);
-        Debug.Log(rand);
 
         if (actSmoke)
         {
@@ -32,11 +33,13 @@ public class Brocheta : IMiniGame
 
     }
     
+    
+
     IEnumerator startSmoke()
     {
         actSmoke = false;
         lastRand = rand;
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(1.3f);
         smokes[lastRand].Stop();
         actSmoke = true;
     }
