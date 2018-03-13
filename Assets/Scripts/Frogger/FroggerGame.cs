@@ -103,7 +103,7 @@ public class FroggerGame : MonoBehaviour {
             StartCoroutine(DestroyPlayer());
         }
 
-        FinishGame(win);
+        StartCoroutine(FinishGame(win));
     }
 
     IEnumerator DestroyPlayer()
