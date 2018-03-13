@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MechanicsManager : MonoBehaviour {
+public class MechanicsManager : MonoBehaviour
+{
 
     [Header("Animations")]
     //public Animator animation_name;
@@ -25,7 +26,6 @@ public class MechanicsManager : MonoBehaviour {
 
     private void Update()
     {
-        if (m_GameState == 0){
             if (Input.anyKeyDown)
             {
                 if (Input.GetButton("Fire1"))
@@ -36,14 +36,11 @@ public class MechanicsManager : MonoBehaviour {
             else
             {
                 m_slider.value -= 0.0045f;
-            } 
-            //Debug.Log("WIN");
-            //m_ropeclass.Win();
-        }
-        else
-        {
-            //Debug.Log("LOSE");
-            //m_ropeclass.Lose();
-        }
-        }
+            }
+        //Debug.Log("WIN");
+        //m_ropeclass.Win();
+        if (m_slider.value == 0) { Debug.Log("LOSE"); m_ropeclass.Lose(); }
+        if (m_slider.value == 1) { Debug.Log("WIN"); m_ropeclass.Win(); }
     }
+    
+}
