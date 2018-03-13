@@ -3,7 +3,6 @@ using System.Collections;
 
 public class JoystickMovement : MonoBehaviour {
 	public float speed;
-	private Rigidbody rig;
 	private float rStickX;
 	private float rStickY;
 	private Vector3 movement;
@@ -13,10 +12,6 @@ public class JoystickMovement : MonoBehaviour {
 	public float maxdist;
 	public Vector3 posToLook;
 	public GameObject manager;
-	// Use this for initialization
-	void Start () {
-		rig = GetComponent<Rigidbody>();
-	}
 
 	void Update() {
 		if (manager.GetComponent<ShootingManager> ().getStartGame ()) {

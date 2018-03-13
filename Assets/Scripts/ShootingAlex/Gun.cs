@@ -14,8 +14,6 @@ public class Gun : MonoBehaviour {
 	private bool shooting;
 	private SphereCollider collBullet;
 	private Rigidbody rbdBullet;
-	private Vector3 startPosBullet;
-	private Animator animController;
 	private AudioSource source;
 
 
@@ -26,8 +24,6 @@ public class Gun : MonoBehaviour {
 		rbdBullet = bullet.GetComponent<Rigidbody> (); 
 		collBullet.enabled = false;
 		rbdBullet.useGravity = false;
-		startPosBullet = bullet.transform.position;
-		animController = this.GetComponent<Animator> ();
 		source = this.GetComponent<AudioSource> ();
 	}
 
