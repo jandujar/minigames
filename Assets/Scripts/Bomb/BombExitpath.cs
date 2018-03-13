@@ -70,6 +70,7 @@ public class BombExitpath : MonoBehaviour {
                     renderOfAllCables[i].color = colorOfBomb;
                 }
             }
+            this.transform.GetChild(1).gameObject.GetComponent<Animator>().enabled = false;
             //WIN
         }
         else if (colorOfBomb != cableCut.cableSelected && Cut)
@@ -81,6 +82,7 @@ public class BombExitpath : MonoBehaviour {
                     renderOfAllCables[i].color = colorOfBomb;
                 }
             }
+            this.transform.GetChild(1).gameObject.GetComponent<Animator>().speed = 20;
             //LOSE
         }
     }

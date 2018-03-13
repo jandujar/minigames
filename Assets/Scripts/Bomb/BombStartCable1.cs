@@ -18,7 +18,6 @@ public class BombStartCable1 : MonoBehaviour {
 
     IEnumerator StartCable()
     {
-        Debug.Log("cable1");
         arrayInOut[0].gameObject.name = "in";
         arrayInOut[0].gameObject.tag = "Finish";
         arrayInOut[0].GetComponent<Renderer>().material.color = Color.red;
