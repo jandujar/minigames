@@ -43,22 +43,28 @@ public class BombExitpath : MonoBehaviour {
     IEnumerator StartCountdown()
     {
         yield return new WaitForSeconds(4);
-        this.transform.GetChild(1).gameObject.SetActive(true);
-        this.transform.GetChild(1).transform.GetComponent<AudioSource>().Play();       
+        this.transform.GetChild(0).gameObject.SetActive(true);
+        this.transform.GetChild(0).transform.GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(11.5f);
+        StartCoroutine(CallEnd("LOSE"));
     }
 
     IEnumerator CallEnd(string end)
     {
         yield return new WaitForSeconds(0.4f);
-        this.transform.GetChild(1).transform.GetComponent<AudioSource>().Stop();
-        yield return new WaitForSeconds(2);
+        this.transform.GetChild(0).transform.GetComponent<AudioSource>().Stop();
+        yield return new WaitForSeconds(1);
         if (end == "WIN")
         {
+            GameObject.Find("bombWin").transform.position = Vector3.zero;
+            yield return new WaitForSeconds(1);
             gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
             yield return true;
         }
         if (end == "LOSE")
         {
+            GameObject.Find("bombLose").transform.position = Vector3.zero;
+            yield return new WaitForSeconds(1);
             gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
             yield return true;
         }
@@ -89,8 +95,8 @@ public class BombExitpath : MonoBehaviour {
                     renderOfAllCables[i].color = colorOfBomb;
                 }
             }
-            this.transform.GetChild(1).gameObject.GetComponent<Animator>().enabled = false;
-            this.transform.GetChild(1).transform.GetComponent<AudioSource>().Stop();
+            this.transform.GetChild(0).gameObject.GetComponent<Animator>().enabled = false;
+            this.transform.GetChild(0).transform.GetComponent<AudioSource>().Stop();
             StartCoroutine(CallEnd("WIN"));
         }
         else if (colorOfBomb != cableCut.cableSelected && Cut)
@@ -102,8 +108,8 @@ public class BombExitpath : MonoBehaviour {
                     renderOfAllCables[i].color = colorOfBomb;
                 }
             }
-            this.transform.GetChild(1).gameObject.GetComponent<Animator>().speed = 20;
-            this.transform.GetChild(1).transform.GetComponent<AudioSource>().pitch = 20;
+            this.transform.GetChild(0).gameObject.GetComponent<Animator>().speed = 20;
+            this.transform.GetChild(0).transform.GetComponent<AudioSource>().pitch = 20;
             StartCoroutine(CallEnd("LOSE"));
         }
     }
