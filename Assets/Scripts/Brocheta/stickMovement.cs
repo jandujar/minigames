@@ -6,7 +6,22 @@ public class stickMovement : MonoBehaviour {
 
     public GameObject leftSpawn;
     public GameObject rightSpawn;
+    public GameObject[] meat;
+    Color halfDone;
+    Color almostDone;
+    Color done;
+    int intShader;
+    bool canGo;
 
+
+    void Start()
+    {
+        intShader = 0;
+        halfDone = new Color(150, 88, 49);
+        almostDone = new Color(107, 61, 31);
+        done = new Color(79, 34, 5);
+        canGo = true;
+    }
 
     void move()
     {
@@ -17,21 +32,71 @@ public class stickMovement : MonoBehaviour {
         transform.Translate(0, 0, x);
     }
 	
+    IEnumerator inSmoke()
+    {
+        canGo = false;
+        intShader++;
+        yield return new WaitForSeconds(1);
+        canGo = true;
+    }
 
 	void Update () {
+
+        Debug.Log(intShader);
         move();
-	}
+
+        if(intShader >= 0 && intShader <= 3)
+        {
+            for(int i = 0; i < meat.Length; i++)
+            {
+                Renderer rend = meat[i].GetComponent<Renderer>();
+                rend.material.shader = Shader.Find("Specular");
+                rend.material.SetColor("__MainColor", halfDone);
+            }
+        }
+        else
+        if (intShader > 3 && intShader <= 6)
+        {
+            for (int i = 0; i < meat.Length; i++)
+            {
+                Renderer rend = meat[i].GetComponent<Renderer>();
+                rend.material.shader = Shader.Find("Specular");
+                rend.material.SetColor("__MainColor", almostDone);
+            }
+        }
+        else
+        if (intShader > 6)
+        {
+            for (int i = 0; i < meat.Length; i++)
+            {
+                Renderer rend = meat[i].GetComponent<Renderer>();
+                rend.material.shader = Shader.Find("Specular");
+                rend.material.SetColor("__MainColor", done);
+            }
+        }
+
+    }
 
     void OnTriggerEnter(Collider other)
     {
         if(other.name == "left")
         {
-            Debug.Log("entró en left");
             gameObject.transform.position = leftSpawn.transform.position;
-        } else if (other.name == "right")
+        }
+        else if (other.name == "right")
         {
-            Debug.Log("entró en right");
             gameObject.transform.position = rightSpawn.transform.position;
+        }
+
+    }
+    void OnTriggerStay(Collider other)
+    {
+        if (other.name == "area")
+        {
+            if (canGo)
+            {
+                StartCoroutine(inSmoke());
+            }
         }
     }
 }
