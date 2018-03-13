@@ -19,10 +19,15 @@ public class MechanicsManager : MonoBehaviour
     private RopeScript m_ropeclass;
 
     [Header("Variables")]
+    public GameObject m_sprite;
     private int m_GameState;
+    private Vector3 m_position;
     public int timeleft = 10;
 
-
+    private void Start()
+    {
+        m_position = gameObject.transform.position;
+    }
 
     private void Update()
     {
@@ -31,7 +36,10 @@ public class MechanicsManager : MonoBehaviour
                 if (Input.GetButton("Fire1"))
                 {
                     m_slider.value += 0.04f;
-                }
+                    m_position.x = m_position.x - 1;
+
+
+            }
             }
             else
             {
