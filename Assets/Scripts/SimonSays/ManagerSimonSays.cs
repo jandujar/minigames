@@ -6,7 +6,13 @@ public class ManagerSimonSays : MonoBehaviour {
 
 	//List All objective
 	public GameObject[] buttons;
+	//Object Render Simon Buttons
+	public GameObject simon;
+	//List of All sprite render of Simon
+	public Sprite[] sprSimon;
 
+	//Sprite Render Simon
+	private SpriteRenderer sprRenderSimon;
 	//Manager Game
 	private GameManager gm;
 	//Source Audio
@@ -34,6 +40,7 @@ public class ManagerSimonSays : MonoBehaviour {
 		count = 0;
 		failGame = false;
 		source = this.GetComponent<AudioSource> ();
+		sprRenderSimon = simon.GetComponent<SpriteRenderer> ();
 	}
 
 	public void InitGame(GameManager manager){
@@ -48,9 +55,17 @@ public class ManagerSimonSays : MonoBehaviour {
 		randButton = Random.Range (0, buttons.Length);
 		//Llamar funcion encendido Correcto
 		buttons [randButton].GetComponent<ButtonSimonSays>().emitLumus(true);
+
+		//Set Simon Color
+		sprRenderSimon.sprite = sprSimon [randButton];
+
 		source.PlayOneShot (beeps[randButton], 0.5f);
 		repeatButtons.Add(randButton);
 		yield return new WaitForSecondsRealtime (1.5f);
+
+		//Set Normal Simon
+		sprRenderSimon.sprite = sprSimon [sprSimon.Length - 3];
+
 		count++;
 		if (count < numRepeat) {
 			StartCoroutine (waitLumus ());
@@ -63,8 +78,10 @@ public class ManagerSimonSays : MonoBehaviour {
 		for (int i = 0; i < buttons.Length; i++) {
 			buttons [i].GetComponent<ButtonSimonSays> ().emitLumus (pulse);
 			if (pulse) {
+				sprRenderSimon.sprite = sprSimon [sprSimon.Length - 2];
 				source.PlayOneShot (beeps [beeps.Length - 1], 0.5f);
 			} else {
+				sprRenderSimon.sprite = sprSimon [sprSimon.Length - 1];
 				source.PlayOneShot (beeps [beeps.Length - 2], 0.5f);
 			}
 		}
@@ -92,13 +109,20 @@ public class ManagerSimonSays : MonoBehaviour {
 
 		if (!failGame) {
 			source.PlayOneShot (beeps[buttonNum], 0.5f);
+			sprRenderSimon.sprite = sprSimon [buttonNum];
 			buttons [buttonNum].GetComponent<ButtonSimonSays> ().emitLumus (true);
+			StartCoroutine (SimonStable ());
 
 			if (buttonsPlayer.Count == repeatButtons.Count) {
 				StartCoroutine(butttonPulse(true));
 			}
 		}
 
+	}
+
+	private IEnumerator SimonStable(){
+		yield return new WaitForSeconds (1.5f);
+		sprRenderSimon.sprite = sprSimon [sprSimon.Length - 3];
 	}
 
 	//*******************************************************************************************SETTERS

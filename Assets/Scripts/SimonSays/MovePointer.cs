@@ -4,7 +4,6 @@ using System.Collections;
 public class MovePointer : MonoBehaviour {
 	public float speed;
 	public GameObject SimonManager;
-	private Rigidbody rig;
 	private BoxCollider colliderBox;
 	public Transform mouseposition;
 
@@ -14,7 +13,6 @@ public class MovePointer : MonoBehaviour {
 	//public float maxdist;
 	// Use this for initialization
 	void Start () {
-		rig = GetComponent<Rigidbody>();
 		colliderBox = this.GetComponent<BoxCollider> ();
 	}
 
