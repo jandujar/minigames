@@ -17,7 +17,7 @@ public class Game : IMiniGame {
     private GameObject canvasSlider;
     [SerializeField]
     private GameManager gm;
-    private bool isLaunched = false;
+    public bool isLaunched = false;
     [SerializeField] private Text txt;
     [SerializeField]
     private Rigidbody bottle;
