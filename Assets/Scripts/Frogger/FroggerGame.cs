@@ -113,6 +113,7 @@ public class FroggerGame : MonoBehaviour {
         partLose.SetActive(true);
     }
 
+
     IEnumerator GoUp()
     {
         float dt = Time.deltaTime;
