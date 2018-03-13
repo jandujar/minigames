@@ -297,6 +297,7 @@ MonoBehaviour:
   meatB: {fileID: 408684078}
   meatC: {fileID: 960222913}
   meatD: {fileID: 457080889}
+  win: 0
 --- !u!54 &157501611
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9064,7 +9065,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1460516886064934, guid: 3ead1508950f7e94c921970a52af1be5, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ead1508950f7e94c921970a52af1be5, type: 2}
@@ -12922,6 +12923,7 @@ MonoBehaviour:
   - {fileID: 1048169212}
   - {fileID: 592188980}
   stick: {fileID: 157501609}
+  myText: {fileID: 1960168596}
 --- !u!1 &1766294262
 GameObject:
   m_ObjectHideFlags: 0
@@ -13153,7 +13155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 659.59, y: 232.89}
+  m_AnchoredPosition: {x: 103, y: 232.89}
   m_SizeDelta: {x: 254.83, y: 316.61}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1960168596
@@ -13177,7 +13179,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 300
+    m_FontSize: 219
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10

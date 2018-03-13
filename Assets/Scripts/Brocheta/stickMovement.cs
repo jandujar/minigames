@@ -15,7 +15,7 @@ public class stickMovement : MonoBehaviour {
     Color done;
     int intShader;
     bool canGo;
-    bool win;
+    public bool win;
 
 
     void Start()
@@ -50,23 +50,21 @@ public class stickMovement : MonoBehaviour {
     }
 
 	void Update () {
-
-        Debug.Log(intShader);
         move();
 
-        if(intShader >= 3 && intShader <= 5)
+        if(intShader >= 1 && intShader <= 2)
         {
             meatA.SetActive(false);
             meatB.SetActive(true);
         }
         else
-        if (intShader > 5 && intShader <= 9)
+        if (intShader > 2 && intShader <= 5)
         {
             meatB.SetActive(false);
             meatC.SetActive(true);
         }
         else
-        if (intShader > 9)
+        if (intShader > 5)
         {
                 meatC.SetActive(false);
                 meatD.SetActive(true);

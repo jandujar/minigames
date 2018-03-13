@@ -11,22 +11,32 @@ public class Brocheta : IMiniGame
     public ParticleSystem[] smokes;
     public GameObject[] area;
     public GameObject stick;
+    public Text myText;
+    int textInt;
     bool actSmoke;
     int rand;
     int lastRand;
 
-
-
     void Start()
     {
+        textInt = 15;
         actSmoke = true;
         for(int i = 0; i < area.Length; i++)
         {
             area[rand].SetActive(false);
         }
+        StartCoroutine(intLess());
     }
     void Update()
     {
+        myText.text = "" + textInt;
+
+        if (stick.GetComponent<stickMovement>().win == true)
+        {
+            myText.text = "YOU WIN!";
+            textInt = 999;
+            StartCoroutine(Winner());
+        }
 
         rand = UnityEngine.Random.Range(0, smokes.Length);
 
@@ -36,10 +46,30 @@ public class Brocheta : IMiniGame
             area[rand].SetActive(true);
             StartCoroutine(startSmoke());
         }
+        if(textInt == 0)
+        {
+            myText.text = "YOU LOST!";
+            StartCoroutine(Loser());
+        }
 
     }
-    
-    
+
+    IEnumerator intLess()
+    {
+        textInt--;
+        yield return new WaitForSeconds(1);
+        StartCoroutine(intLess());
+    }
+    IEnumerator Winner(){
+        yield return new WaitForSeconds(2);
+        gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+    }
+
+    IEnumerator Loser()
+    {
+        yield return new WaitForSeconds(2);
+        gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+    }
 
     IEnumerator startSmoke()
     {
@@ -58,9 +88,7 @@ public class Brocheta : IMiniGame
 
     public override void beginGame()
     {
-    }
 
-    //gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
-    //gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+    }
 
 }
