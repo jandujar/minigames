@@ -8,8 +8,6 @@ public class Objective : MonoBehaviour {
 	private SpriteRenderer spr;
 	private int randSpr;
 	private bool colision;
-	private bool target;
-	private Vector3 startRotation;
 	private AudioSource source;
 	public Sprite[] sprEnemy;
 	public Sprite[] sprAlly;
@@ -18,7 +16,6 @@ public class Objective : MonoBehaviour {
 
 	public void Awake(){
 		spr = this.GetComponent<SpriteRenderer> ();
-		startRotation = this.transform.rotation.eulerAngles;
 		source = this.GetComponent<AudioSource> ();
 	}
 
@@ -33,9 +30,6 @@ public class Objective : MonoBehaviour {
 			spr.sprite = sprEnemy [randSpr];
 			source.PlayOneShot (scream[1], 0.5f);
 		}
-
-		target = valid;
-
 
 		StartCoroutine (ObjectiveDesapear (delay, valid));
 	}
