@@ -9,6 +9,7 @@ public class BombExitpath : MonoBehaviour {
     public BombCableCut cableCut;
     public GameObject[] arrayExit;
     public Color colorOfBomb;
+    public GameManager gameManager;
     //PRIVATE
     private IEnumerator bombCorutine;
     private bool Cut = false;
@@ -43,6 +44,24 @@ public class BombExitpath : MonoBehaviour {
     {
         yield return new WaitForSeconds(4);
         this.transform.GetChild(1).gameObject.SetActive(true);
+        this.transform.GetChild(1).transform.GetComponent<AudioSource>().Play();       
+    }
+
+    IEnumerator CallEnd(string end)
+    {
+        yield return new WaitForSeconds(0.4f);
+        this.transform.GetChild(1).transform.GetComponent<AudioSource>().Stop();
+        yield return new WaitForSeconds(2);
+        if (end == "WIN")
+        {
+            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+            yield return true;
+        }
+        if (end == "LOSE")
+        {
+            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+            yield return true;
+        }
     }
 
     void Update()
@@ -71,7 +90,8 @@ public class BombExitpath : MonoBehaviour {
                 }
             }
             this.transform.GetChild(1).gameObject.GetComponent<Animator>().enabled = false;
-            //WIN
+            this.transform.GetChild(1).transform.GetComponent<AudioSource>().Stop();
+            StartCoroutine(CallEnd("WIN"));
         }
         else if (colorOfBomb != cableCut.cableSelected && Cut)
         {
@@ -83,7 +103,8 @@ public class BombExitpath : MonoBehaviour {
                 }
             }
             this.transform.GetChild(1).gameObject.GetComponent<Animator>().speed = 20;
-            //LOSE
+            this.transform.GetChild(1).transform.GetComponent<AudioSource>().pitch = 20;
+            StartCoroutine(CallEnd("LOSE"));
         }
     }
 

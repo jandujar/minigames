@@ -32,7 +32,6 @@ public class BombStartCable3 : MonoBehaviour {
         while (!exitWhile)
         {
             randomOut = Random.Range(1, 4);
-            Debug.Log("random " + randomOut);
             {
                 arrayInOut[randomOut].gameObject.name = "out";
                 arrayInOut[randomOut].gameObject.tag = "Finish";
