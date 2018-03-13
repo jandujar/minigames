@@ -6,11 +6,15 @@ public class checkTrigger : MonoBehaviour
 {
     public float Xmove;
 
+    public GameObject aim;
     bool triggered;
     bool theBool;
     public bool gameStop;
     public bool win;
+    bool notLost;
+    public bool lose;
     public AudioSource agentSound;
+    public AudioSource bullet;
 
     void Start()
     {
@@ -18,54 +22,26 @@ public class checkTrigger : MonoBehaviour
         theBool = false;
         gameStop = false;
         win = false;
+        notLost = true;
     }
 
-    void Update()
+    void OnTriggerStay(Collider other)
     {
-
-        if (!gameStop) { 
-            if (!theBool)
+        if (other.gameObject.name == "enters" && notLost)
+        {
+            if (Input.GetButtonDown("Fire1"))
             {
-                transform.position = new Vector3(transform.position.x + Xmove, transform.position.y, transform.position.z);
+                win = true;
             }
-            else if (theBool)
+        } else if (other.gameObject.name == "lose" && !win)
+        {
+            if (Input.GetButtonDown("Fire1"))
             {
-                transform.position = new Vector3(transform.position.x - Xmove, transform.position.y, transform.position.z);
+                notLost = false;
+                win = false;
+                lose = true;
             }
-        }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name == "left")
-        {
-            theBool = false;
-        } else if (other.gameObject.name == "right")
-        {
-            theBool = true;
-        }
-    }
-
-        void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.name == "interactArea")
-        {
-            triggered = true;
-        }
-        
-        if (triggered && Input.GetButtonDown("Fire1"))
-        {
-            win = true;
-            agentSound.Play();
-        }
-        
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.name == "interactArea")
-        {
-            triggered = false;
+           
         }
     }
 }

@@ -8,66 +8,82 @@ public class SavePresident : IMiniGame
 {
 
     public GameObject agent;
-    public GameObject agentTargetPos;
+    public GameObject agentMiss;
+    public GameObject aim;
+    public GameObject president;
     private GameManager gameManager;
+    public GameObject win;
+    bool notLose;
     public Text myText;
     public int countdown;
     bool startCountdown;
     bool stopCountdown;
-
-    public GameObject slider;
+    public AudioSource scream;
+    public AudioSource bullet;
+    bool cantWin;
+    bool winPlaying;
+    bool losePlaying;
     bool moveAgent;
-
+    bool canPlay;
     bool toWin;
+    public ParticleSystem fx;
 
     void Start()
     {
-        StartCoroutine(countToDie());
+        notLose = false;
         moveAgent = false;
+        win.SetActive(false);
+        cantWin = false;
+        losePlaying = false;
+        winPlaying = false;
+    }
+
+    IEnumerator lost()
+    {
+        yield return new WaitForSeconds(2);
+        president.SetActive(false);
+        bullet.Play();
+        fx.Play();
+        yield return new WaitForSeconds(0.5f);
+        gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+
+    }
+
+    IEnumerator winner()
+    {
+        yield return new WaitForSeconds(2);
+        bullet.Play();
+        fx.Play();
+        win.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+
     }
 
     void Update()
     {
-        if (startCountdown) { 
-            myText.text = "" + countdown;
-        }
+        toWin = aim.GetComponent<checkTrigger>().win;
+        if (canPlay) {
 
-        if (stopCountdown)
-        {
-            myText.text = "";
-            countdown = 999;
-        }
+            if (toWin && Input.GetButton("Fire1") && !cantWin && !winPlaying)
+            {
+                winPlaying = true;
+                notLose = true;
+                agent.GetComponent<Animation>().Play();
+                scream.Play();
+                StartCoroutine(winner());
+            }
 
-        if (countdown <= 0)
-        {
-            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
-        }
-
-        if (moveAgent)
-        {
-            stopCountdown = true;
-            agent.GetComponent<Animation>().Play();
-            toWin = true;
-        }
-
-        toWin = slider.GetComponent<checkTrigger>().win;
-
-        if (toWin)
-        {
-            StartCoroutine(Winner());
+            if (!toWin && Input.GetButton("Fire1") && !notLose && !losePlaying)
+            {
+                losePlaying = true;
+                cantWin = true;
+                agentMiss.GetComponent<Animation>().Play();
+                scream.Play();
+                StartCoroutine(lost());
+            }
 
         }
-
-    }
-
-    IEnumerator countToDie()
-    {
-        yield return new WaitForSeconds(1);
-        if (countdown > 0)
-        {
-            countdown--;
-        }
-        StartCoroutine(countToDie());
     }
 
     IEnumerator Winner()
@@ -85,6 +101,7 @@ public class SavePresident : IMiniGame
 
     public override void beginGame()
     {
-        startCountdown = true;
+        aim.GetComponent<Animation>().Play();
+        canPlay = true;
     }
 }
