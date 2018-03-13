@@ -187,6 +187,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1128365948}
+  - component: {fileID: 1128365950}
+  - component: {fileID: 1128365949}
   m_Layer: 0
   m_Name: ScriptManager
   m_TagString: Untagged
@@ -207,6 +209,29 @@ Transform:
   m_Father: {fileID: 670871186}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1128365949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1128365947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e2f61efd1c9a848a9dbf21cb9e7520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeleft: 10
+--- !u!114 &1128365950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1128365947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2496f940d61fc846b34a56f07062f76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1196448383
 Prefab:
   m_ObjectHideFlags: 0
@@ -248,7 +273,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1460516886064934, guid: 3ead1508950f7e94c921970a52af1be5, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ead1508950f7e94c921970a52af1be5, type: 2}

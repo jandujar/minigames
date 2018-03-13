@@ -6,13 +6,13 @@ using UnityEngine;
 public class RopeScript : IMiniGame
 {
     private GameManager gameManager;
-   // public Canvas canvasObject;
-
+    //public Canvas canvasObject;
+        
     void Awake()
     {
         //Init Pong
         Debug.Log("init");
-       // canvasObject.GetComponent<Canvas>().enabled = true;
+        //canvasObject.GetComponent<Canvas>().enabled = true;
     }
 
     public override void beginGame()

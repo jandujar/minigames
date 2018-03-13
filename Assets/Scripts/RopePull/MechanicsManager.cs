@@ -7,13 +7,15 @@ public class MechanicsManager : MonoBehaviour {
 
     [Header("Animations")]
     //public Animator animation_name;
-   
 
     [Header("CanvasText")]
     //public GameObject text_name;
-  
+
+    [Header("Slider")]
+    public Slider m_slider;
+
     [Header("Classes")]
-    //public VeganKnows Class_name;
+    private RopeScript m_ropeclass;
 
     [Header("Variables")]
     private int m_GameState;
@@ -23,13 +25,25 @@ public class MechanicsManager : MonoBehaviour {
 
     private void Update()
     {
-        if (m_GameState == 0)
-        {
-        }
-            while (timeleft > -1)
+        if (m_GameState == 0){
+            if (Input.anyKeyDown)
             {
-
+                if (Input.GetButton("Fire1"))
+                {
+                    m_slider.value += 0.04f;
+                }
             }
-            Debug.Log("LOSER");
+            else
+            {
+                m_slider.value -= 0.0045f;
+            } 
+            //Debug.Log("WIN");
+            //m_ropeclass.Win();
+        }
+        else
+        {
+            //Debug.Log("LOSE");
+            //m_ropeclass.Lose();
+        }
         }
     }
