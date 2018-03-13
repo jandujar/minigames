@@ -26,6 +26,7 @@ public class Matrix : IMiniGame
     {
         StartCoroutine(bspawner.SpawnBullet());
         StartCoroutine(Win());
+        Player.beginPlay = true;
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)

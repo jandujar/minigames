@@ -8,17 +8,24 @@ public class SPlayer : MonoBehaviour
     public GameManager gm;
     private Animator anim;
     private AudioSource audio;
+    public bool beginPlay = false;
 
     // Use this for initialization
     void Start()
     {
         anim = GetComponent<Animator>();
         audio = GetComponent<AudioSource>();
+        beginPlay = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!beginPlay)
+        {
+            return;
+        }
+
         Vector3 movement = new Vector3();
         movement.y = -Input.GetAxis("Horizontal");
         movement.x = Input.GetAxis("Vertical");
