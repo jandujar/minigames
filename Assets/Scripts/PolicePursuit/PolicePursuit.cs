@@ -59,15 +59,6 @@ public class PolicePursuit : IMiniGame {
             trafficLightsGreen[i].SetActive(false);
         }
         int redLength = Random.Range(2, 3);
-        int greenLength = 0;
-        if (redLength == 2)
-        {
-            greenLength = 3;
-        }
-        else
-        {
-            greenLength = 2;
-        }
         int randomTrafficLightRed = 0;
         for (int i = 0; i < redLength; i++)
         {
