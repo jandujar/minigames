@@ -21,7 +21,7 @@ public class MenuManager : Singleton<MenuManager> {
 		PICKFISH,
 		DUCKSHOOTER,
 		EQUILIBRIO,
-		MOVIMIENTO,
+		//MOVIMIENTO,
 		MATHEMATICS,
 		VEGAN,
 		SAFEBOX,
@@ -29,6 +29,18 @@ public class MenuManager : Singleton<MenuManager> {
         FLAPPY,
         POLICE,
         DUELO,
+		//FRISBEE,
+		//BROCHETA,
+		BURGUER,
+		FROGGER,
+		KNIFETHROW,
+		MACETA,
+		SAFEPRESIDENT,
+		SHOOTINGALEX,
+		SHOOTCAN,
+		SIMON,
+		WOODCUTTER,
+		ZUMBA,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -40,14 +52,6 @@ public class MenuManager : Singleton<MenuManager> {
     public void LaunchMiniGame(){
 
 		Debug.LogError ("Launch MiniGame: " + currentGame.ToString ());
-
-		if (currentGame == MINIGAMES_ENUM.BOTTLEFLIP) {
-			currentGame = MINIGAMES_ENUM.DYKTW;
-		} else if (currentGame == MINIGAMES_ENUM.GITAHIRO) {
-			currentGame = MINIGAMES_ENUM.KNIFEFINGERS;
-		} else if (currentGame == MINIGAMES_ENUM.MOVIMIENTO) {
-            currentGame = MINIGAMES_ENUM.MATHEMATICS;
-		}
 
 		switch (currentGame) {
 		case MINIGAMES_ENUM.PONG:
@@ -86,9 +90,6 @@ public class MenuManager : Singleton<MenuManager> {
 		case MINIGAMES_ENUM.EQUILIBRIO:
 			SceneManager.LoadScene("Equilibrio");
 			break;
-		case MINIGAMES_ENUM.MOVIMIENTO:
-			SceneManager.LoadScene("Movimiento");
-			break;
 		case MINIGAMES_ENUM.MATHEMATICS:
 			SceneManager.LoadScene("MathematicalOperations");
 			break;
@@ -109,7 +110,50 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.DUELO:
             SceneManager.LoadScene("KauboiDueru");
+			break;
+		case MINIGAMES_ENUM.FROGGER:
+			SceneManager.LoadScene("Frogger");
+			break;
+		case MINIGAMES_ENUM.BURGUER:
+			SceneManager.LoadScene("BurgerBuilder");
+			break;
+		case MINIGAMES_ENUM.KNIFETHROW:
+			SceneManager.LoadScene("KnifeThrow");
+			break;
+		case MINIGAMES_ENUM.MACETA:
+			SceneManager.LoadScene("Maceta");
+			break;
+		case MINIGAMES_ENUM.SAFEPRESIDENT:
+			SceneManager.LoadScene("SavePresident");
+			break;
+		case MINIGAMES_ENUM.SHOOTINGALEX:
+			SceneManager.LoadScene("ShootingAlex");
+			break;
+		case MINIGAMES_ENUM.SHOOTCAN:
+			SceneManager.LoadScene("ShotTheCan");
+			break;
+		case MINIGAMES_ENUM.SIMON:
+			SceneManager.LoadScene("SimonSays");
+			break;
+		case MINIGAMES_ENUM.WOODCUTTER:
+			SceneManager.LoadScene("WoodCutter");
+			break;
+		case MINIGAMES_ENUM.ZUMBA:
+			SceneManager.LoadScene("ZumbaClass");
+			break;
+		
+		/* Not working games 
+		case MINIGAMES_ENUM.FRISBEE:
+			SceneManager.LoadScene("Frisbee");
             break;
+		case MINIGAMES_ENUM.MOVIMIENTO:
+			SceneManager.LoadScene("Movimiento");
+			break;
+		case MINIGAMES_ENUM.BROCHETA:
+			SceneManager.LoadScene("Brocheta");
+			break;
+
+		*/
 		case MINIGAMES_ENUM.END:
 		default:
 			SceneManager.LoadScene ("Pong");
