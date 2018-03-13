@@ -12,6 +12,7 @@ public class Brocheta : IMiniGame
     public GameObject[] area;
     public GameObject stick;
     public Text myText;
+    public GameObject theText;
     int textInt;
     bool actSmoke;
     int rand;
@@ -67,7 +68,7 @@ public class Brocheta : IMiniGame
 
     IEnumerator Loser()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.3f);
         gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
     }
 
@@ -88,7 +89,7 @@ public class Brocheta : IMiniGame
 
     public override void beginGame()
     {
-
+        theText.SetActive(true);
     }
 
 }

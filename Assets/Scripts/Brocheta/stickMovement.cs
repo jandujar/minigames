@@ -58,13 +58,13 @@ public class stickMovement : MonoBehaviour {
             meatB.SetActive(true);
         }
         else
-        if (intShader > 2 && intShader <= 5)
+        if (intShader > 2 && intShader <= 4)
         {
             meatB.SetActive(false);
             meatC.SetActive(true);
         }
         else
-        if (intShader > 5)
+        if (intShader > 4)
         {
                 meatC.SetActive(false);
                 meatD.SetActive(true);
