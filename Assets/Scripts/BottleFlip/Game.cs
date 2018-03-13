@@ -25,14 +25,9 @@ public class Game : IMiniGame {
 
     [SerializeField]
     private float time;
-    public AudioClip Win, Lose;
-    private AudioSource source;
 
-    // Use this for initialization
-    void Start () {
-
-        source = GetComponent<AudioSource>();
-        
+	// Use this for initialization
+	void Start () {
     }
 	
 	// Update is called once per frame
@@ -54,14 +49,10 @@ public class Game : IMiniGame {
                     if (Mathf.Abs(bottle.rotation.eulerAngles.z) <= 15f)
                     {
                         StartCoroutine(EndWin());
-                        source.PlayOneShot(Win, 1f);
-
                     }
                     else
                     {
                         StartCoroutine(EndLose());
-                        source.PlayOneShot(Lose, 1f);
-
                     }
                 }
             }
@@ -123,8 +114,6 @@ public class Game : IMiniGame {
         if (!isLaunched && power <= 0)
         {
             gm.EndGame(IMiniGame.MiniGameResult.LOSE);
-            source.PlayOneShot(Lose, 1f);
-
         }
     }
     public override string ToString()
