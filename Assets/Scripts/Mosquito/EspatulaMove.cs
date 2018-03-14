@@ -8,7 +8,6 @@ public class EspatulaMove : MonoBehaviour
 
     public AudioClip mosquitoSplat;
     private AudioSource source;
-    public bool splatCanPlay;
     public float speed = 1;
     public float pivotOffset = 5;
     public float maxVertical, maxHorizontal;
@@ -21,13 +20,13 @@ public class EspatulaMove : MonoBehaviour
     public int tries = 3;
 
     public Text txt;
+	bool ended = false;
     public void init(GameManager gm)
     {
 
         gameManager = gm;
-        txt.text = tries.ToString();
-        source = GetComponent<AudioSource>();
-        splatCanPlay = false;
+		txt.text = "you have  " + tries.ToString() + " tries to kill the mosquito";
+		//source = GetComponent<AudioSource>();
     }
 
     // Use this for initialization
@@ -38,7 +37,7 @@ public class EspatulaMove : MonoBehaviour
 
         maxHorizontal = maxVertical * Screen.width / Screen.height;
         anim = GetComponent<Animator>();
-        //source = GetComponent<AudioSource>();
+        source = GetComponent<AudioSource>();
 
 
     }
@@ -46,6 +45,9 @@ public class EspatulaMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if (ended) {
+			return;
+		}
         if (!attacking)
         {
             Vector2 movement = new Vector2(InputManager.Instance.GetAxisHorizontal(), InputManager.Instance.GetAxisVertical());
@@ -74,7 +76,7 @@ public class EspatulaMove : MonoBehaviour
             {
                 Attack();
             }
-            txt.text = "you have  " + tries.ToString() + " tries to kill the mosquito";
+            
         }
     }
 
@@ -82,33 +84,57 @@ public class EspatulaMove : MonoBehaviour
     {
         attacking = true;
         anim.SetTrigger("attack");
-        splatCanPlay = true;
     }
     public void StopAttack()
     {
         attacking = false;
         tries--;
-        txt.text = tries.ToString();
+		if (ended)
+			return;
+		if (tries <= 0 ) {
+			
 
-        if (tries <= 0)
-        {
-            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
-        }
+
+				ended = true;
+				StartCoroutine (LoseGame ());
+
+
+		} else {
+			txt.text = "you have  " + tries.ToString() + " tries to kill the mosquito";
+		}
     }
 
     void OnTriggerEnter2D(Collider2D other)
-    {
+	{
          
+		if (!ended) {
+			if (other.gameObject.CompareTag ("Player")) {
+				source.PlayOneShot (mosquitoSplat, .5f);
+				MosquitoMove mosquito = other.gameObject.GetComponent<MosquitoMove> ();
+				if (mosquito != null) {
+					mosquito.Kill ();
+				}
+				ended = true;
+				StartCoroutine (WinGame ());
+			}
+		}
+	}
+	IEnumerator WinGame()
+	{
+		txt.text = "YOU WIN";
+		yield return new WaitForSeconds(3);
 
-        if (other.gameObject.CompareTag("Player"))
-        {
-           source.PlayOneShot(mosquitoSplat, .5f);
-                splatCanPlay = false;
-           
-            //source.PlayOneShot(MosquitoSplat, .5f);
-            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
-        }
-    }
+			gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+		
+	}
+	IEnumerator LoseGame()
+	{
+		txt.text = "YOU LOSE";
+		
+		yield return new WaitForSeconds(3);
 
+		gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+
+	}
 
 }
