@@ -35,6 +35,15 @@ public class M_Segada_CCR : IMiniGame
     public bool isRandom = false;
     private int ran = 0;
 
+
+    
+    public Animator anim;
+    
+
+
+
+
+
     public override void beginGame()
     {
         EnemyIMG.SetActive(false);
@@ -77,19 +86,24 @@ public class M_Segada_CCR : IMiniGame
             DisplayBox.GetComponent<Text>().text = string.Empty;
         }
     }
-	// Update is called once per frame
-	void Update () {
+    
+
+
+    // Update is called once per frame
+    void Update () {
         if (qtState == QTState.Ongoing)
-        {            
-                if (Input.anyKeyDown)                               //we press ANY key during the OnGoing state
-                {
-                    qtState = QTState.Done;
-                    qtResponse = QTResponse.Success;
+        {
+            if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1))                                 //we press ANY key during the OnGoing state
+            {
+                anim.SetTrigger("jumptrigger");
+                
                     
-                    DisplayBox.GetComponent<Text>().text = "WIN";
-                    //PassBox.GetComponent<Text>().text = "WIN";
-                    StopCoroutine(StateChange());
-                    gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+                DisplayBox.GetComponent<Text>().text = "WIN";
+                //PassBox.GetComponent<Text>().text = "WIN";
+                qtState = QTState.Done;
+                qtResponse = QTResponse.Success;
+                StopCoroutine(StateChange());
+                gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
             }
         }
     }
