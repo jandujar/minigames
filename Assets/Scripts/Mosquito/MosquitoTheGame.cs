@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MosquitoTheGame : IMiniGame {
 
-    private GameManager gameManager;
     public MosquitoMove mosquito;
 	public EspatulaMove espatula;
     private AudioSource source;
@@ -21,7 +20,6 @@ public class MosquitoTheGame : IMiniGame {
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        this.gameManager = gm;
         mosquito.init(gm);
 		espatula.init(gm);
 
