@@ -13,6 +13,8 @@ public class Brocheta : IMiniGame
     public GameObject stick;
     public Text myText;
     public GameObject theText;
+    public AudioSource music;
+    public AudioSource ashes;
     int textInt;
     bool actSmoke;
     int rand;
@@ -82,13 +84,26 @@ public class Brocheta : IMiniGame
         actSmoke = true;
     }
 
+    public void PlayMusic()
+    {
+        music.Play();
+    }
+
+    public void PlayAshes()
+    {
+        ashes.Play();
+    }
+
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
+        Invoke("PlayAshes", 4);
+        Invoke("PlayMusic", 4);
         this.gameManager = gm;
     }
 
     public override void beginGame()
     {
+        
         theText.SetActive(true);
     }
 
