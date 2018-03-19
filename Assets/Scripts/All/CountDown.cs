@@ -14,9 +14,9 @@ public class CountDown : MonoBehaviour {
     
     // Use this for initialization
 
-    //public IEnumerator BeginCountDown()
-   // {
-        /*text.text = "3";
+    public IEnumerator BeginCountDown()
+    {
+        text.text = "3";
         yield return new WaitForSeconds(1f);
 
         text.text = "2";
@@ -29,6 +29,6 @@ public class CountDown : MonoBehaviour {
 
         text.text = "Go!";
 
-        yield return new WaitForSeconds(1f);*/
-   // }
+        yield return new WaitForSeconds(1f);
+    }
 }

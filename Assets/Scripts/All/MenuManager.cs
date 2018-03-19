@@ -51,7 +51,7 @@ public class MenuManager : Singleton<MenuManager> {
 
     public void LaunchMiniGame(){
 
-		Debug.LogError ("Launch MiniGame: " + currentGame.ToString ());
+		//Debug.LogError ("Launch MiniGame: " + currentGame.ToString ());
 
 		switch (currentGame) {
 		case MINIGAMES_ENUM.PONG:
