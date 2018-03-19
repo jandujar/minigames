@@ -287,6 +287,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &908343982 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1188725093790382, guid: 16c290a8c1d9dea44a3562ee346f0f84,
+    type: 2}
+  m_PrefabInternal: {fileID: 467944273}
+--- !u!114 &908343988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 908343982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fbbb8073d3c3534990fa23fdf234745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missile: {fileID: 1449159538}
 --- !u!1 &930567491
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spd: 10
+  rotationSpd: 1
   maxposy: 3.9
   maxposx: 7
   gameEngine: {fileID: 1704692377}

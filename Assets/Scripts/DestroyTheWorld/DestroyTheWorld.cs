@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndTheWorld : IMiniGame {
+public class DestroyTheWorld : IMiniGame {
 
     private GameManager gameManager;
     public Transform canvas;
