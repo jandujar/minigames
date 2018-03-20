@@ -32,6 +32,8 @@ public class SpawnRandomRolling : MonoBehaviour {
 			int random = Random.Range(0, 3);
 			GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			cube.AddComponent<Rigidbody>();
+			cube.GetComponent<Rigidbody>().constraints =  RigidbodyConstraints.FreezePositionZ | 
+				RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
 			cube.GetComponent<Rigidbody>().useGravity = false;
 			//cube.GetComponent<Collider>().isTrigger = true;
 			switch(random){
@@ -41,10 +43,20 @@ public class SpawnRandomRolling : MonoBehaviour {
 					break;
 				case 1:
 					cube.gameObject.transform.localPosition = pos2;
+					cube.transform.eulerAngles = new Vector3(
+						cube.transform.eulerAngles.x + 20,
+						cube.transform.eulerAngles.y,
+						cube.transform.eulerAngles.z
+					);
 					cube.transform.SetParent(parent.transform, true);
 					break;
 				case 2:
 					cube.gameObject.transform.localPosition = pos3;
+					cube.transform.eulerAngles = new Vector3(
+						cube.transform.eulerAngles.x - 20,
+						cube.transform.eulerAngles.y,
+						cube.transform.eulerAngles.z
+					);
 					cube.transform.SetParent(parent.transform, true);
 					break;
 				default: 
