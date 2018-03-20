@@ -7,7 +7,7 @@ public class MissileController : MonoBehaviour {
     Transform myT;
     private float moveVer;
     private float moveHor;
-    public float spd = 10f;
+    public float spd = 50f;
     public float rotationSpd = 1f;
     public float maxposy = 5.9f;
     public float maxposx = 10f;
@@ -25,18 +25,17 @@ public class MissileController : MonoBehaviour {
         moveVer = -InputManager.Instance.GetAxisVertical();
         moveHor = InputManager.Instance.GetAxisHorizontal();
 
-        Movement();        
+        Movement();
+        //Limitations();
+        Rotation();
     }
 
     private void Movement()
     {
-        if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1))
-        {
-            myT.position += myT.forward * spd * Time.deltaTime;
-        }
+        myT.position += transform.forward * Time.deltaTime * spd;
     }
 
-    private void Limitations()
+    /*private void Limitations()
     {
         if (myT.position.y > maxposy)
         {
@@ -61,5 +60,12 @@ public class MissileController : MonoBehaviour {
             tmpPosition = new Vector3(-maxposx, myT.position.y, myT.position.z);
             myT.position = tmpPosition;
         }
+    }*/
+
+    private void Rotation() {
+        float yaw = rotationSpd * Time.deltaTime * InputManager.Instance.GetAxisHorizontal();
+        float pitch = rotationSpd * Time.deltaTime * InputManager.Instance.GetAxisVertical();
+
+        myT.Rotate(pitch,yaw,0);
     }
 }
