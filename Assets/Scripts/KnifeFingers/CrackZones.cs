@@ -9,9 +9,11 @@ public class CrackZones : MonoBehaviour {
 
     private bool cracked = false;
     private SpriteRenderer render;
+    private AudioSource sound;
 
     void Start () {
         render = gameObject.GetComponent<SpriteRenderer>();
+        sound = gameObject.GetComponent<AudioSource>();
         render.enabled = false;
     }
 	
@@ -19,6 +21,7 @@ public class CrackZones : MonoBehaviour {
     {
         if (col.gameObject == knife && !cracked)
         {
+            sound.Play();
             render.enabled = true;
             atkText.setTextScore(atkText.getTextScore() + 1);
             cracked = true;

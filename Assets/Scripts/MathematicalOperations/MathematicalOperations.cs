@@ -88,11 +88,11 @@ public class MathematicalOperations : IMiniGame
         this.gameManager = gm;
         for(int i = 0; i < countNumbers; i++)
         {
-            SC_Numbers[i].init(gm);
+            SC_Numbers[i].init();
         }
         for (int i = 0; i < countOperators; i++)
         {
-            SC_Operators[i].init(gm);
+            SC_Operators[i].init();
         }
         stopCo = StartCoroutine(waitSecondsPrintFailed(10f));
     }
