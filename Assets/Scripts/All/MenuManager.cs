@@ -30,7 +30,7 @@ public class MenuManager : Singleton<MenuManager> {
         POLICE,
         DUELO,
 		//FRISBEE,
-		//BROCHETA,
+		BROCHETA,
 		BURGUER,
 		FROGGER,
 		KNIFETHROW,
@@ -41,6 +41,7 @@ public class MenuManager : Singleton<MenuManager> {
 		SIMON,
 		WOODCUTTER,
 		ZUMBA,
+        BOMB,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -141,6 +142,9 @@ public class MenuManager : Singleton<MenuManager> {
 		case MINIGAMES_ENUM.ZUMBA:
 			SceneManager.LoadScene("ZumbaClass");
 			break;
+        case MINIGAMES_ENUM.BOMB:
+            SceneManager.LoadScene("Bomb");
+            break;
 		
 		/* Not working games 
 		case MINIGAMES_ENUM.FRISBEE:
@@ -149,12 +153,11 @@ public class MenuManager : Singleton<MenuManager> {
 		case MINIGAMES_ENUM.MOVIMIENTO:
 			SceneManager.LoadScene("Movimiento");
 			break;
+        */         
 		case MINIGAMES_ENUM.BROCHETA:
 			SceneManager.LoadScene("Brocheta");
 			break;
-
-		*/
-		case MINIGAMES_ENUM.END:
+        case MINIGAMES_ENUM.END:
 		default:
 			SceneManager.LoadScene ("Pong");
 			break;
