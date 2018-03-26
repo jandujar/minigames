@@ -5,16 +5,26 @@ using UnityEngine.UI;
 
 public class QuickTimeEvent : MonoBehaviour {
 
+    [Header("Animations")]
+    public Animator animatorC;
+    public Animator animatorH;
+
+    [Header("CanvasText")]
     public GameObject DisplayBox;
     public GameObject CountDown;
+
+    [Header("Classes")]
     public VeganKnows vegan;
-    public int QTEGen;
-    public int WaitingForKey;
-    public int CorrectKey;
+
+    [Header("Variables")]
+    private int QTEGen;
+    private int WaitingForKey;
+    private int CorrectKey;
+    public string butt1;
+    public string butt2;
     public int timeleft = 10;
     public int dificultLvl = 1;
     
-
     private void Update()
     {
         if (WaitingForKey == 0)
@@ -24,19 +34,19 @@ public class QuickTimeEvent : MonoBehaviour {
             if (QTEGen == 1)
             {
                 WaitingForKey = 1;
-                DisplayBox.GetComponent<Text>().text = "C";
+                DisplayBox.GetComponent<Text>().text = butt1;
             }
             if (QTEGen == 2)
             {
                 WaitingForKey = 1;
-                DisplayBox.GetComponent<Text>().text = "H";
+                DisplayBox.GetComponent<Text>().text = butt2;
             }
             StartCoroutine(LoseTime());
         }
 
         if (QTEGen == 1){
             if (Input.anyKeyDown){
-                if (Input.GetButton("Carrot_B")){
+                if (Input.GetButton("Fire1")){
                     CorrectKey = 1;
                     StartCoroutine(KeyPressing ());
                 }else{
@@ -47,7 +57,7 @@ public class QuickTimeEvent : MonoBehaviour {
         }
         if (QTEGen == 2){
             if (Input.anyKeyDown){
-                if (Input.GetButton("Hamburger_B")){
+                if (Input.GetButton("Fire2")){
                     CorrectKey = 3;
                     StartCoroutine(KeyPressing());
                 }else{
@@ -58,30 +68,35 @@ public class QuickTimeEvent : MonoBehaviour {
         }
     }
 
+
     IEnumerator KeyPressing(){
         QTEGen = 3;
         if (CorrectKey == 1){
-            yield return new WaitForSeconds(1.0f);
+            animatorC.SetTrigger("throwCG");
+            yield return new WaitForSeconds(1.5f);
             //Condicion de victoria
             Debug.Log("WINNER");
             vegan.Win();
         }
         if (CorrectKey == 2)
         {
-            yield return new WaitForSeconds(1.0f);
+            animatorC.SetTrigger("throwCB");
+            yield return new WaitForSeconds(1.5f);
             //Condicion de derrota
             Debug.Log("LOSER");
             vegan.Lose();
         }
         if (CorrectKey == 3){
-            yield return new WaitForSeconds(1.0f);
+            animatorH.SetTrigger("throwHG");
+            yield return new WaitForSeconds(1.5f);
             //Condicion de victoria
             Debug.Log("WINNER");
             vegan.Win();
         }
         if (CorrectKey == 4)
         {
-            yield return new WaitForSeconds(1.0f);
+            animatorH.SetTrigger("throwHB");
+            yield return new WaitForSeconds(1.5f);
             //Condicion de derrota
             Debug.Log("LOSER");
             vegan.Lose();

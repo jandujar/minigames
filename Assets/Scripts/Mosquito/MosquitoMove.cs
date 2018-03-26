@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MosquitoMove: MonoBehaviour {
-	public Sprite deadSprite;
 	public float timeToChangeDirection = 1;
 	public float speed = 1;
 	public float verticalSpeed = 2;
@@ -15,8 +14,7 @@ public class MosquitoMove: MonoBehaviour {
 	Vector2 direction = Vector2.zero;
     GameManager gameManager;
     Rigidbody2D rig;
-	SpriteRenderer rend;
-	bool dead = false;
+
     public void init(GameManager gm)
     {
 		maxVertical = Camera.main.orthographicSize;    
@@ -37,15 +35,11 @@ public class MosquitoMove: MonoBehaviour {
     // Use this for initialization
     void Start () {
         rig = GetComponent<Rigidbody2D>();
-		rend = GetComponent<SpriteRenderer> ();
     }
 	
 	// Update is called once per frame
 	void Update () {
-		if (dead) {
-			return;
-		}
-
+		
 		if (timer < Time.time) {
 		
 			timer = Time.time + timeToChangeDirection;
@@ -65,19 +59,9 @@ public class MosquitoMove: MonoBehaviour {
 			direction.y *= -1;
 		}
 
-		if (direction.x > 0) {
-			rend.flipX = false;
-		} else {
-			rend.flipX = true;
-		}
 
 
 		transform.Translate ((direction * speed + Vector2.up * sinY)* Time.deltaTime);
 
     }
-	public void Kill(){
-		dead = true;
-		rend.sprite = deadSprite;
-	}
-
 }

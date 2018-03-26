@@ -14,11 +14,13 @@ public class CutTheCarrot : IMiniGame
     int randomInt;
     int current;
     bool playing = false;
+    public AudioSource cut;
     bool canPress = true;
 
     IEnumerator SetPress()
     {
         canPress = false;
+        cut.Play();
         yield return new WaitForSeconds(1);
         canPress = true;
     }
