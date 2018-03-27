@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class BrumPlayer : BrumCar {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public override void OnTriggerEnterChild(Collider collider)
+    {
+        isColliding = true;
+    }
+
+    public override void OnTriggerStayChild(Collider collider)
+    {
+        isColliding = true;
+    }
+
+    public override void OnTriggerExitChild(Collider collider)
+    {
+        isColliding = false;
+    }
 }

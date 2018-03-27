@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class BrumFront : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void OnTriggerEnter(Collider other)
+    {
+        transform.parent.gameObject.GetComponent<BrumCar>().OnTriggerEnterChild(other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        transform.parent.gameObject.GetComponent<BrumCar>().OnTriggerExitChild(other);
+    }
 }
