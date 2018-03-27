@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class TargetSpawn : MonoBehaviour {
 
+
+	public GameObject[] target;
+	public GameObject[] skull;
+
+	int myScore;
+
 	// Use this for initialization
 	void Start () {
 		
