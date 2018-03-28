@@ -22,12 +22,6 @@ public class TargetsToShoot : MonoBehaviour
             m_Targets.Add(l_Child.gameObject);
         }
         StartCoroutine(SetTarget());
-        
-        for(int i=0;i<25;++i)
-        {
-            Vector3 l_Pos = (Random.onUnitSphere * 10) + new Vector3(0, 0, -10);
-            Instantiate(m_Target, l_Pos, Quaternion.identity);
-        }
 	}
 	
 	// Update is called once per frame
