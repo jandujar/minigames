@@ -17,32 +17,31 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         SimpleMovement();
-        //OnMouseDown();
-
-    }
+	}
     void SimpleMovement()
     {
         if(Input.GetKey(KeyCode.W))
         {
-            rb.AddForce(Vector3.forward * Time.deltaTime * jumpForce);
+            player.transform.Translate(Vector3.forward * Time.deltaTime * speed);
         }
         else if(Input.GetKey(KeyCode.A))
         {
-            rb.AddForce(Vector3.left * Time.deltaTime * jumpForce);
+            player.transform.Translate(Vector3.left * Time.deltaTime * speed);
         }
         else if(Input.GetKey(KeyCode.S)) 
         {
-            rb.AddForce(Vector3.back * Time.deltaTime * jumpForce);
+            player.transform.Translate(Vector3.back * Time.deltaTime * speed);
         }
         else if(Input.GetKey(KeyCode.D)) 
         {
-            rb.AddForce(Vector3.right * Time.deltaTime * jumpForce);
+            player.transform.Translate(Vector3.right* Time.deltaTime * speed);
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && hasJumped == false)
+        if(Input.GetKey(KeyCode.Space) && hasJumped == false)
         {
+            //player.transform.Translate(Vector3.up * Time.deltaTime * jumpForce);
             rb.AddForce(Vector3.up * jumpForce);
+            hasJumped = true;
         }
-        
     }
 }
