@@ -7,11 +7,14 @@ public class BallRun : IMiniGame
 {
     //PUBLIC VARIABLES
     public float time;
+    public GameObject canvasText;
+    public GameState state = GameState.Countdown;
 
 
     //PRIVATE VARIABLES
     [SerializeField] private Text txt;
     private float remaining_time;
+    private AudioSource bgMusic;
 
 
 
@@ -27,12 +30,25 @@ public class BallRun : IMiniGame
 
     void Start()
     {
-
+        bgMusic = GetComponent<AudioSource>();
     }
     void Update()
     {
 
 
+    }
+    public override void beginGame()
+    {
+        state = BallRun.GameState.Playing;
+        StartCoroutine(CheckTimeout());
+        canvasText.SetActive(true);
+        bgMusic.Play();
+    }
+
+    public override void initGame(MiniGameDificulty difficulty, GameManager gm)
+    {
+        state = BallRun.GameState.Countdown;
+        canvasText.SetActive(false);
     }
 
     IEnumerator CheckTimeout()
@@ -44,6 +60,10 @@ public class BallRun : IMiniGame
             txt.text = remaining_time.ToString();
 
             yield return new WaitForSeconds(1f);
+            if (remaining_time == 0)
+            {
+                StartCoroutine(EndLose());
+            }
 
         }
         txt.text = remaining_time.ToString();
@@ -71,17 +91,6 @@ public class BallRun : IMiniGame
         gm.EndGame(MiniGameResult.LOSE);
     }
 
-
-
-    public override void beginGame()
-    {
-        StartCoroutine(CheckTimeout());
-    }
-
-    public override void initGame(MiniGameDificulty difficulty, GameManager gm)
-    {
-
-    }
 
     public override string ToString()
     {
