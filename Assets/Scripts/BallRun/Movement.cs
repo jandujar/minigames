@@ -5,7 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour {
 
     public float speed = 10f;
-    public float jumpForce = 30f;
+    public float jumpForce = 50f;
     public GameObject player;
     private bool hasJumped = false;
     private Rigidbody rb;
@@ -22,19 +22,19 @@ public class Movement : MonoBehaviour {
     {
         if(Input.GetKey(KeyCode.W))
         {
-            player.transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            rb.AddForce(Vector3.forward * Time.deltaTime * speed);
         }
         else if(Input.GetKey(KeyCode.A))
         {
-            player.transform.Translate(Vector3.left * Time.deltaTime * speed);
+            rb.AddForce(Vector3.left * Time.deltaTime * speed);
         }
         else if(Input.GetKey(KeyCode.S)) 
         {
-            player.transform.Translate(Vector3.back * Time.deltaTime * speed);
+            rb.AddForce(Vector3.back * Time.deltaTime * speed);
         }
         else if(Input.GetKey(KeyCode.D)) 
         {
-            player.transform.Translate(Vector3.right* Time.deltaTime * speed);
+            rb.AddForce(Vector3.right* Time.deltaTime * speed);
         }
 
         if(Input.GetKey(KeyCode.Space) && hasJumped == false)
