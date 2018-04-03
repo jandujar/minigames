@@ -10,23 +10,34 @@ public class Shooting : MonoBehaviour {
     public float maxPower = 100f;
     public Slider powerSlider;
     List<Rigidbody> ballList;
+    bool ballReady;
 
 	// Use this for initialization
 	void Start () {
         powerSlider.minValue = 0f;
-        powerSlider.maxValue = maxPower;
+        powerSlider.maxValue = maxPower;ballList = new List<Rigidbody>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (ballReady)
+        {
+            powerSlider.gameObject.SetActive(true);
+        }
+        else
+        {
+            powerSlider.gameObject.SetActive(false);
+        }
         powerSlider.value = power;
 
         if(ballList.Count > 0)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            ballReady = true;
+            if (Input.GetKey(KeyCode.Space))
             {
                 if(power <= maxPower){
-                    power += 50 * Time.deltaTime;
+                    power += 10000 * Time.deltaTime;
                 }
             }
 
@@ -38,19 +49,24 @@ public class Shooting : MonoBehaviour {
                 }
             }
         }
+        else
+        {
+            ballReady = false;
+            power = 0f;
+        }
 
 	}
 
     private void OnTriggerEnter ( Collider other)
     {
-        if (other.gameObject.CompareTag("Ball"))
+        if (other.gameObject.CompareTag("Player"))
         {
             ballList.Add(other.gameObject.GetComponent<Rigidbody>());
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Ball"))
+        if (other.gameObject.CompareTag("Player"))
         {
             ballList.Remove(other.gameObject.GetComponent<Rigidbody>());
             power = 0f;
