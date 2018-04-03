@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Rotation : MonoBehaviour {
 
-    public GameObject Ball;
-    public float speedShoot = 10.0F;
-    bool isIn = true;
+    public KeyCode LeftKey = KeyCode.A;
+    public KeyCode RightKey = KeyCode.D;
+    public KeyCode UpKey = KeyCode.W;
+    public KeyCode DownKey = KeyCode.S;
+    public float rotShoot= 10.0F;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -15,23 +18,24 @@ public class Rotation : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-    
 
-        transform.Rotate(Vector3.up, speedShoot * Time.deltaTime);
 
-        if (transform.rotation.y >= 40)
+        if (Input.GetKey(LeftKey))
         {
-            isIn = false;
-            transform.Rotate(Vector3.up, -speedShoot * Time.deltaTime);
-            Debug.Log("Not in");
+            transform.Rotate(0, -rotShoot * Time.deltaTime, 0);
         }
-        else if(transform.rotation.y <= -80)
+        if (Input.GetKey(RightKey))
         {
-            isIn = false;
-            transform.Rotate(Vector3.up, speedShoot * Time.deltaTime);
-            Debug.Log("Not in");
+            transform.Rotate(0, rotShoot * Time.deltaTime, 0);
         }
-
+        if (Input.GetKey(UpKey))
+        {
+            transform.Rotate(-rotShoot * Time.deltaTime, 0, 0);
+        }
+        if (Input.GetKey(DownKey))
+        {
+            transform.Rotate(rotShoot * Time.deltaTime, 0, 0);
+        }
 
 
     }
