@@ -17,6 +17,7 @@ public class KnifeAttack : MonoBehaviour {
     [SerializeField]private GameObject blood;
     private GameManager gameManager;
     [SerializeField]private float endTimer = 0.5f;
+    private AudioSource sound;
 
     public void init(GameManager gm)
     {
@@ -36,6 +37,7 @@ public class KnifeAttack : MonoBehaviour {
         }
         attack = state.moving;
         marginError = marginErrorPercent(atkObjective.transform.position.z);
+        sound = gameObject.GetComponent<AudioSource>();
     }
 
     float marginErrorPercent(float value)
@@ -44,8 +46,7 @@ public class KnifeAttack : MonoBehaviour {
     }
 
     void Update()
-    {
-        
+    { 
         if (attack == state.attack)
         {
             
@@ -53,7 +54,10 @@ public class KnifeAttack : MonoBehaviour {
         switch (attack)
         {
             case state.moving:
-                if (Input.GetButtonDown(inputName))
+                if ((InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) ||
+                    InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2) ||
+                    InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON3) ||
+                    InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)) && knife.enableKnife)
                 {
                     knife.enableKnife = false;
                     attack = state.attack;
@@ -95,6 +99,7 @@ public class KnifeAttack : MonoBehaviour {
     {
         if (col.gameObject == hand || isAFinger(col))
         {
+            sound.Play();
             stopKnife();
             blood.transform.position = gameObject.transform.position;
             blood.SetActive(true);
@@ -127,7 +132,7 @@ public class KnifeAttack : MonoBehaviour {
             if (fingers[i] == col.gameObject)
             {
                 return true;
-                break;
+                //break;
             }
         }
         return false;

@@ -6,19 +6,16 @@ public class BallEquilibrio : MonoBehaviour {
 
     public bool enableBall = false;
     private GameManager gameManager;
-    private float maxVel = 0.5f;
 
     private float move = 0.0f;
-    private float currentSpeed = 0.0f;
+   // private float currentSpeed;
 
     private Vector3 angles;
     public GameObject cube;
     public GameObject winSprite;
     public GameObject loseSprite;
     public GameObject zoneWinLose;
-
-    private Rigidbody rb;
-
+   
     private bool canMoveBall;
     private bool lose;
 
@@ -29,14 +26,12 @@ public class BallEquilibrio : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        rb = GetComponent<Rigidbody>();
         canMoveBall = false;
         lose = false;
     }
 
     public void StartGame()
     {
-        //rb.useGravity = true;
         canMoveBall = true;
 
         StartCoroutine(detectWin());
@@ -57,7 +52,7 @@ public class BallEquilibrio : MonoBehaviour {
             transform.rotation = Quaternion.Euler(angles);
 
             move = Input.GetAxis("Horizontal");
-            currentSpeed = (move* Time.deltaTime) / 2;
+            //currentSpeed = (move* Time.deltaTime) / 2;
             transform.Translate(move / 6, 0, 0);
         }
 
