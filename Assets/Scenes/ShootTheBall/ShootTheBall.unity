@@ -158,7 +158,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 1477375322}
+  - {fileID: 834112163}
+  - {fileID: 1713460637}
+  m_Line: {fileID: 601591328}
 --- !u!23 &49258573
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -662,7 +666,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 862655909}
+  - {fileID: 920388062}
+  - {fileID: 983814384}
+  m_Line: {fileID: 601591328}
 --- !u!23 &308177872
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -761,7 +769,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 1440312776}
+  - {fileID: 1394133375}
+  - {fileID: 676252993}
+  - {fileID: 876718167}
+  m_Line: {fileID: 601591328}
 --- !u!23 &459300730
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -887,7 +900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!120 &601591329
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -982,12 +995,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 601591328}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.088, y: 0, z: 0.584}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &644901321
 GameObject:
@@ -1034,7 +1047,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 867569481}
+  - {fileID: 1384778810}
+  - {fileID: 899637476}
+  - {fileID: 1776147977}
+  - {fileID: 1925658194}
+  m_Line: {fileID: 601591328}
 --- !u!23 &644901324
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1133,7 +1152,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 459300727}
+  - {fileID: 876718167}
+  - {fileID: 920388062}
+  - {fileID: 862655909}
+  - {fileID: 1316303093}
+  m_Line: {fileID: 601591328}
 --- !u!23 &676252996
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1232,7 +1257,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 1316303093}
+  - {fileID: 862655909}
+  - {fileID: 676252993}
+  - {fileID: 835495128}
+  - {fileID: 1522507977}
+  m_Line: {fileID: 601591328}
 --- !u!23 &765428701
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1375,7 +1406,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 49258570}
+  - {fileID: 1925658194}
+  - {fileID: 2081328763}
+  m_Line: {fileID: 601591328}
 --- !u!23 &834112166
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1474,7 +1509,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 1522507977}
+  - {fileID: 765428698}
+  - {fileID: 862655909}
+  - {fileID: 983814384}
+  m_Line: {fileID: 601591328}
 --- !u!23 &835495131
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1573,7 +1613,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 308177869}
+  - {fileID: 920388062}
+  - {fileID: 676252993}
+  - {fileID: 983814384}
+  - {fileID: 835495128}
+  - {fileID: 765428698}
+  m_Line: {fileID: 601591328}
 --- !u!23 &862655912
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1672,7 +1719,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 2081328763}
+  - {fileID: 1136285361}
+  - {fileID: 1384778810}
+  - {fileID: 644901321}
+  m_Line: {fileID: 601591328}
 --- !u!23 &867569484
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1771,7 +1823,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 2101620043}
+  - {fileID: 1440312776}
+  - {fileID: 459300727}
+  - {fileID: 676252993}
+  - {fileID: 920388062}
+  m_Line: {fileID: 601591328}
 --- !u!23 &876718170
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1870,7 +1928,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 1776147977}
+  - {fileID: 1384778810}
+  - {fileID: 644901321}
+  m_Line: {fileID: 601591328}
 --- !u!23 &899637479
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1969,7 +2031,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 876718167}
+  - {fileID: 676252993}
+  - {fileID: 862655909}
+  - {fileID: 308177869}
+  m_Line: {fileID: 601591328}
 --- !u!23 &920388065
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2068,7 +2135,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 308177869}
+  - {fileID: 862655909}
+  - {fileID: 835495128}
+  m_Line: {fileID: 601591328}
 --- !u!23 &983814387
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2167,7 +2238,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 1136285361}
+  - {fileID: 1471243755}
+  - {fileID: 1477375322}
+  m_Line: {fileID: 601591328}
 --- !u!23 &990480434
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2266,7 +2341,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 1713460637}
+  - {fileID: 1477375322}
+  - {fileID: 1440312776}
+  - {fileID: 1471243755}
+  - {fileID: 990480431}
+  - {fileID: 2101620043}
+  m_Line: {fileID: 601591328}
 --- !u!23 &1081464267
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2397,7 +2479,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 1384778810}
+  - {fileID: 867569481}
+  - {fileID: 990480431}
+  m_Line: {fileID: 601591328}
 --- !u!23 &1136285364
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2599,7 +2685,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 765428698}
+  - {fileID: 1394133375}
+  - {fileID: 676252993}
+  - {fileID: 459300727}
+  - {fileID: 862655909}
+  m_Line: {fileID: 601591328}
 --- !u!23 &1316303096
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2726,7 +2818,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 899637476}
+  - {fileID: 644901321}
+  - {fileID: 867569481}
+  - {fileID: 1136285361}
+  m_Line: {fileID: 601591328}
 --- !u!23 &1384778813
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2825,7 +2922,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 1316303093}
+  - {fileID: 1713460637}
+  - {fileID: 1440312776}
+  - {fileID: 459300727}
+  m_Line: {fileID: 601591328}
 --- !u!23 &1394133378
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2924,7 +3026,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 1394133375}
+  - {fileID: 2101620043}
+  - {fileID: 1081464264}
+  - {fileID: 1713460637}
+  - {fileID: 459300727}
+  - {fileID: 876718167}
+  m_Line: {fileID: 601591328}
 --- !u!23 &1440312779
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3023,7 +3132,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 990480431}
+  - {fileID: 2101620043}
+  - {fileID: 1081464264}
+  m_Line: {fileID: 601591328}
 --- !u!23 &1471243758
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3122,7 +3235,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 990480431}
+  - {fileID: 2081328763}
+  - {fileID: 1081464264}
+  - {fileID: 49258570}
+  m_Line: {fileID: 601591328}
 --- !u!23 &1477375325
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3221,7 +3339,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 765428698}
+  - {fileID: 835495128}
+  m_Line: {fileID: 601591328}
 --- !u!23 &1522507980
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3476,11 +3597,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 1246816355}
   m_Gun: {fileID: 467944274}
-  m_Pointer: {fileID: 85888437}
-  m_MaxX: 0
-  m_MinX: 0
-  m_MinY: 284
-  m_MaxY: 70
   m_Sensibility: 2
 --- !u!114 &1704692379
 MonoBehaviour:
@@ -3542,7 +3658,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 49258570}
+  - {fileID: 1394133375}
+  - {fileID: 1440312776}
+  - {fileID: 1081464264}
+  - {fileID: 1394133375}
+  m_Line: {fileID: 601591328}
 --- !u!23 &1713460640
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3641,7 +3763,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 899637476}
+  - {fileID: 644901321}
+  - {fileID: 1925658194}
+  m_Line: {fileID: 601591328}
 --- !u!23 &1776147980
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3724,7 +3850,7 @@ Transform:
   m_Children:
   - {fileID: 1629436269}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1787258092
 Rigidbody:
@@ -3840,7 +3966,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 834112163}
+  - {fileID: 2081328763}
+  - {fileID: 644901321}
+  - {fileID: 1776147977}
+  m_Line: {fileID: 601591328}
 --- !u!23 &1925658197
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3967,7 +4098,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 867569481}
+  - {fileID: 1477375322}
+  - {fileID: 49258570}
+  - {fileID: 834112163}
+  - {fileID: 644901321}
+  m_Line: {fileID: 601591328}
 --- !u!23 &2081328766
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4066,7 +4203,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
-  m_Neightbours: []
+  m_Neightbours:
+  - {fileID: 1471243755}
+  - {fileID: 1440312776}
+  - {fileID: 1081464264}
+  - {fileID: 876718167}
+  m_Line: {fileID: 601591328}
 --- !u!23 &2101620046
 MeshRenderer:
   m_ObjectHideFlags: 0

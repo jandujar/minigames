@@ -11,11 +11,26 @@ public class BallToShoot : MonoBehaviour
     [Header("Complements")]
     public List<GameObject> m_Neightbours = new List<GameObject>();
 
+    [Header("Line")]
+    public GameObject m_Line;
+
     Renderer m_Renderer;
     // Use this for initialization
     void Start ()
     {
-        m_Renderer = gameObject.GetComponent<Renderer>();		
+        m_Renderer = gameObject.GetComponent<Renderer>();
+
+        //CreateNeightbourLines
+        foreach (GameObject l_Object in m_Neightbours)
+        {
+            GameObject l_Line = Instantiate(m_Line, this.transform.position, Quaternion.identity, this.transform) as GameObject;
+            l_Line.gameObject.name = "Line";
+            LineRenderer l_LineRender = l_Line.GetComponent<LineRenderer>();
+            Debug.Log("Object pos" + l_Object.transform.position + " / " + l_Object.transform.localPosition);
+            l_LineRender.SetPosition(0, this.transform.position);
+            l_LineRender.SetPosition(1, l_Object.transform.position);
+            l_LineRender.useWorldSpace = true;
+        }
 	}
 	
     private void OnTriggerEnter(Collider _col)
