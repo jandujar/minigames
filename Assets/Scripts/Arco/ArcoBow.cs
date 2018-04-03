@@ -25,6 +25,8 @@ public class ArcoBow : MonoBehaviour {
             arrow.GetComponent<Rigidbody>().AddForce(gameCamera.transform.forward * 5000);
             arrow.GetComponent<Rigidbody>().useGravity = true;
             gameCamera.GetComponent<Camera>().enabled = false;
+            arrow.GetComponent<AudioSource>().PlayOneShot(arrow.GetComponent<ArcoArrow>().shoot);
+            arrow.GetComponent<ArcoArrow>().Shooted();
         }
         if (!shooting)
         {
@@ -33,6 +35,7 @@ public class ArcoBow : MonoBehaviour {
 
             Vector3 rotateValue = new Vector3(moveHor, moveVer * -1, 0);
             gameCamera.transform.eulerAngles = gameCamera.transform.eulerAngles - rotateValue;
+
         }
     }
 
