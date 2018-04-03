@@ -43,6 +43,7 @@ public class MenuManager : Singleton<MenuManager> {
 		ZUMBA,
         BOMB,
         BRUM,
+        BMX,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -160,6 +161,9 @@ public class MenuManager : Singleton<MenuManager> {
 			break;
         case MINIGAMES_ENUM.BRUM:
             SceneManager.LoadScene("Brum");
+            break;
+        case MINIGAMES_ENUM.BMX:
+            SceneManager.LoadScene("BmxTheGame");
             break;
         case MINIGAMES_ENUM.END:
 		default:
