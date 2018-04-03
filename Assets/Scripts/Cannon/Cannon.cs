@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cannon : IMiniGame
 {
@@ -10,6 +11,8 @@ public class Cannon : IMiniGame
 	public int targetScore;
 	public GameObject scoreManager;
 	bool toLose;
+	public Text countDown;
+	public int textNum;
 
 	public override void initGame(MiniGameDificulty difficulty, GameManager gm)
 	{
@@ -27,7 +30,7 @@ public class Cannon : IMiniGame
 	}
 
 	IEnumerator BooleanToTrue(){
-		yield return new WaitForSeconds (10f);
+		yield return new WaitForSeconds (13f);
 		toLose = true;
 	}
 
@@ -42,6 +45,16 @@ public class Cannon : IMiniGame
 		if(toLose) {
 			StartCoroutine(Lose());
 		}
+
+		countDown.text = textNum + " ";
+	}
+
+	IEnumerator StartCount(){
+		yield return new WaitForSeconds (1f);
+		textNum -= 1;
+		if (textNum > 0) {
+			StartCoroutine (StartCount ());
+		}
 	}
 
 
@@ -54,7 +67,7 @@ public class Cannon : IMiniGame
 	}
 	public override void beginGame()
 	{
-		//StartCoroutine(BooleanToTrue());
+		StartCoroutine(StartCount());
 	}
 
     public override string ToString()
