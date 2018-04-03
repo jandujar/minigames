@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class PlayerBall : MonoBehaviour {
     private float move;
     public float vely = 5;
     private Vector3 tmpPosition;
