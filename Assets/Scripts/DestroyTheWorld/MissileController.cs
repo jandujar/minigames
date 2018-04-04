@@ -7,6 +7,7 @@ public class MissileController : MonoBehaviour {
     Transform myT;
     private bool death = false;
     private bool deathActive = false;
+    private bool started = false;
     private float moveVer;
     private float moveHor;
     public float spd = 50f;
@@ -15,6 +16,7 @@ public class MissileController : MonoBehaviour {
     public float maxposx = 10f;
     private Vector3 tmpPosition;
     public DestroyTheWorld gameEngine;
+    private GameManager gameManager;
 
     void Awake()
     {
@@ -24,18 +26,28 @@ public class MissileController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (!death)
+        if (started)
         {
-            moveVer = -InputManager.Instance.GetAxisVertical();
-            moveHor = InputManager.Instance.GetAxisHorizontal();
+            if (!death)
+            {
+                moveVer = -InputManager.Instance.GetAxisVertical();
+                moveHor = InputManager.Instance.GetAxisHorizontal();
 
-            Movement();
-            Rotation();
-        } else if (death && !deathActive)
-        {
-            DeathExplosion();
+                Movement();
+                Rotation();
+            }
+            else if (death && !deathActive)
+            {
+                DeathExplosion();
+            }
+            else if (death && deathActive)
+            {
+                if (!transform.Find("SmallExplosionEffect").GetComponent<ParticleSystem>().isPlaying)
+                {
+                    EndGame();
+                }
+            }
         }
-        
     }
 
     private void Movement()
@@ -52,16 +64,29 @@ public class MissileController : MonoBehaviour {
 
     private void DeathExplosion()
     {
-
+        transform.GetComponent<MeshRenderer>().enabled = false;
+        transform.Find("FlameThrowerEffect").gameObject.SetActive(false);
+        transform.Find("SmallExplosionEffect").GetComponent<ParticleSystem>().Play();
 
         deathActive = true;
     }
 
-    void onTriggerEnter(Collider other)
+    public void StartGame(GameManager gm)
     {
-        if (other.gameObject.name == "Wall")
-        {
+        started = true;
+        gameManager = gm;
+    }
 
+    public void EndGame()
+    {
+        gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+    }
+
+    void OnCollisionEnter(Collision coll)
+    {
+        if (coll.gameObject.tag == "Finish")
+        {
+            death = true;
         }
     }
 }

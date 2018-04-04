@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.26559785, g: 0.24196073, b: 0.18216616, a: 1}
+  m_IndirectSpecularColor: {r: 0.26560372, g: 0.24204284, b: 0.18218002, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 463435984}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 789579043}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -891,6 +891,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: f03056b3e0d83b64a9209bc21131d158, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f03056b3e0d83b64a9209bc21131d158, type: 3}
   m_IsPrefabParent: 0
@@ -935,7 +939,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1460516886064934, guid: 3ead1508950f7e94c921970a52af1be5, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1243981791254352, guid: 3ead1508950f7e94c921970a52af1be5, type: 2}
       propertyPath: m_IsActive
@@ -990,7 +994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54895fbb28a7c8a47b0d243d4170362e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spd: 25
+  spd: 40
   rotationSpd: 50
   maxposy: 3.9
   maxposx: 7
@@ -1009,7 +1013,7 @@ GameObject:
   - component: {fileID: 1370600233}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1110,7 +1114,7 @@ GameObject:
   - component: {fileID: 1510545612}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1306,6 +1310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 819032579}
+  missile: {fileID: 1294348363}
 --- !u!82 &1704692378
 AudioSource:
   m_ObjectHideFlags: 0

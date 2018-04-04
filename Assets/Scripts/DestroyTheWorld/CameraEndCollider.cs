@@ -10,7 +10,7 @@ public class CameraEndCollider : MonoBehaviour {
 
     void onTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Camera")
+        if (other.gameObject.tag == "MainCamera")
         {
             other.transform.parent = this.transform;
             other.transform.position = this.transform.position;
