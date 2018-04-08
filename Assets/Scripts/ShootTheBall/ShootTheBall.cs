@@ -10,7 +10,7 @@ public class ShootTheBall : IMiniGame
     private GameManager gameManager;
 
     [Header("Game State")]
-    private bool gameStarted = false;
+    public bool gameStarted;
     [Header("Game Components")]
     public GameObject gameSceneObject;
 

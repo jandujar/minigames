@@ -12,8 +12,11 @@ public class TargetsToShoot : MonoBehaviour
     public Renderer m_TargetRenderer;
 
     public GameObject m_Target;
-	// Use this for initialization
-	void Start ()
+
+    public List<GameObject> m_PathTargets = new List<GameObject>();
+
+    // Use this for initialization
+    void Start ()
     {
 	    foreach(Transform l_Child in gameObject.transform)
         {
@@ -51,6 +54,28 @@ public class TargetsToShoot : MonoBehaviour
         m_TargetRenderer.material.color = Color.green;
 
         m_BallTarget.m_IsTarget = true;
+
+        //TEST
+        m_PathTargets.Clear();
+        BallToShoot randomObject = m_Targets[Random.Range(0, m_Targets.Count)].GetComponent<BallToShoot>();
+        m_PathTargets.Add(randomObject.gameObject);
+        for(int i=0;i<5;++i)
+        {
+            BallToShoot prevObject = randomObject;
+            randomObject = prevObject.m_Neightbours[Random.Range(0, prevObject.m_Neightbours.Count)].GetComponent<BallToShoot>();
+            bool l_CheckObject=false;
+            while (!l_CheckObject)
+            {
+                if (m_PathTargets.Contains(randomObject.gameObject))
+                    randomObject = prevObject.m_Neightbours[Random.Range(0, prevObject.m_Neightbours.Count)].GetComponent<BallToShoot>();
+                else
+                    l_CheckObject = true;
+            }
+            m_PathTargets.Add(randomObject.gameObject);
+            if (i != 5)
+                prevObject.createLineToPoint(randomObject.gameObject);
+            Debug.Break();
+        }
     }
 
     public IEnumerator SetTarget()

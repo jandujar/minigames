@@ -34,7 +34,6 @@ public class MoveCamera : MonoBehaviour
             m_Camera.localRotation = Quaternion.Euler(l_CurrentCamaraRotation);
         }
 
-        Debug.Log(m_Gun.localRotation.eulerAngles);
         //Gun
         if (m_Gun.localRotation.eulerAngles.x <= 333f && m_Gun.localRotation.eulerAngles.x >= 325f)
         {
