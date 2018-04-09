@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCol : MonoBehaviour
 {
@@ -9,11 +10,13 @@ public class PlayerCol : MonoBehaviour
     public AudioSource winsound;
     private BGmusic bg;
     public GameManager gm;
-
+    private BallRun br;
+    public GameObject win;
 	// Use this for initialization
 	void Start()
     {
         winsound = GetComponent<AudioSource>();
+        
 
     }
 
@@ -34,6 +37,9 @@ public class PlayerCol : MonoBehaviour
         {
             StartCoroutine(EndWin());
             winsound.Play();
+            win.GetComponent<Image>().enabled = true;
+            win.GetComponent<Animator>().Play("WinAnim");
+            
         }
     } 
 

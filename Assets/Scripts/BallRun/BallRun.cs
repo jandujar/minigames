@@ -27,6 +27,7 @@ public class BallRun : IMiniGame
     void Start()
     {
         bgMusic = GetComponent<AudioSource>();
+
     }
     void Update()
     {
@@ -96,4 +97,5 @@ public class BallRun : IMiniGame
     {
         return "BallRun by Marc Alfonso";
     }
+ 
 }
