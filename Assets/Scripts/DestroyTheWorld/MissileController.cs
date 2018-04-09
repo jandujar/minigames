@@ -17,10 +17,13 @@ public class MissileController : MonoBehaviour {
     private Vector3 tmpPosition;
     public DestroyTheWorld gameEngine;
     private GameManager gameManager;
+    public AudioClip explosion;
+    private AudioSource source;
 
     void Awake()
     {
         myT = transform;
+        source = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -30,9 +33,6 @@ public class MissileController : MonoBehaviour {
         {
             if (!death)
             {
-                moveVer = -InputManager.Instance.GetAxisVertical();
-                moveHor = InputManager.Instance.GetAxisHorizontal();
-
                 Movement();
                 Rotation();
             }
@@ -67,7 +67,7 @@ public class MissileController : MonoBehaviour {
         transform.GetComponent<MeshRenderer>().enabled = false;
         transform.Find("FlameThrowerEffect").gameObject.SetActive(false);
         transform.Find("SmallExplosionEffect").GetComponent<ParticleSystem>().Play();
-
+        source.PlayOneShot(explosion, .5f);
         deathActive = true;
     }
 

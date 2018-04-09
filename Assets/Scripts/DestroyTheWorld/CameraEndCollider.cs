@@ -12,7 +12,6 @@ public class CameraEndCollider : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collide");
         if (other.gameObject.tag == "MainCamera")
         {
             other.transform.parent = cameraParent;
