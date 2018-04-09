@@ -23,28 +23,30 @@ public class PlayerCol : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "win")
-        {
-            bg.music.Stop();
-            //winsound.Play();
 
-            Debug.Log("colisionaste con la winner flag");
-        }
-    }
-    void OnCollisionEnter(Collision other)
+    void OnCollisionEnter(Collision coll)
     {
-        if (other.gameObject.tag == "death")
+        if (coll.gameObject.tag == "death")
         {
             StartCoroutine(EndLose());
-            Debug.Log("te moriste joputa");
         }
-    }
+        if(coll.gameObject.tag == "win")
+        {
+            StartCoroutine(EndWin());
+            winsound.Play();
+        }
+    } 
+
+  
     public IEnumerator EndLose()
     {
         yield return new WaitForSeconds(0.3f);
         gm.EndGame(IMiniGame.MiniGameResult.LOSE);
+    }
+    public IEnumerator EndWin()
+    {
+        yield return new WaitForSeconds(1.6f);
+        gm.EndGame(IMiniGame.MiniGameResult.WIN);
     }
 
 
