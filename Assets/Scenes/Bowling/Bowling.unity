@@ -211,7 +211,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: -0.001820326
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
       propertyPath: m_LocalPosition.z
@@ -248,6 +248,10 @@ Prefab:
     - target: {fileID: 400000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
+      propertyPath: m_Name
+      value: bowl1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
@@ -542,7 +546,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
       propertyPath: m_Name
-      value: bowl (1)
+      value: bowl3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
@@ -2495,7 +2499,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
       propertyPath: m_Name
-      value: bowl (5)
+      value: bowl6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
@@ -5290,7 +5294,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
       propertyPath: m_Name
-      value: bowl (4)
+      value: bowl5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
@@ -5598,7 +5602,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
       propertyPath: m_Name
-      value: bowl (2)
+      value: bowl2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
@@ -5991,7 +5995,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
       propertyPath: m_Name
-      value: bowl (7)
+      value: bowl 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
@@ -6471,6 +6475,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 864751614}
+  - component: {fileID: 864751615}
   m_Layer: 0
   m_Name: bolos
   m_TagString: Untagged
@@ -6485,7 +6490,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 864751613}
   m_LocalRotation: {x: -0.09372644, y: -0, z: -0, w: 0.9955981}
-  m_LocalPosition: {x: 0.693, y: 3.91, z: 40.79}
+  m_LocalPosition: {x: 0.693, y: 3.943, z: 40.784}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 1603034602}
@@ -6501,6 +6506,27 @@ Transform:
   m_Father: {fileID: 1856255757}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &864751615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 864751613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d3cb2927e0ed5546a6378ef76edb5bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bowl1: {fileID: 1603034601}
+  Bowl2: {fileID: 1836065388}
+  Bowl3: {fileID: 1439772573}
+  Bowl4: {fileID: 1301903309}
+  Bowl5: {fileID: 1181647895}
+  Bowl6: {fileID: 1093613269}
+  Bowl7: {fileID: 1088094578}
+  Bowl8: {fileID: 725882624}
+  Bowl9: {fileID: 316843163}
+  Bowl10: {fileID: 841382518}
 --- !u!1001 &874322484
 Prefab:
   m_ObjectHideFlags: 0
@@ -6732,7 +6758,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
       propertyPath: m_Name
-      value: bowl (6)
+      value: bowl7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
@@ -8331,7 +8357,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
       propertyPath: m_Name
-      value: bowl (3)
+      value: bowl4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
@@ -11906,7 +11932,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
       propertyPath: m_Name
-      value: bowl (9)
+      value: bowl10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
@@ -12430,13 +12456,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1767846170}
-  m_LocalRotation: {x: 0.4165066, y: 0.4165066, z: -0.5714213, w: 0.5714213}
-  m_LocalPosition: {x: -0.06799936, y: 0.68999946, z: 0.5837488}
+  m_LocalRotation: {x: 0.5000002, y: 0.49999985, z: -0.49999985, w: 0.5000002}
+  m_LocalPosition: {x: -0.1, y: 0.64, z: 1.28}
   m_LocalScale: {x: 0.1558629, y: 0.09829896, z: 1.2500006}
   m_Children: []
   m_Father: {fileID: 1549175687}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 107.824005, y: 180, z: 89.99999}
+  m_LocalEulerAnglesHint: {x: 90, y: 179.99998, z: 90.00001}
 --- !u!212 &1767846172
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15120,7 +15146,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
       propertyPath: m_Name
-      value: bowl (8)
+      value: bowl9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1336923489c2a15439720ec25b9de151, type: 3}
