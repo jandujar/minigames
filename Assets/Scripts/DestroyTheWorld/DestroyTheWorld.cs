@@ -8,6 +8,7 @@ public class DestroyTheWorld : IMiniGame {
     private GameManager gameManager;
     public Transform canvas;
     public MissileController missile;
+    public ParticleSystem explosion;
 
     public override void beginGame()
     {
@@ -24,5 +25,26 @@ public class DestroyTheWorld : IMiniGame {
     public override string ToString()
     {
         return "End The World by DarkJoe";
+    }
+
+    public void BigExplosion()
+    {
+        if (!explosion.isPlaying)
+        {
+            explosion.Play();
+            StartCoroutine(ExplosionTime());
+        }
+        else
+        {
+            explosion.Stop();
+            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+        }
+            
+    }
+
+    IEnumerator ExplosionTime()
+    {
+        yield return new WaitForSeconds(1);
+        BigExplosion();
     }
 }
