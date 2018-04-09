@@ -8,12 +8,14 @@ public class PlayerCol : MonoBehaviour
 
     [SerializeField]
     public AudioSource winsound;
-    private BGmusic bg;
+    public AudioSource losesound;
     public GameManager gm;
     private BallRun br;
     public GameObject win;
-	// Use this for initialization
-	void Start()
+    public GameObject lose;
+    private Movement mv;
+    // Use this for initialization
+    void Start()
     {
         winsound = GetComponent<AudioSource>();
         
@@ -32,6 +34,11 @@ public class PlayerCol : MonoBehaviour
         if (coll.gameObject.tag == "death")
         {
             StartCoroutine(EndLose());
+            losesound.Play();
+            lose.GetComponent<Image>().enabled = true;
+            lose.GetComponent<Animator>().Play("LoseAnim");
+            mv.speed = 0;
+            mv.jumpForce = 0;
         }
         if(coll.gameObject.tag == "win")
         {
@@ -39,6 +46,8 @@ public class PlayerCol : MonoBehaviour
             winsound.Play();
             win.GetComponent<Image>().enabled = true;
             win.GetComponent<Animator>().Play("WinAnim");
+            mv.speed = 0;
+            mv.jumpForce = 0;
             
         }
     } 
@@ -46,7 +55,7 @@ public class PlayerCol : MonoBehaviour
   
     public IEnumerator EndLose()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(1.6f);
         gm.EndGame(IMiniGame.MiniGameResult.LOSE);
     }
     public IEnumerator EndWin()
