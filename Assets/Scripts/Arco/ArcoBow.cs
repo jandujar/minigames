@@ -12,17 +12,17 @@ public class ArcoBow : MonoBehaviour {
     private bool shooting = false;
 
     void Update () {
-        if (Input.GetKeyDown("space")) {
+        if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)) {
             if (charging) return;
             charging = true;
             StartCoroutine(ChargeShoot());
         }
 
-        if (Input.GetKeyUp("space"))
+        if (InputManager.Instance.GetButtonUp(InputManager.MiniGameButtons.BUTTON1))
         {
             if (shooting) return;
             shooting = true;
-            arrow.GetComponent<Rigidbody>().AddForce(gameCamera.transform.forward * 5000);
+            arrow.GetComponent<Rigidbody>().AddForce(gameCamera.transform.forward * 2000);
             arrow.GetComponent<Rigidbody>().useGravity = true;
             gameCamera.GetComponent<Camera>().enabled = false;
             arrow.GetComponent<AudioSource>().PlayOneShot(arrow.GetComponent<ArcoArrow>().shoot);
