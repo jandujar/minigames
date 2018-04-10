@@ -8,14 +8,14 @@ public class WoodCutter : IMiniGame {
     public static WoodCutter instance = null;
     public RamaInstance ramaInstance;
 
-    bool isCutting = false;
-    bool playerDead = false;
-    int cuttedCount = 0;
-    public int cuttedToWin = 20;
+    private bool isCutting = false;
+    private bool playerDead = false;
+    private int cuttedCount = 0;
+    private int cuttedToWin = 20;
 
     public TextMesh tTimer;
-    float timer = 10;
-    int timerInt = 0; 
+    private float timer = 15f;
+    private int timerInt = 0; 
 
     void Awake()
     {
@@ -64,7 +64,8 @@ public class WoodCutter : IMiniGame {
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-       ramaInstance.init();
+        this.gameManager = gm;
+        ramaInstance.init();
     }
 
     public override string ToString()

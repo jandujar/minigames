@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class BoxingEnemyController : MonoBehaviour {
 
-
-    //  PUBLIC 
     public GameManager gameManager;
     public BoxingPlayerController boxingPlayer;
-    public Coroutine enemyCorutine = null;
-    // PRIVATE
-    private float speed = 3;
-    private int lastMove;
-    public AudioSource boxingBell;
+    private AudioSource boxingBell;
     private int move;
-
+    public float speed = 1;
+    public int lastMove;
 
     public void init(GameManager gm)
     {
@@ -23,17 +18,12 @@ public class BoxingEnemyController : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        enemyCorutine = StartCoroutine(MiUpdate());
+        StartCoroutine(MiUpdate());
         boxingBell = GetComponent<AudioSource>();
     }
 
     IEnumerator LoseMatch()
     {
-        boxingBell.Play();
-        GameObject.Find("PlayerKo").transform.position = new Vector3(0, 0, 0);
-        StopCoroutine(enemyCorutine);
-        yield return new WaitForSeconds(2);
-        GameObject.Find("PlayerKo").transform.position = new Vector3(0, 0, 25);
         Instantiate(GameObject.Find("Lose"), new Vector3(-0.2f, 0, 0), Quaternion.identity);
         yield return new WaitForSeconds(2);
         gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
