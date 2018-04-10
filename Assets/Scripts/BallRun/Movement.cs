@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour {
 
-    public float speed = 10f;
-    public float jumpForce = 50f;
+    public float speed = 15f;
+    public float jumpForce = 5f;
     public GameObject player;
 
     private Rigidbody rb;
-    private bool isGrounded;
-    /*private int jumps = 0;
-    private bool doubleJump = false;
-    private bool hasJumped = false;*/
-    // Use this for initialization
+    private bool isGrounded = true;
+    private int jumps = 0;
+    private float vertical, horizontal;
+    private float maxDistanceY = 8.2f;
     void Start () {
         rb = player.GetComponent<Rigidbody>();
 	}
@@ -24,27 +23,36 @@ public class Movement : MonoBehaviour {
 	}
     void SimpleMovement()
     {
-        if (Input.GetKey(KeyCode.W))//InputManager.Instance.GetAxisVertical(Input.GetAxis("Vertical")))
+        if (InputManager.Instance.GetAxisVertical() > 0)//InputManager.Instance.GetAxisVertical(Input.GetAxis("Horizontal")))
         {
             rb.AddForce(Vector3.forward * Time.deltaTime * speed);
         }
-        else if(Input.GetKey(KeyCode.A))//InputManager.Instance.GetAxisVertical(Input.GetAxis("Vertical")))
+        else if(InputManager.Instance.GetAxisHorizontal() < 0)//InputManager.Instance.GetAxisVertical(Input.GetAxis("Horizontal")))
         {
             rb.AddForce(Vector3.left * Time.deltaTime * speed);
         }
-        else if(Input.GetKey(KeyCode.S))//InputManager.Instance.GetAxisHorizontal(Input.GetAxis("Horizontal"))) 
+        else if(InputManager.Instance.GetAxisVertical() < 0)//InputManager.Instance.GetAxisHorizontal(Input.GetAxis("Vertical"))) 
         {
             rb.AddForce(Vector3.back * Time.deltaTime * speed);
         }
-        else if(Input.GetKey(KeyCode.D))//InputManager.Instance.GetAxisHorizontal(Input.GetAxis("Horizontal"))) 
+        else if(InputManager.Instance.GetAxisHorizontal() > 0)//InputManager.Instance.GetAxisHorizontal(Input.GetAxis("Vertical"))) 
         {
             rb.AddForce(Vector3.right* Time.deltaTime * speed);
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))//InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1))
+        if(InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1) || Input.GetKeyDown(KeyCode.Space) && isGrounded) //InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1))
         {
-            //player.transform.Translate(Vector3.up * Time.deltaTime * jumpForce);
+            //RAYCAST PARA COMPROBAR SI ESTA TOCANDO EL SUELO
             rb.AddForce(Vector3.up * jumpForce);
+            isGrounded = false;
+            jumps += 1;
+            if (jumps > 0)
+            {
+                isGrounded = false;
+            }
+                
+            
         }
+        isGrounded = true;
     }
 }

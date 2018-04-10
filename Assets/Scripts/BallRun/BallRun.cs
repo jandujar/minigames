@@ -16,12 +16,14 @@ public class BallRun : IMiniGame
     public GameState state = GameState.Countdown;
     public GameManager gm;
     public AudioSource bgMusic;
-
-
+    public GameObject lose;
+    public AudioClip loseclip;
+    
     //PRIVATE VARIABLES
     [SerializeField] private Text txt;
     private float remaining_time;
-    
+    private Movement mv;
+    private PlayerCol pc;
 
 
     void Start()
@@ -63,6 +65,11 @@ public class BallRun : IMiniGame
         txt.text = remaining_time.ToString();
 
         StartCoroutine(EndLose());
+        pc.Lose();
+        //lose.GetComponent<AudioSource>().PlayOneShot(loseclip);
+
+
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -70,6 +77,7 @@ public class BallRun : IMiniGame
         if(other.gameObject.tag == "win" && remaining_time > 0)
         {
             StartCoroutine(EndWin());
+            bgMusic.Stop();
         }
     }
     public IEnumerator CheckEnd()
@@ -78,19 +86,19 @@ public class BallRun : IMiniGame
     }
     public IEnumerator EndWin()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         gm.EndGame(IMiniGame.MiniGameResult.WIN);
     }
     public IEnumerator EndLose()
     {
-        yield return new WaitForSeconds(0f);
+        yield return new WaitForSeconds(2f);
         gm.EndGame(MiniGameResult.LOSE);
     }
-    IEnumerator EndLoseLong()
+    /*IEnumerator EndLoseLong()
     {
         yield return new WaitForSeconds(1f);
         gm.EndGame(MiniGameResult.LOSE);
-    }
+    }*/
 
 
     public override string ToString()

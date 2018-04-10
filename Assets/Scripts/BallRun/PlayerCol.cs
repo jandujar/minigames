@@ -14,40 +14,27 @@ public class PlayerCol : MonoBehaviour
     public GameObject win;
     public GameObject lose;
     private Movement mv;
-    // Use this for initialization
+    public AudioClip loser;
+    
+
     void Start()
     {
         winsound = GetComponent<AudioSource>();
         
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
     void OnCollisionEnter(Collision coll)
     {
         if (coll.gameObject.tag == "death")
         {
             StartCoroutine(EndLose());
-            losesound.Play();
-            lose.GetComponent<Image>().enabled = true;
-            lose.GetComponent<Animator>().Play("LoseAnim");
-            mv.speed = 0;
-            mv.jumpForce = 0;
+            Lose();
+
         }
         if(coll.gameObject.tag == "win")
         {
             StartCoroutine(EndWin());
-            winsound.Play();
-            win.GetComponent<Image>().enabled = true;
-            win.GetComponent<Animator>().Play("WinAnim");
-            mv.speed = 0;
-            mv.jumpForce = 0;
+            Win();
             
         }
     } 
@@ -62,6 +49,23 @@ public class PlayerCol : MonoBehaviour
     {
         yield return new WaitForSeconds(1.6f);
         gm.EndGame(IMiniGame.MiniGameResult.WIN);
+    }
+    public void Win()
+    {
+        winsound.Play();
+        win.GetComponent<Image>().enabled = true;
+        win.GetComponent<Animator>().Play("win");
+        mv.speed = 0;
+        mv.jumpForce = 0;
+    }
+    
+    public void Lose()
+    {
+        //losesound.PlayOneShot(loser);
+        lose.GetComponent<Image>().enabled = true;
+        lose.GetComponent<Animator>().Play("lose");
+        mv.speed = 0;
+        mv.jumpForce = 0;
     }
 
 
