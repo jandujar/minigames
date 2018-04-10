@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PastillaController : MonoBehaviour {
-    public float speed;
-
+   
     private Rigidbody rb;
-
+    public float speed;
     public float jumpForce = 2000f;	// Variable that determines the forward force
+
+    private Vector3 moveDirection;
+    public float gravity;
+    public CharacterController characterController;
+
 
     void Start()
     {
@@ -19,14 +23,15 @@ public class PastillaController : MonoBehaviour {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-
-        rb.AddForce(movement * speed);
-
+        Vector3 moveDirection = new Vector3(moveHorizontal * speed, 0,  moveVertical*speed);
+        
 
         if(InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
         {
-            rb.AddForce(0, jumpForce * Time.deltaTime, 0);
+            moveDirection.y = jumpForce;
+            rb.AddForce(moveDirection * speed);
         }
+        moveDirection.y = moveDirection.y + (Physics.gravity.y * gravity);
+        characterController.Move(moveDirection * Time.deltaTime);
     }
 }
