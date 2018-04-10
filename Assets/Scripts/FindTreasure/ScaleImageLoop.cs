@@ -23,7 +23,6 @@ public class ScaleImageLoop : MonoBehaviour
     {
         rectTransform = gameObject.GetComponent<RectTransform>();
         baseScale = rectTransform.localScale;
-        StartCoroutine("scaleAnimation");
     }
 
     private void Update()

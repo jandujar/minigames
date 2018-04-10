@@ -22,17 +22,5 @@ public class RotateSphere : MonoBehaviour
             toRotation = Quaternion.Euler(yDeg, xDeg, 0);
             transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, Time.deltaTime * rotationSpeed);
         }
-        if (getAnyInput())
-        {
-            Debug.Log("CheckTreasure");
-        }
-    }
-
-    private bool getAnyInput()
-    {
-        return (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) ||
-                InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2) ||
-                InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON3) ||
-                InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4));
     }
 }
