@@ -11,7 +11,8 @@ public class ShootTheBall : IMiniGame
 
     [Header("Game State")]
     public bool gameStarted;
-    public int gameScore = 0;
+    public int scoreObjetive = 2;
+    private int gameScore = 0;
     [Header("Game Components")]
     public GameObject gameSceneObject;
 
@@ -38,10 +39,6 @@ public class ShootTheBall : IMiniGame
         return "Shoot The Ball by Saltimbanqi";
     }
 
-    private void Update()
-    {
-    }
-
     //Set end game Win/Lose
     public void setEndGameLose()
     {
@@ -52,6 +49,14 @@ public class ShootTheBall : IMiniGame
     {
         StopAllCoroutines();
         gameManager.EndGame(MiniGameResult.WIN);
+    }
+
+    public void checkWinLose()
+    {
+        if (gameScore >= scoreObjetive)
+            setEndGameWin();
+        else
+            setEndGameLose();
     }
 
     public void addScore(int _score)

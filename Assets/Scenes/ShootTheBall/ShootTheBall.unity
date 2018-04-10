@@ -158,6 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 1477375322}
   - {fileID: 834112163}
@@ -313,13 +314,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c97913f582b56141a18fbfaaa88c580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   m_Targets: []
+  m_PathSize: 9
+  m_PathTargets: []
+  timesToShoot: 3
+  m_Target: {fileID: 0}
   m_BallTarget: {fileID: 0}
   m_TargetRenderer: {fileID: 0}
-  m_Target: {fileID: 0}
-  m_PathSize: 9
-  m_LookTarget: 0
-  m_PathTargets: []
+  startCreatePath: 5
+  timeToNextPath: 6
 --- !u!1 &85888436
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,6 +673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 862655909}
   - {fileID: 920388062}
@@ -772,6 +777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 1440312776}
   - {fileID: 1394133375}
@@ -1060,6 +1066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 867569481}
   - {fileID: 1384778810}
@@ -1165,6 +1172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 459300727}
   - {fileID: 876718167}
@@ -1270,6 +1278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 1316303093}
   - {fileID: 862655909}
@@ -1419,6 +1428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 49258570}
   - {fileID: 1925658194}
@@ -1522,6 +1532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 1522507977}
   - {fileID: 765428698}
@@ -1626,6 +1637,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 308177869}
   - {fileID: 920388062}
@@ -1732,6 +1744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 2081328763}
   - {fileID: 1136285361}
@@ -1836,6 +1849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 2101620043}
   - {fileID: 1440312776}
@@ -1941,6 +1955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 1776147977}
   - {fileID: 1384778810}
@@ -2044,6 +2059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 876718167}
   - {fileID: 676252993}
@@ -2148,6 +2164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 308177869}
   - {fileID: 862655909}
@@ -2251,6 +2268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 1136285361}
   - {fileID: 1471243755}
@@ -2354,6 +2372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 1713460637}
   - {fileID: 1477375322}
@@ -2492,6 +2511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 1384778810}
   - {fileID: 867569481}
@@ -2698,6 +2718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 765428698}
   - {fileID: 1394133375}
@@ -2831,6 +2852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 899637476}
   - {fileID: 644901321}
@@ -2935,6 +2957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 1316303093}
   - {fileID: 1713460637}
@@ -3039,6 +3062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 1394133375}
   - {fileID: 2101620043}
@@ -3145,6 +3169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 990480431}
   - {fileID: 2101620043}
@@ -3248,6 +3273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 990480431}
   - {fileID: 2081328763}
@@ -3352,6 +3378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 765428698}
   - {fileID: 835495128}
@@ -3597,6 +3624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameStarted: 0
+  scoreObjetive: 2
   gameSceneObject: {fileID: 601591328}
 --- !u!114 &1704692378
 MonoBehaviour:
@@ -3672,6 +3700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 49258570}
   - {fileID: 1394133375}
@@ -3777,6 +3806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 899637476}
   - {fileID: 644901321}
@@ -3980,6 +4010,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 834112163}
   - {fileID: 2081328763}
@@ -4112,6 +4143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 867569481}
   - {fileID: 1477375322}
@@ -4217,6 +4249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_GameManager: {fileID: 0}
   m_Neightbours:
   - {fileID: 1471243755}
   - {fileID: 1440312776}

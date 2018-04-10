@@ -51,7 +51,6 @@ public class BallToShoot : MonoBehaviour
 
     private void OnTriggerEnter(Collider _col)
     {
-        Debug.Log(_col.gameObject.name);
         if(_col.gameObject.name=="Bullet" && m_IsTarget)
         {
             m_HasBeenShooted = true;

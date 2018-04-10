@@ -4,34 +4,29 @@ using UnityEngine;
 
 public class TargetsToShoot : MonoBehaviour
 {
-    [Header("Path Target")]
-    public List<GameObject> m_PathTargets = new List<GameObject>();
-
+    [Header("Game Controller")]
+    public ShootTheBall gameManager;
+    [Header("Childs list")]
     public List<GameObject> m_Targets = new List<GameObject>();
-
-    public BallToShoot m_BallTarget;
-    private BallToShoot m_NextTarget;
-
-    public Renderer m_TargetRenderer;
-
-    public GameObject m_Target;
-
+    [Header("Path Target")]
     public int m_PathSize = 0;
-    public bool m_LookTarget = false;
-
-
+    public List<GameObject> m_PathTargets = new List<GameObject>();
+    [Header("Target")]
+    public int timesToShoot = 3;
+    public GameObject m_Target;
+    public BallToShoot m_BallTarget;
+    public Renderer m_TargetRenderer;
+    [Header("Timers")]
+    public float startCreatePath = 4f;
+    public float timeToNextPath = 6f;
+    
     // Use this for initialization
     void Start ()
     {
+        gameManager = GameObject.Find("Game").GetComponent<ShootTheBall>();
         setAllTargetsColor();
         StartCoroutine(SetTarget());
     }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        //Debug.Log(createPath());        
-	}
 
     void setAllTargetsColor()
     {
@@ -102,7 +97,8 @@ public class TargetsToShoot : MonoBehaviour
         {
             BallToShoot l_NextPoint = m_PathTargets[i].GetComponent<BallToShoot>();
             l_PathPoint.createLineToPoint(l_NextPoint.gameObject);
-            yield return new WaitForSecondsRealtime(0.4f);
+            if(i!=m_PathTargets.Count-1)
+                yield return new WaitForSecondsRealtime(0.35f);
             l_PathPoint = l_NextPoint;
         }
         setBallTarget();
@@ -119,17 +115,14 @@ public class TargetsToShoot : MonoBehaviour
 
     public IEnumerator SetTarget()
     {
-        yield return new WaitForSecondsRealtime(5f);
+        yield return new WaitForSecondsRealtime(startCreatePath);
 
-        while(!createPath())
-            Debug.Log(".");
-
-        yield return new WaitForSecondsRealtime(7f);
-        while (!createPath())
-            Debug.Log(".");
-
-        yield return new WaitForSecondsRealtime(7f);
-        while (!createPath())
-            Debug.Log(".");
+        for(int i=0;i<timesToShoot;++i)
+        {
+            while(!createPath())
+                Debug.Log(".");
+            yield return new WaitForSecondsRealtime(timeToNextPath);
+        }
+        gameManager.checkWinLose();
     }
 }
