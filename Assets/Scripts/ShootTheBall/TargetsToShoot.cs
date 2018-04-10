@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TargetsToShoot : MonoBehaviour
 {
+    [Header("Path Target")]
+    public List<GameObject> m_PathTargets = new List<GameObject>();
+
     public List<GameObject> m_Targets = new List<GameObject>();
 
     public BallToShoot m_BallTarget;
@@ -16,66 +19,98 @@ public class TargetsToShoot : MonoBehaviour
     public int m_PathSize = 0;
     public bool m_LookTarget = false;
 
-    public List<GameObject> m_PathTargets = new List<GameObject>();
 
     // Use this for initialization
     void Start ()
     {
-	    foreach(Transform l_Child in gameObject.transform)
-        {
-            Renderer l_Renderer = l_Child.gameObject.GetComponent<Renderer>();
-            l_Renderer.material.color = Color.blue;
-            m_Targets.Add(l_Child.gameObject);
-        }
-        StartCoroutine(SelectTarget());
+        setAllTargetsColor();
+        StartCoroutine(SetTarget());
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        //Debug.Log("Random: " + Random.Range(0, (m_Targets.Count)));
-        if(m_BallTarget!=null)
-            if(!m_BallTarget.m_IsTarget && m_BallTarget.m_HasBeenShooted)
-            {
-                StartCoroutine(SelectTarget());
-            }
+        //Debug.Log(createPath());        
 	}
 
-    IEnumerator SelectTarget()
+    void setAllTargetsColor()
     {
-        foreach(GameObject l_PathTarget in m_PathTargets)
-            foreach (Transform l_Child in l_PathTarget.transform)
-                GameObject.Destroy(l_Child.gameObject);
+        foreach (Transform l_Child in gameObject.transform)
+        {
+            Renderer l_Renderer = l_Child.gameObject.GetComponent<Renderer>();
+            l_Renderer.material.color = Color.blue;
+            m_Targets.Add(l_Child.gameObject);
+        }
+    }
+
+    bool createPath()
+    {
+        setAllTargetsColor();
+        destroyChildrensOnList();
 
         m_PathTargets.Clear();
-        BallToShoot randomObject = m_Targets[Random.Range(0, m_Targets.Count)].GetComponent<BallToShoot>();
-        m_PathTargets.Add(randomObject.gameObject);
-        for(int i=0;i<m_PathSize;++i)
+        //Select 1rst path point
+        BallToShoot l_RandomObject = m_Targets[Random.Range(0, m_Targets.Count)].GetComponent<BallToShoot>();
+        m_PathTargets.Add(l_RandomObject.gameObject);
+
+        //Next path points until fill list
+        for (int i=0;i<m_PathSize;++i)
         {
-            Debug.Log(i);
-            BallToShoot prevObject = randomObject;
-            randomObject = prevObject.m_Neightbours[Random.Range(0, prevObject.m_Neightbours.Count)].GetComponent<BallToShoot>();
-            bool l_CheckObject=false;
-            while (!l_CheckObject)
+            //Reference to last obj
+            BallToShoot l_PrevObj = l_RandomObject;
+            //Next point on neightbours
+            l_RandomObject = l_PrevObj.m_Neightbours[Random.Range(0, l_PrevObj.m_Neightbours.Count)].GetComponent<BallToShoot>();
+
+            //Check if is on list
+
+            //Neightbours count
+            int l_Neightbours = l_PrevObj.m_Neightbours.Count;
+            while(true)
             {
-                if (m_PathTargets.Contains(randomObject.gameObject))
-                    randomObject = prevObject.m_Neightbours[Random.Range(0, prevObject.m_Neightbours.Count)].GetComponent<BallToShoot>();
+                //If no neightbours, fails
+                if (l_Neightbours <= 0)
+                    return false;
+
+                //If invalid point
+                if (m_PathTargets.Contains(l_RandomObject.gameObject))
+                {
+                    l_Neightbours--;
+                    l_RandomObject = l_PrevObj.m_Neightbours[Random.Range(0, l_PrevObj.m_Neightbours.Count)].GetComponent<BallToShoot>();
+                }
+                //If correct
                 else
-                    l_CheckObject = true;
+                    break;
             }
-            m_PathTargets.Add(randomObject.gameObject);
-            if (i != m_PathSize)
-            {
-                prevObject.createLineToPoint(randomObject.gameObject);
-                yield return new WaitForSecondsRealtime(2f);
-            }
-            //Debug.Break();
-            if (i == (m_PathSize-1))
-            {
-                Debug.Log("Last");
-                m_BallTarget = randomObject;
-            }
+            //add point
+            m_PathTargets.Add(l_RandomObject.gameObject);
         }
+        StartCoroutine(createPathLines());
+        return true;
+    }
+
+    void destroyChildrensOnList()
+    {
+        foreach (GameObject l_PathTarget in m_PathTargets)
+            foreach (Transform l_Child in l_PathTarget.transform)
+                GameObject.Destroy(l_Child.gameObject);
+    }
+
+    IEnumerator createPathLines()
+    {
+        BallToShoot l_PathPoint = m_PathTargets[0].GetComponent<BallToShoot>();
+        for(int i=1;i<m_PathTargets.Count;++i)
+        {
+            BallToShoot l_NextPoint = m_PathTargets[i].GetComponent<BallToShoot>();
+            l_PathPoint.createLineToPoint(l_NextPoint.gameObject);
+            yield return new WaitForSecondsRealtime(0.4f);
+            l_PathPoint = l_NextPoint;
+        }
+        setBallTarget();
+    }
+
+    void setBallTarget()
+    {
+        m_BallTarget = m_PathTargets[m_PathTargets.Count-1].GetComponent<BallToShoot>();
         m_TargetRenderer = m_BallTarget.gameObject.GetComponent<Renderer>();
         m_TargetRenderer.material.color = Color.green;
 
@@ -84,22 +119,17 @@ public class TargetsToShoot : MonoBehaviour
 
     public IEnumerator SetTarget()
     {
-        yield return new WaitForSecondsRealtime(3f);
-        StartCoroutine(SelectTarget());
-        /*
-        while (true)
-        {
-            yield return new WaitForSecondsRealtime(5f);
-            if(m_BallTarget == null)
-            {
-                SelectTarget();
-            }
-            if(!m_BallTarget.m_IsTarget && m_BallTarget.m_HasBeenShooted)
-            {
-                m_BallTarget.m_HasBeenShooted = false;
-                m_BallTarget = null;
-            }
-        }
-        */
+        yield return new WaitForSecondsRealtime(5f);
+
+        while(!createPath())
+            Debug.Log(".");
+
+        yield return new WaitForSecondsRealtime(7f);
+        while (!createPath())
+            Debug.Log(".");
+
+        yield return new WaitForSecondsRealtime(7f);
+        while (!createPath())
+            Debug.Log(".");
     }
 }

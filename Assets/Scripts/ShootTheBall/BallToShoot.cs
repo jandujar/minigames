@@ -9,6 +9,7 @@ public class BallToShoot : MonoBehaviour
     public bool m_HasBeenShooted = false;
 
     [Header("Complements")]
+    public ShootTheBall m_GameManager;
     public List<GameObject> m_Neightbours = new List<GameObject>();
 
     [Header("Line")]
@@ -19,7 +20,7 @@ public class BallToShoot : MonoBehaviour
     void Start ()
     {
         m_Renderer = gameObject.GetComponent<Renderer>();
-        //createLines();
+        m_GameManager = GameObject.Find("Game").GetComponent<ShootTheBall>();
 	}
 	
     public void createLines()
@@ -45,6 +46,7 @@ public class BallToShoot : MonoBehaviour
         l_LineRender.SetPosition(0, this.transform.position);
         l_LineRender.SetPosition(1, _target.transform.position);
         l_LineRender.useWorldSpace = true;
+        l_LineRender.gameObject.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider _col)
@@ -56,6 +58,7 @@ public class BallToShoot : MonoBehaviour
             m_IsTarget = false;
             m_Renderer.material.color = Color.blue;
             Destroy(_col.gameObject);
+            m_GameManager.addScore(1);
         }
     }
 }

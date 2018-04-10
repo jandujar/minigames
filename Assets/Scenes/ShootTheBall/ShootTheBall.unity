@@ -317,7 +317,8 @@ MonoBehaviour:
   m_BallTarget: {fileID: 0}
   m_TargetRenderer: {fileID: 0}
   m_Target: {fileID: 0}
-  m_PathSize: 7
+  m_PathSize: 9
+  m_LookTarget: 0
   m_PathTargets: []
 --- !u!1 &85888436
 GameObject:
@@ -878,6 +879,16 @@ Prefab:
         type: 2}
       propertyPath: near clip plane
       value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 20263652027557132, guid: 16c290a8c1d9dea44a3562ee346f0f84,
+        type: 2}
+      propertyPath: far clip plane
+      value: 101.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 20263652027557132, guid: 16c290a8c1d9dea44a3562ee346f0f84,
+        type: 2}
+      propertyPath: field of view
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16c290a8c1d9dea44a3562ee346f0f84, type: 2}

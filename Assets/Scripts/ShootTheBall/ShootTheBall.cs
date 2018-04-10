@@ -11,6 +11,7 @@ public class ShootTheBall : IMiniGame
 
     [Header("Game State")]
     public bool gameStarted;
+    public int gameScore = 0;
     [Header("Game Components")]
     public GameObject gameSceneObject;
 
@@ -34,7 +35,7 @@ public class ShootTheBall : IMiniGame
 
     public override string ToString()
     {
-        return "Shoot the ball by Saltimbanqi";
+        return "Shoot The Ball by Saltimbanqi";
     }
 
     private void Update()
@@ -51,5 +52,10 @@ public class ShootTheBall : IMiniGame
     {
         StopAllCoroutines();
         gameManager.EndGame(MiniGameResult.WIN);
+    }
+
+    public void addScore(int _score)
+    {
+        gameScore += _score;
     }
 }
