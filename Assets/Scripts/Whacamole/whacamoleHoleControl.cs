@@ -2,23 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class whacamoleHoleControl : MonoBehaviour {
+public class WhacamoleHoleControl : MonoBehaviour {
 
     public GameObject[] holeControl;
 
-    public whacamoleMove moleMoveControl;
+    public WhacamoleMove[] moleMoveControl;
+
+    public WhacamoleMove[] helmetMoveControl;
 
     private int randomHole;
     private int randomMole;
+    private int lastRandom = -1;
 
-    private void Awake()
-    {
-        for (int i = 0; i < 6; ++i)
-        {
-           holeControl[i].transform.GetChild(0).gameObject.SetActive(false);
-           holeControl[i].transform.GetChild(1).gameObject.SetActive(false);
-        }
-    }
 
     private void Start()
     {
@@ -29,79 +24,105 @@ public class whacamoleHoleControl : MonoBehaviour {
     {
         while (true)
         {
-            randomHole = Random.Range(0, 1);
+            randomHole = Random.Range(0, 6);
+            while (randomHole == lastRandom)
+            {
+                randomHole = Random.Range(0, 6);
+            }
+            lastRandom = randomHole;
             switch (randomHole)
             {
                 case 0:
-                    randomMole = Random.Range(0, 1);
-                    if (randomMole == 0)
+                    randomMole = Random.Range(0, 3);
+                    if (randomMole != 0)
                     {
-                        Debug.Log("entra");
-                        holeControl[0].transform.GetChild(0).gameObject.SetActive(true);
-                        holeControl[0].transform.GetChild(0).gameObject.GetComponent<whacamoleMove>().StartCoroutine(holeControl[0].transform.GetChild(0).gameObject.GetComponent<whacamoleMove>().moveCorutine);
+                        moleMoveControl[0].StartAnimation(true);
+                        yield return new WaitForSeconds(1.3f);
+                        moleMoveControl[0].StartAnimation(false);
                     }
                     else
                     {
-                        holeControl[0].transform.GetChild(1).gameObject.SetActive(true);
+                        helmetMoveControl[0].StartAnimation(true);
+                        yield return new WaitForSeconds(1.3f);
+                        helmetMoveControl[0].StartAnimation(false);
                     }
                     break;
                 case 1:
-                    randomMole = Random.Range(0, 2);
-                    if (randomMole == 0)
+                    randomMole = Random.Range(0, 4);
+                    if (randomMole != 0)
                     {
-                        holeControl[1].transform.GetChild(0).gameObject.SetActive(true);
+                        moleMoveControl[1].StartAnimation(true);
+                        yield return new WaitForSeconds(1.3f);
+                        moleMoveControl[1].StartAnimation(false);
                     }
                     else
                     {
-                        holeControl[1].transform.GetChild(1).gameObject.SetActive(true);
+                        helmetMoveControl[1].StartAnimation(true);
+                        yield return new WaitForSeconds(1.3f);
+                        helmetMoveControl[1].StartAnimation(false);
                     }
                     break;
                 case 2:
-                    randomMole = Random.Range(0, 2);
-                    if (randomMole == 0)
+                    randomMole = Random.Range(0, 5);
+                    if (randomMole != 0)
                     {
-                        holeControl[2].transform.GetChild(0).gameObject.SetActive(true);
+                        moleMoveControl[2].StartAnimation(true);
+                        yield return new WaitForSeconds(1.3f);
+                        moleMoveControl[2].StartAnimation(false);
                     }
                     else
                     {
-                        holeControl[2].transform.GetChild(1).gameObject.SetActive(true);
+                        helmetMoveControl[2].StartAnimation(true);
+                        yield return new WaitForSeconds(1.3f);
+                        helmetMoveControl[2].StartAnimation(false);
                     }
                     break;
                 case 3:
-                    randomMole = Random.Range(0, 2);
-                    if (randomMole == 0)
+                    randomMole = Random.Range(0, 3);
+                    if (randomMole != 0)
                     {
-                        holeControl[3].transform.GetChild(0).gameObject.SetActive(true);
+                        moleMoveControl[3].StartAnimation(true);
+                        yield return new WaitForSeconds(1.3f);
+                        moleMoveControl[3].StartAnimation(false);
                     }
                     else
                     {
-                        holeControl[3].transform.GetChild(1).gameObject.SetActive(true);
+                        helmetMoveControl[3].StartAnimation(true);
+                        yield return new WaitForSeconds(1.3f);
+                        helmetMoveControl[3].StartAnimation(false);
                     }
                     break;
                 case 4:
                     randomMole = Random.Range(0, 2);
-                    if (randomMole == 0)
+                    if (randomMole != 0)
                     {
-                        holeControl[4].transform.GetChild(0).gameObject.SetActive(true);
+                        moleMoveControl[4].StartAnimation(true);
+                        yield return new WaitForSeconds(1.3f);
+                        moleMoveControl[4].StartAnimation(false);
                     }
                     else
                     {
-                        holeControl[4].transform.GetChild(1).gameObject.SetActive(true);
+                        helmetMoveControl[4].StartAnimation(true);
+                        yield return new WaitForSeconds(1.3f);
+                        helmetMoveControl[4].StartAnimation(false);
                     }
                     break;
                 case 5:
-                    randomMole = Random.Range(0, 2);
-                    if (randomMole == 0)
+                    randomMole = Random.Range(0, 5);
+                    if (randomMole != 0)
                     {
-                        holeControl[5].transform.GetChild(0).gameObject.SetActive(true);
+                        moleMoveControl[5].StartAnimation(true);
+                        yield return new WaitForSeconds(1.3f);
+                        moleMoveControl[5].StartAnimation(false);
                     }
                     else
                     {
-                        holeControl[5].transform.GetChild(1).gameObject.SetActive(true);
+                        helmetMoveControl[5].StartAnimation(true);
+                        yield return new WaitForSeconds(1.3f);
+                        helmetMoveControl[5].StartAnimation(false);
                     }
                     break;
             }
-            yield return new WaitForSeconds(3);
         }
     }
 

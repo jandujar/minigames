@@ -2,30 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class whacamoleMove : MonoBehaviour {
+public class WhacamoleMove : MonoBehaviour {
 
-    public IEnumerator moveCorutine;
+
+    private Animator anim;
     public bool active;
 
-    private void Start() {
-        moveCorutine = move();
-    }
-
-
-
-    IEnumerator move()
+    private void Awake()
     {
-        active = true;
-        Debug.Log("active_true");
-        yield return new WaitForSeconds(1.2f);
-        Debug.Log("yield");
-        active = false;
-        Debug.Log("active_false");
-        StopCoroutine(moveCorutine);
-        Debug.Log("stop_corutine");
-        this.gameObject.SetActive(false);
-        Debug.Log("desactivar");
+        anim = GetComponent<Animator>();
     }
+
+    public void StartAnimation(bool start)
+    {
+        if (start)
+        {
+            anim.SetBool("Move", true);
+        }
+        else if (!start)
+        {
+            anim.SetBool("Move", false);
+        }
+    }
+
 
 
 }
