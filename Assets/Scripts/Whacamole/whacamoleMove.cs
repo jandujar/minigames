@@ -7,10 +7,16 @@ public class WhacamoleMove : MonoBehaviour {
 
     private Animator anim;
     public bool active;
+    private Vector3 startPos;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        startPos = this.transform.position;
     }
 
     public void StartAnimation(bool start)
@@ -25,6 +31,11 @@ public class WhacamoleMove : MonoBehaviour {
         }
     }
 
+    public void ResetMole()
+    {
+        anim.SetBool("Move", false);
+        this.transform.position = startPos;
+    }
 
 
 }

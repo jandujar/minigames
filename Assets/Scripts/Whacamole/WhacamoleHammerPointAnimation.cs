@@ -15,4 +15,5 @@ public class WhacamoleHammerPointAnimation : MonoBehaviour {
 	void Update () {
         anim.SetBool("Hit", InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1));
     }
+
 }
