@@ -7,12 +7,6 @@ public class NoteDetectionA : MonoBehaviour
     public GitaHiro gameScript;
     private bool noteDetected = false;
     private GameObject gameNote;
-    private AudioSource gameSound;
-
-    void Start()
-    {
-        gameSound = GetComponent<AudioSource>();
-    }
 
     void OnTriggerStay(Collider other)
     {
@@ -35,7 +29,6 @@ public class NoteDetectionA : MonoBehaviour
                 gameScript.addScore();
                 Destroy(gameNote);
                 noteDetected = false;
-                gameSound.Play();
             }
         }
     }
