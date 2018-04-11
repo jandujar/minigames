@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class WhacamoleMove : MonoBehaviour {
 
+
+    public WhacamoleScore playerScore;
     public WhacamoleHammerPointAnimation hammerAnim;
     public Animator anim;
     public bool active;
@@ -12,6 +15,7 @@ public class WhacamoleMove : MonoBehaviour {
     private void Awake()
     {
         anim = GetComponent<Animator>();
+
     }
 
     private void Start()
@@ -33,9 +37,10 @@ public class WhacamoleMove : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && gameObject.tag == "Untagged")
         {
             anim.speed = 3;
+            playerScore.points = playerScore.points + 100;
         }
         if (collision.gameObject.tag == "Player" && gameObject.tag == "Finish")
         {
