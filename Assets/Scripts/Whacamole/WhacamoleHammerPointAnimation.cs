@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WhacamoleHammerPointAnimation : MonoBehaviour {
 
-    private Animator anim;
+    public Animator anim;
 
     // Use this for initialization
     void Start () {

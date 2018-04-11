@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WhacamoleMove : MonoBehaviour {
 
-
-    private Animator anim;
+    public WhacamoleHammerPointAnimation hammerAnim;
+    public Animator anim;
     public bool active;
     private Vector3 startPos;
 
@@ -16,7 +16,7 @@ public class WhacamoleMove : MonoBehaviour {
 
     private void Start()
     {
-        startPos = this.transform.position;
+        startPos = transform.position;
     }
 
     public void StartAnimation(bool start)
@@ -31,11 +31,18 @@ public class WhacamoleMove : MonoBehaviour {
         }
     }
 
-    public void ResetMole()
+    private void OnTriggerEnter(Collider collision)
     {
-        anim.SetBool("Move", false);
-        this.transform.position = startPos;
-    }
+        if (collision.gameObject.tag == "Player")
+        {
+            anim.speed = 3;
+        }
+        if (collision.gameObject.tag == "Player" && gameObject.tag == "Finish")
+        {
+            anim.speed = 0;
+            hammerAnim.anim.speed = 0;
+        }
 
+    }
 
 }

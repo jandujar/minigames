@@ -252,6 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db44cafc6039f542a2d4977eab8ef8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hammerAnim: {fileID: 41289808}
+  anim: {fileID: 0}
   active: 0
 --- !u!64 &24520736
 MeshCollider:
@@ -326,6 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f9ada9a3cfaf54991b7aea0131e17d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
 --- !u!1 &62462767 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 78b67051604103d438c8e5708700f8c0, type: 3}
@@ -341,6 +344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db44cafc6039f542a2d4977eab8ef8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hammerAnim: {fileID: 41289808}
+  anim: {fileID: 0}
   active: 0
 --- !u!65 &62462773
 BoxCollider:
@@ -443,7 +448,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 78b67051604103d438c8e5708700f8c0, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78b67051604103d438c8e5708700f8c0, type: 3}
@@ -463,6 +468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db44cafc6039f542a2d4977eab8ef8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hammerAnim: {fileID: 41289808}
+  anim: {fileID: 0}
   active: 0
 --- !u!65 &172262358
 BoxCollider:
@@ -565,7 +572,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 78b67051604103d438c8e5708700f8c0, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78b67051604103d438c8e5708700f8c0, type: 3}
@@ -677,6 +684,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
+      propertyPath: m_TagString
+      value: Finish
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
@@ -784,6 +795,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e0e5db0e1bdc21a418dd9fbff44962e1, type: 2}
+    - target: {fileID: 100000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
+      propertyPath: m_TagString
+      value: Finish
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
@@ -957,6 +972,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e0e5db0e1bdc21a418dd9fbff44962e1, type: 2}
+    - target: {fileID: 100000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
+      propertyPath: m_TagString
+      value: Finish
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
@@ -976,6 +995,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db44cafc6039f542a2d4977eab8ef8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hammerAnim: {fileID: 41289808}
+  anim: {fileID: 0}
   active: 0
 --- !u!65 &364660866
 BoxCollider:
@@ -1045,6 +1066,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db44cafc6039f542a2d4977eab8ef8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hammerAnim: {fileID: 41289808}
+  anim: {fileID: 0}
   active: 0
 --- !u!65 &420344096
 BoxCollider:
@@ -1216,6 +1239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db44cafc6039f542a2d4977eab8ef8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hammerAnim: {fileID: 41289808}
+  anim: {fileID: 0}
   active: 0
 --- !u!65 &674248948
 BoxCollider:
@@ -1244,6 +1269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db44cafc6039f542a2d4977eab8ef8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hammerAnim: {fileID: 41289808}
+  anim: {fileID: 0}
   active: 0
 --- !u!65 &734006361
 BoxCollider:
@@ -1420,7 +1447,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 78b67051604103d438c8e5708700f8c0, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78b67051604103d438c8e5708700f8c0, type: 3}
@@ -1544,6 +1571,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e0e5db0e1bdc21a418dd9fbff44962e1, type: 2}
+    - target: {fileID: 100000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
+      propertyPath: m_TagString
+      value: Finish
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
@@ -1580,6 +1611,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db44cafc6039f542a2d4977eab8ef8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hammerAnim: {fileID: 41289808}
+  anim: {fileID: 0}
   active: 0
 --- !u!64 &1104320514
 MeshCollider:
@@ -1756,6 +1789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db44cafc6039f542a2d4977eab8ef8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hammerAnim: {fileID: 41289808}
+  anim: {fileID: 0}
   active: 0
 --- !u!64 &1211209235
 MeshCollider:
@@ -1874,6 +1909,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e0e5db0e1bdc21a418dd9fbff44962e1, type: 2}
+    - target: {fileID: 100000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
+      propertyPath: m_TagString
+      value: Finish
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
@@ -1976,6 +2015,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db44cafc6039f542a2d4977eab8ef8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hammerAnim: {fileID: 41289808}
+  anim: {fileID: 0}
   active: 0
 --- !u!64 &1586742719
 MeshCollider:
@@ -2006,7 +2047,7 @@ GameObject:
   - component: {fileID: 1587958341}
   m_Layer: 0
   m_Name: Hammer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2090,6 +2131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c149b0d7a31144db551db2efc17d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetMole: {fileID: 674248947}
 --- !u!54 &1587958341
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2220,6 +2262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db44cafc6039f542a2d4977eab8ef8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hammerAnim: {fileID: 41289808}
+  anim: {fileID: 0}
   active: 0
 --- !u!64 &1713335703
 MeshCollider:
@@ -2404,6 +2448,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e0e5db0e1bdc21a418dd9fbff44962e1, type: 2}
+    - target: {fileID: 100000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
+      propertyPath: m_TagString
+      value: Finish
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 18e71243aabe3c74c8dbe1def72ac484, type: 3}
@@ -2547,7 +2595,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 78b67051604103d438c8e5708700f8c0, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78b67051604103d438c8e5708700f8c0, type: 3}
@@ -2641,7 +2689,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 78b67051604103d438c8e5708700f8c0, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78b67051604103d438c8e5708700f8c0, type: 3}
@@ -2678,6 +2726,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db44cafc6039f542a2d4977eab8ef8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hammerAnim: {fileID: 41289808}
+  anim: {fileID: 0}
   active: 0
 --- !u!64 &1896258839
 MeshCollider:
@@ -2794,7 +2844,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 78b67051604103d438c8e5708700f8c0, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78b67051604103d438c8e5708700f8c0, type: 3}

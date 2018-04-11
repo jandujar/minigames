@@ -39,6 +39,7 @@ public class WhacamoleHoleControl : MonoBehaviour {
                         moleMoveControl[0].StartAnimation(true);
                         yield return new WaitForSeconds(1.3f);
                         moleMoveControl[0].StartAnimation(false);
+                        moleMoveControl[0].anim.speed = 1;
                     }
                     else
                     {
@@ -54,6 +55,7 @@ public class WhacamoleHoleControl : MonoBehaviour {
                         moleMoveControl[1].StartAnimation(true);
                         yield return new WaitForSeconds(1.3f);
                         moleMoveControl[1].StartAnimation(false);
+                        moleMoveControl[1].anim.speed = 1;
                     }
                     else
                     {
@@ -69,6 +71,7 @@ public class WhacamoleHoleControl : MonoBehaviour {
                         moleMoveControl[2].StartAnimation(true);
                         yield return new WaitForSeconds(1.3f);
                         moleMoveControl[2].StartAnimation(false);
+                        moleMoveControl[2].anim.speed = 1;
                     }
                     else
                     {
@@ -84,6 +87,7 @@ public class WhacamoleHoleControl : MonoBehaviour {
                         moleMoveControl[3].StartAnimation(true);
                         yield return new WaitForSeconds(1.3f);
                         moleMoveControl[3].StartAnimation(false);
+                        moleMoveControl[3].anim.speed = 1;
                     }
                     else
                     {
@@ -99,6 +103,7 @@ public class WhacamoleHoleControl : MonoBehaviour {
                         moleMoveControl[4].StartAnimation(true);
                         yield return new WaitForSeconds(1.3f);
                         moleMoveControl[4].StartAnimation(false);
+                        moleMoveControl[4].anim.speed = 1;
                     }
                     else
                     {
@@ -114,6 +119,7 @@ public class WhacamoleHoleControl : MonoBehaviour {
                         moleMoveControl[5].StartAnimation(true);
                         yield return new WaitForSeconds(1.3f);
                         moleMoveControl[5].StartAnimation(false);
+                        moleMoveControl[5].anim.speed = 1;
                     }
                     else
                     {
@@ -125,13 +131,4 @@ public class WhacamoleHoleControl : MonoBehaviour {
             }
         }
     }
-
-
-
-
-
-
-
-
-
 }
