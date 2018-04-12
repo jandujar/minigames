@@ -10,6 +10,8 @@ public class SpawnRandomRolling : MonoBehaviour {
 	public Vector3 pos2; //left
 	public Vector3 pos3; //right
 	public GameObject parent; 
+	private int lastPos;
+	private float spawnTime;
 
 	// Use this for initialization
 	void Start () {
@@ -17,25 +19,30 @@ public class SpawnRandomRolling : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	/*void Update () {
 		
-	}
+	}*/
 
 	IEnumerator CallSpawn(){
-		yield return new WaitForSeconds(4);
-		for(int i = 0; i < 15; ++i){
+		yield return new WaitForSeconds(3);
+		for(int i = 0; i < 25; ++i){
 			Spawn();
-			yield return new WaitForSeconds(1);
+			spawnTime = Random.Range(0.4f, 0.7f);
+			yield return new WaitForSeconds(spawnTime);
 		}
 	}
 	void Spawn(){
 			int random = Random.Range(0, 3);
+
+			while(lastPos == random){
+				random = Random.Range(0, 3);
+			}	
+			
 			GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			cube.AddComponent<Rigidbody>();
 			cube.GetComponent<Rigidbody>().constraints =  RigidbodyConstraints.FreezePositionZ | 
 				RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
 			cube.GetComponent<Rigidbody>().useGravity = false;
-			//cube.GetComponent<Collider>().isTrigger = true;
 			switch(random){
 				case 0:
 					cube.gameObject.transform.localPosition = pos1;
@@ -59,9 +66,11 @@ public class SpawnRandomRolling : MonoBehaviour {
 					);
 					cube.transform.SetParent(parent.transform, true);
 					break;
+
 				default: 
 					break;
 			}
+			lastPos = random;
 	}
     void OnCollisionEnter(Collision other) {
         Destroy(other.gameObject);
