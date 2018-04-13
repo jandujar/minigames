@@ -12,6 +12,7 @@ public class BallRun : IMiniGame
         Playing
     }
     public float time;
+    public PlayerCol pc;
     public GameObject canvasText;
     public GameState state = GameState.Countdown;
     public GameManager gm;
@@ -23,7 +24,6 @@ public class BallRun : IMiniGame
     [SerializeField] private Text txt;
     private float remaining_time;
     private Movement mv;
-    private PlayerCol pc;
 
 
     void Start()
@@ -50,22 +50,20 @@ public class BallRun : IMiniGame
         canvasText.SetActive(false);
     }
 
-    IEnumerator CheckTimeout()
+    public IEnumerator CheckTimeout()
     {
         txt.text = (time).ToString();
         for (int i = 0; i < time; i++)
         {
-            remaining_time = time - i;
-            txt.text = remaining_time.ToString();
-
             yield return new WaitForSeconds(1f);
-            
 
+            remaining_time = time - i -1;
+            txt.text = remaining_time.ToString();
         }
         txt.text = remaining_time.ToString();
 
-        StartCoroutine(EndLose());
         pc.Lose();
+        StartCoroutine(EndLose());
         //lose.GetComponent<AudioSource>().PlayOneShot(loseclip);
 
 

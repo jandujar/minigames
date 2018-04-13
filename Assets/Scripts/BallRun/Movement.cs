@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour {
 
     public float speed = 15f;
     public float jumpForce = 5f;
+    public float artificialGravity = 5f;
     public GameObject player;
 
     private Rigidbody rb;
@@ -19,40 +20,45 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        CheckGrounded();
         SimpleMovement();
 	}
+
+    void CheckGrounded()
+    {
+        RaycastHit hit;
+        isGrounded = Physics.Raycast(rb.gameObject.transform.position, Vector3.down, out hit, 1.1f);
+    }
+
     void SimpleMovement()
     {
         if (InputManager.Instance.GetAxisVertical() > 0)//InputManager.Instance.GetAxisVertical(Input.GetAxis("Horizontal")))
         {
             rb.AddForce(Vector3.forward * Time.deltaTime * speed);
         }
-        else if(InputManager.Instance.GetAxisHorizontal() < 0)//InputManager.Instance.GetAxisVertical(Input.GetAxis("Horizontal")))
+        if(InputManager.Instance.GetAxisHorizontal() < 0)//InputManager.Instance.GetAxisVertical(Input.GetAxis("Horizontal")))
         {
             rb.AddForce(Vector3.left * Time.deltaTime * speed);
         }
-        else if(InputManager.Instance.GetAxisVertical() < 0)//InputManager.Instance.GetAxisHorizontal(Input.GetAxis("Vertical"))) 
+        if(InputManager.Instance.GetAxisVertical() < 0)//InputManager.Instance.GetAxisHorizontal(Input.GetAxis("Vertical"))) 
         {
             rb.AddForce(Vector3.back * Time.deltaTime * speed);
         }
-        else if(InputManager.Instance.GetAxisHorizontal() > 0)//InputManager.Instance.GetAxisHorizontal(Input.GetAxis("Vertical"))) 
+        if(InputManager.Instance.GetAxisHorizontal() > 0)//InputManager.Instance.GetAxisHorizontal(Input.GetAxis("Vertical"))) 
         {
             rb.AddForce(Vector3.right* Time.deltaTime * speed);
         }
 
-        if(InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1) || Input.GetKeyDown(KeyCode.Space) && isGrounded) //InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1))
+        if((InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) || Input.GetKeyDown(KeyCode.Space)) && isGrounded) //InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1))
         {
             //RAYCAST PARA COMPROBAR SI ESTA TOCANDO EL SUELO
             rb.AddForce(Vector3.up * jumpForce);
-            isGrounded = false;
-            jumps += 1;
-            if (jumps > 0)
-            {
-                isGrounded = false;
-            }
-                
-            
+            isGrounded = false;            
         }
-        isGrounded = true;
+
+        if (!isGrounded)
+        {
+            rb.AddForce(Vector3.down * artificialGravity * Time.deltaTime);
+        }
     }
 }

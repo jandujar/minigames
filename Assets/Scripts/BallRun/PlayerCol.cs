@@ -7,39 +7,34 @@ public class PlayerCol : MonoBehaviour
 {
 
     [SerializeField]
-    public AudioSource winsound;
-    public AudioSource losesound;
+    public AudioSource endSource;
+    public AudioClip audioWin, audioLose;
     public GameManager gm;
-    private BallRun br;
     public GameObject win;
     public GameObject lose;
-    private Movement mv;
-    public AudioClip loser;
-    
+    public Movement mv;
+    public BallRun br;
+    private bool hasLost = false;
 
     void Start()
     {
-        winsound = GetComponent<AudioSource>();
-        
-
+        endSource = GetComponent<AudioSource>();
     }
+
     void OnCollisionEnter(Collision coll)
     {
         if (coll.gameObject.tag == "death")
         {
-            StartCoroutine(EndLose());
             Lose();
-
+            StartCoroutine(EndLose());
         }
         if(coll.gameObject.tag == "win")
         {
-            StartCoroutine(EndWin());
             Win();
-            
+            StartCoroutine(EndWin());            
         }
     } 
 
-  
     public IEnumerator EndLose()
     {
         yield return new WaitForSeconds(1.6f);
@@ -52,20 +47,28 @@ public class PlayerCol : MonoBehaviour
     }
     public void Win()
     {
-        winsound.Play();
-        win.GetComponent<Image>().enabled = true;
-        win.GetComponent<Animator>().Play("win");
-        mv.speed = 0;
-        mv.jumpForce = 0;
+        if (!hasLost)
+        {
+            br.GetComponent<AudioSource>().Stop();
+            endSource.PlayOneShot(audioWin);
+            win.GetComponent<Image>().enabled = true;
+            win.GetComponent<Animator>().Play("win");
+            mv.speed = 0;
+            mv.jumpForce = 0;
+            StopCoroutine(br.CheckTimeout());
+        }
     }
     
     public void Lose()
     {
-        //losesound.PlayOneShot(loser);
+        hasLost = true;
+        br.GetComponent<AudioSource>().Stop();
+        endSource.PlayOneShot(audioLose);
         lose.GetComponent<Image>().enabled = true;
         lose.GetComponent<Animator>().Play("lose");
         mv.speed = 0;
         mv.jumpForce = 0;
+        StopCoroutine(br.CheckTimeout());
     }
 
 
