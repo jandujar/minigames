@@ -40,9 +40,8 @@ public class TargetsToShoot : MonoBehaviour
 
     bool createPath()
     {
-        setAllTargetsColor();
-        destroyChildrensOnList();
-
+        //setAllTargetsColor();
+        
         m_PathTargets.Clear();
         //Select 1rst path point
         BallToShoot l_RandomObject = m_Targets[Random.Range(0, m_Targets.Count)].GetComponent<BallToShoot>();
@@ -92,6 +91,8 @@ public class TargetsToShoot : MonoBehaviour
 
     IEnumerator createPathLines()
     {
+        destroyChildrensOnList();
+
         BallToShoot l_PathPoint = m_PathTargets[0].GetComponent<BallToShoot>();
         for(int i=1;i<m_PathTargets.Count;++i)
         {
@@ -102,10 +103,15 @@ public class TargetsToShoot : MonoBehaviour
             l_PathPoint = l_NextPoint;
         }
         setBallTarget();
+
+        yield return new WaitForSecondsRealtime(0.2f);
+        destroyChildrensOnList();
     }
 
     void setBallTarget()
     {
+        setAllTargetsColor();
+
         m_BallTarget = m_PathTargets[m_PathTargets.Count-1].GetComponent<BallToShoot>();
         m_TargetRenderer = m_BallTarget.gameObject.GetComponent<Renderer>();
         m_TargetRenderer.material.color = Color.green;
