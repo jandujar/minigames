@@ -28,12 +28,12 @@ public class PlayerCol : MonoBehaviour
             Lose();
             StartCoroutine(EndLose());
         }
-        if(coll.gameObject.tag == "win")
+        if (coll.gameObject.tag == "win")
         {
             Win();
-            StartCoroutine(EndWin());            
+            StartCoroutine(EndWin());
         }
-    } 
+    }
 
     public IEnumerator EndLose()
     {
@@ -58,7 +58,7 @@ public class PlayerCol : MonoBehaviour
             StopCoroutine(br.CheckTimeout());
         }
     }
-    
+
     public void Lose()
     {
         hasLost = true;
@@ -70,7 +70,5 @@ public class PlayerCol : MonoBehaviour
         mv.jumpForce = 0;
         StopCoroutine(br.CheckTimeout());
     }
-
-
 }
 

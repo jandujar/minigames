@@ -23,7 +23,6 @@ public class BallRun : IMiniGame
     //PRIVATE VARIABLES
     [SerializeField] private Text txt;
     private float remaining_time;
-    private Movement mv;
 
 
     void Start()
