@@ -25,6 +25,7 @@ public class ShootGun : MonoBehaviour {
             l_TempBullet = Instantiate(m_Bullet, m_Origin.position, m_Origin.rotation, m_Parent) as GameObject;
             l_TempBullet.gameObject.name = "Bullet";
             l_TempBullet.transform.Rotate(Vector3.back * 90);
+            l_TempBullet.transform.Rotate(Vector3.down * 90);
             Rigidbody l_TempRB;
             l_TempRB = l_TempBullet.GetComponent<Rigidbody>();
             l_TempRB.AddForce(m_Origin.forward * m_BulletForce);
