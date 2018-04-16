@@ -545,14 +545,14 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1445607774}
   serializedVersion: 2
-  m_Mass: 1.2
-  m_Drag: 1
+  m_Mass: 1
+  m_Drag: 1.5
   m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!114 &1445607780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,9 +564,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1c24300dbeeb694881bac4b1c955a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterVelocity: 15
-  rotationVelocity: 3
-  jumpForce: 5
+  characterVelocity: 10
+  rotationVelocity: 2
+  jumpForce: 4
 --- !u!1 &1479542034
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,6 +580,7 @@ GameObject:
   - component: {fileID: 1479542035}
   - component: {fileID: 1479542039}
   - component: {fileID: 1479542040}
+  - component: {fileID: 1479542041}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -674,6 +675,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.54
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1479542041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1479542034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 86d0de297ccd0744fabd623643826d7f, type: 2}
 --- !u!1 &1568909148
 GameObject:
   m_ObjectHideFlags: 0
