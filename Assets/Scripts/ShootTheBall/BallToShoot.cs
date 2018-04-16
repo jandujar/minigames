@@ -9,6 +9,7 @@ public class BallToShoot : MonoBehaviour
     public bool m_HasBeenShooted = false;
 
     [Header("Complements")]
+    public GameObject m_LookAt;
     public ShootTheBall m_GameManager;
     public List<GameObject> m_Neightbours = new List<GameObject>();
 
@@ -21,6 +22,9 @@ public class BallToShoot : MonoBehaviour
     {
         m_Renderer = gameObject.GetComponent<Renderer>();
         m_GameManager = GameObject.Find("Game").GetComponent<ShootTheBall>();
+
+        m_LookAt = GameObject.Find("ControlCamera");
+        this.transform.LookAt(m_LookAt.transform);
 	}
 	
     public void createLines()
@@ -42,6 +46,8 @@ public class BallToShoot : MonoBehaviour
         GameObject l_Line = Instantiate(m_Line, this.transform.position, Quaternion.identity, this.transform) as GameObject;
         l_Line.gameObject.name = "Line";
         LineRenderer l_LineRender = l_Line.GetComponent<LineRenderer>();
+        l_LineRender.startColor=Color.white;
+        l_LineRender.endColor = Color.white;
         //Debug.Log("Object pos" + l_Object.transform.position + " / " + l_Object.transform.localPosition);
         l_LineRender.SetPosition(0, this.transform.position);
         l_LineRender.SetPosition(1, _target.transform.position);
