@@ -17,11 +17,6 @@ public class SpawnRandomRolling : MonoBehaviour {
 	void Start () {
 		StartCoroutine(CallSpawn());
 	}
-	
-	// Update is called once per frame
-	/*void Update () {
-		
-	}*/
 
 	IEnumerator CallSpawn(){
 		yield return new WaitForSeconds(3);

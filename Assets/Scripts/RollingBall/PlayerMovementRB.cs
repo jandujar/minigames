@@ -57,10 +57,10 @@ public class PlayerMovementRB : MonoBehaviour {
 	}
 
 	IEnumerator WinCele(){
-		yield return new WaitForSeconds(23);
+		yield return new WaitForSeconds(22);
 		if(win){
             winS.GetComponent<AudioSource>().Play();
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(3.5f);
             gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
 		}
 	}
