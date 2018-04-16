@@ -13,7 +13,6 @@ public class TargetsToShoot : MonoBehaviour
     public List<GameObject> m_PathTargets = new List<GameObject>();
     [Header("Target")]
     public int timesToShoot = 3;
-    public GameObject m_Target;
     public BallToShoot m_BallTarget;
     public Renderer m_TargetRenderer;
     [Header("Timers")]
@@ -39,10 +38,9 @@ public class TargetsToShoot : MonoBehaviour
     }
 
     bool createPath()
-    {
-        //setAllTargetsColor();
-        
+    {        
         m_PathTargets.Clear();
+
         //Select 1rst path point
         BallToShoot l_RandomObject = m_Targets[Random.Range(0, m_Targets.Count)].GetComponent<BallToShoot>();
         m_PathTargets.Add(l_RandomObject.gameObject);
@@ -66,7 +64,7 @@ public class TargetsToShoot : MonoBehaviour
                     return false;
 
                 //If invalid point
-                if (m_PathTargets.Contains(l_RandomObject.gameObject))
+                if (m_PathTargets.Contains(l_RandomObject.gameObject) || (m_PathTargets.Contains(m_BallTarget.gameObject) && m_BallTarget!=null) )
                 {
                     l_Neightbours--;
                     l_RandomObject = l_PrevObj.m_Neightbours[Random.Range(0, l_PrevObj.m_Neightbours.Count)].GetComponent<BallToShoot>();
@@ -111,7 +109,7 @@ public class TargetsToShoot : MonoBehaviour
     void setBallTarget()
     {
         setAllTargetsColor();
-
+        
         m_BallTarget = m_PathTargets[m_PathTargets.Count-1].GetComponent<BallToShoot>();
         m_TargetRenderer = m_BallTarget.gameObject.GetComponent<Renderer>();
         m_TargetRenderer.material.color = Color.green;

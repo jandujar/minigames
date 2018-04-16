@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MoveCamera : MonoBehaviour
 {
+    [Header("Movement pivot")]
     public Transform m_Camera;
     public Transform m_Gun;
         

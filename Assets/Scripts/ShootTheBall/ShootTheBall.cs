@@ -14,19 +14,21 @@ public class ShootTheBall : IMiniGame
     public int scoreObjetive = 2;
     private int gameScore = 0;
     [Header("Game Components")]
-    public GameObject gameSceneObject;
-
+    public List<GameObject> gameSceneObjects;
+    
     void Start()
     {
         gameStarted = false;
-        gameSceneObject.SetActive(false);
+        foreach (GameObject aObject in gameSceneObjects)
+            aObject.SetActive(false);
     }
     public override void beginGame()
     {
         gameStarted = true;
         //KauboiDueru Begins
         Debug.Log(this.ToString() + " game Begin");
-        gameSceneObject.SetActive(true);
+        foreach (GameObject aObject in gameSceneObjects)
+            aObject.SetActive(true);
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
