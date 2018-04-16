@@ -5,6 +5,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour {
 
 	public GameObject virtualMousePosition;
+	public GameObject manager;
 	public GameObject bullet;
 	public int forceShoot;
 	public AudioClip shoot;
@@ -13,8 +14,6 @@ public class Gun : MonoBehaviour {
 	private bool shooting;
 	private SphereCollider collBullet;
 	private Rigidbody rbdBullet;
-	private Vector3 startPosBullet;
-	private Animator animController;
 	private AudioSource source;
 
 
@@ -25,8 +24,6 @@ public class Gun : MonoBehaviour {
 		rbdBullet = bullet.GetComponent<Rigidbody> (); 
 		collBullet.enabled = false;
 		rbdBullet.useGravity = false;
-		startPosBullet = bullet.transform.position;
-		animController = this.GetComponent<Animator> ();
 		source = this.GetComponent<AudioSource> ();
 	}
 
@@ -58,7 +55,7 @@ public class Gun : MonoBehaviour {
 
 	private void CheckInputs(){
 		//Disparar
-		if(InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) && canFire){
+		if(InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) && canFire && manager.GetComponent<ShootingManager>().getStartGame()){
 			source.PlayOneShot (shoot, 0.5f);
 			canFire = false;
 			shooting = true;

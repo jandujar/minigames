@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Equilibrio : IMiniGame {
-    private GameManager gameManager;
+    //private GameManager gameManager;
     public BallEquilibrio ball;
     
     void Awake()
@@ -13,13 +13,12 @@ public class Equilibrio : IMiniGame {
 
    public override void beginGame()
     {
-        //Pong Begins
         Debug.Log(this.ToString() + " game Begin");
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        this.gameManager = gm;
+        //gameManager = gm;
         ball.init(gm);
         ball.StartGame();
     }

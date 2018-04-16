@@ -8,6 +8,8 @@ public class PafHand : MonoBehaviour
     public GameObject hand_win;
     public GameObject hand_lose;
     public PafPickAFish game;
+    public AudioClip soundJump;
+    public AudioClip soundSplash;
     private bool mDone = false;
     private InputManager inputManager;
     private bool mWin = false;
@@ -24,6 +26,23 @@ public class PafHand : MonoBehaviour
 
     void Start() {
         StartCoroutine(CheckLose());
+        StartCoroutine(PlayJump());
+        StartCoroutine(PlaySplash());
+    }
+
+    IEnumerator PlayJump()
+    {
+        yield return new WaitForSeconds(1.5f);
+        GetComponent<AudioSource>().PlayOneShot(soundJump);
+    }
+
+    IEnumerator PlaySplash()
+    {
+        yield return new WaitForSeconds(2.5f);
+        if (!mDone)
+        {
+            GetComponent<AudioSource>().PlayOneShot(soundSplash);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D coll)

@@ -46,8 +46,7 @@ public class KnifeAttack : MonoBehaviour {
     }
 
     void Update()
-    {
-        
+    { 
         if (attack == state.attack)
         {
             
@@ -55,10 +54,10 @@ public class KnifeAttack : MonoBehaviour {
         switch (attack)
         {
             case state.moving:
-                if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) ||
+                if ((InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) ||
                     InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2) ||
                     InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON3) ||
-                    InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4))
+                    InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)) && knife.enableKnife)
                 {
                     knife.enableKnife = false;
                     attack = state.attack;

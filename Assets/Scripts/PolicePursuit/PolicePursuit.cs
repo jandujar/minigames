@@ -20,33 +20,90 @@ public class PolicePursuit : IMiniGame {
     private Transform[] roads = new Transform[4];
 
 	//PRIVATE
-	private AudioSource aSource;
 	public GameManager gameManager;
 	private int knucklesPos = 0;
-	private bool gameStarted = false;
 	private float h;
-	private bool alreadyMoved = false;
-	private bool movementStarted = false;
 
 	private int randomPos;
 	private float lastRandomPos;
-	private float[] lastRowPos = new float[3];
-	private int actualRow = 0;
-	private float actualDistance;
+    
+    [SerializeField]private AudioSource backgroundMusic;
 
-    public AudioClip start;
-	public AudioClip clicking;
-	//*************************************************************************************************Start game
-	public override void beginGame()
+    [SerializeField]private GameObject trafficLightsRedParent;
+    [SerializeField]private GameObject trafficLightsGreenParent;
+    private GameObject[] trafficLightsRed;
+    private GameObject[] trafficLightsGreen;
+    private GameObject[] trafficLightsFinal = new GameObject[5];
+
+    //*************************************************************************************************Start game
+    public override void beginGame()
 	{
 		Debug.Log(this.ToString() + " game Begin");
         knucklesPos = 0;
         thief.transform.position = new Vector3(roads[0].transform.position.x, thief.transform.position.y, thief.transform.position.z);
         police.transform.position = new Vector3(roads[0].transform.position.x, police.transform.position.y, police.transform.position.z);
         initMovement();
+        backgroundMusic.Play();
         //aSource.clip = start;
         //aSource.Play ();
     }
+
+    private void initTrafficLights()
+    {
+        for (int i = 0; i < trafficLightsRed.Length; i++)
+        {
+            trafficLightsRed[i].SetActive(false);
+        }
+        for (int i = 0; i < trafficLightsGreen.Length; i++)
+        {
+            trafficLightsGreen[i].SetActive(false);
+        }
+        int redLength = Random.Range(2, 3);
+        int randomTrafficLightRed = 0;
+        for (int i = 0; i < redLength; i++)
+        {
+            randomTrafficLightRed = Random.Range(0, (trafficLightsRed.Length - 1));
+            if (!containsTrafficLight(randomTrafficLightRed, trafficLightsRed))
+            {
+                trafficLightsFinal[i] = trafficLightsRed[randomTrafficLightRed];
+                trafficLightsFinal[i].SetActive(true);
+            }
+            else
+            {
+                i--;
+            }
+        }
+        int randomTrafficLightGreen = 0;
+        for (int i = redLength; i < 5; i++)
+        {
+            randomTrafficLightGreen = Random.Range(0, (trafficLightsGreen.Length - 1));
+            if (!containsTrafficLight(randomTrafficLightGreen, trafficLightsGreen))
+            {
+                trafficLightsFinal[i] = trafficLightsGreen[randomTrafficLightGreen];
+                trafficLightsFinal[i].SetActive(true);
+            }
+            else
+            {
+                i--;
+            }
+        }
+    }
+
+    private bool containsTrafficLight(int index, GameObject[] trafficLights)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (trafficLightsFinal[i] != null)
+            {
+                if (trafficLightsFinal[i] == trafficLights[index])
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 	//*************************************************************************************************Start Loading
 	public override void initGame(MiniGameDificulty difficulty, GameManager gm)
 	{
@@ -55,8 +112,18 @@ public class PolicePursuit : IMiniGame {
         {
             roads[i] = roadsParent.transform.GetChild(i);
         }
-		aSource = GetComponent<AudioSource> ();
-	}
+        trafficLightsRed = new GameObject[trafficLightsRedParent.transform.childCount];
+        for (int i = 0; i < trafficLightsRed.Length; i++)
+        {
+            trafficLightsRed[i] = trafficLightsRedParent.transform.GetChild(i).gameObject;
+        }
+        trafficLightsGreen = new GameObject[trafficLightsGreenParent.transform.childCount];
+        for (int i = 0; i < trafficLightsGreen.Length; i++)
+        {
+            trafficLightsGreen[i] = trafficLightsGreenParent.transform.GetChild(i).gameObject;
+        }
+        initTrafficLights();
+    }
 
     public Transform getWays(int pos)
     {
@@ -69,15 +136,13 @@ public class PolicePursuit : IMiniGame {
 	}
 	//*************************************************************************************************
 	private void initMovement(){
-		movementStarted = true;
 		thief.GetComponent<ThiefCar> ().StartMoving (this,knucklesPos);
         police.GetComponent<ThiefCar>().StartMoving(this, knucklesPos);
-        aSource.clip = clicking;
-		aSource.Play ();
+        //aSource.clip = clicking;
+		//aSource.Play ();
 	}
 
 	public void MovementFinished(bool gameResult){
-		aSource.Stop ();
 		if (!gameResult) {
 			gameManager.EndGame (IMiniGame.MiniGameResult.LOSE);
 		}

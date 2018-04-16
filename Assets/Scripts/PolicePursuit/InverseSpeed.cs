@@ -11,6 +11,9 @@ public class InverseSpeed : MonoBehaviour {
     private ThiefCar thief;
     private ThiefCar police;
 
+    private bool playerPass = false;
+    private bool enemyPass = false;
+
     void Start()
     {
         thief = player.GetComponent<ThiefCar>();
@@ -18,13 +21,15 @@ public class InverseSpeed : MonoBehaviour {
     }
     
 	void OnTriggerEnter2D (Collider2D col) {
-        if (col.gameObject == player)
+        if (col.gameObject == player && !playerPass)
         {
             invertGoUp(thief);
+            playerPass = true;
         }
-        if (col.gameObject == enemy)
+        if (col.gameObject == enemy && !enemyPass)
         {
             invertGoUp(police);
+            enemyPass = true;
         }
 	}
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -43,6 +44,13 @@ public class GameManager : MonoBehaviour {
         //Minigame end Status
         Debug.Log("Result of " + game.ToString() + " = " + result.ToString());
 
-        MenuManager.Instance.LaunchMiniGame();
+        if (result == IMiniGame.MiniGameResult.LOSE)
+        {
+            SceneManager.LoadScene("Lose");
+        }
+        else
+        {
+            SceneManager.LoadScene("Win");
+        }
     }
 }

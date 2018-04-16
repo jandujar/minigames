@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BallSpawn : MonoBehaviour
 {
-    public GitaHiro gitaHiroManager;
     [Header("Spawn Times")]
     public float discountTime;
     public float minTimeSpawn;
@@ -20,7 +19,7 @@ public class BallSpawn : MonoBehaviour
     public GameObject soundX;
     public GameObject soundY;
     [Header("Parent")]
-    public GameObject parent;
+    public Transform parent;
     
 	public void GenerateRandomJand(float time, int minValue, int maxValue){
 		StartCoroutine(generateRandom(time, minValue, maxValue));
@@ -37,16 +36,16 @@ public class BallSpawn : MonoBehaviour
             switch(l_Rand)
             {
                 case 1:
-                    Instantiate(soundX, x.transform.position, Quaternion.identity, parent.transform);
+                    Instantiate(soundX, x.transform.position, Quaternion.identity, parent);
                     break;
                 case 2:
-                    Instantiate(soundY, y.transform.position, Quaternion.identity, parent.transform);
+                    Instantiate(soundY, y.transform.position, Quaternion.identity, parent);
                     break;
                 case 3:
-                    Instantiate(soundA, a.transform.position, Quaternion.identity, parent.transform);
+                    Instantiate(soundA, a.transform.position, Quaternion.identity, parent);
                     break;
                 case 4:
-                    Instantiate(soundB, b.transform.position, Quaternion.identity, parent.transform);
+                    Instantiate(soundB, b.transform.position, Quaternion.identity, parent);
                     break;
             }
             if(notesCount>=NotesCounted)
@@ -56,17 +55,7 @@ public class BallSpawn : MonoBehaviour
                     _time -= discountTime;
                     notesCount = 0;
                 }
-            }       
-        }
-    }
-    void Update()
-    {        
-        if (gitaHiroManager.getEndTime()==true)
-        {
-            StopAllCoroutines();
-            Destroy(parent);
-            StartCoroutine(gitaHiroManager.endGame());
-            gitaHiroManager.setEndTime(false);
+            }            
         }
     }
 }

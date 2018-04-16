@@ -3,35 +3,28 @@ using System.Collections;
 
 public class JoystickMovement : MonoBehaviour {
 	public float speed;
-	private Rigidbody rig;
+	private float rStickX;
+	private float rStickY;
+	private Vector3 movement;
 	public float distance;
 	public Transform target;
 	public Transform mouseposition;
 	public float maxdist;
 	public Vector3 posToLook;
-	// Use this for initialization
-	void Start () {
-		rig = GetComponent<Rigidbody>();
-	}
+	public GameObject manager;
 
-	void FixedUpdate() {
+	void Update() {
+		if (manager.GetComponent<ShootingManager> ().getStartGame ()) {
+			rStickX = InputManager.Instance.GetAxisHorizontal ();
+			rStickY = InputManager.Instance.GetAxisVertical ();
 
-		Vector3 targetpos = target.transform.position;
+			movement = new Vector3 (rStickX, rStickY, 0);
 
-		mouseposition = rig.transform;
-		distance = (Vector2.Distance(transform.position, target.transform.position));
+			this.transform.Translate (movement * Time.deltaTime * speed, Space.World);
 
-		if (Vector2.Distance(transform.position, target.transform.position) <= maxdist)
-		{
-			float rStickX = InputManager.Instance.GetAxisHorizontal ();
-			float rStickY = InputManager.Instance.GetAxisVertical ();
-
-			Vector3 movement = new Vector3(rStickX, rStickY, 0);
-
-			rig.MovePosition(transform.position + movement / speed);
+			this.transform.LookAt (posToLook);
+			mouseposition = transform;
 		}
-		this.transform.LookAt (posToLook);
-		mouseposition = rig.transform;
 	}
 
 }

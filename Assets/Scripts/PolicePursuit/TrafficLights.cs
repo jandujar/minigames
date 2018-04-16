@@ -22,7 +22,7 @@ public class TrafficLights : MonoBehaviour
     private Sprite[] colorSprite;
 
     private SpriteRenderer render;
-    private AudioSource audio;
+    private AudioSource audioSurce;
 
     void Start()
     {
@@ -34,7 +34,7 @@ public class TrafficLights : MonoBehaviour
             baseSpeed[i] = script[i].moveSpeed;
         }
         render = gameObject.GetComponent<SpriteRenderer>();
-        audio = gameObject.GetComponent<AudioSource>();
+        audioSurce = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -53,7 +53,7 @@ public class TrafficLights : MonoBehaviour
             {
                 render.sprite = colorSprite[1];
             }
-            audio.Play();
+            audioSurce.Play();
             cooldown = true;
             StartCoroutine("ResetCooldown", wait);
         }

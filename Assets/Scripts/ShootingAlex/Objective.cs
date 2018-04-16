@@ -5,46 +5,39 @@ using UnityEngine;
 public class Objective : MonoBehaviour {
 
 	public GameObject manageShooting;
-	private Material mat;
-	private int randTex;
+	private SpriteRenderer spr;
+	private int randSpr;
 	private bool colision;
-	private bool target;
-	private Vector3 startRotation;
 	private AudioSource source;
-	public Texture[] texEnemy;
-	public Texture[] texAlly;
+	public Sprite[] sprEnemy;
+	public Sprite[] sprAlly;
 	public AudioClip[] scream;
+	public Sprite nothing;
 
 	public void Awake(){
-		mat = this.GetComponentInChildren<MeshRenderer> ().materials [0];
-		startRotation = this.transform.rotation.eulerAngles;
+		spr = this.GetComponent<SpriteRenderer> ();
 		source = this.GetComponent<AudioSource> ();
-		//target = false;
 	}
 
 	public void moveUp(bool valid, float delay){
-		//colision = false;
+		colision = false;
 
-		randTex = Random.Range (0, texAlly.Length);
+		randSpr = Random.Range (0, sprAlly.Length);
 		if (!valid) {
-			mat.SetTexture ("_MainTex", texAlly [randTex]);
+			spr.sprite = sprAlly [randSpr];
 			source.PlayOneShot (scream[0], 0.5f);
 		} else {
-			mat.SetTexture ("_MainTex", texEnemy [randTex]);
+			spr.sprite = sprEnemy [randSpr];
 			source.PlayOneShot (scream[1], 0.5f);
 		}
-
-		target = valid;
-
-		this.transform.Rotate (90, 0, 0, Space.Self);
 
 		StartCoroutine (ObjectiveDesapear (delay, valid));
 	}
 
 	private IEnumerator ObjectiveDesapear(float delay, bool valid){
 		yield return new WaitForSecondsRealtime (delay);
-		this.transform.Rotate (-90, 0, 0, Space.Self);
-
+		//this.transform.Rotate (-90, 0, 0, Space.Self);
+		spr.sprite = nothing;
 
 		//valid = false;
 
