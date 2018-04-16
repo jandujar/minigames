@@ -152,8 +152,6 @@ GameObject:
   - component: {fileID: 20213998381026782}
   - component: {fileID: 124359242797444570}
   - component: {fileID: 92638665259285874}
-  - component: {fileID: 81597352034584480}
-  - component: {fileID: 114888609597643678}
   - component: {fileID: 45595665524868742}
   m_Layer: 8
   m_Name: Camera2
@@ -454,6 +452,7 @@ GameObject:
   - component: {fileID: 54405826487491348}
   - component: {fileID: 114957159345933964}
   - component: {fileID: 65969809073619808}
+  - component: {fileID: 82894168907974066}
   m_Layer: 8
   m_Name: MainHover
   m_TagString: Untagged
@@ -472,9 +471,7 @@ GameObject:
   - component: {fileID: 20097862371260230}
   - component: {fileID: 124939252524283738}
   - component: {fileID: 92747744996185016}
-  - component: {fileID: 81950869414297704}
   - component: {fileID: 45341785839276840}
-  - component: {fileID: 45221906179182200}
   m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
@@ -2144,14 +2141,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1533311791510648}
   m_Mesh: {fileID: 4300020, guid: d93b1a6e08a05734cacaf4ee5db873ed, type: 3}
---- !u!45 &45221906179182200
-Skybox:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1778041964814540}
-  m_Enabled: 1
-  m_CustomSkybox: {fileID: 0}
 --- !u!45 &45341785839276840
 Skybox:
   m_ObjectHideFlags: 1
@@ -2195,20 +2184,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.5, y: 3, z: 4.5}
   m_Center: {x: 0.06, y: 0.8, z: 0}
---- !u!81 &81597352034584480
-AudioListener:
+--- !u!82 &82894168907974066
+AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1345180235111254}
+  m_GameObject: {fileID: 1753647699069848}
   m_Enabled: 1
---- !u!81 &81950869414297704
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1778041964814540}
-  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 581a5f807ed3b2446b09dfc1ac9fd9e5, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!92 &92638665259285874
 Behaviour:
   m_ObjectHideFlags: 1
@@ -2223,21 +2278,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1778041964814540}
   m_Enabled: 1
---- !u!114 &114888609597643678
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1345180235111254}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4919c620e787d8547bffebd7d1bf1f7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_camHeight: 0
-  m_camDist: 0
-  m_player: {fileID: 0}
-  m_layerMask: 0
 --- !u!114 &114957159345933964
 MonoBehaviour:
   m_ObjectHideFlags: 1

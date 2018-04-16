@@ -22,7 +22,7 @@ public class HoverGame : IMiniGame
 
     public override string ToString()
     {
-        return "Billiards by Gerard";
+        return "Racing Ships by Gerard";
     }
 
     void Update()

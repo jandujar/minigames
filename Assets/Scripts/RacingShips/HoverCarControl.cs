@@ -113,6 +113,7 @@ public class HoverCarControl : MonoBehaviour
                 p_flame.Stop();
         }
 
+
         // Main Thrust
         m_currThrust = 0.0f;
         m_currAntiThrust = 0.0f;
@@ -155,8 +156,6 @@ public class HoverCarControl : MonoBehaviour
         }
         else
         {
-            m_turbo = 0.0f;
-
             if (mySecondCamera.activeSelf)
             {
                 myCamera.SetActive(true);
