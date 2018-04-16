@@ -8,6 +8,8 @@ public class Shoot : MonoBehaviour {
     public KeyCode spaceKey = KeyCode.Space;
     public float shootForce = 1000;
 
+   
+
 	// Use this for initialization
 	void Start () {
 		
@@ -18,7 +20,11 @@ public class Shoot : MonoBehaviour {
 		
         if (Input.GetKey(spaceKey))
         {
+
+           
+
             GetComponent<Rigidbody>().AddForce(shootForce * Vector3.forward);
+
         }
 	}
 

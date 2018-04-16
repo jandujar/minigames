@@ -8,9 +8,12 @@ public class BallColWithMesh : MonoBehaviour {
 
     public bool ColDone = false;
 
-    // Use this for initialization
-    void Start () { 
+    public AudioSource audioBoom;
+    
 
+    // Use this for initialization
+    void Start () {
+        audioBoom = GetComponent<AudioSource>();
 
     }
 
@@ -30,5 +33,13 @@ public class BallColWithMesh : MonoBehaviour {
             Debug.Log("Le dio guey");
         }
 
+        if (col.gameObject.tag == "Respawn")
+            {
+
+                audioBoom.Play();
+
+            }
     }
+
+   
 }
