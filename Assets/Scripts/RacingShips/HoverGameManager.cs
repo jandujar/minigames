@@ -20,11 +20,13 @@ public class HoverGameManager : MonoBehaviour
     [SerializeField]
     private Text Countdown;
 
-
+    private GameManager Gm;
 
     // Use this for initialization
     void Start()
     {
+        Gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         HoverList = GameObject.Find("Hovers").gameObject;
 
         HoverPlayer = HoverList.transform.GetChild(0).gameObject.GetComponent<HoverCarControl>();
@@ -45,11 +47,15 @@ public class HoverGameManager : MonoBehaviour
 
         if (HoverPlayer.raceTriggerNumber == 6 && !raceEnd)
         {
-            Debug.Log("The Winner is: " + HoverPlayer.hoverName);
+            //Debug.Log("The Winner is: " + HoverPlayer.hoverName);
             raceEnd = true;
             HoverPlayer.go = false;
             HoverPlayer.m_currThrust = 0;
             HoverPlayer.totalTurbo = 0;
+            Countdown.gameObject.SetActive(true);
+            Countdown.text = "WIN";
+            StartCoroutine(EndGame(true));
+
 
             for (int i = 0; i < HoverEnemies.Count; i++)
             {
@@ -62,20 +68,22 @@ public class HoverGameManager : MonoBehaviour
         {
             if (HoverEnemies[i].raceTriggerNumber == 6 && !raceEnd)
             {
-                Debug.Log("The Winner is: " + HoverEnemies[i].hoverName);
+                //Debug.Log("The Winner is: " + HoverEnemies[i].hoverName);
                 raceEnd = true;
                 HoverEnemies[i].go = false;
                 HoverPlayer.go = false;
                 HoverPlayer.m_currThrust = 0;
                 HoverPlayer.totalTurbo = 0;
                 HoverEnemies[i].totalTurbo = 0;
+                Countdown.gameObject.SetActive(true);
+                Countdown.text = "LOOSE";
+                StartCoroutine(EndGame(false));
             }
         }
     }
 
     IEnumerator StartRace()
     {
-        yield return new WaitForSecondsRealtime(1);
         Countdown.text = "3";
         yield return new WaitForSecondsRealtime(1);
         Countdown.text = "2";
@@ -88,5 +96,14 @@ public class HoverGameManager : MonoBehaviour
             HoverEnemies[i].go = true;
         yield return new WaitForSecondsRealtime(1);
         Countdown.gameObject.SetActive(false);
+    }
+
+    IEnumerator EndGame(bool _win)
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        if(_win)
+            Gm.EndGame(IMiniGame.MiniGameResult.WIN);
+        else
+            Gm.EndGame(IMiniGame.MiniGameResult.LOSE);
     }
 }

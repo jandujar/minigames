@@ -116,34 +116,42 @@ public class HoverCarControl : MonoBehaviour
         // Main Thrust
         m_currThrust = 0.0f;
         m_currAntiThrust = 0.0f;
-        float aclAxis = Input.GetAxis("Fire2");
-        if (aclAxis > m_deadZone)
-            m_currThrust = aclAxis * m_forwardAcl;
+        bool aclAxis = InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1);
+        if (aclAxis)
+            m_currThrust = m_forwardAcl;
 
-        float dclAxis = Input.GetAxis("Fire1");
-        if (dclAxis > m_deadZone)
-            m_currAntiThrust = dclAxis * m_backwardAcl;
+        bool dclAxis = InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON2);
+        if (dclAxis)
+            m_currAntiThrust = m_backwardAcl;
 
         // Turning
         m_currTurn = 0.0f;
-        float turnAxis = Input.GetAxis("Horizontal");
+        float turnAxis = InputManager.Instance.GetAxisHorizontal();
         if (Mathf.Abs(turnAxis) > m_deadZone)
             m_currTurn = turnAxis;
 
-        if (Input.GetButton("Fire3") && totalTurbo > 0)
+        if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON3) && totalTurbo > 0)
         {
-            /*
-            if (myCamera.activeSelf)
-            {
-                myCamera.SetActive(false);
-                mySecondCamera.SetActive(true);
-            }
-            */
             m_turbo = 5000.0f;
             totalTurbo -= .01f;
             if (totalTurbo < 0)
                 totalTurbo = 0;
 
+        }
+        else
+        {
+            m_turbo = 0.0f;
+        }
+
+        if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON4))
+        {
+            
+            if (myCamera.activeSelf)
+            {
+                myCamera.SetActive(false);
+                mySecondCamera.SetActive(true);
+            }
+            
         }
         else
         {
