@@ -3,13 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovementRB : MonoBehaviour {
-	public Vector3[] positions;
-	private int currentPos;
 
-	private bool win;
+    private GameManager gameManager;
+
+    public GameObject winS;
+    public GameObject loseS;
+
+	public Vector3[] positions;
+
+	private int currentPos;
+    private bool win;
+    private bool imAlive;
+
+    public void init(GameManager gm)
+    {
+        gameManager = gm;
+    }
 
 	// Use this for initialization
 	void Start () {
+        imAlive = true;
 		currentPos = 1; 
 		win = true;
 		StartCoroutine(WinCele());
@@ -17,28 +30,38 @@ public class PlayerMovementRB : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetButtonDown("Fire2")){
-			currentPos--;
-			if(currentPos <= 0){
-				currentPos = 0;
-			}
-			transform.position = positions[currentPos];
-		}
-		if(Input.GetButtonDown("Fire1")){
-			currentPos++;
-			if(currentPos >= 2){
-				currentPos = 2;
-			}
-			transform.position = positions[currentPos];
-		}
+        transform.Rotate(Vector3.back * Time.deltaTime * 250);
+        if (imAlive)
+        {
+            if (Input.GetButtonDown("Fire2"))
+            {
+                transform.GetComponent<AudioSource>().Play();
+                currentPos--;
+                if (currentPos <= 0)
+                {
+                    currentPos = 0;
+                }
+                transform.position = positions[currentPos];
+            }
+            if (Input.GetButtonDown("Fire1"))
+            {
+                transform.GetComponent<AudioSource>().Play();
+                currentPos++;
+                if (currentPos >= 2)
+                {
+                    currentPos = 2;
+                }
+                transform.position = positions[currentPos];
+            }
+        }		
 	}
 
 	IEnumerator WinCele(){
 		yield return new WaitForSeconds(23);
 		if(win){
-			Debug.Log("YouWonGG");
-		}else{
-			Debug.Log("Mek");
+            winS.GetComponent<AudioSource>().Play();
+            yield return new WaitForSeconds(5);
+            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
 		}
 	}
 
@@ -46,7 +69,16 @@ public class PlayerMovementRB : MonoBehaviour {
 		if(col.gameObject.name == "Cube"){
 			gameObject.transform.position = new Vector3(300,300,300);
 			win = false;
-		}
+            imAlive = false;
+            StartCoroutine(LooseTime());
+        }
 	}
+
+    IEnumerator LooseTime()
+    {
+        loseS.GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(5);
+        gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+    }
 
 }

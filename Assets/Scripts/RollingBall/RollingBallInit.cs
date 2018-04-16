@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class RollingBallInit : IMiniGame {
 
+    public PlayerMovementRB sphere;
 
 	public override void beginGame()
     {
-        //Pong Begins
         Debug.Log(this.ToString() + " game Begin!");
     }
 	// Use this for initialization
@@ -17,6 +17,6 @@ public class RollingBallInit : IMiniGame {
 	
 	public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-
+        sphere.init(gm);
     }
 }

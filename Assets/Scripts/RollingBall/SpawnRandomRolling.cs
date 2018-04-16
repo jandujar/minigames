@@ -39,6 +39,7 @@ public class SpawnRandomRolling : MonoBehaviour {
 			}	
 			
 			GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cube.GetComponent<Transform>().localScale = new Vector3(0.7f, 1, 1);
 			cube.AddComponent<Rigidbody>();
 			cube.GetComponent<Rigidbody>().constraints =  RigidbodyConstraints.FreezePositionZ | 
 				RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
