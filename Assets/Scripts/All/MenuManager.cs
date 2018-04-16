@@ -44,6 +44,8 @@ public class MenuManager : Singleton<MenuManager> {
         BOMB,
         BRUM,
         BMX,
+        DESTROY,
+        BALLRUN,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -55,6 +57,8 @@ public class MenuManager : Singleton<MenuManager> {
     public void LaunchMiniGame(){
 
 		Debug.LogError ("Launch MiniGame: " + currentGame.ToString ());
+
+        currentGame = (MINIGAMES_ENUM)Random.Range((int)0, (int)MINIGAMES_ENUM.END);
 
 		switch (currentGame) {
 		case MINIGAMES_ENUM.PONG:
@@ -164,6 +168,12 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.BMX:
             SceneManager.LoadScene("BmxTheGame");
+            break;
+        case MINIGAMES_ENUM.DESTROY:
+            SceneManager.LoadScene("DestroyTheWorld");
+            break;
+        case MINIGAMES_ENUM.BALLRUN:
+            SceneManager.LoadScene("BallRun");
             break;
         case MINIGAMES_ENUM.END:
 		default:
