@@ -5,17 +5,21 @@ using UnityEngine;
 
 public class WhacamoleMove : MonoBehaviour {
 
-
+    public WhacamoleHoleControl holeControl;
     public WhacamoleScore playerScore;
     public WhacamoleHammerPointAnimation hammerAnim;
     public Animator anim;
     public bool active;
     private Vector3 startPos;
-
+    public bool hit = false;
+    public AudioSource[] hammerHit;
+    private AudioSource hitMole;
+    private AudioSource hitHelmet;
     private void Awake()
     {
         anim = GetComponent<Animator>();
-
+        hitMole = hammerHit[0].GetComponent<AudioSource>();
+        hitHelmet = hammerHit[1].GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -39,13 +43,17 @@ public class WhacamoleMove : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player" && gameObject.tag == "Untagged")
         {
+            hitMole.Play();
             anim.speed = 3;
             playerScore.points = playerScore.points + 100;
         }
         if (collision.gameObject.tag == "Player" && gameObject.tag == "Finish")
         {
+            hitHelmet.Play();
             anim.speed = 0;
             hammerAnim.anim.speed = 0;
+            hit = true;
+            StartCoroutine(holeControl.FinishGame("LOSE"));
         }
 
     }

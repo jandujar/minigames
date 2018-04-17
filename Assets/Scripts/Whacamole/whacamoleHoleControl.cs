@@ -5,10 +5,9 @@ using UnityEngine;
 public class WhacamoleHoleControl : MonoBehaviour {
 
     public GameObject[] holeControl;
-
     public WhacamoleMove[] moleMoveControl;
-
     public WhacamoleMove[] helmetMoveControl;
+    public GameManager gameManager;
 
     private int randomHole;
     private int randomMole;
@@ -129,6 +128,26 @@ public class WhacamoleHoleControl : MonoBehaviour {
                     }
                     break;
             }
+        }
+    }
+
+   public IEnumerator FinishGame(string result)
+    {
+        if (result == "LOSE")
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                moleMoveControl[i].gameObject.SetActive(false);
+            }
+            for (int x = 0; x < 6; x++)
+            {
+               if (helmetMoveControl[x].hit == false)
+                {
+                    helmetMoveControl[x].gameObject.SetActive(false);
+                }
+            }
+            yield return new WaitForSeconds(2);
+            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
         }
     }
 }
