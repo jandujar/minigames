@@ -103,7 +103,7 @@ public class FroggerGame : MonoBehaviour {
             StartCoroutine(DestroyPlayer());
         }
 
-        FinishGame(win);
+        StartCoroutine(FinishGame(win));
     }
 
     IEnumerator DestroyPlayer()
@@ -112,6 +112,7 @@ public class FroggerGame : MonoBehaviour {
         player.GetComponent<MeshRenderer>().enabled = false;
         partLose.SetActive(true);
     }
+
 
     IEnumerator GoUp()
     {

@@ -51,7 +51,7 @@ public class ManagerSimonSays : MonoBehaviour {
 
 
 	private IEnumerator waitLumus(){
-		yield return new WaitForSecondsRealtime (1);
+		yield return new WaitForSecondsRealtime (0.5f);
 		randButton = Random.Range (0, buttons.Length);
 		//Llamar funcion encendido Correcto
 		buttons [randButton].GetComponent<ButtonSimonSays>().emitLumus(true);
@@ -61,7 +61,7 @@ public class ManagerSimonSays : MonoBehaviour {
 
 		source.PlayOneShot (beeps[randButton], 0.5f);
 		repeatButtons.Add(randButton);
-		yield return new WaitForSecondsRealtime (1.5f);
+		yield return new WaitForSecondsRealtime (0.5f);
 
 		//Set Normal Simon
 		sprRenderSimon.sprite = sprSimon [sprSimon.Length - 3];
