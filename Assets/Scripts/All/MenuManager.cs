@@ -47,6 +47,7 @@ public class MenuManager : Singleton<MenuManager> {
         DESTROY,
         BALLRUN,
         TREASURE,
+        SHOOTTHEBALL,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -179,6 +180,9 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.TREASURE:
             SceneManager.LoadScene("FindTreasure");
             break;
+        case MINIGAMES_ENUM.SHOOTTHEBALL:
+            SceneManager.LoadScene("ShootTheBall");
+        break;
         case MINIGAMES_ENUM.END:
 		default:
 			SceneManager.LoadScene ("Pong");
