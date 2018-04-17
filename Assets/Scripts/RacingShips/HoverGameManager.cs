@@ -84,6 +84,7 @@ public class HoverGameManager : MonoBehaviour
 
     IEnumerator StartRace()
     {
+        yield return new WaitForSecondsRealtime(1);
         Countdown.text = "3";
         yield return new WaitForSecondsRealtime(1);
         Countdown.text = "2";
@@ -101,7 +102,7 @@ public class HoverGameManager : MonoBehaviour
     IEnumerator EndGame(bool _win)
     {
         yield return new WaitForSecondsRealtime(2f);
-        if(_win)
+        if (_win)
             Gm.EndGame(IMiniGame.MiniGameResult.WIN);
         else
             Gm.EndGame(IMiniGame.MiniGameResult.LOSE);
