@@ -48,7 +48,7 @@ public class characterMovement : MonoBehaviour {
         //transform.forward = new Vector3(transform.forward.x, 0.0f, transform.forward.z);
         if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.0f)    //forward direction
         {
-            _rigidbody.AddForce(translationVector);
+            _rigidbody.AddForce(transform.forward * Input.GetAxis("Vertical") * characterVelocity);
         }
         else
         {
@@ -59,7 +59,7 @@ public class characterMovement : MonoBehaviour {
             Mathf.Clamp(_rigidbody.velocity.x, -characterVelocity, characterVelocity), 
             Mathf.Clamp(_rigidbody.velocity.y, -characterVelocity, characterVelocity),
             Mathf.Clamp(_rigidbody.velocity.z, -characterVelocity, characterVelocity));
-        translationVector = new Vector3(Mathf.Clamp(translationVector.x, -characterVelocity, characterVelocity),
+        translationVector = new Vector3(Mathf.Clamp(-characterVelocity, translationVector.x, characterVelocity),
             0.0f,
             Mathf.Clamp(translationVector.z, -characterVelocity, characterVelocity));
     }
@@ -75,6 +75,7 @@ public class characterMovement : MonoBehaviour {
       
        checkInputs();
         applyForces();
+        Debug.DrawRay(transform.position, transform.forward,Color.red,1.0f);
       /*  float h = characterVelocity * Input.GetAxis("Mouse X");
         
         transform.Rotate(0, h, 0);*/
@@ -82,6 +83,7 @@ public class characterMovement : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
+        //if(collision.gameObject.tag =="ground")
         jump = false;
     }
 }
