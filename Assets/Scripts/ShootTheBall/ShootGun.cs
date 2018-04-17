@@ -6,20 +6,21 @@ using UnityEngine.UI;
 public class ShootGun : MonoBehaviour
 {
     [Header("Bullet Instance Params")]
-    public int m_TotalBullets=3;
+    public int totalBullets=3;
     public float m_BulletForce;
-    public Transform m_Origin;
-    public Transform m_Parent;
-    public GameObject m_Bullet;
+    public Transform origin;
+    public Transform parent;
+    public GameObject bullet;
 
-    [Header("Particles")]
-    public ParticleSystem m_ParticleSystem;
+    [Header("Complements")]
+    public ParticleSystem particleSystem;
+    public AudioSource shootSFX;
 
     [Header("Cooldown")]
-    public Slider m_Slider;
-    public float m_Cooldown = 2.5f;
-    public float m_CountCooldown = 1.5f;
-    public bool m_CanShoot = true;
+    public Slider slider;
+    public float cooldown = 2.5f;
+    public float countCooldown = 1.5f;
+    public bool canShoot = true;
 
     // Use this for initialization
 	void Start ()
@@ -30,39 +31,40 @@ public class ShootGun : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(!m_CanShoot)
-            m_CountCooldown -= (Time.deltaTime * m_Cooldown);
+        if(!canShoot)
+            countCooldown -= (Time.deltaTime * cooldown);
         
-        if (m_CountCooldown <= 0)
+        if (countCooldown <= 0)
         {
-            m_CanShoot = true;
-            m_CountCooldown = 1.5f;
+            canShoot = true;
+            countCooldown = 1.5f;
         }
 
-        m_Slider.value = m_CountCooldown;
+        slider.value = countCooldown;
 
-		if( (Input.GetKeyDown(KeyCode.Space) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) )&& m_CanShoot)
+		if( (Input.GetKeyDown(KeyCode.Space) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) )&& canShoot)
         {
-            m_CanShoot = false;
+            canShoot = false;
 
-            m_ParticleSystem.Play();
+            shootSFX.Play();
+            particleSystem.Play();
             StartCoroutine(gunShoot());      
         }
 	}
 
     public IEnumerator gunShoot()
     {
-        for(int i=0;i<m_TotalBullets;++i)
+        for(int i=0;i<totalBullets;++i)
         {
             GameObject l_TempBullet;
-            l_TempBullet = Instantiate(m_Bullet, m_Origin.position, m_Origin.rotation, m_Parent) as GameObject;
+            l_TempBullet = Instantiate(bullet, origin.position, origin.rotation, parent) as GameObject;
             l_TempBullet.gameObject.name = "Bullet";
             l_TempBullet.transform.Rotate(Vector3.back * 90);
             //l_TempBullet.transform.Rotate(Vector3.up * 90);
             l_TempBullet.transform.Rotate(Vector3.left * 90);
             Rigidbody l_TempRB;
             l_TempRB = l_TempBullet.GetComponent<Rigidbody>();
-            l_TempRB.AddForce(m_Origin.forward * m_BulletForce);
+            l_TempRB.AddForce(origin.forward * m_BulletForce);
             DestroyObject(l_TempBullet, 5f);
 
             yield return new WaitForSecondsRealtime(0.05f);

@@ -5,11 +5,11 @@ using UnityEngine;
 public class MoveCamera : MonoBehaviour
 {
     [Header("Movement pivot")]
-    public Transform m_Camera;
-    public Transform m_Gun;
+    public Transform gameCamera;
+    public Transform gameGun;
         
     [Header("Sensibility")]
-    public float m_Sensibility = 2f;
+    public float sensibility = 2f;
 
     // Use this for initialization
     void Start()
@@ -20,31 +20,31 @@ public class MoveCamera : MonoBehaviour
     void Update()
     {
         //Debug.Log("H: " + Input.GetAxis("Horizontal") + " - V: " + Input.GetAxis("Vertical"));
-        m_Camera.Rotate(Vector3.up * (Input.GetAxis("Horizontal") * m_Sensibility));
-        m_Gun.Rotate(Vector3.right * ((Input.GetAxis("Vertical") * -1) * m_Sensibility));
+        gameCamera.Rotate(Vector3.up * (Input.GetAxis("Horizontal") * sensibility));
+        gameGun.Rotate(Vector3.right * ((Input.GetAxis("Vertical") * -1) * sensibility));
         
         //Camara
-        if (m_Camera.localRotation.eulerAngles.y <= 286f && m_Camera.localRotation.eulerAngles.y >= 280f)
+        if (gameCamera.localRotation.eulerAngles.y <= 286f && gameCamera.localRotation.eulerAngles.y >= 280f)
         {
             Vector3 l_CurrentCamaraRotation = new Vector3(0f, 285f, 0f);
-            m_Camera.localRotation = Quaternion.Euler(l_CurrentCamaraRotation);
+            gameCamera.localRotation = Quaternion.Euler(l_CurrentCamaraRotation);
         }
-        if (m_Camera.localRotation.eulerAngles.y <= 80f && m_Camera.localRotation.eulerAngles.y >= 70f)
+        if (gameCamera.localRotation.eulerAngles.y <= 80f && gameCamera.localRotation.eulerAngles.y >= 70f)
         {
             Vector3 l_CurrentCamaraRotation = new Vector3(0f, 70f, 0f);
-            m_Camera.localRotation = Quaternion.Euler(l_CurrentCamaraRotation);
+            gameCamera.localRotation = Quaternion.Euler(l_CurrentCamaraRotation);
         }
 
         //Gun
-        if (m_Gun.localRotation.eulerAngles.x <= 333f && m_Gun.localRotation.eulerAngles.x >= 325f)
+        if (gameGun.localRotation.eulerAngles.x <= 333f && gameGun.localRotation.eulerAngles.x >= 325f)
         {
             Vector3 l_CurrentGunRotation = new Vector3(333f, 0f, 0f);
-            m_Gun.localRotation = Quaternion.Euler(l_CurrentGunRotation);
+            gameGun.localRotation = Quaternion.Euler(l_CurrentGunRotation);
         }
-        if (m_Gun.localRotation.eulerAngles.x <= 30f && m_Gun.localRotation.eulerAngles.x >= 20f)
+        if (gameGun.localRotation.eulerAngles.x <= 30f && gameGun.localRotation.eulerAngles.x >= 20f)
         {
             Vector3 l_CurrentGunRotation = new Vector3(20f, 0f, 0f);
-            m_Gun.localRotation = Quaternion.Euler(l_CurrentGunRotation);
+            gameGun.localRotation = Quaternion.Euler(l_CurrentGunRotation);
         }
 
     }

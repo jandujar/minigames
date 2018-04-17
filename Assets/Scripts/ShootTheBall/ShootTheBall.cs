@@ -15,12 +15,15 @@ public class ShootTheBall : IMiniGame
     private int gameScore = 0;
     [Header("Game Components")]
     public List<GameObject> gameSceneObjects;
+    public AudioSource gameSpaceSound;
     
     void Start()
     {
         gameStarted = false;
         foreach (GameObject aObject in gameSceneObjects)
             aObject.SetActive(false);
+
+        gameSpaceSound = this.GetComponent<AudioSource>();
     }
     public override void beginGame()
     {
@@ -29,6 +32,9 @@ public class ShootTheBall : IMiniGame
         Debug.Log(this.ToString() + " game Begin");
         foreach (GameObject aObject in gameSceneObjects)
             aObject.SetActive(true);
+
+        gameSpaceSound.volume = 0.15f;
+        gameSpaceSound.Play();
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)

@@ -5,34 +5,37 @@ using UnityEngine;
 public class BallToShoot : MonoBehaviour
 {
     [Header("Target stats")]
-    public bool m_IsTarget = false;
-    public bool m_HasBeenShooted = false;
-    public Color m_BallColor;
+    public bool isTarget = false;
+    public bool hasBeenShooted = false;
+    public Color ballColor;
+    public AudioSource hitSound;
     [Header("Complements")]
-    public GameObject m_LookAt;
-    public ShootTheBall m_GameManager;
-    public List<GameObject> m_Neightbours = new List<GameObject>();
+    public GameObject lookAt;
+    public ShootTheBall gameManager;
+    public List<GameObject> neightbours = new List<GameObject>();
 
     [Header("Line")]
-    public GameObject m_Line;
+    public GameObject line;
 
     Renderer m_Renderer;
     // Use this for initialization
     void Start ()
     {
         m_Renderer = gameObject.GetComponent<Renderer>();
-        m_GameManager = GameObject.Find("Game").GetComponent<ShootTheBall>();
+        gameManager = GameObject.Find("Game").GetComponent<ShootTheBall>();
 
-        m_LookAt = GameObject.Find("ControlCamera");
-        this.transform.LookAt(m_LookAt.transform);
+        lookAt = GameObject.Find("ControlCamera");
+        this.transform.LookAt(lookAt.transform);
+
+        hitSound = this.GetComponent<AudioSource>();
 	}
 	
     public void createLines()
     {
         //CreateNeightbourLines
-        foreach (GameObject l_Object in m_Neightbours)
+        foreach (GameObject l_Object in neightbours)
         {
-            GameObject l_Line = Instantiate(m_Line, this.transform.position, Quaternion.identity, this.transform) as GameObject;
+            GameObject l_Line = Instantiate(line, this.transform.position, Quaternion.identity, this.transform) as GameObject;
             l_Line.gameObject.name = "Line";
             LineRenderer l_LineRender = l_Line.GetComponent<LineRenderer>();
             //Debug.Log("Object pos" + l_Object.transform.position + " / " + l_Object.transform.localPosition);
@@ -43,7 +46,7 @@ public class BallToShoot : MonoBehaviour
     }
     public void createLineToPoint(GameObject _target, Color _lineColor)
     {
-        GameObject l_Line = Instantiate(m_Line, this.transform.position, Quaternion.identity, this.transform) as GameObject;
+        GameObject l_Line = Instantiate(line, this.transform.position, Quaternion.identity, this.transform) as GameObject;
         l_Line.gameObject.name = "Line";
         LineRenderer l_LineRender = l_Line.GetComponent<LineRenderer>();
         l_LineRender.startColor=_lineColor;
@@ -57,13 +60,14 @@ public class BallToShoot : MonoBehaviour
 
     private void OnTriggerEnter(Collider _col)
     {
-        if(_col.gameObject.name=="Bullet" && m_IsTarget)
+        if(_col.gameObject.name=="Bullet" && isTarget)
         {
-            m_HasBeenShooted = true;
-            m_IsTarget = false;
-            m_Renderer.material.color = m_BallColor;
+            hitSound.Play();
+            hasBeenShooted = true;
+            isTarget = false;
+            m_Renderer.material.color = ballColor;
             Destroy(_col.gameObject);
-            m_GameManager.addScore(1);
+            gameManager.addScore(1);
         }
     }
 }
