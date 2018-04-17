@@ -8,6 +8,8 @@ public class WhacamoleHoleControl : MonoBehaviour {
     public WhacamoleMove[] moleMoveControl;
     public WhacamoleMove[] helmetMoveControl;
     public GameManager gameManager;
+    public AudioSource vicotryAudio;
+    public AudioSource moleTable;
 
     private int randomHole;
     private int randomMole;
@@ -133,8 +135,17 @@ public class WhacamoleHoleControl : MonoBehaviour {
 
    public IEnumerator FinishGame(string result)
     {
+        if (result == "WIN")
+        {
+            moleTable.Stop();
+            vicotryAudio.Play();
+            yield return new WaitForSeconds(2);
+            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+
+        }
         if (result == "LOSE")
         {
+            moleTable.Stop();
             for (int i = 0; i < 6; i++)
             {
                 moleMoveControl[i].gameObject.SetActive(false);

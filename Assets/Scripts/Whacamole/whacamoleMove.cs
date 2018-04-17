@@ -15,6 +15,7 @@ public class WhacamoleMove : MonoBehaviour {
     public AudioSource[] hammerHit;
     private AudioSource hitMole;
     private AudioSource hitHelmet;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -46,6 +47,10 @@ public class WhacamoleMove : MonoBehaviour {
             hitMole.Play();
             anim.speed = 3;
             playerScore.points = playerScore.points + 100;
+            if (playerScore.points == 200)
+            {
+                StartCoroutine(holeControl.FinishGame("WIN"));
+            }
         }
         if (collision.gameObject.tag == "Player" && gameObject.tag == "Finish")
         {
