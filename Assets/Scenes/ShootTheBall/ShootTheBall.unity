@@ -403,9 +403,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   targets: []
-  m_BaseColor: {r: 0.22794116, g: 0.6485802, b: 1, a: 1}
-  m_TargetColor: {r: 1, g: 1, b: 1, a: 1}
-  m_LineColor: {r: 0.43382353, g: 0.43382353, b: 0.43382353, a: 1}
+  baseColor: {r: 0.22745098, g: 0.64705884, b: 1, a: 1}
+  targetColor: {r: 1, g: 1, b: 1, a: 1}
+  lineColor: {r: 0.43529412, g: 0.43529412, b: 0.43529412, a: 1}
   pathSize: 9
   pathTargets: []
   timesToShoot: 3
@@ -1595,7 +1595,13 @@ MonoBehaviour:
   hitSound: {fileID: 0}
   lookAt: {fileID: 137316669}
   gameManager: {fileID: 0}
-  neightbours: []
+  neightbours:
+  - {fileID: 1776147977}
+  - {fileID: 899637476}
+  - {fileID: 1384778810}
+  - {fileID: 867569481}
+  - {fileID: 2081328763}
+  - {fileID: 1925658194}
   line: {fileID: 601591328}
 --- !u!23 &644901324
 MeshRenderer:
@@ -2209,6 +2215,7 @@ MonoBehaviour:
   neightbours:
   - {fileID: 49258570}
   - {fileID: 2081328763}
+  - {fileID: 1925658194}
   line: {fileID: 601591328}
 --- !u!23 &834112166
 MeshRenderer:
@@ -3152,7 +3159,10 @@ MonoBehaviour:
   hitSound: {fileID: 0}
   lookAt: {fileID: 137316669}
   gameManager: {fileID: 0}
-  neightbours: []
+  neightbours:
+  - {fileID: 1776147977}
+  - {fileID: 1384778810}
+  - {fileID: 644901321}
   line: {fileID: 601591328}
 --- !u!23 &899637479
 MeshRenderer:
@@ -4653,7 +4663,11 @@ MonoBehaviour:
   hitSound: {fileID: 0}
   lookAt: {fileID: 137316669}
   gameManager: {fileID: 0}
-  neightbours: []
+  neightbours:
+  - {fileID: 899637476}
+  - {fileID: 644901321}
+  - {fileID: 867569481}
+  - {fileID: 1136285361}
   line: {fileID: 601591328}
 --- !u!23 &1384778813
 MeshRenderer:
@@ -9760,7 +9774,10 @@ MonoBehaviour:
   hitSound: {fileID: 0}
   lookAt: {fileID: 137316669}
   gameManager: {fileID: 0}
-  neightbours: []
+  neightbours:
+  - {fileID: 899637476}
+  - {fileID: 644901321}
+  - {fileID: 1925658194}
   line: {fileID: 601591328}
 --- !u!23 &1776147980
 MeshRenderer:
@@ -9987,7 +10004,11 @@ MonoBehaviour:
   hitSound: {fileID: 0}
   lookAt: {fileID: 137316669}
   gameManager: {fileID: 0}
-  neightbours: []
+  neightbours:
+  - {fileID: 1776147977}
+  - {fileID: 644901321}
+  - {fileID: 2081328763}
+  - {fileID: 834112163}
   line: {fileID: 601591328}
 --- !u!23 &1925658197
 MeshRenderer:
@@ -10264,6 +10285,7 @@ MonoBehaviour:
   - {fileID: 990480431}
   - {fileID: 1477375322}
   - {fileID: 49258570}
+  - {fileID: 644901321}
   line: {fileID: 601591328}
 --- !u!23 &2081328766
 MeshRenderer:

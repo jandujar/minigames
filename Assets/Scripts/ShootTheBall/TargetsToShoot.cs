@@ -9,9 +9,9 @@ public class TargetsToShoot : MonoBehaviour
     [Header("Childs list")]
     public List<GameObject> targets = new List<GameObject>();
     [Header("Childs color")]
-    public Color m_BaseColor = Color.white;
-    public Color m_TargetColor = Color.white;
-    public Color m_LineColor = Color.white;
+    public Color baseColor = Color.white;
+    public Color targetColor = Color.white;
+    public Color lineColor = Color.white;
     [Header("Path Target")]
     public int pathSize = 9;
     public List<GameObject> pathTargets = new List<GameObject>();
@@ -46,7 +46,7 @@ public class TargetsToShoot : MonoBehaviour
         foreach (Transform l_Child in gameObject.transform)
         {
             BallToShoot l_Ball = l_Child.GetComponent<BallToShoot>();
-            l_Ball.ballColor = m_BaseColor;
+            l_Ball.ballColor = baseColor;
         }
     }
 
@@ -55,7 +55,7 @@ public class TargetsToShoot : MonoBehaviour
         foreach (Transform l_Child in gameObject.transform)
         {
             Renderer l_Renderer = l_Child.gameObject.GetComponent<Renderer>();
-            l_Renderer.material.color = m_BaseColor;
+            l_Renderer.material.color = baseColor;
         }
     }
 
@@ -117,7 +117,7 @@ public class TargetsToShoot : MonoBehaviour
         for(int i=1;i<pathTargets.Count;++i)
         {
             BallToShoot l_NextPoint = pathTargets[i].GetComponent<BallToShoot>();
-            l_PathPoint.createLineToPoint(l_NextPoint.gameObject, m_LineColor);
+            l_PathPoint.createLineToPoint(l_NextPoint.gameObject, lineColor);
             if(i!=pathTargets.Count-1)
                 yield return new WaitForSecondsRealtime(0.35f);
             l_PathPoint = l_NextPoint;
@@ -134,7 +134,7 @@ public class TargetsToShoot : MonoBehaviour
         
         ballTarget = pathTargets[pathTargets.Count-1].GetComponent<BallToShoot>();
         targetRender = ballTarget.gameObject.GetComponent<Renderer>();
-        targetRender.material.color = m_TargetColor;
+        targetRender.material.color = targetColor;
 
         ballTarget.isTarget = true;
     }
