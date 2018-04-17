@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WildWestRunner: IMiniGame {
     private GameManager gameManager;
-	public GameObject shooting;
+	public GameObject wildWestManager;
 
     void Awake()
     {
@@ -15,23 +15,20 @@ public class WildWestRunner: IMiniGame {
 
     public override void beginGame()
     {
-        //Pong Begins
         Debug.Log(this.ToString() + " game Begin");
-		shooting.GetComponent<WildWestRunnerManager> ().InitGame (gameManager);
-        //ball.enableBall = true;
-
+		wildWestManager.GetComponent<WildWestRunnerManager> ().InitGame (gameManager);
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
         this.gameManager = gm;
 		if (difficulty == MiniGameDificulty.EASY) {
-			shooting.GetComponent<WildWestRunnerManager> ().setTimeRecolectObjective (2.5f);
+			wildWestManager.GetComponent<WildWestRunnerManager> ().setGoalScore (1000);
 		} else {
 			if (difficulty == MiniGameDificulty.NORMAL) {
-				shooting.GetComponent<WildWestRunnerManager> ().setTimeRecolectObjective (2f);
+				wildWestManager.GetComponent<WildWestRunnerManager> ().setGoalScore (2500);
 			} else {
-				shooting.GetComponent<WildWestRunnerManager> ().setTimeRecolectObjective (1.5f);
+				wildWestManager.GetComponent<WildWestRunnerManager> ().setGoalScore (5000);
 			}
 		}
         //ball.init(gm); 

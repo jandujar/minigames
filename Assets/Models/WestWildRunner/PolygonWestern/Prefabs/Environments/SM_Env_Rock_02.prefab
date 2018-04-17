@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4062150435506306}
   - component: {fileID: 33428288065154200}
   - component: {fileID: 23083045994875550}
+  - component: {fileID: 65612798722697190}
   m_Layer: 0
   m_Name: SM_Env_Rock_02
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,8 +35,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1628725149435188}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.19, y: -0.2, z: 3.347}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -80,3 +81,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1628725149435188}
   m_Mesh: {fileID: 4300000, guid: 425b025456d1ae94891663c05140854d, type: 3}
+--- !u!65 &65612798722697190
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1628725149435188}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.778656, y: 1.3854198, z: 0.6668091}
+  m_Center: {x: 0, y: 0.58069706, z: 0}
