@@ -7,7 +7,7 @@ public class BallToShoot : MonoBehaviour
     [Header("Target stats")]
     public bool m_IsTarget = false;
     public bool m_HasBeenShooted = false;
-
+    public Color m_BallColor;
     [Header("Complements")]
     public GameObject m_LookAt;
     public ShootTheBall m_GameManager;
@@ -41,13 +41,13 @@ public class BallToShoot : MonoBehaviour
             l_LineRender.useWorldSpace = true;
         }
     }
-    public void createLineToPoint(GameObject _target)
+    public void createLineToPoint(GameObject _target, Color _lineColor)
     {
         GameObject l_Line = Instantiate(m_Line, this.transform.position, Quaternion.identity, this.transform) as GameObject;
         l_Line.gameObject.name = "Line";
         LineRenderer l_LineRender = l_Line.GetComponent<LineRenderer>();
-        l_LineRender.startColor=Color.white;
-        l_LineRender.endColor = Color.white;
+        l_LineRender.startColor=_lineColor;
+        l_LineRender.endColor = _lineColor;
         //Debug.Log("Object pos" + l_Object.transform.position + " / " + l_Object.transform.localPosition);
         l_LineRender.SetPosition(0, this.transform.position);
         l_LineRender.SetPosition(1, _target.transform.position);
@@ -61,7 +61,7 @@ public class BallToShoot : MonoBehaviour
         {
             m_HasBeenShooted = true;
             m_IsTarget = false;
-            m_Renderer.material.color = Color.blue;
+            m_Renderer.material.color = m_BallColor;
             Destroy(_col.gameObject);
             m_GameManager.addScore(1);
         }

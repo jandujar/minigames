@@ -158,6 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -179,7 +180,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -318,13 +319,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   m_Targets: []
+  m_BaseColor: {r: 0.22794116, g: 0.6485802, b: 1, a: 1}
+  m_TargetColor: {r: 1, g: 1, b: 1, a: 1}
+  m_LineColor: {r: 0.43382353, g: 0.43382353, b: 0.43382353, a: 1}
   m_PathSize: 9
   m_PathTargets: []
   timesToShoot: 3
   m_BallTarget: {fileID: 137316670}
   m_TargetRenderer: {fileID: 137316671}
   startCreatePath: 6
-  timeToNextPath: 5
+  timeToNextPath: 4.5
+  extraTimeToEnd: 0.75
 --- !u!1 &85888436
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -695,6 +701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -716,7 +723,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -935,6 +942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -957,7 +965,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1335,6 +1343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -1358,7 +1367,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1442,6 +1451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -1465,7 +1475,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1549,6 +1559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -1572,7 +1583,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1700,6 +1711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -1721,7 +1733,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1805,6 +1817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -1827,7 +1840,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1911,6 +1924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -1935,7 +1949,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2019,6 +2033,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -2041,7 +2056,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2125,6 +2140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -2148,7 +2164,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2232,6 +2248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -2253,7 +2270,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2337,6 +2354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -2359,7 +2377,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2443,6 +2461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -2464,7 +2483,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2548,6 +2567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -2569,7 +2589,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2687,6 +2707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -2711,7 +2732,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2795,6 +2816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -2816,7 +2838,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3043,6 +3065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -3066,7 +3089,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3150,6 +3173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -3172,7 +3196,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3256,6 +3280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -3278,7 +3303,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3362,6 +3387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -3386,7 +3412,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3470,6 +3496,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -3491,7 +3518,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3575,6 +3602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -3597,7 +3625,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3694,6 +3722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -3714,7 +3743,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7489,6 +7518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -7512,7 +7542,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7596,6 +7626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -7617,7 +7648,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7743,6 +7774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -7765,7 +7797,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7849,6 +7881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -7872,7 +7905,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7956,6 +7989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsTarget: 0
   m_HasBeenShooted: 0
+  m_BallColor: {r: 0, g: 0, b: 0, a: 0}
   m_LookAt: {fileID: 0}
   m_GameManager: {fileID: 0}
   m_Neightbours:
@@ -7978,7 +8012,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce6ae6e67daedbf4e8774c5d855cfb44, type: 2}
+  - {fileID: 2100000, guid: 5ae3757bf3f46fd42bda8a88047d3651, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -8,6 +8,10 @@ public class TargetsToShoot : MonoBehaviour
     public ShootTheBall gameManager;
     [Header("Childs list")]
     public List<GameObject> m_Targets = new List<GameObject>();
+    [Header("Childs color")]
+    public Color m_BaseColor = Color.white;
+    public Color m_TargetColor = Color.white;
+    public Color m_LineColor = Color.white;
     [Header("Path Target")]
     public int m_PathSize = 0;
     public List<GameObject> m_PathTargets = new List<GameObject>();
@@ -18,13 +22,26 @@ public class TargetsToShoot : MonoBehaviour
     [Header("Timers")]
     public float startCreatePath = 4f;
     public float timeToNextPath = 6f;
+    public float extraTimeToEnd = 0.75f;
     
     // Use this for initialization
     void Start ()
     {
         gameManager = GameObject.Find("Game").GetComponent<ShootTheBall>();
+        setChildrensVarsInit();
         setAllTargetsColor();
         StartCoroutine(SetTarget());
+
+
+    }
+
+    void setChildrensVarsInit()
+    {
+        foreach (Transform l_Child in gameObject.transform)
+        {
+            BallToShoot l_Ball = l_Child.GetComponent<BallToShoot>();
+            l_Ball.m_BallColor = m_BaseColor;
+        }
     }
 
     void setAllTargetsColor()
@@ -32,7 +49,7 @@ public class TargetsToShoot : MonoBehaviour
         foreach (Transform l_Child in gameObject.transform)
         {
             Renderer l_Renderer = l_Child.gameObject.GetComponent<Renderer>();
-            l_Renderer.material.color = Color.blue;
+            l_Renderer.material.color = m_BaseColor;
             m_Targets.Add(l_Child.gameObject);
         }
     }
@@ -95,7 +112,7 @@ public class TargetsToShoot : MonoBehaviour
         for(int i=1;i<m_PathTargets.Count;++i)
         {
             BallToShoot l_NextPoint = m_PathTargets[i].GetComponent<BallToShoot>();
-            l_PathPoint.createLineToPoint(l_NextPoint.gameObject);
+            l_PathPoint.createLineToPoint(l_NextPoint.gameObject, m_LineColor);
             if(i!=m_PathTargets.Count-1)
                 yield return new WaitForSecondsRealtime(0.35f);
             l_PathPoint = l_NextPoint;
@@ -112,7 +129,7 @@ public class TargetsToShoot : MonoBehaviour
         
         m_BallTarget = m_PathTargets[m_PathTargets.Count-1].GetComponent<BallToShoot>();
         m_TargetRenderer = m_BallTarget.gameObject.GetComponent<Renderer>();
-        m_TargetRenderer.material.color = Color.green;
+        m_TargetRenderer.material.color = m_TargetColor;
 
         m_BallTarget.m_IsTarget = true;
     }
@@ -127,6 +144,7 @@ public class TargetsToShoot : MonoBehaviour
                 Debug.Log(".");
             yield return new WaitForSecondsRealtime(timeToNextPath);
         }
+        yield return new WaitForSecondsRealtime(extraTimeToEnd);
         gameManager.checkWinLose();
     }
 }

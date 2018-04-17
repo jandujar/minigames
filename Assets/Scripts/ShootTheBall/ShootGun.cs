@@ -41,7 +41,7 @@ public class ShootGun : MonoBehaviour
 
         m_Slider.value = m_CountCooldown;
 
-		if(Input.GetKeyDown(KeyCode.Space) && m_CanShoot)
+		if( (Input.GetKeyDown(KeyCode.Space) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) )&& m_CanShoot)
         {
             m_CanShoot = false;
 
