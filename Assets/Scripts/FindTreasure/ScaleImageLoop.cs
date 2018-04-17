@@ -14,9 +14,6 @@ public class ScaleImageLoop : MonoBehaviour
 
     private bool goBack = false;
 
-    [SerializeField]
-    private bool desactive = false;
-
     private RectTransform rectTransform;
 
     void Start()

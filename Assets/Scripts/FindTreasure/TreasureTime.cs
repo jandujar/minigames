@@ -15,8 +15,16 @@ public class TreasureTime : MonoBehaviour
     [SerializeField]
     private TreasureFinder treasureFinder;
 
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = gameObject.GetComponent<AudioSource>();
+    }
+
     public void StartTime()
     {
+        audioSource.Play();
         StartCoroutine("timeToEnd");
     }
 
@@ -34,6 +42,7 @@ public class TreasureTime : MonoBehaviour
 
     public void stopTime()
     {
+        audioSource.Stop();
         StopCoroutine("timeToEnd");
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FindTreasure : IMiniGame
 {
-    private GameManager gameManager;
+    //private GameManager gameManager;
     [SerializeField]
     private GameObject canvasObject;
 
@@ -21,7 +21,7 @@ public class FindTreasure : IMiniGame
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        this.gameManager = gm;
+        //this.gameManager = gm;
         finder.init(gm);
     }
 
