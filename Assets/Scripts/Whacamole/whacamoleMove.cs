@@ -52,6 +52,7 @@ public class WhacamoleMove : MonoBehaviour {
             hitHelmet.Play();
             anim.speed = 0;
             hammerAnim.anim.speed = 0;
+            hammerAnim.gameObject.SetActive(false);
             hit = true;
             StartCoroutine(holeControl.FinishGame("LOSE"));
         }
