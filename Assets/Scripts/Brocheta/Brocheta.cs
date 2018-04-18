@@ -15,6 +15,8 @@ public class Brocheta : IMiniGame
     public GameObject theText;
     public AudioSource music;
     public AudioSource ashes;
+    public Image meter;
+    public Image meterCover;
     int textInt;
     bool actSmoke;
     int rand;
@@ -22,6 +24,7 @@ public class Brocheta : IMiniGame
 
     void Start()
     {
+        meter.fillAmount = 0;
         textInt = 15;
         actSmoke = true;
         for(int i = 0; i < area.Length; i++)
@@ -32,6 +35,7 @@ public class Brocheta : IMiniGame
     }
     void Update()
     {
+        meter.fillAmount = stick.GetComponent<stickMovement>().doubleShader;
         myText.text = "" + textInt;
 
         if (stick.GetComponent<stickMovement>().win == true)
@@ -80,6 +84,7 @@ public class Brocheta : IMiniGame
         lastRand = rand;
         yield return new WaitForSeconds(1.3f);
         smokes[lastRand].Stop();
+        yield return new WaitForSeconds(0.9f);
         area[lastRand].SetActive(false);
         actSmoke = true;
     }
@@ -103,7 +108,8 @@ public class Brocheta : IMiniGame
 
     public override void beginGame()
     {
-        
+        meter.enabled = true;
+        meterCover.enabled = true;
         theText.SetActive(true);
     }
 

@@ -13,14 +13,14 @@ public class stickMovement : MonoBehaviour {
     Color halfDone;
     Color almostDone;
     Color done;
-    int intShader;
+    public float doubleShader;
     bool canGo;
     public bool win;
 
 
     void Start()
     {
-        intShader = 0;
+        doubleShader = 0;
         halfDone = new Color(150, 88, 49);
         almostDone = new Color(107, 61, 31);
         done = new Color(79, 34, 5);
@@ -43,32 +43,31 @@ public class stickMovement : MonoBehaviour {
 	
     IEnumerator inSmoke()
     {
-        canGo = false;
-        intShader++;
-        yield return new WaitForSeconds(1);
-        canGo = true;
+        doubleShader += 0.005f;
+        yield return new WaitForSeconds(0.001f);
     }
 
 	void Update () {
         move();
-
-        if(intShader >= 1 && intShader <= 2)
+        Debug.Log(doubleShader);
+        if(doubleShader >= 0.1f && doubleShader <= 0.4f)
         {
             meatA.SetActive(false);
             meatB.SetActive(true);
         }
         else
-        if (intShader > 2 && intShader <= 4)
+        if (doubleShader > 0.4f && doubleShader <= 0.7f)
         {
             meatB.SetActive(false);
             meatC.SetActive(true);
         }
         else
-        if (intShader > 4)
+        if (doubleShader > 0.7f)
         {
-                meatC.SetActive(false);
-                meatD.SetActive(true);
-                win = true;
+            doubleShader = 0.7f;
+            meatC.SetActive(false);
+            meatD.SetActive(true);
+            win = true;
         }
 
     }
@@ -87,12 +86,6 @@ public class stickMovement : MonoBehaviour {
     }
     void OnTriggerStay(Collider other)
     {
-        if (other.name == "area")
-        {
-            if (canGo)
-            {
                 StartCoroutine(inSmoke());
-            }
-        }
     }
 }

@@ -12,6 +12,7 @@ public class Game : IMiniGame {
 
     public GameState state = GameState.Countdown;
     public float maxPower = 300f;
+    public float minPower = 200f;
     public float power = 0f;
     [SerializeField]
     private GameObject canvasSlider;
@@ -31,41 +32,58 @@ public class Game : IMiniGame {
 	
 	// Update is called once per frame
 	void Update () {
-        if (isLaunched == true) {  //si s'ha tirat l'ampolla 
-            //Debug.Log("velocity: " + bottle.velocity.magnitude);
-            //Debug.Log("rotation: " + bottle.rotation.eulerAngles.z);
-            if(bottle.velocity.magnitude <= Vector3.kEpsilon)//Si ha parat de moure's
-            {
-                if(Mathf.Abs(bottle.rotation.eulerAngles.z) <= 15f)
-                {
-                    StartCoroutine(EndWin());
-                }
-                else
-                {
-                    StartCoroutine(EndLose());
-                }
-
-            }
-        }
+        
 	}
+
+    IEnumerator CheckEnd()
+    {
+        yield return new WaitForSeconds(0.5f);
+        while (true)
+        {
+            if (isLaunched == true)
+            {  //si s'ha tirat l'ampolla 
+               //Debug.Log("velocity: " + bottle.velocity.magnitude);
+               //Debug.Log("rotation: " + bottle.rotation.eulerAngles.z);
+                if (bottle.position.y < 0f && bottle.velocity.magnitude <= Vector3.kEpsilon)//Si ha parat de moure's
+                {
+                    if (Mathf.Abs(bottle.rotation.eulerAngles.z) <= 15f)
+                    {
+                        StartCoroutine(EndWin());
+                    }
+                    else
+                    {
+                        StartCoroutine(EndLose());
+                    }
+                }
+            }
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
     IEnumerator EndWin()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         gm.EndGame(IMiniGame.MiniGameResult.WIN);
     }
     IEnumerator EndLose()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         gm.EndGame(IMiniGame.MiniGameResult.LOSE);
     }
 
 
     public void Launch()
     {
-        bottle.AddForce(Vector3.up * power);
-        bottle.AddRelativeTorque(Vector3.forward * power);
-        power = 0f;
-        isLaunched = true;
+        if (!isLaunched)
+        {
+            //Debug.Log("Power: " + power);
+            power = Mathf.Max(minPower, power);
+            bottle.AddForce(Vector3.up * power);
+            bottle.AddRelativeTorque(Vector3.forward * power);
+            power = 0f;
+            isLaunched = true;
+            StartCoroutine(CheckEnd());
+        }
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
@@ -82,6 +100,7 @@ public class Game : IMiniGame {
         isLaunched = false;
         StartCoroutine(CheckTimeout());
     }
+
     IEnumerator CheckTimeout()
     {
         txt.text = (time).ToString();
@@ -92,7 +111,7 @@ public class Game : IMiniGame {
         }
         txt.text = (0).ToString();
 
-        if (!isLaunched)
+        if (!isLaunched && power <= 0)
         {
             gm.EndGame(IMiniGame.MiniGameResult.LOSE);
         }
