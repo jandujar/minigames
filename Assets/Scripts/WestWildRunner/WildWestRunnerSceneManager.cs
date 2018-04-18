@@ -8,13 +8,14 @@ public class WildWestRunnerSceneManager : MonoBehaviour {
 
 	public GameObject[] groundStart;
 
+	public GameObject[] powerUps;
+
 	private enum typeArray{Start, Straight, Curve, Bifurc};
 
 	private Transform playerPos;
 	private float spawnPoint = 0.0f;
 	private float lenghtGroundStraight = 14.5f;
 	private int safeZone = 15;
-	private float widthGroundStraight = 6.6f;
 	private int groundInVision = 7;
 
 	private List<GameObject> groundActive;
@@ -40,6 +41,18 @@ public class WildWestRunnerSceneManager : MonoBehaviour {
 			newGround = Instantiate (groundStart [indexGround]) as GameObject;
 			newGround.transform.SetParent (this.transform);
 			newGround.transform.position = Vector3.forward * spawnPoint;
+			if (Random.Range (0, 10) > 8) {
+				Transform[] child = newGround.GetComponentsInChildren<Transform> ();
+				for (int i = 0; i <= newGround.transform.childCount; i++) {
+					if (child [i].tag == "PowerUp") {
+						GameObject newPowerUp = Instantiate (powerUps [Random.Range (0, 2)]) as GameObject;
+						newPowerUp.transform.SetParent (newGround.transform);
+						newPowerUp.transform.position = child [i].transform.position;
+						Debug.Log ("Power Instantiate");
+						break;
+					}
+				}
+			}
 			spawnPoint = spawnPoint + lenghtGroundStraight;
 			groundActive.Add (newGround);
 			break;
@@ -47,6 +60,18 @@ public class WildWestRunnerSceneManager : MonoBehaviour {
 			newGround = Instantiate (groundStraight [indexGround]) as GameObject;
 			newGround.transform.SetParent (this.transform);
 			newGround.transform.position = Vector3.forward * spawnPoint;
+			if (Random.Range (0, 10) > 8) {
+				Transform[] child = newGround.GetComponentsInChildren<Transform> ();
+				for (int i = 0; i <= newGround.transform.childCount; i++) {
+					if (child [i].tag == "PowerUp") {
+						GameObject newPowerUp = Instantiate (powerUps [Random.Range (0, 1)]) as GameObject;
+						newPowerUp.transform.SetParent (newGround.transform);
+						newPowerUp.transform.position = child [i].transform.position;
+						Debug.Log ("Power Instantiate");
+						break;
+					}
+				}
+			}
 			spawnPoint = spawnPoint + lenghtGroundStraight;
 			groundActive.Add (newGround);
 			break;

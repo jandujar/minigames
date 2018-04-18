@@ -9,12 +9,9 @@ public class WildWestRunnerCamera : MonoBehaviour {
 	private Vector3 distanceToObjective;
 
 
-	private Animation animController;
 
 	// Use this for initialization
 	void Start () {
-		animController = this.GetComponent<Animation> ();
-		//animController.Play ("WalkingCamera");
 		posToLook = GameObject.FindGameObjectWithTag ("Player").transform;
 		distanceToObjective = this.transform.position - posToLook.position;
 	}

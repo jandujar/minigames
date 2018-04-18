@@ -8,6 +8,9 @@ public class WildWestRunnerScore : MonoBehaviour {
 	private int score;
 	private int gScore;
 	private Vector3 startPos;
+	private GameObject player;
+	private int sumSpeed;
+	private int goalSpeed;
 
 	public Text acScore;
 	public Text goalScore;
@@ -16,6 +19,10 @@ public class WildWestRunnerScore : MonoBehaviour {
 	void Start () {
 		gScore = WildWestRunnerManager.instance.getGoalScore ();
 		startPos = this.transform.position;
+		player = GameObject.FindGameObjectWithTag ("Player");
+		goalSpeed = gScore / 4;
+		sumSpeed = goalSpeed;
+		Debug.Log ("Goal Score: " + goalSpeed);
 	}
 	
 	// Update is called once per frame
@@ -28,6 +35,11 @@ public class WildWestRunnerScore : MonoBehaviour {
 
 		if (score >= gScore) {
 			WildWestRunnerManager.instance.endGame (IMiniGame.MiniGameResult.WIN);
+		}
+
+		if (score >= sumSpeed) {
+			sumSpeed += goalSpeed;
+			player.GetComponent<WildWestRunnerControllerPlayer> ().addSpeed (2);
 		}
 	}
 }

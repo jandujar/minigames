@@ -24,7 +24,6 @@ public class WildWestPowerUp : MonoBehaviour {
 			Debug.LogError ("NOT TYPE OF POWER UP");
 			break;
 		}
-		
 	}
 
 	public int getForceJump(){
