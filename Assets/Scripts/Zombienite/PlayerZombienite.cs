@@ -42,11 +42,10 @@ public class PlayerZombienite : MonoBehaviour {
 
         if (actualHealth > 0)
         {
-            
 
-            if (Input.GetButton("Fire1"))
-            {
-            
+
+            if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
+            {            
                 anim.SetBool("Shoot_b", true);
                 anim.SetBool("FullAuto_b", true);
             }else
@@ -185,6 +184,11 @@ public class PlayerZombienite : MonoBehaviour {
     public void SetPlayerIsDead(bool dead)
     {
         isDead = dead;
+    }
+
+    public bool GetPlayerIsDead()
+    {
+        return isDead;
     }
 
 }

@@ -8,25 +8,21 @@ public class EnemyMovement : MonoBehaviour
     Transform player;               // Reference to the player's position.
     bool isPlayerDead = false;
     bool isDead = false;
-    UnityEngine.AI.NavMeshAgent nav;               // Reference to the nav mesh agent.
+    NavMeshAgent nav;               // Reference to the nav mesh agent.
     Player player_SC;
     public int damage = 40;
     public int totalHealth = 100;
     private int actualHealth;
     public float animationSpeed;       //If this variable will change you have to change speed of NavMeshAgent  
     private Animator anim;
-    private Collider collider;
-    private Light light;
 
     void Awake()
     {
         // Set up the references.
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        nav = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        collider = GetComponent<Collider>();
         actualHealth = totalHealth;
-        light = GetComponentInChildren<Light>();
     }
 
     private void Start()
@@ -44,7 +40,6 @@ public class EnemyMovement : MonoBehaviour
             // NavMeshAgent.Warp(player.position);
 
             nav.SetDestination(player.position);
-
         }
         // Otherwise...
         else
@@ -52,14 +47,9 @@ public class EnemyMovement : MonoBehaviour
             
             if (isDead)
             {
-                Debug.Log("Enemy Dead");
                 // ... disable the nav mesh agent.
-                light.enabled = true;
                 nav.enabled = false;
-                
-                /*anim.enabled = false;
-                collider.enabled = false;
-                anim.speed = 0;*/
+                Destroy(transform.gameObject);
             }
         }
     }
@@ -70,7 +60,6 @@ public class EnemyMovement : MonoBehaviour
         {
             if(other.GetComponent<PlayerZombienite>().GetPlayerHealth() > 0)
             {
-                Debug.Log("Herido");
                 other.GetComponent<PlayerZombienite>().SetPlayerHealth(damage);
             }else
             {
@@ -93,4 +82,5 @@ public class EnemyMovement : MonoBehaviour
     {
         isDead = dead;
     }
+    
 }

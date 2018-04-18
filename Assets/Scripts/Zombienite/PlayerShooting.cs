@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
+    private GameObject player;
+
     public int damagePerShot = 20;                  // The damage inflicted by each bullet.
     public float timeBetweenBullets = 0.15f;        // The time between each shot.
     public float range = 100f;                      // The distance the gun can fire.
@@ -24,9 +26,12 @@ public class PlayerShooting : MonoBehaviour
 
     void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+
         // Create a layer mask for the Shootable layer.
         shootableMask = LayerMask.GetMask("Shootable");
         wallMask = LayerMask.GetMask("WallObject");
+
         // Set up the references.
         gunParticles = GetComponent<ParticleSystem>();
         gunLine = GetComponent<LineRenderer>();
@@ -37,21 +42,23 @@ public class PlayerShooting : MonoBehaviour
 
     void Update()
     {
-        // Add the time since Update was last called to the timer.
-        timer += Time.deltaTime;
+        if(player.GetComponent<PlayerZombienite>().GetPlayerHealth() > 0) { 
+            // Add the time since Update was last called to the timer.
+            timer += Time.deltaTime;
         
-        // If the Fire1 button is being press and it's time to fire...
-        if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
-        {
-            // ... shoot the gun.
-            Shoot();
-        }
+            // If the Fire1 button is being press and it's time to fire...
+            if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) && timer >= timeBetweenBullets && Time.timeScale != 0)
+            {
+                // ... shoot the gun.
+                Shoot();
+            }
 
-        // If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
-        if (timer >= timeBetweenBullets * effectsDisplayTime)
-        {
-            // ... disable the effects.
-            DisableEffects();
+            // If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
+            if (timer >= timeBetweenBullets * effectsDisplayTime)
+            {
+                // ... disable the effects.
+                DisableEffects();
+            }
         }
     }
 
@@ -90,7 +97,6 @@ public class PlayerShooting : MonoBehaviour
         shootRay.direction = transform.forward;
 
         
-
         // Perform the raycast against gameobjects on the shootable layer and if it hits something...
         if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
         {
