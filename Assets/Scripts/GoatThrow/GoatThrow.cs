@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GoatThrow : IMiniGame
 {
+    private GameManager gameManager;
     public CabraController cabra;
     public AudioClip music;
     private AudioSource source;
@@ -18,6 +19,7 @@ public class GoatThrow : IMiniGame
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
+        this.gameManager = gm;
         cabra.init(gm);
     }
 
