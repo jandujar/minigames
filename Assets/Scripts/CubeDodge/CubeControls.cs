@@ -13,13 +13,14 @@ public class CubeControls : MonoBehaviour {
     private Vector3 Position;
     private Vector3 Rotation;
     private int CubeState;
+    private int TriangleState;
     enum Form { Cube, Triangle, Picasso};
     private Form form;
 
 
     // Use this for initialization
     void Start () {
-        form = Form.Cube;
+        form = Form.Triangle;
     }
 	
 	// Update is called once per frame
@@ -41,7 +42,18 @@ public class CubeControls : MonoBehaviour {
             transform.position = Position;
         }
 
-        if (Input.anyKeyDown)  
+        if (Input.anyKeyDown)
+            if (Input.GetButton("Fire1"))
+            {
+                if (form == Form.Cube){
+                    Debug.Log("Now im a TRIANGLE");
+                    form = Form.Triangle;
+                }else if (form == Form.Triangle){
+                    Debug.Log("Now im a CUBE");
+                    form = Form.Cube;
+                }      
+            }
+                if (Input.anyKeyDown)
             if (Input.GetButton("Fire2"))
             {
                 if (form == Form.Cube) {
@@ -49,12 +61,14 @@ public class CubeControls : MonoBehaviour {
                     transform.Rotate(Rotation);
                     if (CubeState % 2 == 0)
                     {
+                        Debug.Log("0");
                         Position = new Vector3(transform.position.x,
                          -3.65f, transform.position.z);
                         transform.position = Position;
                     }
                     if (CubeState % 2 != 0)
                     {
+                        Debug.Log("1");
                         Position = new Vector3(transform.position.x,
                          -3.9f, transform.position.z);
                         transform.position = Position;
@@ -63,21 +77,32 @@ public class CubeControls : MonoBehaviour {
                 }
                 if (form == Form.Triangle)
                 {
-                    /*Rotation = new Vector3(0, 0, 90);
-                    transform.Rotate(Rotation);
-                    if (CubeState % 2 == 0)
+                    if (TriangleState % 3 == 1)
                     {
+                        Debug.Log("1");
+                        Rotation = new Vector3(150, 0, 0);
+                        transform.Rotate(Rotation);
                         Position = new Vector3(transform.position.x,
-                         -3.65f, transform.position.z);
+                         -4.4f, transform.position.z);
                         transform.position = Position;
                     }
-                    if (CubeState % 2 != 0)
+                    if (TriangleState % 3 == 2)
                     {
+                        Debug.Log("2");
                         Position = new Vector3(transform.position.x,
                          -3.9f, transform.position.z);
                         transform.position = Position;
                     }
-                    CubeState++;*/
+                    if (TriangleState % 3 == 0)
+                    {
+                        Debug.Log("0");
+                        Rotation = new Vector3(151.34f, 0, 0);
+                        transform.Rotate(Rotation);
+                        Position = new Vector3(transform.position.x,
+                         -3.4f, transform.position.z);
+                        transform.position = Position;
+                    }
+                    TriangleState++;
                 }
             }
     }
