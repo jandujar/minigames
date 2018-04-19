@@ -47,7 +47,7 @@ public class WhacamoleMove : MonoBehaviour {
             hitMole.Play();
             anim.speed = 3;
             playerScore.points = playerScore.points + 100;
-            if (playerScore.points == 200)
+            if (playerScore.points == 2000)
             {
                 StartCoroutine(holeControl.FinishGame("WIN"));
             }
