@@ -37,8 +37,8 @@ public class PlayerZombienite : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        float h = InputManager.Instance.GetAxisHorizontal();
+        float v = InputManager.Instance.GetAxisVertical();
 
         if (actualHealth > 0)
         {
@@ -95,9 +95,11 @@ public class PlayerZombienite : MonoBehaviour {
 
     void Turning()
     {
-        Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+       // Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        RaycastHit floorHit;
+        transform.LookAt(new Vector3 (InputManager.Instance.GetAxisHorizontal2(), 0f, InputManager.Instance.GetAxisVertical2()));
+
+     /*   RaycastHit floorHit;
 
         if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
         {
@@ -112,7 +114,7 @@ public class PlayerZombienite : MonoBehaviour {
 
             // Set the player's rotation to this new rotation.
             playerRigidbody.MoveRotation(newRotatation);
-        }
+        }*/
     }
 
     void Jumping()
