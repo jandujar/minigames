@@ -53,6 +53,7 @@ public class MenuManager : Singleton<MenuManager> {
         ZOMBIENITE,
         BOWLING,
         DISARM,
+        WHACA,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -202,6 +203,9 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.DISARM:
             SceneManager.LoadScene("DisarmTheNuke");
+            break;
+        case MINIGAMES_ENUM.WHACA:
+            SceneManager.LoadScene("Whacamole");
             break;
         case MINIGAMES_ENUM.END:
 		default:
