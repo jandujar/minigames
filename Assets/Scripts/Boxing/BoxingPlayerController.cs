@@ -43,9 +43,7 @@ public class BoxingPlayerController : MonoBehaviour {
 
     IEnumerator WinMatch()
     {
-        boxingEnemy.boxingBell.Play();
         boxingEnemy.gameObject.transform.GetChild(2).gameObject.SetActive(true);
-        boxingEnemy.StopCoroutine(boxingEnemy.enemyCorutine);
         yield return new WaitForSeconds(1);
         Instantiate(GameObject.Find("Win"), new Vector3(-0.2f, 0, 0), Quaternion.identity);
         yield return new WaitForSeconds(2);
