@@ -2,27 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoatThrow : IMiniGame
-{
-    public CabraController cabra;
-    public AudioClip music;
+public class MosquitoTheGame : IMiniGame {
+
+    public MosquitoMove mosquito;
+	public EspatulaMove espatula;
     private AudioSource source;
+
     public override void beginGame()
     {
-        source = GetComponent<AudioSource>();
+        //source = GetComponent<AudioSource>();
+        //source.Play();
         Debug.Log(this.ToString() + " game Begin");
-        cabra.enabled = true;
-        source.Play();
+        mosquito.enabled = true;
+		espatula.enabled = true;
 
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        cabra.init(gm);
-    }
+        mosquito.init(gm);
+		espatula.init(gm);
 
+    }
     public override string ToString()
     {
-        return "GoatThrow by Roger";
+        return "Mosquito The Game by Roger";
     }
 }
