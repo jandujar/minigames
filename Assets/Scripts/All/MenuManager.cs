@@ -50,6 +50,7 @@ public class MenuManager : Singleton<MenuManager> {
         SHOOTTHEBALL,
         RACINGSHIP,
         CANNON,
+        ZOMBIENITE,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -190,6 +191,9 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.CANNON:
             SceneManager.LoadScene("Cannon");
+            break;
+        case MINIGAMES_ENUM.ZOMBIENITE:
+            SceneManager.LoadScene("Zombienite");
             break;
         case MINIGAMES_ENUM.END:
 		default:
