@@ -111,9 +111,9 @@ public class EspatulaMove : MonoBehaviour
 			if (other.gameObject.CompareTag ("Player")) {
 				source.PlayOneShot (mosquitoSplat, .5f);
 				MosquitoMove mosquito = other.gameObject.GetComponent<MosquitoMove> ();
-				if (mosquito != null) {
-					mosquito.Kill ();
-				}
+				//if (mosquito != null) {
+				//	mosquito.Kill ();
+				//}
 				ended = true;
 				StartCoroutine (WinGame ());
 			}
