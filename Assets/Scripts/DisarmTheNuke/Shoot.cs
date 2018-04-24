@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace com.marc.escobar{
+    
 public class Shoot : MonoBehaviour {
 
     private int damage;
@@ -37,4 +39,6 @@ public class Shoot : MonoBehaviour {
             }
         }
     }
+}
+
 }

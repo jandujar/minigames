@@ -770,14 +770,14 @@ if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON6) && cli
 	if (CounterSpeed == 0) {
 	clip -= 1;
 	CounterSpeed = 2;
-                Shoot.GetComponent<Shoot>().ShootRay();
+                Shoot.GetComponent<com.marc.escobar.Shoot>().ShootRay();
 	}	
 }
 }
 void SingleFireAmmoCounter(){
 if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON6) && clip >0){
 	clip -= 1;
-            Shoot.GetComponent<Shoot>().ShootRay();
+            Shoot.GetComponent<com.marc.escobar.Shoot>().ShootRay();
         }
 }
 void ShowCollimator(){
