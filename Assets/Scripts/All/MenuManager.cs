@@ -60,7 +60,7 @@ public class MenuManager : Singleton<MenuManager> {
 
     public void LaunchMiniGame(){
 
-		Debug.LogError ("Launch MiniGame: " + currentGame.ToString ());
+		//Debug.LogError ("Launch MiniGame: " + currentGame.ToString ());
 
         currentGame = (MINIGAMES_ENUM)Random.Range((int)0, (int)MINIGAMES_ENUM.END);
 
