@@ -11,12 +11,23 @@ public class InputManager : Singleton<InputManager> {
     public float GetAxisVertical(){
         return Input.GetAxis("Vertical");
     }
+    public float GetAxisHorizontal2()
+    {
+        return Input.GetAxis("Mouse X");
+    }
+
+    public float GetAxisVertical2()
+    {
+        return Input.GetAxis("Mouse Y");
+    }
 
     public enum MiniGameButtons{
         BUTTON1,
         BUTTON2,
         BUTTON3,
-        BUTTON4
+        BUTTON4,
+        BUTTON5,
+        BUTTON6
     }
 
     public bool GetButton(MiniGameButtons button){
@@ -30,6 +41,10 @@ public class InputManager : Singleton<InputManager> {
                 return Input.GetButton("Fire3");
             case MiniGameButtons.BUTTON4:
                 return Input.GetButton("Fire4");
+            case MiniGameButtons.BUTTON5:
+                return Input.GetButton("Fire5");
+            case MiniGameButtons.BUTTON6:
+                return Input.GetButton("Fire6");
             default:
                 return false;
         }
@@ -46,6 +61,10 @@ public class InputManager : Singleton<InputManager> {
                 return Input.GetButtonDown("Fire3");
             case MiniGameButtons.BUTTON4:
                 return Input.GetButtonDown("Fire4");
+            case MiniGameButtons.BUTTON5:
+                return Input.GetButtonDown("Fire5");
+            case MiniGameButtons.BUTTON6:
+                return Input.GetButtonDown("Fire6");
             default:
                 return false;
         }
@@ -62,6 +81,10 @@ public class InputManager : Singleton<InputManager> {
                 return Input.GetButtonUp("Fire3");
             case MiniGameButtons.BUTTON4:
                 return Input.GetButtonUp("Fire4");
+            case MiniGameButtons.BUTTON5:
+                return Input.GetButtonUp("Fire5");
+            case MiniGameButtons.BUTTON6:
+                return Input.GetButtonUp("Fire6");
             default:
                 return false;
         }
