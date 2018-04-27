@@ -20,11 +20,19 @@ public class CubeControls : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        form = Form.Triangle;
+        form = Form.Cube;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Pared"))
+        {
+            Debug.Log("Acabar");
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         move = InputManager.Instance.GetAxisHorizontal();
         transform.Translate(move * Velocity * Time.deltaTime, 0, 0, Space.World);
