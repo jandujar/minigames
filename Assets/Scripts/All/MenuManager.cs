@@ -49,6 +49,11 @@ public class MenuManager : Singleton<MenuManager> {
         TREASURE,
         SHOOTTHEBALL,
         RACINGSHIP,
+        CANNON,
+        ZOMBIENITE,
+        BOWLING,
+        DISARM,
+        WHACA,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -59,7 +64,7 @@ public class MenuManager : Singleton<MenuManager> {
 
     public void LaunchMiniGame(){
 
-		Debug.LogError ("Launch MiniGame: " + currentGame.ToString ());
+		//Debug.LogError ("Launch MiniGame: " + currentGame.ToString ());
 
         currentGame = (MINIGAMES_ENUM)Random.Range((int)0, (int)MINIGAMES_ENUM.END);
 
@@ -186,6 +191,21 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.RACINGSHIP:
             SceneManager.LoadScene("RacingShips");
+            break;
+        case MINIGAMES_ENUM.CANNON:
+            SceneManager.LoadScene("Cannon");
+            break;
+        case MINIGAMES_ENUM.ZOMBIENITE:
+            SceneManager.LoadScene("Zombienite");
+            break;
+        case MINIGAMES_ENUM.BOWLING:
+            SceneManager.LoadScene("Bowling");
+            break;
+        case MINIGAMES_ENUM.DISARM:
+            SceneManager.LoadScene("DisarmTheNuke");
+            break;
+        case MINIGAMES_ENUM.WHACA:
+            SceneManager.LoadScene("Whacamole");
             break;
         case MINIGAMES_ENUM.END:
 		default:
