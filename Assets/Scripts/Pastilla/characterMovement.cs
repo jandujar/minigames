@@ -14,6 +14,8 @@ public class characterMovement : MonoBehaviour {
     float rotation;
     float velocity;
     bool jump;
+    [SerializeField]
+    private GameManager gameManager;
     void checkInputs()
     {        
         if(Mathf.Abs(Input.GetAxis("Vertical")) > 0.0f)
@@ -83,7 +85,22 @@ public class characterMovement : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        //if(collision.gameObject.tag =="ground")
+        if (collision.gameObject.name == "Plataforma")
+        {
+            transform.parent = collision.transform;
+        }     
+        else if(collision.gameObject.name == "Pacman")
+        {
+            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+        }
+        else if (collision.gameObject.name == "Final")
+        {
+            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+        }
         jump = false;
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        transform.parent = null;
     }
 }
