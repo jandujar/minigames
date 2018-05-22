@@ -16,6 +16,8 @@ public class characterMovement : MonoBehaviour {
     bool jump;
     [SerializeField]
     private GameManager gameManager;
+    public AudioSource Audio;
+    public AudioClip clip;
     void checkInputs()
     {        
         if(Mathf.Abs(Input.GetAxis("Vertical")) > 0.0f)
@@ -39,6 +41,8 @@ public class characterMovement : MonoBehaviour {
        
         if((Input.GetKeyDown(KeyCode.Space) || InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)) && !jump)
         {
+            Audio.clip = clip;
+            Audio.Play();
             _rigidbody.AddForce(Vector3.up * jumpForce*100);
             jump = true;
         }
