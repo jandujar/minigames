@@ -55,6 +55,7 @@ public class SPlayer : MonoBehaviour
         Time.timeScale = 0.1f;
         audio.Play();
         yield return new WaitForSecondsRealtime(1);
+        Time.timeScale = 1.0f;
         gm.EndGame(IMiniGame.MiniGameResult.LOSE);
     }
 }
