@@ -10,6 +10,7 @@ public class BombExitpath : MonoBehaviour {
     public GameObject[] arrayExit;
     public Color colorOfBomb;
     public GameManager gameManager;
+    public bool lose = false;
     //PRIVATE
     private IEnumerator bombCorutine;
     private bool Cut = false;
@@ -63,8 +64,9 @@ public class BombExitpath : MonoBehaviour {
         }
         if (end == "LOSE")
         {
+            lose = true;
             GameObject.Find("bombLose").transform.position = Vector3.zero;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(4);
             gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
             yield return true;
         }

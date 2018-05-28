@@ -1,0 +1,2 @@
+Cannon: Debes llegar a 20 puntos antes de que se acaben los 10 segundos. Cada diana son 5 puntos, las calaveras te restan 3 y tienes un cooldown de 1 segundo entre disparo y disparo.
+by Roger Quesada rogerk.1996@gmail.com/roger.quesada@balmes.epiaedu.cat
