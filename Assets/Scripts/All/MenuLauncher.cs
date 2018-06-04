@@ -5,7 +5,13 @@ using UnityEngine;
 public class MenuLauncher : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+	public void LaunchGame () {
 		MenuManager.Instance.LaunchMiniGame ();
 	}
+
+    public void Update(){
+        if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)) {
+            LaunchGame();
+        }
+    }
 }
