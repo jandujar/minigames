@@ -6,7 +6,7 @@ public class MenuLauncher : MonoBehaviour {
 
 	// Use this for initialization
 	public void LaunchGame () {
-		MenuManager.Instance.LaunchMiniGame ();
+		MenuManager.Instance.InitGames();
 	}
 
     public void Update(){

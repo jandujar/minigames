@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
+            MenuManager.Instance.WonGame();
             SceneManager.LoadScene("Win");
         }
     }

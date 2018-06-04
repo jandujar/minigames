@@ -68,15 +68,19 @@ public class MenuManager : Singleton<MenuManager> {
 
     private ArrayList games;
 
-    void Start(){
-        InitGames();
-    }
+    public int currentScore;
 
-    void InitGames(){
+
+    public void InitGames(){
+        currentScore = 0;
         games = new ArrayList();
+
         foreach (MINIGAMES_ENUM min in Enum.GetValues(typeof(MINIGAMES_ENUM)).Cast<MINIGAMES_ENUM>())
         {
-            games.Add(min);
+            if (min != MINIGAMES_ENUM.END)
+            {
+                games.Add(min);
+            }
         }
         LaunchMiniGame();
     }
@@ -269,5 +273,9 @@ public class MenuManager : Singleton<MenuManager> {
         {
             currentGame = MINIGAMES_ENUM.PONG;
         }
+    }
+
+    public void WonGame(){
+        currentScore += 10;
     }
 }
