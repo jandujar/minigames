@@ -252,6 +252,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 20263652027557132, guid: 16c290a8c1d9dea44a3562ee346f0f84,
+        type: 2}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16c290a8c1d9dea44a3562ee346f0f84, type: 2}
   m_IsPrefabParent: 0
@@ -455,6 +460,11 @@ Prefab:
       propertyPath: body.Array.data[1]
       value: 
       objectReference: {fileID: 1495079462}
+    - target: {fileID: 114026160552161790, guid: 07d0a27a835c15041b1fd04fe0b97a3c,
+        type: 2}
+      propertyPath: speed
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07d0a27a835c15041b1fd04fe0b97a3c, type: 2}
   m_IsPrefabParent: 0
@@ -504,7 +514,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1460516886064934, guid: 3ead1508950f7e94c921970a52af1be5, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ead1508950f7e94c921970a52af1be5, type: 2}
@@ -887,7 +897,7 @@ MonoBehaviour:
   targetScore: 20
   time: 30
   currentTime: 0
-  snake: {fileID: 0}
+  snake: {fileID: 2033090300}
 --- !u!1001 &1819561351
 Prefab:
   m_ObjectHideFlags: 0
@@ -1014,3 +1024,9 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1920758461}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2033090300 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114026160552161790, guid: 07d0a27a835c15041b1fd04fe0b97a3c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1058587305}
+  m_Script: {fileID: 11500000, guid: 1b02e957f894e5047b3034b6e913e6cf, type: 3}

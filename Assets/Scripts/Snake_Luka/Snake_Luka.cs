@@ -37,7 +37,7 @@ public class Snake_Luka : IMiniGame
 
     public override void beginGame()
     {
-        throw new System.NotImplementedException();
+        snake.StartMoving();
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
