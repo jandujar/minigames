@@ -54,19 +54,8 @@ public class SnakeController : MonoBehaviour
         float Xaxis = Input.GetAxis("Horizontal");
         float Yaxis = Input.GetAxis("Vertical");
 
-        /*if (Xaxis != 0f || Yaxis != 0f)
-        {
-            float inputAngle = Mathf.Atan2(Xaxis, Yaxis) * Mathf.Rad2Deg;
-
-            if (inputAngle >= 135 || inputAngle <= -135) // LEFT
-            {
-                lastOrder = Orders.LEFT;
-            }
-            else if (inputAngle >= -45 && inputAngle <= 45) // LEFT
-            {
-                lastOrder = Orders.LEFT;
-            }
-        }*/
+        if (Input.GetKeyDown(KeyCode.Space))
+            AddBodyPart();
 
         if (Xaxis > 0f)
             lastOrder = Orders.RIGHT;
@@ -81,28 +70,54 @@ public class SnakeController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "schutzstaffel_b") //monedita
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.tag == "schutzstaffel_b") //monedita
         {
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
             game.Score++;
+
+            AddBodyPart();
+
+            game.SpawnCoin();
 
             if (game.Score >= game.TargetScore)
             {
                 gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
             }
         }
-        else if (collision.collider.tag == "schutzstaffel_a" || collision.collider.tag == "wehrmacht_b")
+        else if (other.tag == "schutzstaffel_a" || other.tag == "wehrmacht_b")
+        {
+            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+        }
+        else if (other.CompareTag("GameController") || other.CompareTag("Finish") || other.CompareTag("Respawn"))
         {
             gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
         }
     }
 
-    public void StartMoving()
+    void AddBodyPart()
     {
-        StartCoroutine(Move(lastOrder));
+        GameObject[] newBody = new GameObject[body.Length + 1];
+        body.CopyTo(newBody, 0);
+        newBody[body.Length] = Instantiate(body[0], body[body.Length - 1].transform.position, body[body.Length - 1].transform.rotation);
+        body = newBody;
+
+        Vector3[] newPositions = new Vector3[bodyPositions.Length + 1];
+        bodyPositions.CopyTo(newPositions, 0);
+        newPositions[bodyPositions.Length] = newPositions[bodyPositions.Length - 1];
+        bodyPositions = newPositions;
     }
 
-    IEnumerator Move(Orders direction)
+    public void StartMoving()
+    {
+        StartCoroutine(Move());
+    }
+
+    IEnumerator Move()
     {
         initPos = transform.position;
         Vector3 directionVector = Vector3.zero;
@@ -116,7 +131,7 @@ public class SnakeController : MonoBehaviour
 
         prevOrder = lastOrder;
 
-        switch (direction)
+        switch (lastOrder)
         {
             case Orders.UP:
                 angle = 0f;
