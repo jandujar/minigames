@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Snake_Luka : IMiniGame
 {
 
     [SerializeField]
     int score = 0,
-        targetScore = 20;
+        targetScore = 10;
 
     [SerializeField]
     GameObject coin;
@@ -32,17 +33,17 @@ public class Snake_Luka : IMiniGame
 
     GameManager gameManager = null;
 
-    void Awake()
-    {
-        //Init Pong
-        Debug.LogError("Change this Script for your own Script");
-        //coin.transform.Rotate(new Vector3(45f, 0f, 0f));
-    }
-
+    [SerializeField]
+    Text    coinsText,
+            timerText;
+    
     public override void beginGame()
     {
         SpawnCoin();
         snake.StartMoving();
+        currentTime = 0f;
+
+        GetComponent<AudioSource>().Play();
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
@@ -54,7 +55,13 @@ public class Snake_Luka : IMiniGame
     	
 	// Update is called once per frame
 	void Update () {
-		
+        currentTime += Time.deltaTime;
+
+        timerText.text = "Time: " + (time - currentTime).ToString("F");
+        coinsText.text = "Coins: " + score.ToString() + "/" + targetScore.ToString();
+
+        if (currentTime >= time)
+            gameManager.EndGame(MiniGameResult.LOSE);
 	}
 
     public override string ToString()

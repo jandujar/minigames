@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Meny_Luka : MonoBehaviour {
 
 	// Use this for initialization
@@ -16,12 +16,12 @@ public class Meny_Luka : MonoBehaviour {
 
     public void Play()
     {
-
+        MenuManager.Instance.LaunchMiniGame();
     }
 
     public void Credits()
     {
-
+        SceneManager.LoadScene("Créditos_Luka");
     }
 
     public void Exit()

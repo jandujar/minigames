@@ -21,6 +21,12 @@ public class SnakeController : MonoBehaviour
 
     float movementDistance = 1f;
 
+    [SerializeField]
+    AudioClip   pickUpCoin,
+                snakeCrash;
+
+    AudioSource audioSource;
+
     enum Orders
     {
         VERTICAL = 0x0001,
@@ -39,6 +45,8 @@ public class SnakeController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         bodyPositions = new Vector3[body.Length];
 
         for (int i = 0; i < body.Length; i++)
@@ -79,8 +87,12 @@ public class SnakeController : MonoBehaviour
         {
             Destroy(other.gameObject);
             game.Score++;
+            speed *= 1.1f;
 
             AddBodyPart();
+
+            audioSource.clip = pickUpCoin;
+            audioSource.Play();
 
             game.SpawnCoin();
 
@@ -91,11 +103,16 @@ public class SnakeController : MonoBehaviour
         }
         else if (other.tag == "schutzstaffel_a" || other.tag == "wehrmacht_b")
         {
+            audioSource.clip = snakeCrash;
+            audioSource.Play();
             gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
         }
         else if (other.CompareTag("GameController") || other.CompareTag("Finish") || other.CompareTag("Respawn"))
         {
+            audioSource.clip = snakeCrash;
+            audioSource.Play();
             gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+
         }
     }
 
