@@ -12,7 +12,7 @@ public class Snake : MonoBehaviour {
     private Vector3 RotationSnake;
     private Vector3 RotationCamera;
     private int coins;
-    private GameManager game;
+    public Snake_raul game;
 
 
     // Use this for initialization
@@ -38,7 +38,7 @@ public class Snake : MonoBehaviour {
         if (other.gameObject.name == "muerte")
         {
             Debug.Log("You are dead");
-            game.EndGame(IMiniGame.MiniGameResult.LOSE);
+            game.EndGame(false);
         }
     }
 
@@ -47,7 +47,7 @@ public class Snake : MonoBehaviour {
         if (coins == 20)
         {
             Debug.Log("Win");
-            game.EndGame(IMiniGame.MiniGameResult.WIN);
+            game.EndGame(true);
         }
         transform.Translate(zvel, 0f, xvel);
 
