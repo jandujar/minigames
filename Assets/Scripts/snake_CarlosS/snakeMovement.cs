@@ -1,11 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class snakeMovement : MonoBehaviour {
 
     public float Speed;
     public float RotationSpeed;
+
+    public AudioSource coinsound ;
+    
+
+    public Text score;
+    public int coins = 0;
+
+    public GameManager gameManager;
 
     public GameObject[] tailObject = new GameObject[1];
 
@@ -56,12 +66,15 @@ public class snakeMovement : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-     
+        
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        score.text = coins.ToString();
+
 
         transform.Translate(Vector3.forward * Speed * Time.deltaTime);
 
@@ -82,6 +95,8 @@ public class snakeMovement : MonoBehaviour {
 
         {
             Debug.Log("se acabo");
+            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+            
         }
 
         if (other.CompareTag("1"))
@@ -91,6 +106,11 @@ public class snakeMovement : MonoBehaviour {
             coin1.gameObject.SetActive(false);
             coin2.gameObject.SetActive(true);
             snakeBody2.SetActive(true);
+            coins += 1;
+
+
+            coinsound.Play();
+            
         }
         if (other.CompareTag("2"))
 
@@ -99,6 +119,7 @@ public class snakeMovement : MonoBehaviour {
             coin2.gameObject.SetActive(false);
             coin3.gameObject.SetActive(true);
             snakeBody3.SetActive(true);
+            coins += 1;
         }
         if (other.CompareTag("3"))
 
@@ -107,6 +128,7 @@ public class snakeMovement : MonoBehaviour {
             coin3.gameObject.SetActive(false);
             coin4.gameObject.SetActive(true);
             snakeBody4.SetActive(true);
+            coins += 1;
 
         }
 
@@ -117,6 +139,7 @@ public class snakeMovement : MonoBehaviour {
             coin4.gameObject.SetActive(false);
             coin5.gameObject.SetActive(true);
             snakeBody5.SetActive(true);
+            coins += 1;
         }
 
         if (other.CompareTag("5"))
@@ -126,6 +149,7 @@ public class snakeMovement : MonoBehaviour {
             coin5.gameObject.SetActive(false);
             coin6.gameObject.SetActive(true);
             snakeBody6.SetActive(true);
+            coins += 1;
         }
         if (other.CompareTag("6"))
 
@@ -134,6 +158,7 @@ public class snakeMovement : MonoBehaviour {
             coin6.gameObject.SetActive(false);
             coin7.gameObject.SetActive(true);
             snakeBody7.SetActive(true);
+            coins += 1;
         }
         if (other.CompareTag("7"))
 
@@ -142,6 +167,7 @@ public class snakeMovement : MonoBehaviour {
             coin7.gameObject.SetActive(false);
             coin8.gameObject.SetActive(true);
             snakeBody8.SetActive(true);
+            coins += 1;
 
         }
         if (other.CompareTag("8"))
@@ -151,6 +177,7 @@ public class snakeMovement : MonoBehaviour {
             coin8.gameObject.SetActive(false);
             coin9.gameObject.SetActive(true);
             snakeBody9.SetActive(true);
+            coins += 1;
         }
         if (other.CompareTag("9"))
 
@@ -159,6 +186,7 @@ public class snakeMovement : MonoBehaviour {
             coin9.gameObject.SetActive(false);
             coin10.gameObject.SetActive(true);
             snakeBody10.SetActive(true);
+            coins += 1;
         }
         if (other.CompareTag("10"))
 
@@ -167,6 +195,7 @@ public class snakeMovement : MonoBehaviour {
             coin10.gameObject.SetActive(false);
             coin11.gameObject.SetActive(true);
             snakeBody11.SetActive(true);
+            coins += 1;
         }
         if (other.CompareTag("11"))
 
@@ -175,6 +204,7 @@ public class snakeMovement : MonoBehaviour {
             coin11.gameObject.SetActive(false);
             coin12.gameObject.SetActive(true);
             snakeBody12.SetActive(true);
+            coins += 1;
         }
         if (other.CompareTag("12"))
 
@@ -183,6 +213,7 @@ public class snakeMovement : MonoBehaviour {
             coin12.gameObject.SetActive(false);
             coin13.gameObject.SetActive(true);
             snakeBody13.SetActive(true);
+            coins += 1;
         }
         if (other.CompareTag("13"))
 
@@ -191,6 +222,7 @@ public class snakeMovement : MonoBehaviour {
             coin13.gameObject.SetActive(false);
             coin14.gameObject.SetActive(true);
             snakeBody14.SetActive(true);
+            coins += 1;
         }
         if (other.CompareTag("14"))
 
@@ -199,6 +231,7 @@ public class snakeMovement : MonoBehaviour {
             coin14.gameObject.SetActive(false);
             coin15.gameObject.SetActive(true);
             snakeBody15.SetActive(true);
+            coins += 1;
         }
         if (other.CompareTag("15"))
 
@@ -207,6 +240,7 @@ public class snakeMovement : MonoBehaviour {
             coin15.gameObject.SetActive(false);
             coin16.gameObject.SetActive(true);
             snakeBody16.SetActive(true);
+            coins += 1;
         }
         if (other.CompareTag("16"))
 
@@ -215,6 +249,7 @@ public class snakeMovement : MonoBehaviour {
             coin16.gameObject.SetActive(false);
             coin17.gameObject.SetActive(true);
             snakeBody17.SetActive(true);
+            coins += 1;
         }
         if (other.CompareTag("17"))
 
@@ -223,6 +258,7 @@ public class snakeMovement : MonoBehaviour {
             coin17.gameObject.SetActive(false);
             coin18.gameObject.SetActive(true);
             snakeBody18.SetActive(true);
+            coins += 1;
         }
         if (other.CompareTag("18"))
 
@@ -231,6 +267,7 @@ public class snakeMovement : MonoBehaviour {
             coin18.gameObject.SetActive(false);
             coin19.gameObject.SetActive(true);
             snakeBody19.SetActive(true);
+            coins += 1;
         }
         if (other.CompareTag("19"))
 
@@ -239,14 +276,17 @@ public class snakeMovement : MonoBehaviour {
             coin19.gameObject.SetActive(false);
             coin20.gameObject.SetActive(true);
             snakeBody20.SetActive(true);
+            coins += 1;
         }
-        if (other.CompareTag("13"))
+        if (other.CompareTag("20"))
 
         {
             Debug.Log("hola");
+            coins += 1;
             coin20.gameObject.SetActive(false);
+            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
 
-            
+
         }
     }
 
