@@ -13,6 +13,7 @@ public class SnakeMovement_MarcEscobar : MonoBehaviour {
 	private int SIZE = 0;
 	private float tailDistance = 0.3f;
 	public Snake_MarcEscobar snake;
+
 	// Use this for initialization
 	void Start () {
 
@@ -43,7 +44,7 @@ public class SnakeMovement_MarcEscobar : MonoBehaviour {
 			RotateSnake(90);
 		}
 	}
-	//COla de la serpiente
+	//Cola de la serpiente
 	private void InstantiateTail(){
 		if (SIZE == 0) {
 			return;
