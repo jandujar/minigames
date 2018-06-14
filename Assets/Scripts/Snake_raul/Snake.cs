@@ -11,32 +11,57 @@ public class Snake : MonoBehaviour {
     private Direcciones direcciones;
     private Vector3 RotationSnake;
     private Vector3 RotationCamera;
+    private int coins;
+    private GameManager game;
 
 
     // Use this for initialization
     void Start () {
         zvel = 0f;
-        xvel = 0.02f;
+        xvel = 0.03f;
         offset = new Vector3(0,12,0);
         camera.transform.eulerAngles = new Vector3(90, 0, 0);
         direcciones = Direcciones.delante;
+        coins = 0;
     }
-	
-	void Update () {
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.name == "coin")
+        {
+            Debug.Log("Has cogido una moneda");
+            Debug.Log("tienes"+ coins);
+            other.gameObject.SetActive(false);
+            coins++;
+        }
+
+        if (other.gameObject.name == "muerte")
+        {
+            Debug.Log("You are dead");
+            game.EndGame(IMiniGame.MiniGameResult.LOSE);
+        }
+    }
+
+    void Update () {
+
+        if (coins == 20)
+        {
+            Debug.Log("Win");
+            game.EndGame(IMiniGame.MiniGameResult.WIN);
+        }
         transform.Translate(zvel, 0f, xvel);
 
             if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
             {
                 Debug.Log("izq");
-                xvel = 0.02F;
-                zvel = 0;
+                //xvel = 0.02F;
+                //zvel = 0;
                 RotationSnake = new Vector3(0, -90, 0);
                 transform.Rotate(RotationSnake);
                 //RotationCamera = new Vector3(0, -90, 0);
                 //camera.transform.Rotate(RotationCamera);
                 
-        switch (direcciones)
+        /*switch (direcciones)
          {
              case Direcciones.delante:
                     // camera.transform.Rotate(0, -90, 0);
@@ -64,14 +89,14 @@ public class Snake : MonoBehaviour {
                  break;
              default:
                  break;
-         }
+         }*/
     }
 
             if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2))
             {
                 Debug.Log("der");
-            xvel = 0.02F;
-            zvel = 0;
+            //xvel = 0.02F;
+            //zvel = 0;
             RotationSnake = new Vector3(0, 90, 0);
             transform.Rotate(RotationSnake);
             /*switch (direcciones)
