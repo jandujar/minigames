@@ -52,8 +52,8 @@ public class Credits : MonoBehaviour {
         if (Input.GetButtonDown("Fire1"))
             SceneManager.LoadScene("Menu_Luka");
 
-        if (pos.y > verticalSize)
-            SceneManager.LoadScene("Menu_Luka");
+        /*if (pos.y > verticalSize)
+            SceneManager.LoadScene("Menu_Luka");*/
 
     }
 }

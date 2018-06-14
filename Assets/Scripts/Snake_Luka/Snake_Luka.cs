@@ -8,7 +8,7 @@ public class Snake_Luka : IMiniGame
 
     [SerializeField]
     int score = 0,
-        targetScore = 10;
+        targetScore = 20;
 
     [SerializeField]
     GameObject coin;
@@ -25,7 +25,7 @@ public class Snake_Luka : IMiniGame
     }
 
     [SerializeField]
-    float time = 30f,
+    float time = 60f,
             currentTime = 0f;
 
     [SerializeField]
