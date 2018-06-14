@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ZumbaStart : IMiniGame {
-    private GameManager gameManager;
     public ZumbaGameplay zumbaObject;
 
 
@@ -19,7 +18,6 @@ public class ZumbaStart : IMiniGame {
 
     public override void initGame(MiniGameDificulty dificulty, GameManager gm)
     {
-        gameManager = gm;
         zumbaObject.init(gm);
     }
 }

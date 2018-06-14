@@ -40,6 +40,6 @@ public class VeganKnows : IMiniGame
 
     public override string ToString()
     {
-        return "Veggie VS Normal by Raul";
+        return "Ultimate Bowling by Carlos Sevilla";
     }
 }

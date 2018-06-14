@@ -4,6 +4,8 @@ using UnityEngine;
 
 //MenuManager it's a manager for games it only loads the next game
 using UnityEngine.SceneManagement;
+using System;
+using System.Linq;
 
 
 public class MenuManager : Singleton<MenuManager> {
@@ -46,19 +48,60 @@ public class MenuManager : Singleton<MenuManager> {
         BMX,
         DESTROY,
         BALLRUN,
+        TREASURE,
+        SHOOTTHEBALL,
+        RACINGSHIP,
+        CANNON,
+        ZOMBIENITE,
+        BOWLING,
+        //DISARM,
+        WHACA,
+        ARCO,
+        MATRIX,
+        MOSQUITO,
+        PASTILLA,
+        ROLLINGBALL,
+        WESTWILL,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
 
-    void Start(){
+    private ArrayList games;
+
+    public int currentScore;
+
+
+    public void InitGames(){
+        currentScore = 0;
+        games = new ArrayList();
+
+        foreach (MINIGAMES_ENUM min in Enum.GetValues(typeof(MINIGAMES_ENUM)).Cast<MINIGAMES_ENUM>())
+        {
+            if (min != MINIGAMES_ENUM.END)
+            {
+                games.Add(min);
+            }
+        }
         LaunchMiniGame();
     }
 
     public void LaunchMiniGame(){
+        if (games == null)
+        {
+            InitGames();
+        }
+        if (games.Count == 0)
+        {
+            SceneManager.LoadScene("EndGame");
+            return;
+        }
+		
+        int actual = UnityEngine.Random.Range((int)0,(int)games.Count);
+        currentGame = (MINIGAMES_ENUM)games[actual];
+        Debug.Log ("Launch MiniGame: " + currentGame.ToString ());
 
-		Debug.LogError ("Launch MiniGame: " + currentGame.ToString ());
+        games.RemoveAt(actual);
 
-        currentGame = (MINIGAMES_ENUM)Random.Range((int)0, (int)MINIGAMES_ENUM.END);
 
 		switch (currentGame) {
 		case MINIGAMES_ENUM.PONG:
@@ -175,6 +218,50 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.BALLRUN:
             SceneManager.LoadScene("BallRun");
             break;
+        case MINIGAMES_ENUM.TREASURE:
+            SceneManager.LoadScene("FindTreasure");
+            break;
+        case MINIGAMES_ENUM.SHOOTTHEBALL:
+            SceneManager.LoadScene("ShootTheBall");
+            break;
+        case MINIGAMES_ENUM.RACINGSHIP:
+            SceneManager.LoadScene("RacingShips");
+            break;
+        case MINIGAMES_ENUM.CANNON:
+            SceneManager.LoadScene("Cannon");
+            break;
+        case MINIGAMES_ENUM.ZOMBIENITE:
+            SceneManager.LoadScene("Zombienite");
+            break;
+        case MINIGAMES_ENUM.BOWLING:
+            SceneManager.LoadScene("Bowling");
+            break;
+                /*
+        case MINIGAMES_ENUM.DISARM:
+            SceneManager.LoadScene("DisarmTheNuke");
+            break;
+            */
+        case MINIGAMES_ENUM.WHACA:
+            SceneManager.LoadScene("Whacamole");
+            break;
+        case MINIGAMES_ENUM.ARCO:
+            SceneManager.LoadScene("Arco");
+            break;
+        case MINIGAMES_ENUM.MATRIX:
+            SceneManager.LoadScene("Matrix");
+            break;
+        case MINIGAMES_ENUM.MOSQUITO:
+            SceneManager.LoadScene("Mosquito");
+            break;
+        case MINIGAMES_ENUM.PASTILLA:
+            SceneManager.LoadScene("PastillaScene");
+            break;
+        case MINIGAMES_ENUM.ROLLINGBALL:
+            SceneManager.LoadScene("RollingBallScene");
+            break;
+        case MINIGAMES_ENUM.WESTWILL:
+            SceneManager.LoadScene("WestWilldRunner");
+            break;
         case MINIGAMES_ENUM.END:
 		default:
 			SceneManager.LoadScene ("Pong");
@@ -186,5 +273,9 @@ public class MenuManager : Singleton<MenuManager> {
         {
             currentGame = MINIGAMES_ENUM.PONG;
         }
+    }
+
+    public void WonGame(){
+        currentScore += 10;
     }
 }
