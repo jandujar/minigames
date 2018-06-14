@@ -17,10 +17,8 @@ public class Snake : MonoBehaviour {
     void Start () {
         zvel = 0f;
         xvel = 0.02f;
-
-
-
-        offset = new Vector3(0,1.2f,-4);
+        offset = new Vector3(0,12,0);
+        camera.transform.eulerAngles = new Vector3(90, 0, 0);
         direcciones = Direcciones.delante;
     }
 	
@@ -35,31 +33,33 @@ public class Snake : MonoBehaviour {
                 zvel = 0;
                 RotationSnake = new Vector3(0, -90, 0);
                 transform.Rotate(RotationSnake);
-                RotationCamera = new Vector3(0, -90, 0);
+                //RotationCamera = new Vector3(0, -90, 0);
                 //camera.transform.Rotate(RotationCamera);
                 
         switch (direcciones)
          {
              case Direcciones.delante:
-                    // camera.transform.Rotate(15, -90, 0);
-                    camera.transform.eulerAngles = new Vector3(-15, -90, 0);
+                    // camera.transform.Rotate(0, -90, 0);
+                    camera.transform.eulerAngles = new Vector3(90, -90, 0);
+                    //offset = new Vector3(4, 1.2f, 0);
                     direcciones = Direcciones.izquierda;
                  break;
              case Direcciones.izquierda:
                     // camera.transform.Rotate(0,-90,0);
-                    camera.transform.eulerAngles = new Vector3(-15, -180, 0);
-                    offset = new Vector3(0, 1.2f, 4);
+                    camera.transform.eulerAngles = new Vector3(90, -180, 0);
+                    //offset = new Vector3(0, 1.2f, 4);
                 direcciones = Direcciones.detras;
                  break;
              case Direcciones.detras:
                     // camera.transform.Rotate(0, -90, 0);
-                    camera.transform.eulerAngles = new Vector3(-15, 90, 0);
-                    offset = new Vector3(0, 1.2f, -4);
-                direcciones = Direcciones.derecha;
+                    camera.transform.eulerAngles = new Vector3(90, 90, 0);
+                    //offset = new Vector3(-4, 1.2f, 0);
+                    direcciones = Direcciones.derecha;
                  break;
              case Direcciones.derecha:
                     //camera.transform.Rotate(0, -90, 0);
-                    camera.transform.eulerAngles = new Vector3(-15, 0, 0);
+                    camera.transform.eulerAngles = new Vector3(90, 0, 0);
+                    //offset = new Vector3(0, 1.2f, -4);
                     direcciones = Direcciones.delante;
                  break;
              default:
