@@ -15,11 +15,14 @@ public class snakeMovement : MonoBehaviour {
     public Text score;
     public int coins = 0;
 
-    public GameManager gameManager;
+    
 
     public GameObject[] tailObject = new GameObject[1];
 
     public float z_offset = -0.5f;
+
+    public GameObject panelLose;
+    public GameObject panelWin;
 
     public GameObject coin1;
     public GameObject coin2;
@@ -95,7 +98,7 @@ public class snakeMovement : MonoBehaviour {
 
         {
             Debug.Log("se acabo");
-            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+            panelLose.SetActive(true);
             
         }
 
@@ -284,7 +287,7 @@ public class snakeMovement : MonoBehaviour {
             Debug.Log("hola");
             coins += 1;
             coin20.gameObject.SetActive(false);
-            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+            panelWin.SetActive(true);
 
 
         }
