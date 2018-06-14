@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Snake_MarcEscobar : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
+public class Snake_MarcEscobar : IMiniGame {
+	public GameManager gameManager;
+	public bool gameStarted = false;
+	public override void beginGame()
+	{
+		gameStarted = true;
+		Debug.Log(this.ToString() + " game Begin");
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	public override void initGame(MiniGameDificulty difficulty, GameManager gm)
+	{
+		this.gameManager = gm;
+	}
+
+	public override string ToString()
+	{
+		return "Do u know da wae?";
 	}
 }
