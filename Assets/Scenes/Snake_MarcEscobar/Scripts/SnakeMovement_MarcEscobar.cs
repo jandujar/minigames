@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Snake : MonoBehaviour {
+public class SnakeMovement_MarcEscobar : MonoBehaviour {
 	public float moveSpeed = 5;
 	public GameObject[] snakeParts;
 	public float interpolation;
 
 	private List<GameObject> tails = new List<GameObject>();
 	public GameObject snakeTail;
-	private int SIZE = 5;
+	private int SIZE = 0;
 	private float tailDistance = 0.4f;
 	// Use this for initialization
 	void Start () {
@@ -67,5 +67,33 @@ public class Snake : MonoBehaviour {
 //
 		transform.Translate(transform.forward*moveSpeed *Time.deltaTime,Space.World);
 
+	}
+
+//	void OnCollisionEnter(Collision col){
+//		Debug.Log ("asdasdas");
+//		if (col.gameObject.name == "Coin") {
+//			Debug.Log ("pickacoiiin");
+//			SIZE++;
+//		}
+//	}
+//
+	void OnTriggerEnter(Collider col){
+		if (col.gameObject.name.Contains("Coin")) {
+			SIZE++;
+			Destroy (col.gameObject);
+			if (SIZE >= 10) {
+				Win ();
+			}
+		}
+		if (col.gameObject.name.Contains ("Death") || col.gameObject.name.Contains("Snake")) {
+			Lose ();
+		}
+	}
+
+	void Win(){
+		Debug.Log ("WIN");
+	}
+	void Lose(){
+		Debug.Log ("LOSE");
 	}
 }
