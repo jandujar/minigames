@@ -38,7 +38,7 @@ public class MenuManager : Singleton<MenuManager> {
 		KNIFETHROW,
 		MACETA,
 		SAFEPRESIDENT,
-		SHOOTINGALEX,
+		//SHOOTINGALEX,
 		SHOOTCAN,
 		SIMON,
 		WOODCUTTER,
@@ -176,9 +176,9 @@ public class MenuManager : Singleton<MenuManager> {
 		case MINIGAMES_ENUM.SAFEPRESIDENT:
 			SceneManager.LoadScene("SavePresident");
 			break;
-		case MINIGAMES_ENUM.SHOOTINGALEX:
-			SceneManager.LoadScene("ShootingAlex");
-			break;
+		//case MINIGAMES_ENUM.SHOOTINGALEX:
+		//	SceneManager.LoadScene("ShootingAlex");
+		//	break;
 		case MINIGAMES_ENUM.SHOOTCAN:
 			SceneManager.LoadScene("ShotTheCan");
 			break;

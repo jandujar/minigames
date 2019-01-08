@@ -312,7 +312,7 @@ namespace UnityEngine.AssetGraph
 
             var errorMsg = BuildPipeline.BuildPlayer(levels, locationPathName, target, opt);
 #endif
-            if (!string.IsNullOrEmpty(errorMsg))
+            if (errorMsg != null && !string.IsNullOrEmpty(errorMsg.ToString()))
             {
                 throw new NodeException("Player build failed:" + errorMsg, "See description for detail.", node);
             }
