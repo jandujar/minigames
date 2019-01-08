@@ -1,5 +1,5 @@
 # minigames
-MiniGames for Unity 2017.1.1f1
+MiniGames for Unity 2018.3.0f2
 
 Made by Students at Escola Pia Balmes
 
