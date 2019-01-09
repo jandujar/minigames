@@ -264,7 +264,7 @@ public class MenuManager : Singleton<MenuManager> {
             SceneManager.LoadScene("WestWilldRunner");
             break;
         case MINIGAMES_ENUM.BULLETHELL:
-            SceneManager.LoadScene("BulletHELL");
+            SceneManager.LoadScene("BulletHell");
             break;
         case MINIGAMES_ENUM.END:
 		default:
