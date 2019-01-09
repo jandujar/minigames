@@ -62,6 +62,7 @@ public class MenuManager : Singleton<MenuManager> {
         PASTILLA,
         ROLLINGBALL,
         WESTWILL,
+        BULLETDODGE,
         TROLLMARIO,
 		END };
 	
