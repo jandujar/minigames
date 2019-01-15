@@ -263,10 +263,10 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.WESTWILL:
             SceneManager.LoadScene("WestWilldRunner");
             break;
-            case MINIGAMES_ENUM.TRON:
-                SceneManager.LoadScene("Template");
-                break;
-            case MINIGAMES_ENUM.END:
+        case MINIGAMES_ENUM.TRON:
+            SceneManager.LoadScene("Tron");
+            break;
+        case MINIGAMES_ENUM.END:
 		default:
 			SceneManager.LoadScene ("Pong");
 			break;
