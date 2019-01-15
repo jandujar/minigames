@@ -60,6 +60,7 @@ public class MenuManager : Singleton<MenuManager> {
         MATRIX,
         MOSQUITO,
         PASTILLA,
+        TRILERO,
         ROLLINGBALL,
         WESTWILL,
         TRON,
@@ -157,6 +158,9 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.FLAPPY:
             SceneManager.LoadScene("FlappyBird");
+            break;
+        case MINIGAMES_ENUM.TRILERO:
+            SceneManager.LoadScene("Trilero");
             break;
         case MINIGAMES_ENUM.POLICE:
             SceneManager.LoadScene("PolicePursuit");
