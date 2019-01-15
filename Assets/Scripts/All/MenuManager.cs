@@ -62,6 +62,7 @@ public class MenuManager : Singleton<MenuManager> {
         PASTILLA,
         ROLLINGBALL,
         WESTWILL,
+        TRON,
         BULLETDODGE,
         TROLLMARIO,
 		END };
@@ -264,6 +265,8 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.WESTWILL:
             SceneManager.LoadScene("WestWilldRunner");
             break;
+        case MINIGAMES_ENUM.TRON:
+            SceneManager.LoadScene("Tron");
         case MINIGAMES_ENUM.TROLLMARIO:
             SceneManager.LoadScene("Trollmario");
             break;
