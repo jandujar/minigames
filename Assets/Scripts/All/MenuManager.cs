@@ -63,6 +63,8 @@ public class MenuManager : Singleton<MenuManager> {
         ROLLINGBALL,
         WESTWILL,
         TRON,
+        BULLETDODGE,
+        TROLLMARIO,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -265,6 +267,8 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.TRON:
             SceneManager.LoadScene("Tron");
+        case MINIGAMES_ENUM.TROLLMARIO:
+            SceneManager.LoadScene("Trollmario");
             break;
         case MINIGAMES_ENUM.END:
 		default:
