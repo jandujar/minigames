@@ -60,9 +60,12 @@ public class MenuManager : Singleton<MenuManager> {
         MATRIX,
         MOSQUITO,
         PASTILLA,
+        TRILERO,
         ROLLINGBALL,
         WESTWILL,
-        IMPOSSIBLE_GAME,
+        TRON,
+        BULLETDODGE,
+        TROLLMARIO,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -155,6 +158,9 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.FLAPPY:
             SceneManager.LoadScene("FlappyBird");
+            break;
+        case MINIGAMES_ENUM.TRILERO:
+            SceneManager.LoadScene("Trilero");
             break;
         case MINIGAMES_ENUM.POLICE:
             SceneManager.LoadScene("PolicePursuit");
@@ -263,8 +269,10 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.WESTWILL:
             SceneManager.LoadScene("WestWilldRunner");
             break;
-        case MINIGAMES_ENUM.IMPOSSIBLE_GAME:
-            SceneManager.LoadScene("ImpossibleGameScene");
+        case MINIGAMES_ENUM.TRON:
+            SceneManager.LoadScene("Tron");
+        case MINIGAMES_ENUM.TROLLMARIO:
+            SceneManager.LoadScene("Trollmario");
             break;
         case MINIGAMES_ENUM.END:
 		default:
