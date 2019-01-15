@@ -415,6 +415,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58530a1d1c6b1024b81b069147f5eb73, type: 3}
+--- !u!1 &1623231947966035604 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1623231947966035604, guid: 58530a1d1c6b1024b81b069147f5eb73,
+    type: 3}
+  m_PrefabInstance: {fileID: 460776762210688056}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2759156532065286207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -622,3 +628,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3e90d5f79cc4234d9d4f4ceface51aa, type: 3}
+--- !u!1 &6768978122605898529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6768978122605898529, guid: 3348d553fc50dc545ad592d18691cd09,
+    type: 3}
+  m_PrefabInstance: {fileID: 3590938832846876481}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6768978122605898530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6768978122605898529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a08de0d443a504aa65fdc8611d74fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cupPrefab: {fileID: 4072024100112817335, guid: f3e90d5f79cc4234d9d4f4ceface51aa,
+    type: 3}
+  ball: {fileID: 1623231947966035604}
+  cupsInitPosition:
+  - {x: -2.49, y: 0.51, z: 0.5}
+  - {x: 0, y: 0.51, z: 0.5}
+  - {x: 2.49, y: 0.51, z: 0.5}
+  ballInitPosition:
+  - {x: 2.49, y: 0.2, z: 0.5}
+  - {x: 0, y: 0.2, z: 0.5}
+  - {x: -2.49, y: 0.2, z: 0.5}
