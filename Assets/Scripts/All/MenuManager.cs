@@ -63,6 +63,7 @@ public class MenuManager : Singleton<MenuManager> {
         TRILERO,
         ROLLINGBALL,
         WESTWILL,
+        DOODLEJUMP,
         BLINDSHOT,
         PIXELTOWER,
         BULLETHELL,
@@ -273,6 +274,9 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.WESTWILL:
             SceneManager.LoadScene("WestWilldRunner");
+            break;
+        case MINIGAMES_ENUM.DOODLEJUMP:
+            SceneManager.LoadScene("DoodleJump");
             break;
         case MINIGAMES_ENUM.BLINDSHOT:
             SceneManager.LoadScene("BlindShot");
