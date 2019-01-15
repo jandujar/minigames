@@ -271,6 +271,7 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.TRON:
             SceneManager.LoadScene("Tron");
+            break;
         case MINIGAMES_ENUM.TROLLMARIO:
             SceneManager.LoadScene("Trollmario");
             break;
