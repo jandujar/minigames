@@ -62,6 +62,7 @@ public class MenuManager : Singleton<MenuManager> {
         PASTILLA,
         ROLLINGBALL,
         WESTWILL,
+        IMPOSSIBLE_GAME,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -261,6 +262,9 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.WESTWILL:
             SceneManager.LoadScene("WestWilldRunner");
+            break;
+        case MINIGAMES_ENUM.IMPOSSIBLE_GAME:
+            SceneManager.LoadScene("ImpossibleGameScene");
             break;
         case MINIGAMES_ENUM.END:
 		default:
