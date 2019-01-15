@@ -68,6 +68,7 @@ public class MenuManager : Singleton<MenuManager> {
         TRON,
         BULLETDODGE,
         TROLLMARIO,
+        IMPOSSIBLEGAME,
         DRUNKEY,
 		END };
 	
@@ -283,6 +284,9 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.TROLLMARIO:
             SceneManager.LoadScene("Trollmario");
+            break;
+        case MINIGAMES_ENUM.IMPOSSIBLEGAME:
+            SceneManager.LoadScene("ImpossibleGameScene");
             break;
         case MINIGAMES_ENUM.DRUNKEY:
             SceneManager.LoadScene("Drunkey");
