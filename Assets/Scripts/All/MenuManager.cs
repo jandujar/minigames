@@ -66,6 +66,7 @@ public class MenuManager : Singleton<MenuManager> {
         TRON,
         BULLETDODGE,
         TROLLMARIO,
+        DRUNKEY,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -273,6 +274,9 @@ public class MenuManager : Singleton<MenuManager> {
             SceneManager.LoadScene("Tron");
         case MINIGAMES_ENUM.TROLLMARIO:
             SceneManager.LoadScene("Trollmario");
+            break;
+        case MINIGAMES_ENUM.DRUNKEY:
+            SceneManager.LoadScene("Drunkey");
             break;
         case MINIGAMES_ENUM.END:
 		default:
