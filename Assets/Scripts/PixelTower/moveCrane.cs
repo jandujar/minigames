@@ -14,9 +14,17 @@ namespace laura_romo {
         private GameObject actualPiece;
         [SerializeField] GameObject buildingFather;
         private int piecesPut;
+        public bool gameStart;
+        private GameManager gameManager;
+        public bool winGame;
+        
+        public void init(GameManager gm) {
+            gameManager = gm;
+        }
 
         // Start is called before the first frame update
         void Start() {
+            winGame = false;
             toLeft = false;
             transform = this.GetComponent<Transform>();
             count = 0;
@@ -28,10 +36,15 @@ namespace laura_romo {
         // Update is called once per frame
         void Update() {
             //Instantiate piece of building
-            if (instantiateCount > 1) {
-                actualPiece = Instantiate(instaceBuilding, this.transform);
-                instantiate = false;
-                instantiateCount = 0;
+            if (instantiateCount > 2) {
+                if (!winGame) { 
+                    actualPiece = Instantiate(instaceBuilding, this.transform);
+                    instantiate = false;
+                    instantiateCount = 0;
+                }
+                else {
+                    EndGame(true);
+                }
             }
 
             if (instantiate) {
@@ -58,12 +71,29 @@ namespace laura_romo {
 
             //Inputs
             if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)) {
-                piecesPut++;
-                actualPiece.transform.parent = buildingFather.transform;
-                actualPiece.GetComponent<Rigidbody2D>().gravityScale = 1;
-                if (piecesPut < 10) {
+                if (gameStart) {
+                    piecesPut++;
+                    actualPiece.transform.parent = buildingFather.transform;
+                    actualPiece.GetComponent<Rigidbody2D>().gravityScale = 1;
                     instantiate = true;
+                    if (piecesPut == 10) {
+                        winGame = true;
+                    }
+                    if(piecesPut%3 == 0) {
+                        craneSpeed += 5;
+                    }
                 }
+            }
+
+            //LLamar pantalla de ganar o perder
+        }
+
+        public void EndGame(bool win) {
+            if (win) {
+                gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
+            }
+            else {
+                gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
             }
         }
     }

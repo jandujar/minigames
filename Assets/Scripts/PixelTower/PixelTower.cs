@@ -5,16 +5,16 @@ using UnityEngine;
 namespace laura_romo {
     public class PixelTower : IMiniGame  {
         // Start is called before the first frame update
-        [SerializeField] GameObject gameLogic;
         [SerializeField] GameObject crane;
        
         public override void beginGame() {
-            gameLogic.GetComponent<gameLogic>().gameStart = true;
-            crane.GetComponent<moveCrane>().craneSpeed = 20;
+            crane.GetComponent<moveCrane>().gameStart = true;
+            crane.GetComponent<moveCrane>().craneSpeed = 10;
         }
 
         public override void initGame(MiniGameDificulty difficulty, GameManager gm) {
-            gameLogic.GetComponent<gameLogic>().init(gm);
+            crane.GetComponent<moveCrane>().init(gm);
+            crane.GetComponent<moveCrane>().winGame = false;
         }
     }
 }
