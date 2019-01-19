@@ -5,7 +5,7 @@ using UnityEngine;
 public class gameLogic : MonoBehaviour {
     public bool gameStart;
     private GameManager gameManager;
-
+    
     public void init(GameManager gm) {
         gameManager = gm;
     }
@@ -17,7 +17,7 @@ public class gameLogic : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetButtonDown("Fire1")) {
+        /*if (Input.GetButtonDown("Fire1")) {
             if (gameStart) {
                 gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
             }
@@ -27,6 +27,6 @@ public class gameLogic : MonoBehaviour {
             if (gameStart) {
                 gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
             }
-        }
+        }*/
     }
 }
