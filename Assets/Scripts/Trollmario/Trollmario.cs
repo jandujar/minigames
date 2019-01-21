@@ -7,16 +7,24 @@ namespace guillem_gracia {
     public class Trollmario : IMiniGame
     {
         GameManager gameManager;
-        
+        [SerializeField] GameObject[] allGameObjectsWithScript;
 
         public override void beginGame()
         {
             Debug.Log("BeginGame");
             init = true;
+            foreach (GameObject go in allGameObjectsWithScript)
+            {
+                go.SetActive(true);
+            }
         }
 
         public override void initGame(MiniGameDificulty difficulty, GameManager gm)
         {
+            foreach (GameObject go in allGameObjectsWithScript)
+            {
+                go.SetActive(false);
+            }
             Debug.Log("InitGame");
             gameManager = gm;
         }
@@ -35,15 +43,7 @@ namespace guillem_gracia {
 
         bool init;
 
-        // Update is called once per frame
-        void Update()
-        {
-            if (!init) return;
-            UpdateControlls();
-            
-        }
-
-        void UpdateControlls()
+        /*void UpdateControlls()
         {
             if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
             {
@@ -53,7 +53,7 @@ namespace guillem_gracia {
             {
                 EndGame(false);
             }
-        }
+        }*/
 
         public override string ToString()
         {
