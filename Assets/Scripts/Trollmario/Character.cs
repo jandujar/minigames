@@ -15,7 +15,7 @@ namespace guillem_gracia {
 
         Animator anim;
 
-        Transform cameraTrans;
+        Transform cameraTrans, backgroundTrans;
 
         public int collisioningX;
 
@@ -26,6 +26,7 @@ namespace guillem_gracia {
         {
             rb = GetComponent<Rigidbody2D>();
             cameraTrans = GameObject.Find("Camera").transform;
+            backgroundTrans = GameObject.Find("BackGround").transform;
             anim = GetComponent<Animator>();
         }
 
@@ -50,6 +51,7 @@ namespace guillem_gracia {
         {
             UpdateControlls();
             cameraTrans.position = new Vector3(transform.position.x, cameraTrans.position.y, cameraTrans.position.z);
+            backgroundTrans.position = new Vector3(transform.position.x, backgroundTrans.position.y, backgroundTrans.position.z);
         }
 
         void UpdateControlls()
