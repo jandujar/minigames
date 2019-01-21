@@ -8,7 +8,10 @@ namespace XavierRibasDeTorres
 { 
     public class BulletHell : IMiniGame
     {
-        
+
+        public GameObject Game;
+
+        private GameManager gameManager;
 
         // Start is called before the first frame update
         void Start()
@@ -24,12 +27,13 @@ namespace XavierRibasDeTorres
 
         public override void beginGame()
         {
-            throw new NotImplementedException();
+            Game.SetActive(true);
         }
 
         public override void initGame(MiniGameDificulty difficulty, GameManager gm)
         {
-            throw new NotImplementedException();
+            this.gameManager = gm;
+            Game.SetActive(false);
         }
     }
 }
