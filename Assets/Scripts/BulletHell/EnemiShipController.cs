@@ -30,7 +30,7 @@ public class EnemiShipController : MonoBehaviour
     {
         
         RaycastHit2D coll = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.up), 100, mask);
-        Debug.Log(coll.collider.tag);
+
         if(coll.collider.tag == "Player")
         {
 

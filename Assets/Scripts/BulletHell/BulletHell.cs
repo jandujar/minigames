@@ -26,10 +26,7 @@ namespace XavierRibasDeTorres
         // Update is called once per frame
         void Update()
         {
-            if(GameObject.FindGameObjectWithTag("EnemyShip") == null)
-            {
-                gameManager.EndGame(MiniGameResult.WIN);
-            }
+           
         }
 
         public override void beginGame()
@@ -52,11 +49,20 @@ namespace XavierRibasDeTorres
         {
             gameManager.EndGame(MiniGameResult.LOSE);
         }
+        public void Win()
+        {
+            gameManager.EndGame(MiniGameResult.WIN);
+        }
 
         
         public float getVelocityBullets()
         {
             return VelocityBullet;
+        }
+
+        public override string ToString()
+        {
+            return "BulletHell from Xavier Ribas De Torres";
         }
     }
 }
