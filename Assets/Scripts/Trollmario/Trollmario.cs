@@ -26,6 +26,8 @@ namespace guillem_gracia {
                 go.SetActive(false);
             }
             Debug.Log("InitGame");
+            GameObject.Find("Collision").GetComponent<Renderer>().enabled = false;
+            GameObject.Find("DieCollisions").GetComponent<Renderer>().enabled = false;
             gameManager = gm;
         }
 

@@ -7,9 +7,9 @@ namespace guillem_gracia {
 
         Rigidbody2D rb;
 
-        Vector2 inputMovement;
+        public Vector2 inputMovement;
         bool inputJump;
-        bool jumping;
+        public bool jumping;
         [SerializeField] float speed;
         [SerializeField] float jumpSpeed;
 
@@ -20,7 +20,9 @@ namespace guillem_gracia {
         public int collisioningX;
 
         float timeJumping;
-        
+
+        bool die;
+        bool win;
 
         private void Start()
         {
@@ -28,6 +30,8 @@ namespace guillem_gracia {
             cameraTrans = GameObject.Find("Camera").transform;
             backgroundTrans = GameObject.Find("BackGround").transform;
             anim = GetComponent<Animator>();
+            die = false;
+            win = false;
         }
 
         private void FixedUpdate()
@@ -75,6 +79,7 @@ namespace guillem_gracia {
             else if (inputMovement.Equals(Vector2.zero))
             {
                 anim.SetBool("Running", false);
+                anim.SetBool("Jumping", false);
             }
             else
             {
@@ -86,9 +91,28 @@ namespace guillem_gracia {
             else if (inputMovement.x > 0 && !jumping) transform.localScale = new Vector3(1, 1, 1);
         }
 
+        public void EndGame(bool win)
+        {
+            GameObject.Find("Game").GetComponent<Trollmario>().EndGame(win);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.tag == "Car")
+            {
+                die = true;
+                Debug.Log("You died");
+            }
+            else if(collision.gameObject.tag == "End")
+            {
+                win = true;
+            }
+        }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if(collision.gameObject.name == "Collision" && jumping)
+            if((collision.gameObject.name == "Collision") 
+                && jumping)
             {
                 for(int i = 0; i < collision.contacts.Length; i++) { 
                     if (collision.contacts[i].normal.y >= 0.99f)
@@ -129,7 +153,6 @@ namespace guillem_gracia {
             if (collision.gameObject.name == "Collision")
             {
                 collisioningX = 0;
-
             }
         }
     }
