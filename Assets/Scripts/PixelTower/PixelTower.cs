@@ -8,13 +8,14 @@ namespace laura_romo {
         [SerializeField] GameObject crane;
        
         public override void beginGame() {
-            crane.GetComponent<moveCrane>().gameStart = true;
-            crane.GetComponent<moveCrane>().craneSpeed = 10;
+            crane.GetComponent<laura_romo.moveCrane>().gameStart = true;
+            crane.GetComponent<laura_romo.moveCrane>().craneSpeed = 5;
+            crane.GetComponent<AudioSource>().Play();
         }
 
         public override void initGame(MiniGameDificulty difficulty, GameManager gm) {
-            crane.GetComponent<moveCrane>().init(gm);
-            crane.GetComponent<moveCrane>().winGame = false;
+            crane.GetComponent<laura_romo.moveCrane>().init(gm);
+            crane.GetComponent<laura_romo.moveCrane>().winGame = false;
         }
     }
 }

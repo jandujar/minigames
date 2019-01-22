@@ -56,7 +56,7 @@ namespace laura_romo {
                 for (int i = 0; i < craneSpeed; i++) {
                     transform.position = new Vector3(transform.position.x - 0.01f, transform.position.y, transform.position.z);
                 }
-                if (transform.position.x < -14.27) {
+                if (transform.position.x < -6.5) {
                     toLeft = false;
                 }
             }
@@ -64,7 +64,7 @@ namespace laura_romo {
                 for(int i = 0; i < craneSpeed; i++) {
                     transform.position = new Vector3(transform.position.x + 0.01f, transform.position.y, transform.position.z);
                 }
-                if (transform.position.x > 13.43) {
+                if (transform.position.x > 6.01) {
                     toLeft = true;
                 }
             }
@@ -79,13 +79,10 @@ namespace laura_romo {
                     if (piecesPut == 10) {
                         winGame = true;
                     }
-                    if(piecesPut%3 == 0) {
-                        craneSpeed += 5;
-                    }
+                    craneSpeed += 2;
+                    
                 }
             }
-
-            //LLamar pantalla de ganar o perder
         }
 
         public void EndGame(bool win) {

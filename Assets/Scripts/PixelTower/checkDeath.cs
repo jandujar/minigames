@@ -21,7 +21,7 @@ namespace laura_romo {
                 check = true;
             }
             else {
-                crane.GetComponent<moveCrane>().EndGame(false);
+                crane.GetComponent<laura_romo.moveCrane>().EndGame(false);
             }
         }
     }
