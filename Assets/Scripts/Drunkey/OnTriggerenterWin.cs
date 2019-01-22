@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnTriggerenterWin : MonoBehaviour
+public class OnTriggerEnterWin : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public ivan_alvarez_enri.Drunkey_Sc GameManager;
+    void OnTriggerEnter2D(Collider2D other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameManager.win=true;
+        Debug.Log("Has Ganao");
     }
 }

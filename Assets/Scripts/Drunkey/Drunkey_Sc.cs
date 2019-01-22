@@ -89,11 +89,16 @@ namespace ivan_alvarez_enri
             }else if(lose){
                 StopCoroutine(currentCoroutineX);
                 StopCoroutine(currentCoroutineY);
+
+                
             }else if(win){
                 StopCoroutine(currentCoroutineX);
                 StopCoroutine(currentCoroutineY);
+
+
             }
-            Player.transform.Translate(new Vector3(0.02F*xDir,0.02F*yDir, 0));
+            if(!win)
+                Player.transform.Translate(new Vector3(0.02F*xDir,0.02F*yDir, 0));
         }
         public void InitAnimation() { 
            
