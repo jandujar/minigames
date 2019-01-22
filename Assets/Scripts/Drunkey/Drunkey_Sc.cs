@@ -8,6 +8,7 @@ namespace ivan_alvarez_enri
         private GameManager gameManager;
         public Animator buttons;
         private GameObject Player;
+        private GameObject Camera;
         public bool StartInputs = false;
         public bool Begin = false;
         public bool lose=false;
@@ -29,6 +30,7 @@ namespace ivan_alvarez_enri
             
             this.gameManager = gm;
             Player = GameObject.FindGameObjectWithTag("Player");
+            Camera=GameObject.FindGameObjectWithTag("MainCamera");
             //throw new System.NotImplementedException();
         }
 
@@ -90,7 +92,7 @@ namespace ivan_alvarez_enri
                 StopCoroutine(currentCoroutineX);
                 StopCoroutine(currentCoroutineY);
 
-                
+
             }else if(win){
                 StopCoroutine(currentCoroutineX);
                 StopCoroutine(currentCoroutineY);
@@ -99,6 +101,8 @@ namespace ivan_alvarez_enri
             }
             if(!win)
                 Player.transform.Translate(new Vector3(0.02F*xDir,0.02F*yDir, 0));
+                if(!lose)
+                    Camera.transform.Translate(new Vector3(0.02F*xDir/10,0, 0));
         }
         public void InitAnimation() { 
            
