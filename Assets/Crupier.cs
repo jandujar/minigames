@@ -10,21 +10,27 @@ public class Crupier : MonoBehaviour
 
     bool crupierMove = false;
 
-    int result, nRandom, pointsPlayer, pointsCrupier, cardsPlayer, cardsCrupier;
+    private int result, nRandom, pointsPlayer, pointsCrupier, cardsPlayer, cardsCrupier;
 
-    public bool wait = false;
+    bool wait = false;
     private float waitTime;
     public float maxWaitTime;
 
+    public GameObject CartaP, CartaC;
+
+    public Material[] Texturas;
+
+    private Vector3 posP,posC;
     //[SerializeField] Text pointsText;
 
     public void init(GameManager gm)
     {
+        posP = CartaP.transform.position;
+        posC = CartaC.transform.position;
+
         waitTime = maxWaitTime;
         gameManager = gm;
-        CrupierAttack();
-
-
+        CrupierAttack();       
     }
 
     // Update is called once per frame
@@ -35,54 +41,52 @@ public class Crupier : MonoBehaviour
             // "Shift!!"
             if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON3)){
                 if (!wait){
-                MoreCards();
-                Pause();
+                    MoreCards();
+                    Pause();
+                    ShowCart(nRandom);
                 }
             }
 
             //"Space!!"
             if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4))
-            {
                 crupierMove = true;
-            }
+            
 
             if (crupierMove)
             {
-                CrupierAttack();
-                Pause();
-                if (pointsCrupier >= 17)
-                {
-                    pointsCompare();
+                if (!wait){
+                    CrupierAttack();
+                    Pause();
+
+                    if (pointsCrupier >= 17)
+                        pointsCompare();
+
+                    ShowCart(nRandom);
                 }
             }
-
-
-            if (pointsPlayer > 21)
-            {
-                Lose();
-            }
-
-            if (pointsCrupier > 21)
-            {
-                Win();
-            }
-
-            if (wait)
-            {
+            
+            if (wait){
                 waitTime -= Time.deltaTime;
-                if (waitTime <= 0)
-                {
+                if (waitTime <= 0){
                     wait = false;
                     waitTime = maxWaitTime;
                 }
+            }else{
+
+                if (pointsPlayer > 21)
+                    Lose();
+                
+                if (pointsCrupier > 21)
+                    Win();
+                
             }
+            
             
         }
     }
 
 
-    private void MoreCards()
-    {
+    private void MoreCards(){
         nRandom = (int)Random.Range(1f, 10f);
 
         if (pointsPlayer <= 10 && nRandom == 1)
@@ -106,6 +110,8 @@ public class Crupier : MonoBehaviour
         
         Debug.Log("Crupier:  " + pointsCrupier);
         cardsCrupier++;
+
+        firstCripier(nRandom);
     }
 
     private void pointsCompare()
@@ -123,6 +129,8 @@ public class Crupier : MonoBehaviour
                 break;
 
             case 0:
+                Lose();
+                /*
                 pointsPlayer = 0;
                 cardsPlayer = 0;
 
@@ -130,6 +138,7 @@ public class Crupier : MonoBehaviour
                 cardsCrupier = 0;
 
                 crupierMove = false;
+                */
                 break;
 
         }
@@ -140,6 +149,52 @@ public class Crupier : MonoBehaviour
         wait = true;
     }
 
+    void ShowCart(int carta)
+    {
+        if (!crupierMove)
+        {
+            GameObject NewCart = Instantiate(CartaP,CartaP.transform.position,CartaP.transform.rotation);
+            NewCart.gameObject.SetActive(true);
+            NewCart.transform.position = new Vector3(posP.x + cardsPlayer,posP.y + cardsPlayer, posP.z - cardsPlayer);
+            string TextureCart = carta.ToString();
+            if (carta == 11)
+                carta = 1;
+            if (carta == 10)
+                carta = (int)Random.Range(10f, 11f);
+
+            //NewCart.gameObject.GetComponent<Renderer>().tex
+
+            NewCart.gameObject.GetComponent<MeshRenderer>().material = Texturas[carta - 1];
+            
+        }
+        else
+        {
+            GameObject NewCartC = Instantiate(CartaC, CartaC.transform.position, CartaC.transform.rotation);
+            NewCartC.gameObject.SetActive(true);
+            NewCartC.transform.position = new Vector3(posC.x - cardsCrupier, posC.y - cardsCrupier, posC.z - cardsCrupier);
+            string TextureCart = carta.ToString();
+            if (carta == 11)
+                carta = 1;
+            if (carta == 10)
+                carta = (int)Random.Range(10f, 11f);
+
+            NewCartC.gameObject.GetComponent<MeshRenderer>().material = Texturas[carta - 1];
+        }
+    }
+
+    void firstCripier(int carta)
+    {
+        GameObject NewCartC = Instantiate(CartaC, CartaC.transform.position, CartaC.transform.rotation);
+        NewCartC.gameObject.SetActive(true);
+        NewCartC.transform.position = new Vector3(posC.x - cardsCrupier, posC.y - cardsCrupier, posC.z - cardsCrupier);
+        string TextureCart = carta.ToString();
+        if (carta == 11)
+            carta = 1;
+        if (carta == 10)
+            carta = (int)Random.Range(10f, 11f);
+
+        NewCartC.gameObject.GetComponent<MeshRenderer>().material = Texturas[carta - 1];
+    }
 
 
     private void Lose() { gameManager.EndGame(IMiniGame.MiniGameResult.LOSE); }
