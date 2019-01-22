@@ -1,29 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XavierRibasDeTorres;
 
 public class EnemiShipController : MonoBehaviour
 {
 
     public GameObject bullet;
+    public LayerMask mask;
 
     private RaycastHit detector;
     private Vector3 posInbullet;
     private Vector3 bulletDir;
-    
+    private GameObject GameMan;
+    private GameObject Player;
+    private BulletHell bullscript;
+
     // Start is called before the first frame update
     void Start()
     {
         posInbullet.Set(transform.position.x, transform.position.y, transform.position.z);
-        
+        Player = GameObject.FindGameObjectWithTag("Player");
+        GameMan = GameObject.Find("Game");
+        bullscript = GameMan.GetComponent<BulletHell>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        RaycastHit2D coll = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.up), 100);
-
+        
+        RaycastHit2D coll = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.up), 100, mask);
+        Debug.Log(coll.collider.tag);
         if(coll.collider.tag == "Player")
         {
 
@@ -46,43 +53,18 @@ public class EnemiShipController : MonoBehaviour
     {
         Quaternion zero = new Quaternion(0, 0, 0, 0);
         GameObject bullets = Instantiate(bullet, posInbullet, zero);
-        Rigidbody2D bullrig = bullets.GetComponent<Rigidbody2D>();
-        Vector2 bulldisp;
-        Debug.Log("Posicion nave x: " + collid.collider.transform.position.x + " y: " + collid.collider.transform.position.y);
-        if (collid.collider.transform.position.x > transform.position.x)
-        {
-            if(collid.collider.transform.position.y > transform.position.y)
-            {
-                Debug.Log("Disparo a");
-                bulldisp = new Vector2(collid.collider.transform.position.x, collid.collider.transform.position.y);
-            }
-            else
-            {
-                Debug.Log("Disparo b");
-                bulldisp = new Vector2(collid.collider.transform.position.x, -collid.collider.transform.position.y);
-            }
+        Rigidbody2D bulldisp = bullets.GetComponent<Rigidbody2D>();
+        Physics2D.IgnoreCollision(bullets.GetComponent<PolygonCollider2D>(), transform.GetComponent<BoxCollider2D>());
+        bulldisp.AddForce(transform.TransformDirection(Vector2.up) * 40, ForceMode2D.Impulse);
             
-        }
-        else
-        {
-            if (collid.collider.transform.position.y > transform.position.y)
-            {
-                Debug.Log("Disparo c");
-                bulldisp = new Vector2(-collid.collider.transform.position.x, collid.collider.transform.position.y);
-            }
-            else
-            {
-                Debug.Log("Disparo d");
-                bulldisp = new Vector2(-collid.collider.transform.position.x, -collid.collider.transform.position.y);
-            }
-
-
-        }
-
-
-      
-        bullrig.AddForce(bulldisp, ForceMode2D.Impulse);
-        
         //bullets.transform.Translate(Vector3.up*collid.distance);
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if(coll.collider.tag == "NaveShoot")
+        {
+            DestroyObject(gameObject);
+        }
     }
 }
