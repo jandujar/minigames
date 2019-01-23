@@ -30,7 +30,7 @@ public class BulletShip : MonoBehaviour
 
         //transform.position = Vector2.MoveTowards(transform.position, bulldisp, VelDisp * Time.deltaTime);
         
-        Debug.Log(transform.GetComponent<Rigidbody2D>().velocity);
+        
 
         timelife -= Time.deltaTime;
         if(timelife <= 0)

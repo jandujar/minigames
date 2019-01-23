@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class BulletNave : MonoBehaviour
 {
+    public AudioSource BulletSoundHit;
+    public AudioSource BulletSoundhoot;
 
     private float TimeDestroy;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         TimeDestroy = 5;
+        BulletSoundhoot.Play();
     }
 
     // Update is called once per frame
@@ -24,7 +28,11 @@ public class BulletNave : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D coll)
     {
-        Debug.Log(coll.collider.name);
+        if(coll.collider.tag == "EnemyShip")
+        {
+           
+            BulletSoundHit.Play();
+        }
         DestroyObject(gameObject);
     }
 }

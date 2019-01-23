@@ -55,7 +55,7 @@ public class NaveController : MonoBehaviour
     {
         if(coll.collider.tag == "BulletShipEnemy")
         {
-            Debug.Log("Tocado");
+            
             BullHellScript.Lose();
         }
         

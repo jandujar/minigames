@@ -18,7 +18,8 @@ public class Control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.FindGameObjectWithTag("EnemyShip"))
+
+        if(GameObject.FindGameObjectWithTag("EnemyShip") == null)
         {
             BulletHellScript.Win();
         }
