@@ -7,9 +7,14 @@ public class NaveController : MonoBehaviour
 {
     public GameObject GameMan;
     public GameObject Shoot;
-
-    private float direction;
-    private float rotat;
+    public GameObject Pointer;
+    public AudioSource Explosion;
+    
+    private float horit;
+    private float vert;
+    private float shoot;
+    private Vector3 dist;
+    private float rot;
     private BulletHell BullHellScript;
 
     // Start is called before the first frame update
@@ -21,12 +26,12 @@ public class NaveController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        direction = InputManager.Instance.GetAxisVertical();
-        rotat = InputManager.Instance.GetAxisHorizontal();
-
         
+        horit = InputManager.Instance.GetAxisHorizontal();
+        vert = InputManager.Instance.GetAxisVertical();
 
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+
+        if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
         {
             GameObject bullet = Instantiate(Shoot, transform.position, transform.rotation);
             Rigidbody2D bulletdisp = bullet.GetComponent<Rigidbody2D>();
@@ -35,26 +40,47 @@ public class NaveController : MonoBehaviour
 
         }
 
-        transform.Translate(0, direction, 0);
+        if (horit > 0)
+        {
             
-        if(rotat > 0)
-        {
-            transform.Rotate(0, 0, 1);
+            transform.Translate(1, 0, 0);
         }
-        else if(rotat < 0)
+        else if (horit < 0)
         {
-            transform.Rotate(0, 0, -1);
+            transform.Translate(-1, 0, 0);
         }
         else
         {
-            transform.Rotate(0, 0, 0);
+            transform.Translate(0, 0, 0);
+        }
+        
+            
+        if(vert > 0)
+        {
+            Debug.Log("vertical + 1");
+            transform.Translate(0, 1, 0);
+        }
+        else if(vert < 0)
+        {
+            transform.Translate(0, -1, 0);
+        }
+        else
+        {
+            transform.Translate(0, 0, 0);
         }
 
+        dist = Pointer.transform.position - transform.position;
+        dist.Normalize();
+
+        rot = Mathf.Atan2(dist.y, dist.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rot - 90);
+        
     }
     void OnCollisionEnter2D(Collision2D coll)
     {
         if(coll.collider.tag == "BulletShipEnemy")
         {
+            Explosion.Play();
             
             BullHellScript.Lose();
         }

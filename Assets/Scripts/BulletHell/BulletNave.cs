@@ -14,7 +14,7 @@ public class BulletNave : MonoBehaviour
     {
         
         TimeDestroy = 5;
-        BulletSoundhoot.Play();
+        BulletSoundhoot.Play(); 
     }
 
     // Update is called once per frame

@@ -8,6 +8,7 @@ public class EnemiShipController : MonoBehaviour
 
     public GameObject bullet;
     public LayerMask mask;
+    
 
     private RaycastHit detector;
     private Vector3 posInbullet;
@@ -15,6 +16,8 @@ public class EnemiShipController : MonoBehaviour
     private GameObject GameMan;
     private GameObject Player;
     private BulletHell bullscript;
+    private LineRenderer laservigilante;
+    private Vector3 Direction;
 
     // Start is called before the first frame update
     void Start()
@@ -23,27 +26,34 @@ public class EnemiShipController : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         GameMan = GameObject.Find("Game");
         bullscript = GameMan.GetComponent<BulletHell>();
+        laservigilante = GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        RaycastHit2D coll = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.up), 100, mask);
+        Direction = transform.TransformDirection(Vector3.up);
+        RaycastHit2D coll = Physics2D.Raycast(transform.position, Direction, 100, mask);
 
         if(coll.collider.tag == "Player")
         {
-
-           
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.up) * coll.distance, Color.green);
+            laservigilante.SetPosition(0, transform.position);
+            laservigilante.SetPosition(1, transform.position + coll.distance * Direction);
+            laservigilante.startColor = Color.red;
+            laservigilante.endColor = Color.red;
+            
             shoot(coll);
 
         }
         else
         {
+            laservigilante.SetPosition(0, transform.position);
+            laservigilante.SetPosition(1, transform.position + 100 * Direction);
+            laservigilante.startColor = Color.green;
+            laservigilante.endColor = Color.green;
+
             transform.Rotate(0, 0, 1);
             
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.up) * coll.distance, Color.red);
         }
 
         
