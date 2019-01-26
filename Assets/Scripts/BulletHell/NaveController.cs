@@ -40,14 +40,14 @@ public class NaveController : MonoBehaviour
 
         }
 
-        if (horit > 0)
+        if (horit > 0 )
         {
             
-            transform.Translate(1, 0, 0);
+            transform.Translate(0.8f, 0, 0);
         }
         else if (horit < 0)
         {
-            transform.Translate(-1, 0, 0);
+            transform.Translate(-0.8f, 0, 0);
         }
         else
         {
@@ -58,11 +58,11 @@ public class NaveController : MonoBehaviour
         if(vert > 0)
         {
             Debug.Log("vertical + 1");
-            transform.Translate(0, 1, 0);
+            transform.Translate(0, 0.8f, 0);
         }
         else if(vert < 0)
         {
-            transform.Translate(0, -1, 0);
+            transform.Translate(0, -0.8f, 0);
         }
         else
         {
