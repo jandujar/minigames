@@ -31,6 +31,7 @@ namespace XavierRibasDeTorres
 
         public override void beginGame()
         {
+            Cursor.visible = false;
             Game.SetActive(true);
         }
 
