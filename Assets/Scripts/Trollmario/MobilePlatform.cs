@@ -29,6 +29,7 @@ namespace guillem_gracia
         public override void Init()
         {
             transform.position = originalPosition;
+            elapsedTime = 0;
             move = false;
         }
 

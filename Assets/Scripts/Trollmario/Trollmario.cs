@@ -14,6 +14,8 @@ namespace guillem_gracia {
 
         [SerializeField] Text txt;
 
+        bool finished;
+
         public override void beginGame()
         {
             Debug.Log("BeginGame");
@@ -40,23 +42,45 @@ namespace guillem_gracia {
 
         public void RestartGame()
         {
-            if(--health <= 0)
+            if (finished) return;
+            allGameObjectsWithScript[0].GetComponent<Character>().enabled = false;
+            allGameObjectsWithScript[0].GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            if (--health <= 0)
             {
-                txt.text = health + " LIVES";
+                txt.text = "0 LIVES";
                 EndGame(false);
                 return;
             }
             txt.text = health + " LIVES";
-            for (int i = 0; i < allGameObjectsWithScript.Length; i++)
-            {
-                allGameObjectsWithScript[i].GetComponent<Entity>().Init();
-            }
+            StartCoroutine(RestartGameCoroutine());
 
         }
 
         public void EndGame(bool win)
         {
-            if(win)
+            allGameObjectsWithScript[0].GetComponent<Character>().enabled = false;
+            allGameObjectsWithScript[0].GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            finished = true;
+            StartCoroutine(ChangeScene(win));
+        }
+
+        bool init;
+
+        IEnumerator RestartGameCoroutine()
+        {
+            
+            yield return new WaitForSecondsRealtime(1);
+            allGameObjectsWithScript[0].GetComponent<Character>().enabled = true;
+            for (int i = 0; i < allGameObjectsWithScript.Length; i++)
+            {
+                allGameObjectsWithScript[i].GetComponent<Entity>().Init();
+            }
+        }
+
+        IEnumerator ChangeScene(bool win)
+        {
+            yield return new WaitForSecondsRealtime(1);
+            if (win)
             {
                 gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
             }
@@ -65,20 +89,6 @@ namespace guillem_gracia {
                 gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
             }
         }
-
-        bool init;
-
-        /*void UpdateControlls()
-        {
-            if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
-            {
-                EndGame(true);
-            }
-            if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2))
-            {
-                EndGame(false);
-            }
-        }*/
 
         public override string ToString()
         {

@@ -12,7 +12,7 @@ namespace guillem_gracia
         protected override void Start()
         {
             originalPos = transform.GetChild(0).position;
-            
+            Init();
         }
 
         public override void Init()
