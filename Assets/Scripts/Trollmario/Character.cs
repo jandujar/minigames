@@ -26,6 +26,8 @@ namespace guillem_gracia {
 
         Vector3 originalPos;
 
+        AudioSource audioJump;
+
         protected override void Start()
         {
             originalPos = transform.position;
@@ -34,6 +36,7 @@ namespace guillem_gracia {
             backgroundTrans = GameObject.Find("BackGround").transform;
             anim = GetComponent<Animator>();
             Init();
+            audioJump = GetComponent<AudioSource>();
         }
 
         public override void Init()
@@ -48,6 +51,7 @@ namespace guillem_gracia {
             if (inputJump && !jumping)
             {
                 timeJumping = 0;
+                audioJump.Play();
                 jumping = true;
             }
             if(jumping)
@@ -100,10 +104,10 @@ namespace guillem_gracia {
             else if (inputMovement.x > 0 && !jumping) transform.localScale = new Vector3(1, 1, 1);
         }
 
-        public void EndGame(bool win)
+        /*public void EndGame(bool win)
         {
             GameObject.Find("Game").GetComponent<Trollmario>().EndGame(win);
-        }
+        }*/
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -152,6 +156,10 @@ namespace guillem_gracia {
                         collisioningX = (int)-Mathf.Sign(collision.contacts[i].normal.x);
                     }
                 }
+            }
+            else if(collision.gameObject.tag == "Finish")
+            {
+                GameObject.Find("Game").GetComponent<Trollmario>().EndGame(true);
             }
         }
         private void OnCollisionExit2D(Collision2D collision)

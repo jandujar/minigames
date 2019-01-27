@@ -41,6 +41,7 @@ namespace guillem_gracia
             if (collision.gameObject.tag != "Player") return;
             transform.GetChild(0).localScale = new Vector3(1, 2, 1);
             active = true;
+            GetComponent<AudioSource>().Play();
         }
     }
 }

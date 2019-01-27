@@ -49,19 +49,19 @@ namespace guillem_gracia
                 moved = true;
             }
         }
-        private void OnCollisionEnter2D(Collision2D collision)
+        /*private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.tag == "Player")
             {
                 GameObject.Find("Game").GetComponent<Trollmario>().EndGame(true);
             }
-        }
+        }*/
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.tag == "Player")
             {
-                beginMove = true;
+                GameObject.Find("Game").GetComponent<Trollmario>().EndGame(true);
             }
         }
     }

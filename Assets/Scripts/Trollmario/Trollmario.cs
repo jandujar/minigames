@@ -16,6 +16,10 @@ namespace guillem_gracia {
 
         bool finished;
 
+        bool init;
+
+        public AudioSource audioWin, audioLose;
+
         public override void beginGame()
         {
             Debug.Log("BeginGame");
@@ -43,6 +47,7 @@ namespace guillem_gracia {
         public void RestartGame()
         {
             if (finished) return;
+            audioLose.Play();
             allGameObjectsWithScript[0].GetComponent<Character>().enabled = false;
             allGameObjectsWithScript[0].GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             if (--health <= 0)
@@ -58,18 +63,18 @@ namespace guillem_gracia {
 
         public void EndGame(bool win)
         {
+            if (finished) return;
             allGameObjectsWithScript[0].GetComponent<Character>().enabled = false;
             allGameObjectsWithScript[0].GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             finished = true;
             StartCoroutine(ChangeScene(win));
         }
-
-        bool init;
+        
 
         IEnumerator RestartGameCoroutine()
         {
             
-            yield return new WaitForSecondsRealtime(1);
+            yield return new WaitForSecondsRealtime(audioLose.clip.length);
             allGameObjectsWithScript[0].GetComponent<Character>().enabled = true;
             for (int i = 0; i < allGameObjectsWithScript.Length; i++)
             {
@@ -79,13 +84,16 @@ namespace guillem_gracia {
 
         IEnumerator ChangeScene(bool win)
         {
-            yield return new WaitForSecondsRealtime(1);
             if (win)
             {
+                audioWin.Play();
+                allGameObjectsWithScript[0].GetComponent<Rigidbody2D>().gravityScale = 0;
+                yield return new WaitForSecondsRealtime(audioWin.clip.length);
                 gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
             }
             else
             {
+                yield return new WaitForSecondsRealtime(audioLose.clip.length);
                 gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
             }
         }
