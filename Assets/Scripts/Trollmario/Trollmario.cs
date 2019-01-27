@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace guillem_gracia {
 
@@ -9,10 +10,16 @@ namespace guillem_gracia {
         GameManager gameManager;
         [SerializeField] GameObject[] allGameObjectsWithScript;
 
+        int health;
+
+        [SerializeField] Text txt;
+
         public override void beginGame()
         {
             Debug.Log("BeginGame");
             init = true;
+            health = 3;
+            txt.text = health + " LIVES";
             foreach (GameObject go in allGameObjectsWithScript)
             {
                 go.SetActive(true);
@@ -29,6 +36,22 @@ namespace guillem_gracia {
             GameObject.Find("Collision").GetComponent<Renderer>().enabled = false;
             GameObject.Find("DieCollisions").GetComponent<Renderer>().enabled = false;
             gameManager = gm;
+        }
+
+        public void RestartGame()
+        {
+            if(--health <= 0)
+            {
+                txt.text = health + " LIVES";
+                EndGame(false);
+                return;
+            }
+            txt.text = health + " LIVES";
+            for (int i = 0; i < allGameObjectsWithScript.Length; i++)
+            {
+                allGameObjectsWithScript[i].GetComponent<Entity>().Init();
+            }
+
         }
 
         public void EndGame(bool win)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace guillem_gracia
 {
-    public class MobilePlatform : MonoBehaviour
+    public class MobilePlatform : Entity
     {
         bool move;
         public enum Directions { Left, Right, Up, Down};
@@ -21,14 +21,19 @@ namespace guillem_gracia
         guillem_gracia.Character player;
 
         // Start is called before the first frame update
-        void Start()
+        protected override void Start()
         {
             originalPosition = transform.position;
+        }
+
+        public override void Init()
+        {
+            transform.position = originalPosition;
             move = false;
         }
 
         // Update is called once per frame
-        void Update()
+        protected override void Update()
         {
             if (!move) return;
             elapsedTime += Time.deltaTime;

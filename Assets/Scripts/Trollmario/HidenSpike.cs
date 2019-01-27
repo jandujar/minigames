@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace guillem_gracia
 {
-    public class HidenSpike : MonoBehaviour
+    public class HidenSpike : Entity
     {
         public MobilePlatform.Directions direction;
 
         bool active;
 
         // Start is called before the first frame update
-        void Start()
+        protected override void Start()
         {
             switch(direction)
             {
@@ -30,10 +30,17 @@ namespace guillem_gracia
             }
         }
 
+        public override void Init()
+        {
+            transform.GetChild(0).localScale = new Vector3(1, 1, 1);
+            active = false;
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.tag != "Player") return;
             transform.GetChild(0).localScale = new Vector3(1, 2, 1);
+            active = true;
         }
     }
 }

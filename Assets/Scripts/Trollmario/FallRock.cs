@@ -4,11 +4,20 @@ using UnityEngine;
 
 namespace guillem_gracia
 {
-    public class FallRock : MonoBehaviour
+    public class FallRock : Entity
     {
+        Vector3 originalPos;
+
         // Start is called before the first frame update
-        void Start()
+        protected override void Start()
         {
+            originalPos = transform.GetChild(0).position;
+            
+        }
+
+        public override void Init()
+        {
+            transform.GetChild(0).position = originalPos;
             transform.GetChild(0).GetComponent<Rigidbody2D>().gravityScale = 0;
         }
 

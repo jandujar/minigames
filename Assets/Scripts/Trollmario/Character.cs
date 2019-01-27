@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace guillem_gracia {
-    public class Character : MonoBehaviour {
+    public class Character : Entity {
 
         Rigidbody2D rb;
 
@@ -24,12 +24,21 @@ namespace guillem_gracia {
         bool die;
         bool win;
 
-        private void Start()
+        Vector3 originalPos;
+
+        protected override void Start()
         {
+            originalPos = transform.position;
             rb = GetComponent<Rigidbody2D>();
             cameraTrans = GameObject.Find("Camera").transform;
             backgroundTrans = GameObject.Find("BackGround").transform;
             anim = GetComponent<Animator>();
+            Init();
+        }
+
+        public override void Init()
+        {
+            transform.position = originalPos;
             die = false;
             win = false;
         }
@@ -51,7 +60,7 @@ namespace guillem_gracia {
                 rb.velocity = new Vector2(inputMovement.x * speed, rb.velocity.y);
         }
 
-        private void Update()
+        protected override void Update()
         {
             UpdateControlls();
             cameraTrans.position = new Vector3(transform.position.x, cameraTrans.position.y, cameraTrans.position.z);
@@ -101,11 +110,8 @@ namespace guillem_gracia {
             if (collision.gameObject.tag == "Car")
             {
                 die = true;
+                GameObject.Find("Game").GetComponent<Trollmario>().RestartGame();
                 Debug.Log("You died");
-            }
-            else if(collision.gameObject.tag == "End")
-            {
-                win = true;
             }
         }
 
