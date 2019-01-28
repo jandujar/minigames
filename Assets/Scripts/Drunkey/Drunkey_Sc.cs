@@ -1,24 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 namespace ivan_alvarez_enri
 {
     public class Drunkey_Sc : IMiniGame
     {
-        private GameManager gameManager;
+        public GameManager gameManager;
         public Animator buttons;
-        private GameObject Player;
-        private GameObject Camera;
+        public GameObject Player;
+        //private GameObject Camera;
         public bool StartInputs = false;
         public bool Begin = false;
         public bool lose=false;
         public bool win=false;
         public float xDir= 1;
         public float yDir= 1;
+        public Text DecorativeText;
+        public Transform mySprite;
+
+        public AudioSource Audio;
         Buttons CorrectBtn;
 
         IEnumerator currentCoroutineX, currentCoroutineY;
-
+         public float Color=0;
+        public float dirColor=1;
         private enum Buttons
         {
             A,
@@ -30,12 +36,15 @@ namespace ivan_alvarez_enri
             
             this.gameManager = gm;
             Player = GameObject.FindGameObjectWithTag("Player");
-            Camera=GameObject.FindGameObjectWithTag("MainCamera");
+            Audio=GetComponent<AudioSource>();
+            
+            //Camera=GameObject.FindGameObjectWithTag("MainCamera");
             //throw new System.NotImplementedException();
         }
 
         public override void beginGame()
         {
+            Audio.Play();
             Begin = true;
             currentCoroutineX = changeX(2);
             StartCoroutine(currentCoroutineX);
@@ -88,6 +97,13 @@ namespace ivan_alvarez_enri
                             Player.transform.Translate(-4,0,0);
                         }
                     }
+                    if(Color<=0){
+                        dirColor=1;
+                    }else if(Color>=0.5){
+                        dirColor=-1;
+                    }
+                    Color+=dirColor/100;
+                    DecorativeText.color=new Color(255,Color,0);
             }else if(lose){
                 StopCoroutine(currentCoroutineX);
                 StopCoroutine(currentCoroutineY);
@@ -101,12 +117,12 @@ namespace ivan_alvarez_enri
             }
             if(!win)
                 Player.transform.Translate(new Vector3(0.02F*xDir,0.02F*yDir, 0));
-                if(!lose)
-                    Camera.transform.Translate(new Vector3(0.02F*xDir/10,0, 0));
+                mySprite.Rotate(0,0,-xDir/10);
+                    //Camera.transform.Translate(new Vector3(0.02F*xDir/10,0, 0));
         }
         public void InitAnimation() { 
            
-            if (Player.transform.position.y<-27F){
+            if (Player.transform.position.y<-20F){
                 Player.transform.Translate(new Vector3(0, 0.2F, 0));
             }
             else
