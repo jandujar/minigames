@@ -12,6 +12,7 @@ namespace oscar_vergara_jimenez
 
         public void init(GameManager gm)
         {
+            GetComponent<AudioSource>().Play();
             gameManager = gm;
         }
 
@@ -30,8 +31,12 @@ namespace oscar_vergara_jimenez
         
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            Debug.Log("BBBB");
             if (collision.gameObject.name.Contains("Bullet"))
+            {
                 gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+                Debug.Log("AAAA");
+            }
         }
     }
 }
