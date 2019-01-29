@@ -9,7 +9,7 @@ public class Destroyy : MonoBehaviour
     public GameObject player;
     public GameObject platformPrefab;
     public GameObject springPrefab;
-    private GameObject myPlat;
+    public GameObject myPlat;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +42,5 @@ public class Destroyy : MonoBehaviour
         ScoreSr.scoreValue += Puntaje;
 
         Destroy(collision.gameObject);
-
     }
-
 }
