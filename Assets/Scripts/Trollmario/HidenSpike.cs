@@ -8,8 +8,6 @@ namespace guillem_gracia
     {
         public MobilePlatform.Directions direction;
 
-        bool active;
-
         // Start is called before the first frame update
         protected override void Start()
         {
@@ -33,14 +31,12 @@ namespace guillem_gracia
         public override void Init()
         {
             transform.GetChild(0).localScale = new Vector3(1, 1, 1);
-            active = false;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.tag != "Player") return;
             transform.GetChild(0).localScale = new Vector3(1, 2, 1);
-            active = true;
             GetComponent<AudioSource>().Play();
         }
     }
