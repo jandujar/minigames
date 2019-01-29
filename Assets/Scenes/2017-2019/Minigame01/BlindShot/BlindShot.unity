@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -788,6 +788,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
+--- !u!114 &659829260 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114722861804383310, guid: accbdb4284a3cc84db41e410c0d99900,
+    type: 3}
+  m_PrefabInstance: {fileID: 639513185}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4814a70c6e7b294195d0d485f34da63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &670871185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,7 +1239,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1704692376}
   - component: {fileID: 1704692377}
-  - component: {fileID: 1704692378}
   - component: {fileID: 1704692380}
   m_Layer: 0
   m_Name: Game
@@ -1262,7 +1273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370611cf70af66349a5dc080175e54ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 1704692378}
+  gm: {fileID: 659829260}
   gCan: {fileID: 1548855818}
   iZone: {fileID: 1064390515}
   iTarget: {fileID: 83237967}
@@ -1274,18 +1285,6 @@ MonoBehaviour:
   pressed: 0
   fx:
   - {fileID: 8300000, guid: 27417fe95ea88a445a51b9f6604a2227, type: 3}
---- !u!114 &1704692378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1704692375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4814a70c6e7b294195d0d485f34da63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &1704692380
 AudioSource:
   m_ObjectHideFlags: 0
