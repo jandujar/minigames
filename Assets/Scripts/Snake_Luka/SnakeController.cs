@@ -21,9 +21,10 @@ public class SnakeController : MonoBehaviour
 
     float movementDistance = 1f;
 
+#pragma warning disable 0649
     [SerializeField]
-    AudioClip   pickUpCoin,
-                snakeCrash;
+        AudioClip   pickUpCoin,
+                    snakeCrash;
 
     AudioSource audioSource;
 

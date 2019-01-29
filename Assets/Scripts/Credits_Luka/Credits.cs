@@ -10,8 +10,6 @@ public class Credits : MonoBehaviour {
     [SerializeField]
     float scrollingSpeed = 1f;
 
-    float verticalSize = 0f;
-
     RectTransform tr;
 
     // Use this for initialization
@@ -39,7 +37,6 @@ public class Credits : MonoBehaviour {
         }
         
         generator.Populate(creditsText, text.GetGenerationSettings(new Vector2(1250f, 10000f)));
-        verticalSize = generator.rectExtents.height;
         text.text = creditsText;
     }
 	

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SafeBox : IMiniGame
 {
-    private GameManager gameManager;
     public SBSlider slider;
 
 
@@ -16,7 +15,6 @@ public class SafeBox : IMiniGame
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        this.gameManager = gm;
         slider.init(gm);
 
     }

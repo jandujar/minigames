@@ -9,8 +9,6 @@ public class WhacamoleMove : MonoBehaviour {
     public WhacamoleScore playerScore;
     public WhacamoleHammerPointAnimation hammerAnim;
     public Animator anim;
-    public bool active;
-    private Vector3 startPos;
     public bool hit = false;
     public AudioSource[] hammerHit;
     private AudioSource hitMole;
@@ -21,11 +19,6 @@ public class WhacamoleMove : MonoBehaviour {
         anim = GetComponent<Animator>();
         hitMole = hammerHit[0].GetComponent<AudioSource>();
         hitHelmet = hammerHit[1].GetComponent<AudioSource>();
-    }
-
-    private void Start()
-    {
-        startPos = transform.position;
     }
 
     public void StartAnimation(bool start)

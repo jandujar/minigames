@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour {
 
-    public GameObject camera;
+    public GameObject mycamera;
     private Vector3 offset;
     float xvel, zvel;
     enum Direcciones { delante, izquierda, derecha, detras };
-    private Direcciones direcciones;
     private Vector3 RotationSnake;
-    private Vector3 RotationCamera;
     private int coins;
     public Snake_raul game;
 
@@ -20,8 +18,7 @@ public class Snake : MonoBehaviour {
         zvel = 0f;
         xvel = 0.03f;
         offset = new Vector3(0,12,0);
-        camera.transform.eulerAngles = new Vector3(90, 0, 0);
-        direcciones = Direcciones.delante;
+        mycamera.transform.eulerAngles = new Vector3(90, 0, 0);
         coins = 0;
     }
 
@@ -131,7 +128,7 @@ public class Snake : MonoBehaviour {
 
     void LateUpdate()
     {
-        camera.transform.position = this.transform.position + offset;
+        mycamera.transform.position = this.transform.position + offset;
     }
 
 }

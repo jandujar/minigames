@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CarrotCutting : IMiniGame {
-    private GameManager gameManager;
     public Carrot carrot;
 
     void Awake()
@@ -22,7 +21,6 @@ public class CarrotCutting : IMiniGame {
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        this.gameManager = gm;
         carrot.init(gm); 
     }
 

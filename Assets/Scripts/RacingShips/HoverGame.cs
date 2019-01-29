@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class HoverGame : IMiniGame
 {
-    private GameManager gameManager;
     [SerializeField]
     private GameObject GameScene;
 
@@ -16,8 +15,6 @@ public class HoverGame : IMiniGame
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        this.gameManager = gm;
-        //ball.init(gm); 
     }
 
     public override string ToString()

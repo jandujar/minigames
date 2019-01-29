@@ -5,7 +5,6 @@ using UnityEngine;
 public class WhacamoleHammer : MonoBehaviour {
 
     private float moveX;
-    private float moveY;
     private float moveZ;
     private float incrementX;
     private float incrementY;
@@ -15,14 +14,12 @@ public class WhacamoleHammer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         moveX = transform.position.x;
-        moveY = transform.position.y;
         moveZ = transform.position.z;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         moveX = transform.position.x;
-        moveY = transform.position.y;
         moveZ = transform.position.z;
         incrementX = InputManager.Instance.GetAxisHorizontal()*3;
         incrementY = InputManager.Instance.GetAxisVertical()*3;
