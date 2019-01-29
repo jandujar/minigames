@@ -219,7 +219,8 @@ public class soilder_show : MonoBehaviour {
 
      int weaponIndex;
      string CurrentAnimationName;
-    Coroutine weaponSwap;
+    #pragma warning disable 0414
+    Coroutine weaponSwap = null;
 
     IEnumerator SwitchWeapons()
     {

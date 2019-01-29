@@ -19,14 +19,12 @@ namespace Eric_Sanchez_Verges
         int movementsIterator = 0;
         bool startMovements = false;
         bool test = false;
-        bool init;
         int rand;
 
 
         public override void beginGame()
         {
             Debug.Log("BeginGame");
-            init = true;
         }
 
         public override void initGame(MiniGameDificulty difficulty, GameManager gm)

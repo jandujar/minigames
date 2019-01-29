@@ -24,7 +24,6 @@ public class BikeController : MonoBehaviour {
 	public Animator charAnimator;
 
 	//─────────────────────PRIVATE
-	private bool increaseSpeed = false;
 	private float movement;
 	private float rotation;
 	private Rigidbody2D myRigidBody;

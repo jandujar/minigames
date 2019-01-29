@@ -13,7 +13,7 @@ public class ShootGun : MonoBehaviour
     public GameObject bullet;
 
     [Header("Complements")]
-    public ParticleSystem particleSystem;
+    public ParticleSystem myparticleSystem;
     public AudioSource shootSFX;
 
     [Header("Cooldown")]
@@ -47,7 +47,7 @@ public class ShootGun : MonoBehaviour
             canShoot = false;
 
             shootSFX.Play();
-            particleSystem.Play();
+            myparticleSystem.Play();
             StartCoroutine(gunShoot());      
         }
 	}
@@ -65,7 +65,7 @@ public class ShootGun : MonoBehaviour
             Rigidbody l_TempRB;
             l_TempRB = l_TempBullet.GetComponent<Rigidbody>();
             l_TempRB.AddForce(origin.forward * m_BulletForce);
-            DestroyObject(l_TempBullet, 5f);
+            Destroy(l_TempBullet, 5f);
 
             yield return new WaitForSecondsRealtime(0.05f);
             //Debug.Break();

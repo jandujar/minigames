@@ -23,7 +23,6 @@ public class SavePresident : IMiniGame
     bool cantWin;
     bool winPlaying;
     bool losePlaying;
-    bool moveAgent;
     bool canPlay;
     bool toWin;
     public ParticleSystem fx;
@@ -31,7 +30,6 @@ public class SavePresident : IMiniGame
     void Start()
     {
         notLose = false;
-        moveAgent = false;
         win.SetActive(false);
         cantWin = false;
         losePlaying = false;
@@ -88,7 +86,6 @@ public class SavePresident : IMiniGame
 
     IEnumerator Winner()
     {
-        moveAgent = true;
         yield return new WaitForSeconds(3);
         gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
 

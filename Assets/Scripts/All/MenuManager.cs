@@ -60,12 +60,20 @@ public class MenuManager : Singleton<MenuManager> {
         MATRIX,
         MOSQUITO,
         PASTILLA,
-        TRILERO,
         ROLLINGBALL,
         WESTWILL,
         TRON,
+        //BALMES 2017-2019
+        TRILERO,
+        BLACKJACK,
+        DOODLEJUMP,
+        BLINDSHOT,
+        PIXELTOWER,
+        BULLETHELL,
         BULLETDODGE,
         TROLLMARIO,
+        IMPOSSIBLEGAME,
+        DRUNKEY,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -81,7 +89,7 @@ public class MenuManager : Singleton<MenuManager> {
 
         foreach (MINIGAMES_ENUM min in Enum.GetValues(typeof(MINIGAMES_ENUM)).Cast<MINIGAMES_ENUM>())
         {
-            if (min != MINIGAMES_ENUM.END)
+            if (min != MINIGAMES_ENUM.END && min>=MINIGAMES_ENUM.TRILERO)
             {
                 games.Add(min);
             }
@@ -269,16 +277,40 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.WESTWILL:
             SceneManager.LoadScene("WestWilldRunner");
             break;
+        case MINIGAMES_ENUM.BLACKJACK:
+            SceneManager.LoadScene("Blackjack");
+            break;
+        case MINIGAMES_ENUM.DOODLEJUMP:
+            SceneManager.LoadScene("DoodleJump");
+            break;
+        case MINIGAMES_ENUM.BLINDSHOT:
+            SceneManager.LoadScene("BlindShot");
+            break;
+        case MINIGAMES_ENUM.PIXELTOWER:
+            SceneManager.LoadScene("PixelTower");
+            break;
+        case MINIGAMES_ENUM.BULLETHELL:
+            SceneManager.LoadScene("BulletHell");
+            break;
         case MINIGAMES_ENUM.TRON:
             SceneManager.LoadScene("Tron");
             break;
         case MINIGAMES_ENUM.TROLLMARIO:
             SceneManager.LoadScene("Trollmario");
             break;
+        case MINIGAMES_ENUM.IMPOSSIBLEGAME:
+            SceneManager.LoadScene("ImpossibleGameScene");
+            break;
+        case MINIGAMES_ENUM.DRUNKEY:
+            SceneManager.LoadScene("Drunkey");
+            break;
+        case MINIGAMES_ENUM.BULLETDODGE:
+            SceneManager.LoadScene("BulletDodge");
+            break;
         case MINIGAMES_ENUM.END:
-		default:
-			SceneManager.LoadScene ("Pong");
-			break;
+		    default:
+			      SceneManager.LoadScene ("Pong");
+			      break;
 		}
 
         currentGame = currentGame + 1;

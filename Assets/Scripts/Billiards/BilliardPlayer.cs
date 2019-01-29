@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class BilliardPlayer : MonoBehaviour {
 
     private float v;
-    private float h;
+
     [HideInInspector]
     public float Power = 0;
     [SerializeField]
@@ -42,7 +42,6 @@ public class BilliardPlayer : MonoBehaviour {
         ShotLine();
 
         v = InputManager.Instance.GetAxisVertical();
-        h = InputManager.Instance.GetAxisHorizontal();
 
         transform.Rotate(0, 0, v * Time.deltaTime * 20);
         if (transform.eulerAngles.z < 40 && transform.eulerAngles.z > 30) {

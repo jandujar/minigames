@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class Wheel : MonoBehaviour {
 	public LayerMask groundLayer;
-	private bool grounded = false;
-	private float distToGround = 0;
-
-	public void OnCollisionEnter2D(Collision2D collision){
-		grounded = true;
-	}
-	public void OnCollisionExit2D(Collision2D collision){
-		grounded = false;
-	}
 
 	public bool isGrounded(){
 		Debug.DrawRay(transform.position, Vector2.down, Color.green);

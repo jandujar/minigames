@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ShotTheCan : IMiniGame
 {
-    private GameManager gameManager;
     public GameObject GameScene;
     public GameObject countDown;
     private bool stop = false;
@@ -16,8 +15,6 @@ public class ShotTheCan : IMiniGame
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        this.gameManager = gm;
-        //ball.init(gm); 
     }
 
     void Update() {

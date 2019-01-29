@@ -32,11 +32,7 @@ public class M_Segada_CCR : IMiniGame
     
     private float DelayTimer = 0f;                                  //delay before event starts
 
-    public bool isRandom = false;
-    private int ran = 0;
-
-
-    
+   
     public Animator anim;
     
 

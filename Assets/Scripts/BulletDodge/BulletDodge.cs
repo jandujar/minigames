@@ -6,14 +6,21 @@ namespace oscar_vergara_jimenez
 {
     public class BulletDodge : IMiniGame
     {
+        GameManager gm;
+        public Player player;
+        public EnemyShootManager esm;
         public override void beginGame()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("BEGIN");
+            player.init(gm);
+            //throw new System.NotImplementedException();
         }
 
-        public override void initGame(MiniGameDificulty difficulty, GameManager gm)
+        public override void initGame(MiniGameDificulty difficulty, GameManager _gm)
         {
-            throw new System.NotImplementedException();
+            Debug.Log("BEGIN");
+            esm.init(_gm);
+            gm = _gm;
         }
 
         // Start is called before the first frame update
