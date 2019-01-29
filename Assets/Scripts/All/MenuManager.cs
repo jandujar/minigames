@@ -60,6 +60,7 @@ public class MenuManager : Singleton<MenuManager> {
         MATRIX,
         MOSQUITO,
         PASTILLA,
+        //BALMES 2017-2019
         TRILERO,
         ROLLINGBALL,
         WESTWILL,
@@ -87,7 +88,7 @@ public class MenuManager : Singleton<MenuManager> {
 
         foreach (MINIGAMES_ENUM min in Enum.GetValues(typeof(MINIGAMES_ENUM)).Cast<MINIGAMES_ENUM>())
         {
-            if (min != MINIGAMES_ENUM.END)
+            if (min != MINIGAMES_ENUM.END && min>MINIGAMES_ENUM.TRILERO)
             {
                 games.Add(min);
             }
