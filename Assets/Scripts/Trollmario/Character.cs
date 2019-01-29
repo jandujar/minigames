@@ -21,9 +21,6 @@ namespace guillem_gracia {
 
         float timeJumping;
 
-        bool die;
-        bool win;
-
         Vector3 originalPos;
 
         AudioSource audioJump;
@@ -42,8 +39,6 @@ namespace guillem_gracia {
         public override void Init()
         {
             transform.position = originalPos;
-            die = false;
-            win = false;
         }
 
         private void FixedUpdate()
@@ -104,16 +99,10 @@ namespace guillem_gracia {
             else if (inputMovement.x > 0 && !jumping) transform.localScale = new Vector3(1, 1, 1);
         }
 
-        /*public void EndGame(bool win)
-        {
-            GameObject.Find("Game").GetComponent<Trollmario>().EndGame(win);
-        }*/
-
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.tag == "Car")
             {
-                die = true;
                 GameObject.Find("Game").GetComponent<Trollmario>().RestartGame();
                 Debug.Log("You died");
             }

@@ -24,6 +24,10 @@ namespace guillem_gracia
         protected override void Start()
         {
             originalPosition = transform.position;
+            if(player == null)
+            {
+                player = GameObject.Find("Character").GetComponent<Character>();
+            }
         }
 
         public override void Init()
