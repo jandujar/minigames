@@ -16,8 +16,6 @@ public class ImpGameEng : IMiniGame
     //AUDIO
     [SerializeField] AudioSource[] Audios;
 
-    float initseconds = 3.4f;
-
     //KILLING
     private bool killed = false;
     private float tempcounter = 0.4f;
@@ -28,6 +26,9 @@ public class ImpGameEng : IMiniGame
     public bool WIN = false;
     public Vector3 lastSafePlace;
 
+    //BoolStart
+    public bool startOfGame = false;
+
     
 
 
@@ -35,7 +36,8 @@ public class ImpGameEng : IMiniGame
 
     public override void beginGame()
     {
-        
+        Audios[0].Play();
+        startOfGame = true;
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
@@ -58,53 +60,46 @@ public class ImpGameEng : IMiniGame
     // Update is called once per frame
     void Update()
     {
-        if(initseconds > 0)
+
+
+        if (startOfGame)
         {
-            initseconds -= Time.deltaTime;
-            if(initseconds <= 0)
+            Vector3 pos = playerCube.transform.position;
+
+            if (!killed)
             {
-                initseconds = 0;
-                Audios[0].Play();
+
+                if (InputManager.Instance.GetAxisVertical() > 0)
+                {
+
+                    pos.y += speed * Time.deltaTime * InputManager.Instance.GetAxisVertical();
+                    //playerCube.transform.Rotate(10, 0,0);
+
+
+                }
+                else if (InputManager.Instance.GetAxisVertical() < 0)
+                {
+                    pos.y += speed * Time.deltaTime * InputManager.Instance.GetAxisVertical();
+
+                    //playerCube.transform.Rotate(-10, 0, 0);
+
+                }
+
+                if (InputManager.Instance.GetAxisHorizontal() > 0)
+                {
+                    pos.x += speed * Time.deltaTime * InputManager.Instance.GetAxisHorizontal();
+                    //playerCube.transform.Rotate(0, -10, 0);
+                }
+                else if (InputManager.Instance.GetAxisHorizontal() < 0)
+                {
+                    pos.x += speed * Time.deltaTime * InputManager.Instance.GetAxisHorizontal();
+                    //playerCube.transform.Rotate(0, 10, 0);
+                }
+                playerCube.transform.position = pos;
+
+
             }
         }
-
-
-        Vector3 pos = playerCube.transform.position;
-
-        if (!killed)
-        {
-
-            if (InputManager.Instance.GetAxisVertical() > 0)
-            {
-
-                pos.y += speed * Time.deltaTime * InputManager.Instance.GetAxisVertical();
-                //playerCube.transform.Rotate(10, 0,0);
-
-
-            }
-            else if (InputManager.Instance.GetAxisVertical() < 0)
-            {
-                pos.y += speed * Time.deltaTime * InputManager.Instance.GetAxisVertical();
-
-                //playerCube.transform.Rotate(-10, 0, 0);
-
-            }
-
-            if (InputManager.Instance.GetAxisHorizontal() > 0)
-            {
-                pos.x += speed * Time.deltaTime * InputManager.Instance.GetAxisHorizontal();
-                //playerCube.transform.Rotate(0, -10, 0);
-            }
-            else if (InputManager.Instance.GetAxisHorizontal() < 0)
-            {
-                pos.x += speed * Time.deltaTime * InputManager.Instance.GetAxisHorizontal();
-                //playerCube.transform.Rotate(0, 10, 0);
-            }
-            playerCube.transform.position = pos;
-
-
-        }
-
 
         //KILLED
 
