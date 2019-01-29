@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace ivan_alvarez_enri
 {
-public class OnTriggerEnterWin : MonoBehaviour
+public class OnTriggerEnterWinJ : MonoBehaviour
 {
     public ivan_alvarez_enri.Drunkey_Sc GameManager;
     public AudioSource AudioWin;
