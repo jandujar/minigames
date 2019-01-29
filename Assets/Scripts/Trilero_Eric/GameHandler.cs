@@ -6,6 +6,7 @@ namespace Eric_Sanchez_Verges
 {
     public class GameHandler : IMiniGame
     {
+        
         GameManager gameManager;
         public Camera cam;
         public GameObject cupPrefab, ball;
@@ -19,6 +20,7 @@ namespace Eric_Sanchez_Verges
         bool startMovements = false;
         bool test = false;
         bool init;
+        int rand;
 
 
         public override void beginGame()
@@ -60,6 +62,7 @@ namespace Eric_Sanchez_Verges
         // Start is called before the first frame update
         void Start()
         {
+           
             startMovements = false;
 
 
@@ -69,8 +72,8 @@ namespace Eric_Sanchez_Verges
                 cups[i].transform.position = cupsInitPosition[i];
                 cups[i].GetComponent<cupController>().currentPosition = i;
             }
-            int rand = UnityEngine.Random.Range(0, 2);
-            cups[rand].GetComponent<cupController>().hasBall = true;
+            rand = UnityEngine.Random.Range(0, 2);
+            
             ball.transform.position = ballInitPosition[rand];
            
         }
@@ -80,7 +83,11 @@ namespace Eric_Sanchez_Verges
         // Update is called once per frame
         void Update()
         {
-            if(!startMovements)StartCoroutine(showBall());
+            bool btn1 = InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1);
+            bool btn2 = InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2);
+            bool btn3 = InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON3);
+
+            if (!startMovements)StartCoroutine(showBall());
             if(!startMovements)StartCoroutine(StartMovements());
             if (startMovements && !test)
             {
@@ -105,6 +112,7 @@ namespace Eric_Sanchez_Verges
 
                     case 4:
                         test = shufle(0, 1);
+                        cups[rand].GetComponent<cupController>().hasBall = true;
                         break;
                 }
                 
@@ -140,6 +148,22 @@ namespace Eric_Sanchez_Verges
                     }
 
                 }
+            }
+
+            if (btn1)
+            {
+                if (cups[0].GetComponent<cupController>().hasBall) EndGame(true);
+                else EndGame(false);
+            }
+            if (btn2)
+            {
+                if (cups[1].GetComponent<cupController>().hasBall) EndGame(true);
+                else EndGame(false);
+            }
+             if (btn3)
+            {
+                if (cups[2].GetComponent<cupController>().hasBall) EndGame(true);
+                else EndGame(false);
             }
             
         }
