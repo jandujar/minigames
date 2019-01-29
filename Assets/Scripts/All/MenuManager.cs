@@ -60,15 +60,16 @@ public class MenuManager : Singleton<MenuManager> {
         MATRIX,
         MOSQUITO,
         PASTILLA,
-        TRILERO,
         ROLLINGBALL,
         WESTWILL,
+        TRON,
+        //BALMES 2017-2019
+        TRILERO,
         BLACKJACK,
         DOODLEJUMP,
         BLINDSHOT,
         PIXELTOWER,
         BULLETHELL,
-        TRON,
         BULLETDODGE,
         TROLLMARIO,
         IMPOSSIBLEGAME,
@@ -88,7 +89,7 @@ public class MenuManager : Singleton<MenuManager> {
 
         foreach (MINIGAMES_ENUM min in Enum.GetValues(typeof(MINIGAMES_ENUM)).Cast<MINIGAMES_ENUM>())
         {
-            if (min != MINIGAMES_ENUM.END)
+            if (min != MINIGAMES_ENUM.END && min>=MINIGAMES_ENUM.TRILERO)
             {
                 games.Add(min);
             }
@@ -302,6 +303,9 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.DRUNKEY:
             SceneManager.LoadScene("Drunkey");
+            break;
+        case MINIGAMES_ENUM.BULLETDODGE:
+            SceneManager.LoadScene("BulletDodge");
             break;
         case MINIGAMES_ENUM.END:
 		    default:

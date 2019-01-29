@@ -15,8 +15,6 @@ public class PlayerZombienite : MonoBehaviour {
     Rigidbody playerRigidbody;
     
 
-    private int floorMask;
-    public float camRayLength = 100f;
 
     //Delete this variable when I will do Jump Mechanic
     private bool blockJump = true;
@@ -24,7 +22,6 @@ public class PlayerZombienite : MonoBehaviour {
 
     void Awake()
     {
-        floorMask = LayerMask.GetMask("Water");
         anim = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
         anim.SetInteger("WeaponType_int", 2);

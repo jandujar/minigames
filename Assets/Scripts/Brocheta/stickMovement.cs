@@ -10,21 +10,14 @@ public class stickMovement : MonoBehaviour {
     public GameObject meatB;
     public GameObject meatC;
     public GameObject meatD;
-    Color halfDone;
-    Color almostDone;
-    Color done;
+
     public float doubleShader;
-    bool canGo;
     public bool win;
 
 
     void Start()
     {
         doubleShader = 0;
-        halfDone = new Color(150, 88, 49);
-        almostDone = new Color(107, 61, 31);
-        done = new Color(79, 34, 5);
-        canGo = true;
         meatA.SetActive(true);
         meatB.SetActive(false);
         meatC.SetActive(false);

@@ -4,22 +4,13 @@ using UnityEngine;
 
 public class checkTrigger : MonoBehaviour
 {
-    public float Xmove;
-
-    public GameObject aim;
-    bool triggered;
-    bool theBool;
     public bool gameStop;
     public bool win;
     bool notLost;
     public bool lose;
-    public AudioSource agentSound;
-    public AudioSource bullet;
 
     void Start()
     {
-        triggered = false;
-        theBool = false;
         gameStop = false;
         win = false;
         notLost = true;

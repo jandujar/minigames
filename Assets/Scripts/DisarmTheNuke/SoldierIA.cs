@@ -7,7 +7,6 @@ public class SoldierIA : MonoBehaviour {
 
     public int health;
     private int damage;
-    private bool statePassive;
     private bool stateAggressive;
     private bool stateDefensive;
     private bool triggerL;
@@ -44,7 +43,6 @@ public class SoldierIA : MonoBehaviour {
        speedBack = 16f;
 
         cover = false;
-        statePassive = true;
         triggerL = false;
         triggerR = false;
         triggerM = false;
@@ -64,19 +62,16 @@ public class SoldierIA : MonoBehaviour {
         DamageCooldownTimer();
         if (health == 100 && !triggerL && !triggerR && !triggerM)
         {
-            statePassive = true;
             stateAggressive = false;
             stateDefensive = false;
         }
         if (health <= 100 && triggerR || health < 100 && !triggerL)
         {
-            statePassive = false;
             stateAggressive = false;
             stateDefensive = true;
         }
         if (health > 20 && triggerL && !stateDefensive|| health < 20 && triggerM)
         {
-            statePassive = false;
             stateAggressive = true;
             stateDefensive = false;
         }

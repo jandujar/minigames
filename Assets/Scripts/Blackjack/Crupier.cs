@@ -22,8 +22,6 @@ public class Crupier : MonoBehaviour
 
     private Vector3 posP,posC;
 
-    private string TextureCart;
-
     public void init(GameManager gm)
     {
         posP = CartaP.transform.position;
@@ -152,7 +150,6 @@ public class Crupier : MonoBehaviour
             GameObject NewCart = Instantiate(CartaP,CartaP.transform.position,CartaP.transform.rotation);
             NewCart.gameObject.SetActive(true);
             NewCart.transform.position = new Vector3(posP.x + cardsPlayer,posP.y + cardsPlayer, posP.z - cardsPlayer);
-            TextureCart = carta.ToString();
             if (carta == 11)
                 carta = 1;
             if (carta == 10)
@@ -166,7 +163,6 @@ public class Crupier : MonoBehaviour
             GameObject NewCartC = Instantiate(CartaC, CartaC.transform.position, CartaC.transform.rotation);
             NewCartC.gameObject.SetActive(true);
             NewCartC.transform.position = new Vector3(posC.x - cardsCrupier, posC.y - cardsCrupier, posC.z - cardsCrupier);
-            TextureCart = carta.ToString();
             if (carta == 11)
                 carta = 1;
             if (carta == 10)
@@ -181,7 +177,6 @@ public class Crupier : MonoBehaviour
         GameObject NewCartC = Instantiate(CartaC, CartaC.transform.position, CartaC.transform.rotation);
         NewCartC.gameObject.SetActive(true);
         NewCartC.transform.position = new Vector3(posC.x - cardsCrupier, posC.y - cardsCrupier, posC.z - cardsCrupier);
-        TextureCart = carta.ToString();
         if (carta == 11)
             carta = 1;
         if (carta == 10)

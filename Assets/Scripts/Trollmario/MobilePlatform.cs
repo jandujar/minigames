@@ -24,6 +24,10 @@ namespace guillem_gracia
         protected override void Start()
         {
             originalPosition = transform.position;
+            if(player == null)
+            {
+                player = GameObject.Find("Character").GetComponent<Character>();
+            }
         }
 
         public override void Init()
@@ -63,7 +67,7 @@ namespace guillem_gracia
         {
             if (collision.gameObject.tag != "Player") return;
 
-            guillem_gracia.Character player = collision.gameObject.GetComponent<guillem_gracia.Character>();
+            player = collision.gameObject.GetComponent<guillem_gracia.Character>();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

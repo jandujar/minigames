@@ -63,7 +63,6 @@ public class EnemyScript : MonoBehaviour
     private void Update()
     {
 
-
         if (canMove)
         {
 

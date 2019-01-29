@@ -12,11 +12,11 @@ namespace oscar_vergara_jimenez
         int enemyToShoot;
         public float shootDelay;
         public float startTimer;
+
         public void init(GameManager gm)
         {
             gameManager = gm;
         }
-
         void Start()
         {
             enemyGroups = new List<Enemy[]>();

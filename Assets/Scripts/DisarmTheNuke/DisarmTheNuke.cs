@@ -5,7 +5,6 @@ using UnityEngine;
 public class DisarmTheNuke : IMiniGame
 {
 
-    private GameManager gameManager;
     public EndStateManager WinState;
 
 
@@ -17,9 +16,7 @@ public class DisarmTheNuke : IMiniGame
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        this.gameManager = gm;
         WinState.init(gm); 
-
     }
 
     public override string ToString()

@@ -33,6 +33,7 @@ public class Snake_Luka : IMiniGame
 
     GameManager gameManager = null;
 
+    #pragma warning disable 0649
     [SerializeField]
     Text    coinsText,
             timerText;

@@ -16,7 +16,7 @@ public class Maceta : MonoBehaviour {
         if (collision.gameObject.name == "Down")
         {
            // lanzador.TryCount--;
-            DestroyObject(this.gameObject);
+            Destroy(this.gameObject);
         }
         else if(collision.gameObject.name == "Enemy")
         {

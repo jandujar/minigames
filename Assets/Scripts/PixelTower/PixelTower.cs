@@ -11,6 +11,7 @@ namespace laura_romo {
             crane.GetComponent<laura_romo.moveCrane>().gameStart = true;
             crane.GetComponent<laura_romo.moveCrane>().craneSpeed = 5;
             crane.GetComponent<AudioSource>().Play();
+            this.GetComponent<AudioSource>().Play();
         }
 
         public override void initGame(MiniGameDificulty difficulty, GameManager gm) {

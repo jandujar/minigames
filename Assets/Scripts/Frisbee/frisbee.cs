@@ -5,7 +5,6 @@ using UnityEngine;
 public class frisbee : IMiniGame
 {
 
-    private GameManager gameManager;
     private AudioSource source;
 
 
@@ -31,7 +30,6 @@ public class frisbee : IMiniGame
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        this.gameManager = gm;
         dog.init(gm);
 
     }

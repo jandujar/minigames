@@ -16,20 +16,18 @@ namespace guillem_gracia {
 
         bool finished;
 
-        bool init;
-
-        public AudioSource audioWin, audioLose;
+        public AudioSource audioWin, audioLose, audioBSO;
 
         public override void beginGame()
         {
             Debug.Log("BeginGame");
-            init = true;
             health = 3;
             txt.text = health + " LIVES";
             foreach (GameObject go in allGameObjectsWithScript)
             {
                 go.SetActive(true);
             }
+            audioBSO.Play();
         }
 
         public override void initGame(MiniGameDificulty difficulty, GameManager gm)
@@ -47,6 +45,7 @@ namespace guillem_gracia {
         public void RestartGame()
         {
             if (finished) return;
+            audioBSO.Stop();
             audioLose.Play();
             allGameObjectsWithScript[0].GetComponent<Character>().enabled = false;
             allGameObjectsWithScript[0].GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -64,6 +63,7 @@ namespace guillem_gracia {
         public void EndGame(bool win)
         {
             if (finished) return;
+            audioBSO.Stop();
             allGameObjectsWithScript[0].GetComponent<Character>().enabled = false;
             allGameObjectsWithScript[0].GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             finished = true;
@@ -80,6 +80,7 @@ namespace guillem_gracia {
             {
                 allGameObjectsWithScript[i].GetComponent<Entity>().Init();
             }
+            audioBSO.Play();
         }
 
         IEnumerator ChangeScene(bool win)

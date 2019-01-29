@@ -12,8 +12,6 @@ public class MosquitoMove: MonoBehaviour {
 	public float maxPositionOffset = 1;
 	private float maxHorizontal, maxVertical;
 	Vector2 direction = Vector2.zero;
-    GameManager gameManager;
-    Rigidbody2D rig;
 
     public void init(GameManager gm)
     {
@@ -28,14 +26,9 @@ public class MosquitoMove: MonoBehaviour {
 		transform.position = new Vector3 (posX, posY, 0);
 		//Debug.Log (maxHorizontal + " " + maxVertical);
 
-        gameManager = gm;
 		timer = Time.time + timeToChangeDirection;
     }
 
-    // Use this for initialization
-    void Start () {
-        rig = GetComponent<Rigidbody2D>();
-    }
 	
 	// Update is called once per frame
 	void Update () {

@@ -32,10 +32,7 @@ public class DoYouKnowTheWay : IMiniGame {
 	private bool movementStarted = false;
 
 	private int randomPos;
-	private float lastRandomPos;
-	private float[] lastRowPos = new float[3];
 	private int actualRow = 0;
-	private float actualDistance;
 
 	public MyArray[] intersectionRows;
 

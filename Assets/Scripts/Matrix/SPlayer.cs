@@ -7,14 +7,14 @@ public class SPlayer : MonoBehaviour
 
     public GameManager gm;
     private Animator anim;
-    private AudioSource audio;
+    private AudioSource myaudio;
     public bool beginPlay = false;
 
     // Use this for initialization
     void Start()
     {
         anim = GetComponent<Animator>();
-        audio = GetComponent<AudioSource>();
+        myaudio = GetComponent<AudioSource>();
         beginPlay = false;
     }
 
@@ -53,7 +53,7 @@ public class SPlayer : MonoBehaviour
     private IEnumerator Death()
     {
         Time.timeScale = 0.1f;
-        audio.Play();
+        myaudio.Play();
         yield return new WaitForSecondsRealtime(1);
         Time.timeScale = 1.0f;
         gm.EndGame(IMiniGame.MiniGameResult.LOSE);
