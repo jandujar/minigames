@@ -6,12 +6,12 @@ namespace laura_romo {
     public class buildingSound : MonoBehaviour {
 
         private bool played;
-        private AudioSource audio;
+        private AudioSource buildingAudio;
 
         // Start is called before the first frame update
         void Start() {
             played = false;
-            audio = this.GetComponent<AudioSource>();
+            buildingAudio = this.GetComponent<AudioSource>();
         }
 
         // Update is called once per frame
@@ -21,7 +21,7 @@ namespace laura_romo {
 
         private void OnCollisionEnter2D(Collision2D collision) {
             if (!played) {
-                audio.Play();
+                buildingAudio.Play();
                 played = true;
             }
         }
