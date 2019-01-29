@@ -67,7 +67,7 @@ namespace guillem_gracia
         {
             if (collision.gameObject.tag != "Player") return;
 
-            guillem_gracia.Character player = collision.gameObject.GetComponent<guillem_gracia.Character>();
+            player = collision.gameObject.GetComponent<guillem_gracia.Character>();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
