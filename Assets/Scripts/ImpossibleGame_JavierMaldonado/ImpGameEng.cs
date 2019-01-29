@@ -15,7 +15,6 @@ public class ImpGameEng : IMiniGame
 
     //AUDIO
     [SerializeField] AudioSource[] Audios;
-    private float timeWhenStopped;
 
     float initseconds = 3.4f;
 
@@ -52,7 +51,6 @@ public class ImpGameEng : IMiniGame
         Lifes = 3;
         if (playerCube == null) playerCube = GameObject.Find("Player");
         lastSafePlace = playerCube.transform.position;
-        timeWhenStopped = 0;
 
         SetTextLife();
     }
@@ -76,29 +74,30 @@ public class ImpGameEng : IMiniGame
         if (!killed)
         {
 
-            if (Input.GetKey("w"))
+            if (InputManager.Instance.GetAxisVertical() > 0)
             {
-                pos.y += speed * Time.deltaTime;
+
+                pos.y += speed * Time.deltaTime * InputManager.Instance.GetAxisVertical();
                 //playerCube.transform.Rotate(10, 0,0);
 
 
             }
-            else if (Input.GetKey("s"))
+            else if (InputManager.Instance.GetAxisVertical() < 0)
             {
-                pos.y -= speed * Time.deltaTime;
+                pos.y += speed * Time.deltaTime * InputManager.Instance.GetAxisVertical();
 
                 //playerCube.transform.Rotate(-10, 0, 0);
 
             }
 
-            if (Input.GetKey("d"))
+            if (InputManager.Instance.GetAxisHorizontal() > 0)
             {
-                pos.x += speed * Time.deltaTime;
+                pos.x += speed * Time.deltaTime * InputManager.Instance.GetAxisHorizontal();
                 //playerCube.transform.Rotate(0, -10, 0);
             }
-            else if (Input.GetKey("a"))
+            else if (InputManager.Instance.GetAxisHorizontal() < 0)
             {
-                pos.x -= speed * Time.deltaTime;
+                pos.x += speed * Time.deltaTime * InputManager.Instance.GetAxisHorizontal();
                 //playerCube.transform.Rotate(0, 10, 0);
             }
             playerCube.transform.position = pos;
