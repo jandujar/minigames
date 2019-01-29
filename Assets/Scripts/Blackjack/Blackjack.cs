@@ -18,6 +18,7 @@ public class Blackjack : IMiniGame
         //Pong Begins
         Debug.Log(this.ToString() + " game Begin");
         crupier.StartRep = true;
+        GetComponent<AudioSource>().Play();
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
