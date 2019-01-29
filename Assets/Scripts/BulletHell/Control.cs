@@ -1,27 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using XavierRibasDeTorres;
 
-public class Control : MonoBehaviour
+
+namespace XavierRibasDeTorres
 {
-    public GameObject BulletHellObject;
-
-    private BulletHell BulletHellScript;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Control : MonoBehaviour
     {
-        BulletHellScript = BulletHellObject.GetComponent<BulletHell>();
-    }
+        public GameObject BulletHellObject;
+        private BulletHell BulletHellScript;
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        if(GameObject.FindGameObjectWithTag("EnemyShip") == null)
+        // Start is called before the first frame update
+        void Start()
         {
-            BulletHellScript.Win();
+            BulletHellScript = BulletHellObject.GetComponent<BulletHell>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+            if (GameObject.FindGameObjectWithTag("EnemyShip") == null)
+            {
+                BulletHellScript.Win();
+            }
         }
     }
 }
