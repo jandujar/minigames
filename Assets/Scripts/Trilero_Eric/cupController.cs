@@ -62,10 +62,8 @@ namespace Eric_Sanchez_Verges
             target = 0;
             beginMove = false;
             return endPath = true;
-
-            }
-            return false;
-        Debug.Log("Moving to target = " + target);
+        }
+        return false;
     }
 
     public bool moveLeft()
@@ -99,7 +97,6 @@ namespace Eric_Sanchez_Verges
             }
             return false;
 
-            Debug.Log("Moving to target = " + target);
     }
 
     private void OnDrawGizmos()
