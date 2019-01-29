@@ -2,37 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletNave : MonoBehaviour
+namespace XavierRibasDeTorres
 {
-    public AudioSource BulletSoundHit;
-    public AudioSource BulletSoundhoot;
-
-    private float TimeDestroy;
-
-    // Start is called before the first frame update
-    void Start()
+    public class BulletNave : MonoBehaviour
     {
-        
-        TimeDestroy = 5;
-        BulletSoundhoot.Play(); 
-    }
+        public AudioSource BulletSoundHit;
+        public AudioSource BulletSoundhoot;
 
-    // Update is called once per frame
-    void Update()
-    {
-        TimeDestroy -= Time.deltaTime;
-        if (TimeDestroy < 0)
+        private float TimeDestroy;
+
+        // Start is called before the first frame update
+        void Start()
         {
-            DestroyObject(gameObject);
+
+            TimeDestroy = 5;
+            BulletSoundhoot.Play();
         }
-    }
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        if(coll.collider.tag == "EnemyShip")
+
+        // Update is called once per frame
+        void Update()
         {
-           
-            BulletSoundHit.Play();
+            TimeDestroy -= Time.deltaTime;
+            if (TimeDestroy < 0)
+            {
+                Destroy(gameObject);
+            }
         }
-        DestroyObject(gameObject);
+        void OnCollisionEnter2D(Collision2D coll)
+        {
+            if (coll.collider.tag == "EnemyShip")
+            {
+
+                BulletSoundHit.Play();
+            }
+            Destroy(gameObject);
+        }
     }
 }
