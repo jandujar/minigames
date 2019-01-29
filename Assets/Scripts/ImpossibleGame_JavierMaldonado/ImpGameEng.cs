@@ -134,7 +134,6 @@ public class ImpGameEng : IMiniGame
                 if(Lifes <= 0)
                 {
                     gameManagerInstance.EndGame(MiniGameResult.LOSE);
-                    return;
                 }
 
                 playerCube.transform.position = lastSafePlace;
