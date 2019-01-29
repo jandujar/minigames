@@ -41,8 +41,8 @@ public class Crupier : MonoBehaviour
 
         if (StartRep)
         {
-            // "Shift!!"
-            if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON3)){
+            // "control!!"
+            if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)){
                 if (!wait){
                     MoreCards();
                     Pause();
@@ -50,20 +50,22 @@ public class Crupier : MonoBehaviour
                 }
             }
 
-            //"Space!!"
-            if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4))
+            //"alt!!"
+            if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2))
                 crupierMove = true;
+
             
 
             if (crupierMove)
             {
                 if (!wait){
-                    CrupierAttack();
+
+                    Pause();
                     if (pointsCrupier >= 17)
                         pointsCompare();
-
+                    CrupierAttack();
                     ShowCart(nRandom);
-                    Pause();
+                    
                 }
             }
             
@@ -82,8 +84,7 @@ public class Crupier : MonoBehaviour
                     Win();
                 
             }
-            
-            
+
         }
     }
 
