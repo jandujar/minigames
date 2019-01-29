@@ -5,8 +5,6 @@ using UnityEngine;
 namespace laura_romo { 
     public class moveCrane : MonoBehaviour {
         private bool toLeft;
-        private Transform transform;
-        private float count;
         public float craneSpeed;
         private bool instantiate;
         private float instantiateCount;
@@ -26,8 +24,6 @@ namespace laura_romo {
         void Start() {
             winGame = false;
             toLeft = false;
-            transform = this.GetComponent<Transform>();
-            count = 0;
             instantiate = false;
             instantiateCount = 6;
             piecesPut = 0;
