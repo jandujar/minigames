@@ -75,6 +75,7 @@ public class MenuManager : Singleton<MenuManager> {
         IMPOSSIBLEGAME,
         DRUNKEY,
         APPLESHOOTER,
+        SUPERHEXAGON,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -311,6 +312,9 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.APPLESHOOTER:
             SceneManager.LoadScene("AppleShooter");
             break;
+        case MINIGAMES_ENUM.SUPERHEXAGON:
+            SceneManager.LoadScene("SuperHexagon");
+        break;
             case MINIGAMES_ENUM.END:
 		    default:
 			      SceneManager.LoadScene ("Pong");
