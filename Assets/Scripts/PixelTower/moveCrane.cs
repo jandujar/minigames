@@ -66,7 +66,7 @@ namespace laura_romo {
             }
 
             //Inputs
-            if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)) {
+            if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)) {
                 if (gameStart) {
                     piecesPut++;
                     actualPiece.transform.parent = buildingFather.transform;
