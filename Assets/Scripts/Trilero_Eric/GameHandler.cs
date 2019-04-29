@@ -148,21 +148,21 @@ namespace Eric_Sanchez_Verges
                 }
             }
 
-            if (btn1)
-            {
-                if (cups[0].GetComponent<cupController>().hasBall) EndGame(true);
-                else EndGame(false);
-            }
-            if (btn2)
-            {
-                if (cups[1].GetComponent<cupController>().hasBall) EndGame(true);
-                else EndGame(false);
-            }
-             if (btn3)
-            {
-                if (cups[2].GetComponent<cupController>().hasBall) EndGame(true);
-                else EndGame(false);
-            }
+            //if (btn1)
+            //{
+            //    if (cups[0].GetComponent<cupController>().hasBall) EndGame(true);
+            //    else EndGame(false);
+            //}
+            //if (btn2)
+            //{
+            //    if (cups[1].GetComponent<cupController>().hasBall) EndGame(true);
+            //    else EndGame(false);
+            //}
+            // if (btn3)
+            //{
+            //    if (cups[2].GetComponent<cupController>().hasBall) EndGame(true);
+            //    else EndGame(false);
+            //}
             
         }
 
