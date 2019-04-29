@@ -29,7 +29,7 @@ public class Rolling : MonoBehaviour {
     void falling() {
         if(fallingTimes < 11) {
             transform.position = new Vector3(transform.position.x,
-                                         transform.position.y - 0.127f,
+                                         transform.position.y - 0.170545f,
                                          transform.position.z);
             fallingTimes++;
         }
