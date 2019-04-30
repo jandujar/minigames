@@ -27,12 +27,12 @@ namespace XavierRibasDeTorres2
         {
             if (gameObject.name == "AddVelocity")
             {
-                Debug.Log("+vel");
+                
                 Balascript.vel += 1;
             }
             else
             {
-                Debug.Log("-vel");
+                
                 if (Balascript.vel > 1)
                 {
                     Balascript.vel -= 1;
