@@ -12,7 +12,7 @@ namespace laura_romo {
         }
 
         public override void beginGame() {
-            //Pong Begins
+            //DonkeyKong Begins
             Debug.Log(this.ToString() + " game Begin");
             //ball.enableBall = true;
         }
