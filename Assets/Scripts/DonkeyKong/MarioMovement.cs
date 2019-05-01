@@ -10,6 +10,7 @@ namespace laura_romo {
         bool right;
         bool left;
         bool goUp;
+        bool goDown;
         bool jump;
         Rigidbody2D rb;
         BoxCollider2D boxCollider2D;
@@ -48,14 +49,14 @@ namespace laura_romo {
 
                 actualMovement = InputManager.Instance.GetAxisHorizontal();
 
-                if (left && !goUp) {
+                if (left && !goUp && !goDown) {
                     transform.position = new Vector3(transform.position.x + speed,
                                                     transform.position.y, transform.position.z);
                     GetComponent<Animator>().SetBool("walk", true);
                     transform.localScale = new Vector3(-5, 5, 5);
                 }
 
-                else if (right && !goUp) {
+                else if (right && !goUp && !goDown) {
                     transform.position = new Vector3(transform.position.x - speed,
                                                     transform.position.y, transform.position.z);
                     GetComponent<Animator>().SetBool("walk", true);
@@ -66,7 +67,7 @@ namespace laura_romo {
                     GetComponent<Animator>().SetBool("walk", false);
                 }
 
-                if (InputManager.Instance.GetAxisVertical() > 0 && up) {
+                if (InputManager.Instance.GetAxisVertical() > 0.1f && up) {
                     goUp = true;
                     left = false;
                     right = false;
@@ -74,6 +75,18 @@ namespace laura_romo {
                     GetComponent<Animator>().SetBool("up", true);
                     transform.position = new Vector3(transform.position.x,
                                                     transform.position.y + speed, transform.position.z);
+                    boxCollider2D.isTrigger = true;
+                    rb.gravityScale = 0;
+                }
+                if (InputManager.Instance.GetAxisVertical() < -0.1f && up) {
+                    //goUp = false;
+                    goDown = true;
+                    left = false;
+                    right = false;
+                    GetComponent<Animator>().SetBool("walk", false);
+                    GetComponent<Animator>().SetBool("up", true);
+                    transform.position = new Vector3(transform.position.x,
+                                                    transform.position.y - speed, transform.position.z);
                     boxCollider2D.isTrigger = true;
                     rb.gravityScale = 0;
                 }
@@ -105,7 +118,19 @@ namespace laura_romo {
                 left = false;
                 right = false;
                 up = false;
+                GetComponent<Animator>().SetBool("up", false);
+                GetComponent<Animator>().SetBool("walk", false);
+                GetComponent<Animator>().SetTrigger("death");
                 rb.gravityScale = 1;
+            }
+            if(collision.gameObject.name == "ladderCollision") {
+                Debug.Log(goDown);
+                if (collision.gameObject.name == "ladderCollision" && goDown) {
+                    goDown = false;
+                    up = false;
+                    goUp = false; 
+                    GetComponent<Animator>().SetBool("up", false);
+                }
             }
         }
 
@@ -113,8 +138,17 @@ namespace laura_romo {
             if (collision.gameObject.name == "ladder") {
                 up = false;
                 goUp = false;
+                goDown = false;
                 rb.gravityScale = 1;
                 boxCollider2D.isTrigger = false;
+                GetComponent<Animator>().SetBool("up", false);
+            }
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision) {
+            Debug.Log(collision.gameObject.name);
+            if(collision.gameObject.name == "floor" && goDown) {
+                goDown = false;
                 GetComponent<Animator>().SetBool("up", false);
             }
         }
