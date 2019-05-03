@@ -22,7 +22,7 @@ public class Rolling : MonoBehaviour {
     }
 
     void go() {
-        transform.position = new Vector3(transform.position.x + (0.05f * direction),
+        transform.position = new Vector3(transform.position.x + (0.04f * direction),
                                          transform.position.y, transform.position.z);
     }
 
@@ -46,6 +46,10 @@ public class Rolling : MonoBehaviour {
             moving = false;
             CancelInvoke("go");
             InvokeRepeating("falling", 0f, 0.02f);
+        }
+
+        if(collision.gameObject.name == "delete") {
+            Destroy(this.gameObject);
         }
     }
 }
