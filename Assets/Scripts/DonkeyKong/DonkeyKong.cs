@@ -8,6 +8,7 @@ namespace laura_romo {
 
         [SerializeField] GameObject Kong;
         [SerializeField] MarioMovement MarioMovement;
+        [SerializeField] AudioSource BackAudio;
         
         void Awake() {
             //Init DonkeyKong
@@ -19,6 +20,7 @@ namespace laura_romo {
             Debug.Log(this.ToString() + " game Begin");
             Kong.GetComponent<Animator>().SetBool("start", true);
             MarioMovement.start = true;
+            BackAudio.Play();
         }
 
         public override void initGame(MiniGameDificulty difficulty, GameManager gm) {

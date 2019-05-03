@@ -17,8 +17,14 @@ namespace laura_romo {
         bool death;
         bool tope;
         public bool start;
+        private bool jumping;
         private GameManager gameManager;
-        
+        [SerializeField] AudioClip walk;
+        [SerializeField] AudioClip jump;
+        [SerializeField] AudioClip deathAudio;
+        [SerializeField] AudioSource audios;
+        [SerializeField] AudioSource audioBack;
+
 
         public void init(GameManager gm) {
             gameManager = gm;
@@ -35,7 +41,11 @@ namespace laura_romo {
             boxCollider2D = GetComponent<BoxCollider2D>();
             death = false;
             matado = false;
-            
+            jumping = false;
+        }
+
+        void resetJump() {
+            jumping = false;
         }
 
         // Update is called once per frame
@@ -44,20 +54,37 @@ namespace laura_romo {
             if (start && !death) {
                 if(InputManager.Instance.GetAxisHorizontal() < 1 && left) {
                     left = false;
+                    GetComponent<Animator>().SetBool("walk", false);
+                    if (audios.clip == walk) {
+                        audios.Stop();
+                        audios.loop = false;
+                    }
                 }
 
                 if (InputManager.Instance.GetAxisHorizontal() > -1 && right) {
                     right = false;
                     GetComponent<Animator>().SetBool("walk", false);
+                    if (audios.clip == walk) {
+                        audios.Stop();
+                        audios.loop = false;
+                    }
                 }
 
                 if(InputManager.Instance.GetAxisHorizontal() == 0) {
                     tope = false;
                     GetComponent<Animator>().SetBool("walk", false);
+                    if (audios.clip == walk) {
+                        audios.Stop();
+                        audios.loop = false;
+                    }
                 }
 
                 if(InputManager.Instance.GetAxisVertical() == 0) {
                     GetComponent<Animator>().SetBool("stop", true);
+                    /*if (audios.clip == jump) {
+                        audios.Stop();
+                        audios.loop = false;
+                    }*/
                 }
 
                 if (InputManager.Instance.GetAxisHorizontal() > 0.1f && !goUp && !goDown) {
@@ -69,6 +96,11 @@ namespace laura_romo {
                         transform.position = new Vector3(transform.position.x + speed,
                                                    transform.position.y, transform.position.z);
                         GetComponent<Animator>().SetBool("walk", true);
+                        if (!audios.isPlaying) {
+                            audios.clip = walk;
+                            audios.loop = true;
+                            audios.Play();
+                        }
                         transform.localScale = new Vector3(-5, 5, 5);
                     }
                 }
@@ -82,6 +114,12 @@ namespace laura_romo {
                         transform.position = new Vector3(transform.position.x - speed,
                                                     transform.position.y, transform.position.z);
                         GetComponent<Animator>().SetBool("walk", true);
+                        if (!audios.isPlaying) {
+                            audios.clip = walk;
+                            audios.loop = true;
+                            audios.Play();
+                        }
+                        
                         transform.localScale = new Vector3(5, 5, 5);
                     }
                 }
@@ -115,14 +153,23 @@ namespace laura_romo {
                 }
 
                 if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)) {
-                    Debug.Log("Saltando");
-                    //if (right || left) {
+                    if (!jumping) {
                         rb.AddForce(new Vector2(0, 250));
-                    //}
-
+                        audios.clip = jump;
+                        audios.Play();
+                        jumping = true;
+                        Invoke("resetJump", 0.5f);
+                    }
+                    
                 }
             }
             else if(matado) {
+                if (audios.clip != deathAudio) {
+                    audioBack.Stop();
+                    audios.clip = deathAudio;
+                    audios.loop = false;
+                    audios.Play();
+                }
                 death = true;
                 left = false;
                 right = false;
@@ -131,7 +178,6 @@ namespace laura_romo {
         }
 
         private void OnTriggerEnter2D(Collider2D collision) {
-            Debug.Log("GameObject: " + collision.name);
             if(collision.gameObject.name == "delete") {
                 Lose();
             }
@@ -153,7 +199,7 @@ namespace laura_romo {
                 GetComponent<Animator>().SetBool("up", false);
                 GetComponent<Animator>().SetBool("walk", false);
                 GetComponent<Animator>().SetTrigger("death");
-                Invoke("Lose", 2f);
+                Invoke("Lose", 4f);
                 rb.gravityScale = 1;
             }
             if(collision.gameObject.name == "ladderCollision") {
@@ -178,7 +224,14 @@ namespace laura_romo {
         }
 
         private void OnCollisionEnter2D(Collision2D collision) {
-            if(collision.gameObject.name == "floor" && goDown) {
+            
+            if (collision.gameObject.name == "floor") {
+                if (audios.clip == jump) {
+                    audios.loop = false;
+                }
+            }
+
+            if (collision.gameObject.name == "floor" && goDown) {
                 goDown = false;
                 GetComponent<Animator>().SetBool("up", false);
             }
