@@ -8,18 +8,20 @@ namespace oscar_vergara_jimenez2
     {
         float speed;
         [SerializeField] GameObject shotPrefab;
-        // Start is called before the first frame update
-        void Start()
+        GameManager gm;
+        public int shots;
+        public Ball[] balls;
+        public void InitPlayer(GameManager _gm)
         {
-            
+            gm = _gm;
         }
-
         // Update is called once per frame
         void Update()
         {
             UpdateControls();
-            if(Input.GetKeyDown(KeyCode.O) && !GameObject.Find("Shot(Clone)")){
+            if(InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1) && shots == 0){
                 GameObject temp = Instantiate(shotPrefab, transform.position + Vector3.up, shotPrefab.transform.rotation);
+                shots ++;
             }
         }
         void FixedUpdate(){
@@ -28,6 +30,11 @@ namespace oscar_vergara_jimenez2
         void UpdateControls()
         {
             speed = InputManager.Instance.GetAxisHorizontal() / 5;
+        }
+        void OnCollisionEnter2D(Collision2D col){
+            if(col.gameObject.name.ToLower().Contains("ball")){
+                gm.EndGame(IMiniGame.MiniGameResult.LOSE);
+            }
         }
     }
 }

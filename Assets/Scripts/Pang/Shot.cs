@@ -24,6 +24,7 @@ namespace oscar_vergara_jimenez2
         }
         void OnTriggerEnter2D(Collider2D other){
             if(other.name.ToLower().Contains("walls")){
+                GameObject.Find("Player").GetComponent<Player>().shots--;
                 Destroy(gameObject);
             }
         }

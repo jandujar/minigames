@@ -4,10 +4,12 @@ using UnityEngine;
 
 namespace oscar_vergara_jimenez2
 {
+    [System.Serializable]
     public class Ball : MonoBehaviour
     {
         public Vector2 initSpeed;
         public Vector2 currentSpeed;
+        float immuneTime;
         // Start is called before the first frame update
         void Start()
         {
@@ -17,8 +19,8 @@ namespace oscar_vergara_jimenez2
         // Update is called once per frame
         void Update()
         {
-            if(Input.GetKeyDown(KeyCode.P)){
-                Split();
+            if(immuneTime > 0){
+                immuneTime -= Time.deltaTime;
             }
             transform.position = new Vector2(transform.position.x + currentSpeed.x * Time.deltaTime, transform.position.y + currentSpeed.y * Time.deltaTime);
         }
@@ -38,13 +40,16 @@ namespace oscar_vergara_jimenez2
             }
         }
         public void Split(){
+            if(immuneTime > 0) return;
             if(transform.localScale.x > 0.015){
                 GameObject temp1 = Instantiate(gameObject, transform.position, transform.rotation);
-                temp1.GetComponent<Ball>().initSpeed = new Vector2(-2,2);
+                temp1.GetComponent<Ball>().initSpeed = new Vector2(-(Mathf.Abs(currentSpeed.x)) * 1.1f,(Mathf.Abs(currentSpeed.y)) * 1.1f);
+                temp1.GetComponent<Ball>().immuneTime = 0.25f;
                 temp1.transform.position = transform.position + Vector3.left; 
                 temp1.transform.localScale = transform.localScale/2; 
                 GameObject temp2 = Instantiate(gameObject, transform.position, transform.rotation);
-                temp2.GetComponent<Ball>().initSpeed = new Vector2(2,2);
+                temp2.GetComponent<Ball>().initSpeed = new Vector2((Mathf.Abs(currentSpeed.x)) * 1.1f,(Mathf.Abs(currentSpeed.y)) * 1.1f);
+                temp2.GetComponent<Ball>().immuneTime = 0.25f;
                 temp2.transform.position = transform.position + Vector3.right; 
                 temp2.transform.localScale = transform.localScale/2;
             }
