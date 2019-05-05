@@ -44,6 +44,7 @@ namespace ivan_alvarez_enri
         FAIL
     }
     public enum phase{
+        PHASE0,
         PHASE1,
         PHASE2,
         PHASE3,
@@ -60,9 +61,16 @@ namespace ivan_alvarez_enri
         public SelectableObjectsAW[] ThirdStep;
         public SelectableObjectsAW[] FourStep;
         public Animator ResultOne;
-
-        private phase _phase=phase.PHASE1;
-
+        public Animator ResultTwo;
+        public Animator FinalAnim;
+        public Animator Camera;
+        public SpriteBank SpriteBank;
+        public ChangeSpriteAW SpriteChanger;
+        public ChangeSpriteAW SpriteChangerTwo;
+        public ChangeSpriteAW SpriteChangerThird;
+        public GameObject Player;
+        public GameObject Boss;
+        private phase _phase=phase.PHASE0;
         private Elements firstSelected=Elements.VOID;
         private Elements secondSelected=Elements.VOID;
         private SecondElements FirstResult;
@@ -81,7 +89,7 @@ namespace ivan_alvarez_enri
 
         public override void beginGame()
         {
-            
+            Invoke("MoveCamDown",3F);
         }
         // Update is called once per frame
         void Update()
@@ -173,6 +181,9 @@ namespace ivan_alvarez_enri
                         SecondStep[(int)secondSelected].ImChoosed();
                         FirstResult=calculateSecond(firstSelected,secondSelected);
                         Debug.Log(FirstResult);
+                        SpriteChanger.newSprite=SpriteBank.SpritesSecondElements[(int)FirstResult];
+                        
+                        SpriteChanger.newName=FirstResult.ToString();
                         ResultOne.SetTrigger("StartAnim");
                         _phase=phase.PHASE3;
                         
@@ -258,6 +269,17 @@ namespace ivan_alvarez_enri
                             _element.FinishMe();
                         }
                         FourStep[(int)secondSelected].ImChoosed();
+                        SecondResult=calculateSecond(thirdSelected,fourthSelected);
+                        FinalResult=calculateFinal(FirstResult,SecondResult);
+                        Debug.Log(SecondResult);
+                        SpriteChangerTwo.newSprite=SpriteBank.SpritesSecondElements[(int)SecondResult];
+                        
+                        SpriteChangerTwo.newName=SecondResult.ToString();
+                        SpriteChangerThird.newSprite=SpriteBank.SpritesFinalElements[(int)FinalResult];
+                        Player.GetComponent<SpriteRenderer>().sprite=SpriteBank.SpritesFinalElements[(int)FinalResult];
+                        
+                        SpriteChangerThird.newName=FinalResult.ToString();
+                        ResultTwo.SetTrigger("StartAnimTwo");
                         _phase=phase.PHASE5;
                         
                     }
@@ -267,10 +289,29 @@ namespace ivan_alvarez_enri
                 break;
                 case phase.PHASE6://PELEA
                 break;
+                case phase.PHASECOMBAT://PELEA
+
+                break;
                 default:
                 break;
 
             }
+        }
+        private void MoveCamDown(){
+            Camera.SetTrigger("CameraDown");
+            _phase=phase.PHASE1;
+            
+        }
+        public void StartFigth(){
+            FinalAnim.SetTrigger("StartAnimFinal");
+        }
+        public void StartFigthUpside(){
+            Camera.SetTrigger("CameraUp");
+            Invoke("Fight",1F);
+            
+        }
+        private void Fight(){
+            _phase=phase.PHASECOMBAT;
         }
         SecondElements calculateSecond(Elements One, Elements Two){
             SecondElements Result=SecondElements.FAIL;
