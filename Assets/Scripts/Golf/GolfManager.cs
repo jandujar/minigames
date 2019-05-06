@@ -50,25 +50,13 @@ public class GolfManager : IMiniGame
     {
         if (finished) return;
         audioBSO.Stop();
-
+        foreach(GameObject go in allGameObjectsWithScript)
+        {
+            go.GetComponent<MonoBehaviour>().enabled = false;
+        }
 
         finished = true;
-        StartCoroutine(ChangeScene(win));
-    }
-
-    IEnumerator ChangeScene(bool win)
-    {
-        if (win)
-        {
-            audioWin.Play();
-            yield return new WaitForSecondsRealtime(audioWin.clip.length);
-            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
-        }
-        else
-        {
-            yield return new WaitForSecondsRealtime(audioLose.clip.length);
-            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
-        }
+        gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
     }
 
     public override string ToString()
