@@ -16,6 +16,7 @@ public class SelectableObjectsAW : MonoBehaviour
         public void SelectMe(){
             gameObject.GetComponent<SpriteRenderer>().color=new Color(1,1,1,1);
             gameObject.transform.localScale=new Vector3(12,12,12);
+            gameObject.GetComponent<AudioSource>().Play();
         }
         public void StopMe(){
             gameObject.GetComponent<SpriteRenderer>().color=new Color(0.764151F,0.764151F,0.764151F,1);

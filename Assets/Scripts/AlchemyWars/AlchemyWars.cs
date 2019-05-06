@@ -54,8 +54,10 @@ namespace ivan_alvarez_enri
         PHASEMIX,
         PHASECOMBAT
     }
+    
     public class AlchemyWars : IMiniGame
     {
+        public GameManager gameManeger;
         public SelectableObjectsAW[] FirstStep;
         public SelectableObjectsAW[] SecondStep;
         public SelectableObjectsAW[] ThirdStep;
@@ -70,6 +72,8 @@ namespace ivan_alvarez_enri
         public ChangeSpriteAW SpriteChangerThird;
         public GameObject Player;
         public GameObject Boss;
+        public GameObject AyudaUno;
+        public GameObject AyudaTwo;
         private phase _phase=phase.PHASE0;
         private Elements firstSelected=Elements.VOID;
         private Elements secondSelected=Elements.VOID;
@@ -90,6 +94,7 @@ namespace ivan_alvarez_enri
         public override void beginGame()
         {
             Invoke("MoveCamDown",3F);
+            gameObject.GetComponent<AudioSource>().Play();
         }
         // Update is called once per frame
         void Update()
@@ -290,7 +295,14 @@ namespace ivan_alvarez_enri
                 case phase.PHASE6://PELEA
                 break;
                 case phase.PHASECOMBAT://PELEA
-
+                    if(Player.GetComponent<PlayerAW>().hp<=1){
+                        gameManeger.EndGame(IMiniGame.MiniGameResult.LOSE);
+                        gameObject.GetComponent<AudioSource>().Stop();
+                    }
+                    if(Boss.GetComponent<PlayerAW>().hp<=1){
+                        gameManeger.EndGame(IMiniGame.MiniGameResult.WIN);
+                        gameObject.GetComponent<AudioSource>().Stop();
+                    }
                 break;
                 default:
                 break;
@@ -306,12 +318,58 @@ namespace ivan_alvarez_enri
             FinalAnim.SetTrigger("StartAnimFinal");
         }
         public void StartFigthUpside(){
+            AyudaUno.SetActive(false);
+            AyudaTwo.SetActive(true);
+            Player.GetComponent<PlayerAW>().myType=GetAttackElement();
             Camera.SetTrigger("CameraUp");
             Invoke("Fight",1F);
             
         }
         private void Fight(){
+            Player.GetComponent<PlayerAW>().fighting=true;
+            Boss.GetComponent<PlayerAW>().fighting=true;
             _phase=phase.PHASECOMBAT;
+        }
+        Elements GetAttackElement(){
+            switch(FinalResult){
+                case FinalElements.EOLO:
+                Player.GetComponent<PlayerAW>().damage=10;
+                return Elements.AIR;
+                case FinalElements.EXPLOSIVE:
+                Player.GetComponent<PlayerAW>().damage=7;
+                return Elements.FIRE;
+                case FinalElements.FAIL:
+                Player.GetComponent<PlayerAW>().damage=10;
+                return Elements.VOID;
+                case FinalElements.GAIA:
+                Player.GetComponent<PlayerAW>().damage=10;
+                return Elements.GROUND;
+                case FinalElements.GOLEM:
+                Player.GetComponent<PlayerAW>().damage=7;
+                return Elements.GROUND;
+                case FinalElements.HUMAN:
+                Player.GetComponent<PlayerAW>().damage=5;
+                return Elements.WATER;
+                case FinalElements.INFERNO:
+                Player.GetComponent<PlayerAW>().damage=7;
+                return Elements.FIRE;
+                case FinalElements.MACHINE:
+                Player.GetComponent<PlayerAW>().damage=6;
+                return Elements.FIRE;
+                case FinalElements.POSEIDON:
+                Player.GetComponent<PlayerAW>().damage=10;
+                return Elements.WATER;
+                case FinalElements.SHOOTER:
+                Player.GetComponent<PlayerAW>().damage=7;
+                return Elements.FIRE;
+                case FinalElements.WEAPON:
+                Player.GetComponent<PlayerAW>().damage=5;
+                return Elements.GROUND;
+                case FinalElements.ZEUS:
+                Player.GetComponent<PlayerAW>().damage=10;
+                return Elements.AIR;
+            }
+            return Elements.VOID;
         }
         SecondElements calculateSecond(Elements One, Elements Two){
             SecondElements Result=SecondElements.FAIL;

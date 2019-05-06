@@ -25,5 +25,8 @@ namespace ivan_alvarez_enri
    public void GoFightUpside(){
        game.StartFigthUpside();
    }
+   public void soundPlay(){
+       gameObject.GetComponent<AudioSource>().Play();
+   }
 }
 }
