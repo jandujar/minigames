@@ -76,6 +76,7 @@ public class MenuManager : Singleton<MenuManager> {
         DRUNKEY,
         APPLESHOOTER,
         DONKEYKONG,
+        BULLETGUIDE,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -315,10 +316,14 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.DONKEYKONG:
             SceneManager.LoadScene("DonkeyKong");
             break;
+        case MINIGAMES_ENUM.BULLETGUIDE:
+            SceneManager.LoadScene("BulletGuide");
+            break;
         case MINIGAMES_ENUM.END:
-		    default:
-			      SceneManager.LoadScene ("Pong");
-			      break;
+            break;
+        default:
+			SceneManager.LoadScene ("Pong");
+			break;
 		}
 
         currentGame = currentGame + 1;
