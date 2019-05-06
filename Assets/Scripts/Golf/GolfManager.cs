@@ -10,7 +10,7 @@ public class GolfManager : IMiniGame
 
     int strokes;
 
-    [SerializeField] Text txt;
+    //[SerializeField] Text txt;
 
     bool finished;
 
@@ -45,11 +45,6 @@ public class GolfManager : IMiniGame
         gameManager = gm;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void EndGame(bool win)
     {
@@ -66,7 +61,6 @@ public class GolfManager : IMiniGame
         if (win)
         {
             audioWin.Play();
-            allGameObjectsWithScript[0].GetComponent<Rigidbody2D>().gravityScale = 0;
             yield return new WaitForSecondsRealtime(audioWin.clip.length);
             gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
         }
