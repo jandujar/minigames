@@ -19,7 +19,6 @@ namespace oscar_vergara_jimenez2
         void Update()
         {
             transform.position += Vector3.up * speed * Time.deltaTime;
-            chain.transform.localScale += Vector3.up * (speed / 2.25f);
             
         }
         void OnTriggerEnter2D(Collider2D other){

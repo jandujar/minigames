@@ -9,10 +9,11 @@ namespace oscar_vergara_jimenez2
     {
         public Vector2 initSpeed;
         public Vector2 currentSpeed;
-        float immuneTime;
+        float immuneTime = 0.5f;
         // Start is called before the first frame update
         void Start()
         {
+            GetComponent<CircleCollider2D>().enabled = false;
             currentSpeed = initSpeed;
         }
 
@@ -21,11 +22,13 @@ namespace oscar_vergara_jimenez2
         {
             if(immuneTime > 0){
                 immuneTime -= Time.deltaTime;
+                if(immuneTime <= 0){
+                    GetComponent<CircleCollider2D>().enabled = true;
+                }
             }
             transform.position = new Vector2(transform.position.x + currentSpeed.x * Time.deltaTime, transform.position.y + currentSpeed.y * Time.deltaTime);
         }
         void OnCollisionEnter2D(Collision2D col){
-            Debug.Log(col.contacts[0].normal);
             if(col.contacts[0].normal.x != 0){
                 currentSpeed = new Vector2(currentSpeed.x * -1, currentSpeed.y);
             }
@@ -41,14 +44,15 @@ namespace oscar_vergara_jimenez2
         }
         public void Split(){
             if(immuneTime > 0) return;
-            if(transform.localScale.x > 0.015){
+            GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
+            if(transform.localScale.x > 1){
                 GameObject temp1 = Instantiate(gameObject, transform.position, transform.rotation);
                 temp1.GetComponent<Ball>().initSpeed = new Vector2(-(Mathf.Abs(currentSpeed.x)) * 1.1f,(Mathf.Abs(currentSpeed.y)) * 1.1f);
                 temp1.GetComponent<Ball>().immuneTime = 0.25f;
                 temp1.transform.position = transform.position + Vector3.left; 
                 temp1.transform.localScale = transform.localScale/2; 
                 GameObject temp2 = Instantiate(gameObject, transform.position, transform.rotation);
-                temp2.GetComponent<Ball>().initSpeed = new Vector2((Mathf.Abs(currentSpeed.x)) * 1.1f,(Mathf.Abs(currentSpeed.y)) * 1.1f);
+                temp2.GetComponent<Ball>().initSpeed = new Vector2( (Mathf.Abs(currentSpeed.x)) * 1.1f,(Mathf.Abs(currentSpeed.y)) * 1.1f);
                 temp2.GetComponent<Ball>().immuneTime = 0.25f;
                 temp2.transform.position = transform.position + Vector3.right; 
                 temp2.transform.localScale = transform.localScale/2;
