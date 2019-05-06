@@ -51,7 +51,7 @@ public class Projectile : MonoBehaviour
         else if (collision.gameObject.tag == "Finish"){ //the apple
             audio.clip = projectileAudios[2];
             audio.Play();
-            Invoke("LoseGame", 2);
+            Invoke("WinGame", 2);
         }
         else //the arrow hit something else, so we delete the camera of the arrow
         {

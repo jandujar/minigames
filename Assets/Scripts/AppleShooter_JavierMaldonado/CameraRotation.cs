@@ -27,15 +27,9 @@ public class CameraRotation : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetJoystickNames().Length <= 0){ 
-            yaw += speedH * InputManager.Instance.GetAxisHorizontal2();
-            pitch -= speedV * InputManager.Instance.GetAxisVertical2();
-        }
-        else
-        {
-            yaw += speedH * InputManager.Instance.GetAxisHorizontal();
-            pitch -= speedV * InputManager.Instance.GetAxisVertical();
-        }
+        yaw += speedH * InputManager.Instance.GetAxisHorizontal();
+        pitch -= speedV * InputManager.Instance.GetAxisVertical();
+
         transform.eulerAngles = new Vector3(0.0f, yaw, 0.0f);
 
 
