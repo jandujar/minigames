@@ -22,11 +22,13 @@ public class GolfBall : MonoBehaviour
         if (runTimer)
         {
             timer += Time.deltaTime;
-            if (timer >= 3 && Mathf.Approximately(rb.velocity.x, 0) && Mathf.Approximately(rb.velocity.y, 0))
+            if (timer >= 3 && Mathf.Abs(Vector3.Magnitude(rb.velocity)) > 0.1f)
             {
+                rb.constraints = RigidbodyConstraints.FreezeAll;
                 if (inZone)
                 {
                     controller.NextRound();
+                    Debug.Log("IN");
                 }
                 else
                 {
@@ -40,10 +42,7 @@ public class GolfBall : MonoBehaviour
 
     public void ResetForces()
     {
-        rb.constraints = RigidbodyConstraints.FreezeAll;
-        rb.useGravity = false;
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = Vector2.zero;
+        
     }
 
     public void AddForce(float force, Vector3 direction)
