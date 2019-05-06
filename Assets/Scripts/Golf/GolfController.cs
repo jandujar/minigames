@@ -33,6 +33,16 @@ public class GolfController : MonoBehaviour
     Vector3 cameraRotation, cameraDistance;
     [SerializeField] GameObject[] movablePlatforms;
 
+    [SerializeField] AudioSource hitBallSound;
+    [SerializeField] TMPro.TextMeshProUGUI strokesTxt;
+
+    private void Awake()
+    {
+        paperballInitPosition = paperball.transform.position;
+        cameraRotation = gameCamera.transform.rotation.eulerAngles;
+        cameraDistance = paperballInitPosition - gameCamera.transform.position;
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -43,10 +53,8 @@ public class GolfController : MonoBehaviour
         CEqValue = -(AEqValue * minArrowScale + BEqValue * minValueForce); // Ax + By + C = 0
 
         currentRound = 0;
-        paperballInitPosition = paperball.transform.position;
+        currentAttempts = -1;
         ResetPosition();
-        cameraRotation = gameCamera.transform.rotation.eulerAngles;
-        cameraDistance = paperballInitPosition - gameCamera.transform.position;
     }
 
     // Update is called once per frame
@@ -123,6 +131,7 @@ public class GolfController : MonoBehaviour
 
         if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
         {
+            hitBallSound.Play();
             arrow.gameObject.SetActive(false);
             forceShot = tempValue * MULTI_FORCE;
             paperball.AddForce(forceShot, directionShot);
@@ -141,8 +150,14 @@ public class GolfController : MonoBehaviour
 
     public void ResetPosition()
     {
-        if (++currentAttempts > maxAttempts) manager.EndGame(false);
+        strokesTxt.text = "Strokes: " + (maxAttempts - ++currentAttempts).ToString();
 
+        if (currentAttempts >= maxAttempts)
+        {
+            manager.EndGame(false);
+            return;
+        }
+        
         arrow.gameObject.SetActive(true);
         forceShot = 0;
         directionShot = Vector3.zero;
