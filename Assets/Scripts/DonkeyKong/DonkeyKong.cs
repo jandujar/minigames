@@ -5,6 +5,10 @@ using UnityEngine;
 
 namespace laura_romo {
     public class DonkeyKong : IMiniGame {
+
+        [SerializeField] GameObject Kong;
+        [SerializeField] MarioMovement MarioMovement;
+        [SerializeField] AudioSource BackAudio;
         
         void Awake() {
             //Init DonkeyKong
@@ -12,13 +16,15 @@ namespace laura_romo {
         }
 
         public override void beginGame() {
-            //Pong Begins
+            //DonkeyKong Begins
             Debug.Log(this.ToString() + " game Begin");
-            //ball.enableBall = true;
+            Kong.GetComponent<Animator>().SetBool("start", true);
+            MarioMovement.start = true;
+            BackAudio.Play();
         }
 
         public override void initGame(MiniGameDificulty difficulty, GameManager gm) {
-            //ball.init(gm); 
+            MarioMovement.init(gm);
         }
 
         public override string ToString() {
