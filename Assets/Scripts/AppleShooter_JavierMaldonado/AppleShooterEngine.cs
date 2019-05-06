@@ -29,5 +29,12 @@ public class AppleShooterEngine : IMiniGame
     void Update()
     {
         
+
+
+
     }
+
+
+
+
 }
