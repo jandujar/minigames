@@ -78,6 +78,9 @@ public class MenuManager : Singleton<MenuManager> {
         SUPERHEXAGON,
         DONKEYKONG,
         BULLETGUIDE,
+        PANG,
+        GOLF,
+        ALCHEMYWARS,
         OCTOPUS,
 		END };
 	
@@ -337,6 +340,15 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.BULLETGUIDE:
             SceneManager.LoadScene("BulletGuide");
+            break;
+        case MINIGAMES_ENUM.PANG:
+            SceneManager.LoadScene("Pang");
+            break;
+        case MINIGAMES_ENUM.ALCHEMYWARS:
+            SceneManager.LoadScene("AlchemyWar");
+            break;
+        case MINIGAMES_ENUM.GOLF:
+            SceneManager.LoadScene("Golf");
             break;
         case MINIGAMES_ENUM.OCTOPUS:
             SceneManager.LoadScene("Octopus");
