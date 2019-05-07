@@ -109,13 +109,15 @@ public class MenuManager : Singleton<MenuManager> {
         currentScore = 0;
         games = new ArrayList();
 
-        foreach (MINIGAMES_ENUM min in Enum.GetValues(typeof(MINIGAMES_ENUM)).Cast<MINIGAMES_ENUM>())
-        {
-            if (min != MINIGAMES_ENUM.END && min>=MINIGAMES_ENUM.TRILERO)
-            {
-                games.Add(min);
-            }
-        }
+        games.Add(MINIGAMES_ENUM.APPLESHOOTER);
+        games.Add(MINIGAMES_ENUM.SUPERHEXAGON);
+        games.Add(MINIGAMES_ENUM.DONKEYKONG);
+        games.Add(MINIGAMES_ENUM.BULLETGUIDE);
+        games.Add(MINIGAMES_ENUM.PANG);
+        games.Add(MINIGAMES_ENUM.GOLF);
+        games.Add(MINIGAMES_ENUM.ALCHEMYWARS);
+        games.Add(MINIGAMES_ENUM.OCTOPUS);
+
         LaunchMiniGame();
     }
 
