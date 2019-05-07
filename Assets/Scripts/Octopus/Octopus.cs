@@ -77,6 +77,31 @@ namespace joan_serrano
         {
             if (started || !hit)
             {
+                if(InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1))
+                {
+                    if (!hit)
+                    {
+                        position--;
+                        if (position <= 0)
+                        {
+                            position = 0;
+                        }
+                    }
+                }
+                
+                if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2))
+                {
+                    if (!hit)
+                    {
+                        position++;
+                        if (position >= 10)
+                        {
+                            position = 10;
+                        }
+                    }
+                }
+
+
                 RectTransform botRect = iBot.GetComponent<RectTransform>();
 
                 
