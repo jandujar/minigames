@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 using System.Linq;
-
+using Random = System.Random;
 
 public class MenuManager : Singleton<MenuManager> {
 
@@ -87,6 +87,7 @@ public class MenuManager : Singleton<MenuManager> {
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
 
     private ArrayList games;
+    private ArrayList gamesCopy;
 
     public int currentScore;
 
@@ -94,20 +95,24 @@ public class MenuManager : Singleton<MenuManager> {
     public void InitGames(){
         currentScore = 0;
         games = new ArrayList();
+        gamesCopy = new ArrayList();
 
         foreach (MINIGAMES_ENUM min in Enum.GetValues(typeof(MINIGAMES_ENUM)).Cast<MINIGAMES_ENUM>())
         {
             if (min != MINIGAMES_ENUM.END && min>=MINIGAMES_ENUM.TRILERO)
             {
                 games.Add(min);
+                gamesCopy.Add(min);
             }
         }
+
         LaunchMiniGame();
     }
 
     public void Launch_2017_2019_Minigames_2(){
         currentScore = 0;
         games = new ArrayList();
+        gamesCopy = new ArrayList();
 
         games.Add(MINIGAMES_ENUM.APPLESHOOTER);
         games.Add(MINIGAMES_ENUM.SUPERHEXAGON);
@@ -118,13 +123,19 @@ public class MenuManager : Singleton<MenuManager> {
         games.Add(MINIGAMES_ENUM.ALCHEMYWARS);
         games.Add(MINIGAMES_ENUM.OCTOPUS);
 
+        foreach(MINIGAMES_ENUM m in games){
+            gamesCopy.Add(m);
+        }
+
         LaunchMiniGame();
     }
 
     public void LaunchMiniGame(){
         if (games == null)
         {
-            InitGames();
+            foreach(MINIGAMES_ENUM m in gamesCopy){
+                games.Add(m);
+            }
         }
         if (games.Count == 0)
         {
@@ -132,11 +143,14 @@ public class MenuManager : Singleton<MenuManager> {
             return;
         }
 		
-        int actual = UnityEngine.Random.Range((int)0,(int)games.Count);
-        currentGame = (MINIGAMES_ENUM)games[actual];
+
+        Random r = new Random();
+        int rand = r.Next(0, games.Count);
+
+        currentGame = (MINIGAMES_ENUM)games[rand];
         Debug.Log ("Launch MiniGame: " + currentGame.ToString ());
 
-        games.RemoveAt(actual);
+        games.RemoveAt(rand);
 
 
 		switch (currentGame) {
@@ -361,12 +375,6 @@ public class MenuManager : Singleton<MenuManager> {
 			SceneManager.LoadScene ("Pong");
 			break;
 		}
-
-        currentGame = currentGame + 1;
-        if (currentGame == MINIGAMES_ENUM.END)
-        {
-            currentGame = MINIGAMES_ENUM.PONG;
-        }
     }
 
     public void WonGame(){
