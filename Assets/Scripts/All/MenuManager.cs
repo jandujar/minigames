@@ -75,10 +75,13 @@ public class MenuManager : Singleton<MenuManager> {
         IMPOSSIBLEGAME,
         DRUNKEY,
         APPLESHOOTER,
+        SUPERHEXAGON,
+        DONKEYKONG,
         BULLETGUIDE,
         PANG,
         GOLF,
         ALCHEMYWARS,
+        OCTOPUS,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -315,6 +318,12 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.APPLESHOOTER:
             SceneManager.LoadScene("AppleShooter");
             break;
+        case MINIGAMES_ENUM.SUPERHEXAGON:
+            SceneManager.LoadScene("SuperHexagon");
+        break;
+        case MINIGAMES_ENUM.DONKEYKONG:
+            SceneManager.LoadScene("DonkeyKong");
+            break;
         case MINIGAMES_ENUM.BULLETGUIDE:
             SceneManager.LoadScene("BulletGuide");
             break;
@@ -327,7 +336,10 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.GOLF:
             SceneManager.LoadScene("Golf");
             break;
-        case MINIGAMES_ENUM.END:
+        case MINIGAMES_ENUM.OCTOPUS:
+            SceneManager.LoadScene("Octopus");
+            break;
+            case MINIGAMES_ENUM.END:
             break;
         default:
 			SceneManager.LoadScene ("Pong");

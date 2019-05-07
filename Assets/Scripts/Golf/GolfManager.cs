@@ -10,7 +10,7 @@ public class GolfManager : IMiniGame
 
     int strokes;
 
-    [SerializeField] Text txt;
+    //[SerializeField] Text txt;
 
     bool finished;
 
@@ -45,36 +45,18 @@ public class GolfManager : IMiniGame
         gameManager = gm;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void EndGame(bool win)
     {
         if (finished) return;
         audioBSO.Stop();
-
+        foreach(GameObject go in allGameObjectsWithScript)
+        {
+            go.GetComponent<MonoBehaviour>().enabled = false;
+        }
 
         finished = true;
-        StartCoroutine(ChangeScene(win));
-    }
-
-    IEnumerator ChangeScene(bool win)
-    {
-        if (win)
-        {
-            audioWin.Play();
-            allGameObjectsWithScript[0].GetComponent<Rigidbody2D>().gravityScale = 0;
-            yield return new WaitForSecondsRealtime(audioWin.clip.length);
-            gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
-        }
-        else
-        {
-            yield return new WaitForSecondsRealtime(audioLose.clip.length);
-            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
-        }
+        gameManager.EndGame(IMiniGame.MiniGameResult.WIN);
     }
 
     public override string ToString()
