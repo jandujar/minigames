@@ -102,6 +102,20 @@ public class MenuManager : Singleton<MenuManager> {
         LaunchMiniGame();
     }
 
+    public void Launch_2017_2019_Minigames_2(){
+        currentScore = 0;
+        games = new ArrayList();
+
+        foreach (MINIGAMES_ENUM min in Enum.GetValues(typeof(MINIGAMES_ENUM)).Cast<MINIGAMES_ENUM>())
+        {
+            if (min != MINIGAMES_ENUM.END && min>=MINIGAMES_ENUM.TRILERO)
+            {
+                games.Add(min);
+            }
+        }
+        LaunchMiniGame();
+    }
+
     public void LaunchMiniGame(){
         if (games == null)
         {
