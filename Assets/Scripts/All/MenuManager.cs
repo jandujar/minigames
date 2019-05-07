@@ -82,6 +82,9 @@ public class MenuManager : Singleton<MenuManager> {
         GOLF,
         ALCHEMYWARS,
         OCTOPUS,
+
+        //2017-2019 Minigames 3
+        AMUCHALIPSIS,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -122,6 +125,20 @@ public class MenuManager : Singleton<MenuManager> {
         games.Add(MINIGAMES_ENUM.GOLF);
         games.Add(MINIGAMES_ENUM.ALCHEMYWARS);
         games.Add(MINIGAMES_ENUM.OCTOPUS);
+
+        foreach(MINIGAMES_ENUM m in games){
+            gamesCopy.Add(m);
+        }
+
+        LaunchMiniGame();
+    }
+
+    public void Launch_2017_2019_Minigames_3(){
+        currentScore = 0;
+        games = new ArrayList();
+        gamesCopy = new ArrayList();
+
+        games.Add(MINIGAMES_ENUM.AMUCHALIPSIS);
 
         foreach(MINIGAMES_ENUM m in games){
             gamesCopy.Add(m);
@@ -369,7 +386,10 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.OCTOPUS:
             SceneManager.LoadScene("Octopus");
             break;
-            case MINIGAMES_ENUM.END:
+        case MINIGAMES_ENUM.AMUCHALIPSIS:
+            SceneManager.LoadScene("Amuchalipsis");
+            break;
+        case MINIGAMES_ENUM.END:
             break;
         default:
 			SceneManager.LoadScene ("Pong");
