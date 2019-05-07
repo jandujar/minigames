@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChildController : MonoBehaviour
 {
+    bool isEnemy;
     // Start is called before the first frame update
     void Start()
     {
