@@ -23,7 +23,6 @@ namespace Bolos
         {
             if(activecount == true)
             {
-                Debug.Log(Bolos.Count);
                 BolosCant = Bolos.Count;
 
                 activecount = false;
@@ -44,6 +43,12 @@ namespace Bolos
         public void activate()
         {
             active = true;
+        }
+
+        public void restart()
+        {
+            active = false;
+            activecount = false;
         }
 
     }

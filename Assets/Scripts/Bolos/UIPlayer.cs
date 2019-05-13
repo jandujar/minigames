@@ -55,6 +55,8 @@ namespace Bolos
             float power = sliderPower.value;
             return power;   
         }
+
+
     }
 
 }

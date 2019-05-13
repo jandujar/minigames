@@ -10,6 +10,7 @@ namespace Bolos
         public GameObject Game;
         public GameObject UIBowling;
         public GameObject Bola;
+        public GameObject BolaFuera;
         public GameObject flecha;
         public GameObject Comprobador;
 
@@ -19,11 +20,16 @@ namespace Bolos
         private BolaController Bolascript;
         private UIPlayer UIPlayerScript;
         private ComprobarBillas ComprobadorScript;
+        private BolaFuera BolaFueraScript;
         private enum GameState { Planning, Go, ending}
         private GameState ActualState;
         private float hor;
         private int billasSobrantes;
-        
+        private float time;
+        private float seconds;
+        private int intentsos;
+        private Vector3 startpos;
+
 
         // Start is called before the first frame update
         public override void beginGame()
@@ -32,6 +38,8 @@ namespace Bolos
             
             Game.SetActive(true);
             ActualState = GameState.Planning;
+            intentsos = 1;
+            startpos = Bola.transform.position;
 
         }
 
@@ -42,6 +50,7 @@ namespace Bolos
             Bolascript = Bola.GetComponent<BolaController>();
             UIPlayerScript = UIBowling.GetComponent<UIPlayer>();
             ComprobadorScript = Comprobador.GetComponent<ComprobarBillas>();
+            BolaFueraScript = BolaFuera.GetComponent<BolaFuera>();
         }
 
 
@@ -83,22 +92,63 @@ namespace Bolos
                 UIBowling.SetActive(false);
                 Bolascript.LauchBall(force, direction);
                 
+                
             }
             if(ActualState == GameState.ending)
             {
-                Debug.Log("Ending");
+                
                 ComprobadorScript.activate();
                 billasSobrantes = ComprobadorScript.BolosCant;
-                if (billasSobrantes == 0)
+                time += Time.deltaTime;
+                seconds = (int)time % 60;
+                if (seconds == 2)
                 {
-                    Debug.Log(ComprobadorScript.active);
-                    Debug.Log("Strike!!!");
-                }
-                else
-                {
-                    Debug.Log(billasSobrantes);
+                    if (billasSobrantes == 0)
+                    {
+                        
+                        Debug.Log("Strike!!!");
+                        win();
+                    }
+                    else
+                    {
+                        
+                        if(intentsos == 0)
+                        {
+                            lose();
+                        }
+                        else
+                        {
+                            Debug.Log(billasSobrantes);
+                            secondintent();
+
+                        }
+                    }
                 }
             }
+        }
+
+        private void secondintent()
+        {
+            ComprobadorScript.restart();
+            BolaFueraScript.restart();
+            Bola.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            Bola.transform.position = startpos;
+            ActualState = GameState.Planning;
+            UIBowling.SetActive(true);
+            time = 0;
+            seconds = 0;
+            intentsos -= 1;
+
+        }
+
+        private void win()
+        {
+            gameManager.EndGame(MiniGameResult.WIN);
+        }
+
+        private void lose()
+        {
+            gameManager.EndGame(MiniGameResult.LOSE);
         }
 
         public void Next()
