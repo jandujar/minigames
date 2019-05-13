@@ -20,8 +20,9 @@ public class picrossCursor : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+
         // Does the ray intersect any objects excluding the player layer
-        if (shoot) {
+        /*if (shoot) {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity)) {
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
@@ -32,7 +33,7 @@ public class picrossCursor : MonoBehaviour {
                 Debug.Log("Did not Hit");
             }
             //shoot = false;
-        }
+        }*/
 
         //Movimientos
         if(InputManager.Instance.GetAxisHorizontal() > 0) {
@@ -94,9 +95,6 @@ public class picrossCursor : MonoBehaviour {
             down = false;
         }
 
-        //Boton disparar
-        if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)) {
-            shoot = true;
-        }
+        
     }
 }
