@@ -9,33 +9,39 @@ public class picrossCursor : MonoBehaviour {
     bool up;
     bool down;
     bool tope;
+    bool shoot;
     // Start is called before the first frame update
     void Start() {
-        bool right = false;
-        bool left = false;
-        bool tope = false;
+        right = false;
+        left = false;
+        tope = false;
+        shoot = false;
     }
 
     // Update is called once per frame
     void Update() {
-
-        RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity)) {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-            Debug.Log("Did Hit " + hit.collider.gameObject);
-        }
-        else {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-            Debug.Log("Did not Hit");
+        if (shoot) {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity)) {
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+                Debug.Log("Did Hit " + hit.collider.gameObject);
+            }
+            else {
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+                Debug.Log("Did not Hit");
+            }
+            //shoot = false;
         }
 
-        if (InputManager.Instance.GetAxisHorizontal() > 0) {
+        //Movimientos
+        if(InputManager.Instance.GetAxisHorizontal() > 0) {
             if (InputManager.Instance.GetAxisHorizontal() == 1) {
                 left = true;
                 tope = true;
             }
-            if (!tope || tope && left) {
+            if (left) {
+                Debug.Log("LLegue al tope");
                 transform.position = new Vector3(transform.position.x + 0.01f, transform.position.y, transform.position.z);
             }
         }
@@ -45,7 +51,7 @@ public class picrossCursor : MonoBehaviour {
                 right = true;
                 tope = true;
             }
-            if (!tope || tope && right) {
+            if (right) {
                 transform.position = new Vector3(transform.position.x - 0.01f, transform.position.y, transform.position.z);
                 Debug.Log("Move cursor right");
             }
@@ -56,7 +62,7 @@ public class picrossCursor : MonoBehaviour {
                 up = true;
                 tope = true;
             }
-            if (!tope || tope && up) {
+            if (up) {
                 transform.position = new Vector3(transform.position.x, transform.position.y + 0.01f, transform.position.z);
             }
         }
@@ -66,7 +72,7 @@ public class picrossCursor : MonoBehaviour {
                 down = true;
                 tope = true;
             }
-            if (!tope || tope && down) {
+            if (down) {
                 transform.position = new Vector3(transform.position.x, transform.position.y - 0.01f, transform.position.z);
                 Debug.Log("Move cursor right");
             }
@@ -86,6 +92,11 @@ public class picrossCursor : MonoBehaviour {
 
         if (InputManager.Instance.GetAxisVertical() > -1 && down) {
             down = false;
+        }
+
+        //Boton disparar
+        if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)) {
+            shoot = true;
         }
     }
 }
