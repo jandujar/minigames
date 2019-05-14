@@ -40,5 +40,21 @@ namespace SpaceShooter {
             }
             
         }
+        void OnTriggerEnter(Collider other){
+            if(other.name.ToLower().Contains("ring")){
+                Debug.Log("HIT");
+                health--;
+                if(health <= 0)
+                    spaceManager.EndGame(false);
+            }
+            else if(other.name.ToLower().Contains("innerzone")){
+                Debug.Log("SCORE");
+                spaceManager.score++;
+            }
+            else if(other.name.ToLower().Contains("bullet")){
+                if(health <= 0)
+                    spaceManager.EndGame(false);
+            }
+        }
     }
 }

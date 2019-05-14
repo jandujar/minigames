@@ -25,7 +25,7 @@ namespace SpaceShooter
         protected Rigidbody rb;
         protected Vector2 rotation;
         protected Vector2 cameraSpeed = new Vector2(5, 5); 
-
+        protected int health = 3;
         protected void Awake()
         {
             rb = GetComponent<Rigidbody>();
@@ -63,6 +63,10 @@ namespace SpaceShooter
         {
             GameObject tempBullet = Instantiate(spaceManager.bulletPrefab, transform.position + transform.forward * 2, transform.rotation);
             tempBullet.GetComponent<Bullet>().InitBullet(bulletType, characterType, bulletSpeed);   
+        }
+        protected void Death()
+        {
+
         }
 
         protected void Accelerate()

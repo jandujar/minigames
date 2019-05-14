@@ -7,7 +7,7 @@ namespace SpaceShooter
     public class SpaceShooterManager : IMiniGame
     {
         GameManager gameManager = null;
-        int score = 0;
+        public int score = 0;
         [SerializeField] MonoBehaviour[] allGameObjectsWithScript = null;
 
         public GameObject bulletPrefab = null;
@@ -34,6 +34,13 @@ namespace SpaceShooter
                 mb.enabled = false;
             }
             score = 0;
+        }
+
+        public void EndGame(bool win) {
+            if(win)
+                gameManager.EndGame(MiniGameResult.WIN);
+                
+            else gameManager.EndGame(MiniGameResult.LOSE);
         }
 
         // Update is called once per frame
