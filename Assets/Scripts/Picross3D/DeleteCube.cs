@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeleteCube : MonoBehaviour
-{
+public class DeleteCube : MonoBehaviour {
+
+    public bool paint;
+
     // Start is called before the first frame update
     void Start() {
-        
+        paint = false;
     }
 
     // Update is called once per frame

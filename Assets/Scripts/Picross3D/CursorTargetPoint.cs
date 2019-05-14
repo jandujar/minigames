@@ -7,41 +7,73 @@ public class CursorTargetPoint : MonoBehaviour {
     [SerializeField] GameObject objectiveObject;
     bool shoot;
     GameObject parent;
+    [SerializeField] Color paintColor;
+    bool painting;
 
     // Start is called before the first frame update
     void Start() {
         shoot = false;
+        painting = false;
     }
 
     // Update is called once per frame
     void Update() {
-        /* 
-         float maxRange = 5;
-        RaycastHit hit;
- 
-        if(Vector3.Distance(transform.position, player.position) < maxRange) {
-            if(Physics.Raycast(transform.position, (player.position - transform.position), out hit, maxRange)) {
-            if(hit.transform == player) {
-                // In Range and i can see you!
-            }
-        }
-        */
         //Boton disparar
         if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)) {
             shoot = true;
+        }
+        if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON3)) {
+            painting = true;
+        }
+        else if(InputManager.Instance.GetButtonUp(InputManager.MiniGameButtons.BUTTON3)) {
+            painting = false;
         }
 
         if (shoot) {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, (objectiveObject.transform.position - transform.position), out hit)){
-                Debug.DrawRay(transform.position, (objectiveObject.transform.position - transform.position), Color.yellow);
-                Debug.Log("Golpeo a: " + hit.collider.gameObject.name);
+                //Debug.DrawRay(transform.position, (objectiveObject.transform.position - transform.position), Color.yellow);
+                //Debug.Log("Golpeo a: " + hit.collider.gameObject.name);
                 if(hit.collider.gameObject.name == "redCube") {
-                    hit.collider.gameObject.GetComponent<Animator>().enabled = true;
+                    if (!painting && !hit.collider.gameObject.GetComponent<DeleteCube>().paint) { 
+                        hit.collider.gameObject.GetComponent<Animator>().enabled = true;
+                    }
+                    else if(painting) {
+                        if (!hit.collider.gameObject.GetComponent<DeleteCube>().paint) { 
+                            for (int i = 0; i < hit.collider.gameObject.GetComponent<Renderer>().materials.Length; i++) {
+                                hit.collider.gameObject.GetComponent<Renderer>().materials[i].color = paintColor;
+                            }
+                            hit.collider.gameObject.GetComponent<DeleteCube>().paint = true;
+                        }
+                        else {
+                            for (int i = 0; i < hit.collider.gameObject.GetComponent<Renderer>().materials.Length; i++) {
+                                hit.collider.gameObject.GetComponent<Renderer>().materials[i].color = Color.white;
+                            }
+                            hit.collider.gameObject.GetComponent<DeleteCube>().paint = false;
+                        }
+                    }
                 }
                 else if(hit.collider.gameObject.name == "Box002") {
-                    parent = hit.collider.gameObject.transform.parent.gameObject;
-                    parent.transform.GetChild(0).gameObject.SetActive(true);
+                    if(!painting && !hit.collider.gameObject.GetComponent<DeleteCube>().paint) {
+                        parent = hit.collider.gameObject.transform.parent.gameObject;
+                        parent.transform.GetChild(0).gameObject.SetActive(true);
+                    }
+                    else if(painting){
+                        if (!hit.collider.gameObject.GetComponent<DeleteCube>().paint) {
+                            for (int i = 0; i < hit.collider.gameObject.GetComponent<Renderer>().materials.Length; i++) {
+                                hit.collider.gameObject.GetComponent<Renderer>().materials[i].color = paintColor;
+                            }
+                            hit.collider.gameObject.GetComponent<DeleteCube>().paint = true;
+                        }
+                        else {
+                            for (int i = 0; i < hit.collider.gameObject.GetComponent<Renderer>().materials.Length; i++) {
+                                hit.collider.gameObject.GetComponent<Renderer>().materials[i].color = Color.white;
+                            }
+                            hit.collider.gameObject.GetComponent<DeleteCube>().paint = false;
+                        }
+                    }
+                    
+                    
                 }
             }
             shoot = false;
