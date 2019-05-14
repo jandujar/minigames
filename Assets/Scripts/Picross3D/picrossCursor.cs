@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class picrossCursor : MonoBehaviour {
 
-    float speed;
+    [SerializeField] float speed;
     float horizontal;
     float vertical;
     bool moving;
     // Start is called before the first frame update
     void Start() {
-        speed = 0.01f;
+        speed = 20f;
         moving = false;
     }
 
@@ -20,7 +20,7 @@ public class picrossCursor : MonoBehaviour {
             horizontal = speed * InputManager.Instance.GetAxisHorizontal();
             vertical = speed * InputManager.Instance.GetAxisVertical();
 
-            transform.position = new Vector3(transform.position.x + horizontal, transform.position.y + vertical, transform.position.z);
+            transform.localPosition = new Vector3(transform.localPosition.x + horizontal, transform.localPosition.y + vertical, transform.localPosition.z);
         }
         if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON3)) {
             moving = true;
