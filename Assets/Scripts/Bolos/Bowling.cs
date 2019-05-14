@@ -25,6 +25,8 @@ namespace Bolos
         public GameObject Points9;
         public GameObject Points10;
         public GameObject UIPoints;
+        public GameObject Strike;
+
         private TextMeshProUGUI Points1text;
         private TextMeshProUGUI Points2text;
         private TextMeshProUGUI Points3text;
@@ -35,6 +37,7 @@ namespace Bolos
         private TextMeshProUGUI Points8text;
         private TextMeshProUGUI Points9text;
         private TextMeshProUGUI Points10text;
+        
 
         private GameManager gameManager;
         private float force;
@@ -158,6 +161,7 @@ namespace Bolos
                         if(intentsos == 9)
                         {
                             Points1text.text = "X";
+                            Strike.SetActive(true);
                         }
                         else if(intentsos == 8)
                         {
