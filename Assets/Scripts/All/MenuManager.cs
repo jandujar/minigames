@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 using System.Linq;
-
+using Random = System.Random;
 
 public class MenuManager : Singleton<MenuManager> {
 
@@ -74,11 +74,23 @@ public class MenuManager : Singleton<MenuManager> {
         TROLLMARIO,
         IMPOSSIBLEGAME,
         DRUNKEY,
+        APPLESHOOTER,
+        SUPERHEXAGON,
+        DONKEYKONG,
+        BULLETGUIDE,
+        PANG,
+        GOLF,
+        ALCHEMYWARS,
+        OCTOPUS,
+
+        //2017-2019 Minigames 3
+        AMUCHALIPSIS,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
 
     private ArrayList games;
+    private ArrayList gamesCopy;
 
     public int currentScore;
 
@@ -86,21 +98,61 @@ public class MenuManager : Singleton<MenuManager> {
     public void InitGames(){
         currentScore = 0;
         games = new ArrayList();
+        gamesCopy = new ArrayList();
 
         foreach (MINIGAMES_ENUM min in Enum.GetValues(typeof(MINIGAMES_ENUM)).Cast<MINIGAMES_ENUM>())
         {
             if (min != MINIGAMES_ENUM.END && min>=MINIGAMES_ENUM.TRILERO)
             {
                 games.Add(min);
+                gamesCopy.Add(min);
             }
         }
+
+        LaunchMiniGame();
+    }
+
+    public void Launch_2017_2019_Minigames_2(){
+        currentScore = 0;
+        games = new ArrayList();
+        gamesCopy = new ArrayList();
+
+        games.Add(MINIGAMES_ENUM.APPLESHOOTER);
+        games.Add(MINIGAMES_ENUM.SUPERHEXAGON);
+        games.Add(MINIGAMES_ENUM.DONKEYKONG);
+        games.Add(MINIGAMES_ENUM.BULLETGUIDE);
+        games.Add(MINIGAMES_ENUM.PANG);
+        games.Add(MINIGAMES_ENUM.GOLF);
+        games.Add(MINIGAMES_ENUM.ALCHEMYWARS);
+        games.Add(MINIGAMES_ENUM.OCTOPUS);
+
+        foreach(MINIGAMES_ENUM m in games){
+            gamesCopy.Add(m);
+        }
+
+        LaunchMiniGame();
+    }
+
+    public void Launch_2017_2019_Minigames_3(){
+        currentScore = 0;
+        games = new ArrayList();
+        gamesCopy = new ArrayList();
+
+        games.Add(MINIGAMES_ENUM.AMUCHALIPSIS);
+
+        foreach(MINIGAMES_ENUM m in games){
+            gamesCopy.Add(m);
+        }
+
         LaunchMiniGame();
     }
 
     public void LaunchMiniGame(){
         if (games == null)
         {
-            InitGames();
+            foreach(MINIGAMES_ENUM m in gamesCopy){
+                games.Add(m);
+            }
         }
         if (games.Count == 0)
         {
@@ -108,11 +160,14 @@ public class MenuManager : Singleton<MenuManager> {
             return;
         }
 		
-        int actual = UnityEngine.Random.Range((int)0,(int)games.Count);
-        currentGame = (MINIGAMES_ENUM)games[actual];
+
+        Random r = new Random();
+        int rand = r.Next(0, games.Count);
+
+        currentGame = (MINIGAMES_ENUM)games[rand];
         Debug.Log ("Launch MiniGame: " + currentGame.ToString ());
 
-        games.RemoveAt(actual);
+        games.RemoveAt(rand);
 
 
 		switch (currentGame) {
@@ -307,17 +362,39 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.BULLETDODGE:
             SceneManager.LoadScene("BulletDodge");
             break;
+        case MINIGAMES_ENUM.APPLESHOOTER:
+            SceneManager.LoadScene("AppleShooter");
+            break;
+        case MINIGAMES_ENUM.SUPERHEXAGON:
+            SceneManager.LoadScene("SuperHexagon");
+        break;
+        case MINIGAMES_ENUM.DONKEYKONG:
+            SceneManager.LoadScene("DonkeyKong");
+            break;
+        case MINIGAMES_ENUM.BULLETGUIDE:
+            SceneManager.LoadScene("BulletGuide");
+            break;
+        case MINIGAMES_ENUM.PANG:
+            SceneManager.LoadScene("Pang");
+            break;
+        case MINIGAMES_ENUM.ALCHEMYWARS:
+            SceneManager.LoadScene("AlchemyWar");
+            break;
+        case MINIGAMES_ENUM.GOLF:
+            SceneManager.LoadScene("Golf");
+            break;
+        case MINIGAMES_ENUM.OCTOPUS:
+            SceneManager.LoadScene("Octopus");
+            break;
+        case MINIGAMES_ENUM.AMUCHALIPSIS:
+            SceneManager.LoadScene("Amuchalipsis");
+            break;
         case MINIGAMES_ENUM.END:
-		    default:
-			      SceneManager.LoadScene ("Pong");
-			      break;
+            break;
+        default:
+			SceneManager.LoadScene ("Pong");
+			break;
 		}
-
-        currentGame = currentGame + 1;
-        if (currentGame == MINIGAMES_ENUM.END)
-        {
-            currentGame = MINIGAMES_ENUM.PONG;
-        }
     }
 
     public void WonGame(){

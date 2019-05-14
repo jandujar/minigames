@@ -44,11 +44,11 @@ namespace XavierRibasDeTorres
             if (horit > 0)
             {
 
-                transform.Translate(0.8f, 0, 0);
+                transform.Translate(-0.5f, 0, 0);
             }
             else if (horit < 0)
             {
-                transform.Translate(-0.8f, 0, 0);
+                transform.Translate(0.5f, 0, 0);
             }
             else
             {
@@ -59,11 +59,11 @@ namespace XavierRibasDeTorres
             if (vert > 0)
             {
 
-                transform.Translate(0, 0.8f, 0);
+                transform.Translate(0, 0.5f, 0);
             }
             else if (vert < 0)
             {
-                transform.Translate(0, -0.8f, 0);
+                transform.Translate(0, -0.5f, 0);
             }
             else
             {

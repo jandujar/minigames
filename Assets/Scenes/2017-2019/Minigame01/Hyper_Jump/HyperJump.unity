@@ -112,6 +112,32 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &311723956 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6280948488921081822, guid: 75e92c6a0c6d7f34682b5e72171cfa66,
+    type: 3}
+  m_PrefabInstance: {fileID: 6280948487398551401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &385098235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3172109842534724892, guid: c92040c7eec91e34cae580b32a3c9cc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 9041527304014173977}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &385098240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385098235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7fedfc64c9e5441accd8d4542b7ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 40
+  isEnemy: 1
 --- !u!1 &606444937
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,6 +218,7 @@ GameObject:
   - component: {fileID: 1244320955}
   - component: {fileID: 1244320954}
   - component: {fileID: 1244320953}
+  - component: {fileID: 1244320956}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -256,13 +283,29 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244320952}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1244320956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244320952}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038ad00afc552494a992af5e9a9b4136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 311723956}
+  lookAt: 0
+  smoothSpeed: 0.125
+  offset: {x: 0, y: 0, z: -10}
 --- !u!1001 &6280948487398551401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -423,6 +466,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683469925669708362, guid: c92040c7eec91e34cae580b32a3c9cc4,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c92040c7eec91e34cae580b32a3c9cc4, type: 3}

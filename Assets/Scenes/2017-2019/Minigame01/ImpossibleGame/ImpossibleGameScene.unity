@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -112,63 +112,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &7954766
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1693045668524228, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
-      propertyPath: m_Name
-      value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
 --- !u!1 &9421752
 GameObject:
   m_ObjectHideFlags: 0
@@ -5024,7 +4967,7 @@ MonoBehaviour:
   - {x: -4.64, y: 14.01, z: 22.94}
   - {x: -4.64, y: 15.01, z: 22.94}
   speedNPC: 80
-  debugBoolForMatchingNPCPos: 1
+  debugBoolForMatchingNPCPos: 0
   moveGizmoswithObject: 0
 --- !u!65 &46382060
 BoxCollider:
@@ -20240,7 +20183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695469457}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.38, y: -2.86, z: -0.86}
+  m_LocalPosition: {x: 4.11, y: -2.63, z: -0.86}
   m_LocalScale: {x: 0.52122, y: 0.52122, z: 0.52122}
   m_Children: []
   m_Father: {fileID: 1945831008}
@@ -20261,10 +20204,10 @@ TextMesh:
   m_Anchor: 0
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 0
+  m_FontSize: 20
   m_FontStyle: 0
   m_RichText: 0
-  m_Font: {fileID: 12800000, guid: 1c5196e122b8e46d3aef4164c81252e8, type: 3}
+  m_Font: {fileID: 12800000, guid: c9303a120fcca6f4b92ead0244291fd6, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294946816
@@ -20285,7 +20228,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: c9303a120fcca6f4b92ead0244291fd6, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20583,7 +20526,7 @@ MonoBehaviour:
   - {x: -6.3, y: 16.36, z: 22.94}
   - {x: -2.7, y: 16.36, z: 22.94}
   speedNPC: 80
-  debugBoolForMatchingNPCPos: 1
+  debugBoolForMatchingNPCPos: 0
   moveGizmoswithObject: 0
 --- !u!65 &774484693
 BoxCollider:
@@ -45431,6 +45374,47 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!1001 &1704637349
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
 --- !u!1 &1704692375
 GameObject:
   m_ObjectHideFlags: 0
@@ -45463,7 +45447,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1704692377
 MonoBehaviour:
@@ -45481,7 +45465,7 @@ MonoBehaviour:
   playerCube: {fileID: 1456436894}
   coinList: {fileID: 0}
   Lifes: 0
-  gameManagerInstance: {fileID: 0}
+  gameManagerInstance: {fileID: 1732791264}
   lifetext: {fileID: 695469459}
   Audios:
   - {fileID: 1704692378}
@@ -45778,6 +45762,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1732791264 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114722861804383310, guid: accbdb4284a3cc84db41e410c0d99900,
+    type: 3}
+  m_PrefabInstance: {fileID: 1704637349}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4814a70c6e7b294195d0d485f34da63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1807539443
 GameObject:
   m_ObjectHideFlags: 0
@@ -51370,10 +51366,10 @@ TextMesh:
   m_Anchor: 0
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 0
+  m_FontSize: 10
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 1c5196e122b8e46d3aef4164c81252e8, type: 3}
+  m_Font: {fileID: 12800000, guid: 30f68d77312b9ba4f8979ac84c79d782, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294946816
@@ -51394,7 +51390,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 30f68d77312b9ba4f8979ac84c79d782, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
