@@ -9,6 +9,7 @@ public class CursorTargetPoint : MonoBehaviour {
     GameObject parent;
     [SerializeField] Color paintColor;
     bool painting;
+    [SerializeField] EngPicross3D Engine;
 
     // Start is called before the first frame update
     void Start() {
@@ -37,6 +38,7 @@ public class CursorTargetPoint : MonoBehaviour {
                 if(hit.collider.gameObject.name == "redCube") {
                     if (!painting && !hit.collider.gameObject.GetComponent<DeleteCube>().paint) { 
                         hit.collider.gameObject.GetComponent<Animator>().enabled = true;
+                        Engine.SetTotalCubes();
                     }
                     else if(painting) {
                         if (!hit.collider.gameObject.GetComponent<DeleteCube>().paint) { 
@@ -54,12 +56,18 @@ public class CursorTargetPoint : MonoBehaviour {
                     }
                 }
                 else if(hit.collider.gameObject.name == "Box002") {
-                    if(!painting && !hit.collider.gameObject.GetComponent<DeleteCube>().paint) {
+                    if(!painting && !hit.collider.gameObject.GetComponent<DeleteCube>().paint && !hit.collider.gameObject.GetComponent<DeleteCube>().broke) {
                         parent = hit.collider.gameObject.transform.parent.gameObject;
                         parent.transform.GetChild(0).gameObject.SetActive(true);
+                        Engine.SetLife();
+                        for (int i = 0; i < hit.collider.gameObject.GetComponent<Renderer>().materials.Length; i++) {
+                            hit.collider.gameObject.GetComponent<Renderer>().materials[i].color = paintColor;
+                        }
+                        hit.collider.gameObject.GetComponent<DeleteCube>().paint = true;
+                        hit.collider.gameObject.GetComponent<DeleteCube>().broke = true;
                     }
                     else if(painting){
-                        if (!hit.collider.gameObject.GetComponent<DeleteCube>().paint) {
+                        if (!hit.collider.gameObject.GetComponent<DeleteCube>().paint && !hit.collider.gameObject.GetComponent<DeleteCube>().broke) {
                             for (int i = 0; i < hit.collider.gameObject.GetComponent<Renderer>().materials.Length; i++) {
                                 hit.collider.gameObject.GetComponent<Renderer>().materials[i].color = paintColor;
                             }

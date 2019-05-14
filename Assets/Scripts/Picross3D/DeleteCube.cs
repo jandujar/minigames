@@ -5,6 +5,7 @@ using UnityEngine;
 public class DeleteCube : MonoBehaviour {
 
     public bool paint;
+    public bool broke;
 
     // Start is called before the first frame update
     void Start() {
