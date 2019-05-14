@@ -8,6 +8,7 @@ public class picrossCursor : MonoBehaviour {
     float horizontal;
     float vertical;
     bool moving;
+    
     // Start is called before the first frame update
     void Start() {
         speed = 20f;
