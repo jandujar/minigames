@@ -6,13 +6,18 @@ namespace HyperJump
 {
     public class ObstacleController : MonoBehaviour
     {
-        float timeCounter = 0;
 
         [SerializeField] float speed;
 
         Vector3 orbitPoint;
 
         public bool isEnemy;
+
+        public GameObject ball;
+
+        public float impulseForce;
+
+        
 
         // Start is called before the first frame update
         void Start()
@@ -24,7 +29,15 @@ namespace HyperJump
             else
             {
                 isEnemy = true;
-                GetComponent<MeshRenderer>().material.color = Color.red;
+                MeshRenderer meshRend;
+                if ( meshRend = GetComponent<MeshRenderer>()) meshRend.material.color = Color.red;
+                else
+                {
+                    for(int i = 0; i < transform.childCount; i++)
+                    {
+                        transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+                    }
+                }
             }
 
             orbitPoint = transform.parent.position;
@@ -40,11 +53,25 @@ namespace HyperJump
         void Update()
         {
             if(isEnemy)Rotate();
+            if (ball.transform.position.y < transform.position.y) Destroy();
         }
 
         void Rotate()
         {
             transform.RotateAround(orbitPoint, Vector3.up, speed*Time.deltaTime);
+        }
+
+        void Destroy()
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Transform tf = transform.GetChild(i);
+                Rigidbody rb = tf.gameObject.GetComponent<Rigidbody>();
+                tf.gameObject.GetComponent<MeshCollider>().enabled = false;
+                rb.isKinematic = false;
+                rb.AddForce(tf.rotation.eulerAngles * impulseForce);
+                tf.parent = null;
+            }
         }
     }
 }
