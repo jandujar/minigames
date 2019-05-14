@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace ivan_alvarez_enri
+namespace ivan_mario_finalminigame
 {
 public class AmuchalipsisRabbit : MonoBehaviour
 {  
