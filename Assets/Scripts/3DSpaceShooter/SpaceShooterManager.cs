@@ -8,7 +8,7 @@ namespace SpaceShooter
     {
         GameManager gameManager = null;
         int score = 0;
-        MonoBehaviour[] allGameObjectsWithScript = null;
+        [SerializeField] MonoBehaviour[] allGameObjectsWithScript = null;
 
         public GameObject bulletPrefab = null;
 

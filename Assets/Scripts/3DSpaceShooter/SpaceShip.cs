@@ -7,7 +7,7 @@ namespace SpaceShooter
 {
     public class SpaceShip : MonoBehaviour
     {
-        [SerializeField] SpaceShooterManager spaceManager = null;
+        [SerializeField] protected SpaceShooterManager spaceManager = null;
 
         [Header("Ship Properties")]
         [SerializeField] protected Bullet.BulletOwner characterType;
@@ -21,7 +21,7 @@ namespace SpaceShooter
         [SerializeField] protected Bullet.BulletType bulletType;
         [SerializeField] protected Vector3 bulletSpawnPoint;
 
-        Rigidbody rb;
+        protected Rigidbody rb;
 
         protected void Awake()
         {
@@ -42,7 +42,7 @@ namespace SpaceShooter
 
         protected virtual void ResetVariables()
         {
-            currentSpeed -= Mathf.Max(deceleration * Time.deltaTime, 0);
+            currentSpeed = Mathf.Max(currentSpeed - deceleration * Time.deltaTime, 0);
         }
 
         // Update is called once per frame
@@ -54,7 +54,7 @@ namespace SpaceShooter
 
         protected void Shoot()
         {
-            GameObject tempBullet = Instantiate(spaceManager.bulletPrefab, bulletSpawnPoint, transform.rotation);
+            GameObject tempBullet = Instantiate(spaceManager.bulletPrefab, transform.position + bulletSpawnPoint, transform.rotation);
             tempBullet.GetComponent<Bullet>().InitBullet(bulletType, characterType);
         }
 
@@ -65,12 +65,12 @@ namespace SpaceShooter
 
         protected virtual void UpdateControlls()
         {
-            //Input
+            
         }
 
         protected void OnDrawGizmos()
         {
-            Gizmos.DrawSphere(bulletSpawnPoint, 0.25f);
+            Gizmos.DrawSphere(transform.position + bulletSpawnPoint, 0.25f);
         }
     }
 }
