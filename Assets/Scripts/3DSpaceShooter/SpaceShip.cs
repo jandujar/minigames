@@ -20,8 +20,11 @@ namespace SpaceShooter
         [Header("Bullet")]
         [SerializeField] protected Bullet.BulletType bulletType;
         [SerializeField] protected Vector3 bulletSpawnPoint;
+        [SerializeField] protected float bulletSpeed;
 
         protected Rigidbody rb;
+        protected Vector2 rotation;
+        protected Vector2 cameraSpeed = new Vector2(5, 5); 
 
         protected void Awake()
         {
@@ -50,12 +53,16 @@ namespace SpaceShooter
         {
             ResetVariables();
             UpdateControlls();
+            rotation.y += cameraSpeed.x * Input.GetAxis("Mouse X");
+            rotation.x -= cameraSpeed.y * Input.GetAxis("Mouse Y");
+
+            transform.eulerAngles = new Vector3(rotation.x, rotation.y, 0.0f);
         }
 
         protected void Shoot()
         {
-            GameObject tempBullet = Instantiate(spaceManager.bulletPrefab, transform.position + bulletSpawnPoint, transform.rotation);
-            tempBullet.GetComponent<Bullet>().InitBullet(bulletType, characterType);
+            GameObject tempBullet = Instantiate(spaceManager.bulletPrefab, transform.position + transform.forward * 2, transform.rotation);
+            tempBullet.GetComponent<Bullet>().InitBullet(bulletType, characterType, bulletSpeed);   
         }
 
         protected void Accelerate()

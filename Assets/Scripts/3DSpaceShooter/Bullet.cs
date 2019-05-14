@@ -15,23 +15,17 @@ namespace SpaceShooter
         protected float speed = 5;
         protected float lifeTime = 5;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        public void InitBullet(BulletType bt, BulletOwner bo)
+        public void InitBullet(BulletType bt, BulletOwner bo, float speed)
         {
             bulletType = bt;
             bulletOwner = bo;
-
+            this.speed = speed;
         }
 
         // Update is called once per frame
         void Update()
         {
-            transform.position += speed * Vector3.forward * Time.deltaTime;
+            transform.position += speed * transform.forward * Time.deltaTime;
             if((lifeTime -= Time.deltaTime) <= 0) Destroy(gameObject);
         }
     }
