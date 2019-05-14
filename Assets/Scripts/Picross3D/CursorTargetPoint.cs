@@ -6,6 +6,7 @@ public class CursorTargetPoint : MonoBehaviour {
 
     [SerializeField] GameObject objectiveObject;
     bool shoot;
+    GameObject parent;
 
     // Start is called before the first frame update
     void Start() {
@@ -37,6 +38,10 @@ public class CursorTargetPoint : MonoBehaviour {
                 Debug.Log("Golpeo a: " + hit.collider.gameObject.name);
                 if(hit.collider.gameObject.name == "redCube") {
                     hit.collider.gameObject.GetComponent<Animator>().enabled = true;
+                }
+                else if(hit.collider.gameObject.name == "Box002") {
+                    parent = hit.collider.gameObject.transform.parent.gameObject;
+                    parent.transform.GetChild(0).gameObject.SetActive(true);
                 }
             }
             shoot = false;
