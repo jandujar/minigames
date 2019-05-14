@@ -14,6 +14,7 @@ namespace Bolos
         void Start()
         {
             rgbBola = GetComponent<Rigidbody>();
+           
         }
 
         // Update is called once per frame

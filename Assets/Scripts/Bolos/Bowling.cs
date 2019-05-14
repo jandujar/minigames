@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Bolos
@@ -13,6 +14,27 @@ namespace Bolos
         public GameObject BolaFuera;
         public GameObject flecha;
         public GameObject Comprobador;
+        public GameObject Points1;
+        public GameObject Points2;
+        public GameObject Points3;
+        public GameObject Points4;
+        public GameObject Points5;
+        public GameObject Points6;
+        public GameObject Points7;
+        public GameObject Points8;
+        public GameObject Points9;
+        public GameObject Points10;
+        public GameObject UIPoints;
+        private TextMeshProUGUI Points1text;
+        private TextMeshProUGUI Points2text;
+        private TextMeshProUGUI Points3text;
+        private TextMeshProUGUI Points4text;
+        private TextMeshProUGUI Points5text;
+        private TextMeshProUGUI Points6text;
+        private TextMeshProUGUI Points7text;
+        private TextMeshProUGUI Points8text;
+        private TextMeshProUGUI Points9text;
+        private TextMeshProUGUI Points10text;
 
         private GameManager gameManager;
         private float force;
@@ -29,6 +51,8 @@ namespace Bolos
         private float seconds;
         private int intentsos;
         private Vector3 startpos;
+        private int BolosTirados;
+        private int BolosTotales;
 
 
         // Start is called before the first frame update
@@ -38,7 +62,8 @@ namespace Bolos
             
             Game.SetActive(true);
             ActualState = GameState.Planning;
-            intentsos = 1;
+            intentsos = 9;
+            BolosTotales = 10;
             startpos = Bola.transform.position;
 
         }
@@ -51,6 +76,16 @@ namespace Bolos
             UIPlayerScript = UIBowling.GetComponent<UIPlayer>();
             ComprobadorScript = Comprobador.GetComponent<ComprobarBillas>();
             BolaFueraScript = BolaFuera.GetComponent<BolaFuera>();
+            Points1text = Points1.GetComponent<TextMeshProUGUI>();
+            Points2text = Points2.GetComponent<TextMeshProUGUI>();
+            Points3text = Points3.GetComponent<TextMeshProUGUI>();
+            Points4text = Points4.GetComponent<TextMeshProUGUI>();
+            Points5text = Points5.GetComponent<TextMeshProUGUI>();
+            Points6text = Points6.GetComponent<TextMeshProUGUI>();
+            Points7text = Points7.GetComponent<TextMeshProUGUI>();
+            Points8text = Points8.GetComponent<TextMeshProUGUI>();
+            Points9text = Points9.GetComponent<TextMeshProUGUI>();
+            Points10text = Points10.GetComponent<TextMeshProUGUI>();
         }
 
 
@@ -63,7 +98,7 @@ namespace Bolos
             
             if(ActualState == GameState.Planning)
             {
-
+                UIPoints.SetActive(false);
                 hor = InputManager.Instance.GetAxisHorizontal();
                 Vector3 Direct = (flecha.transform.position - Bola.transform.position).normalized;
                 Quaternion LookRotation = Quaternion.LookRotation(Direct); 
@@ -99,28 +134,123 @@ namespace Bolos
                 
                 ComprobadorScript.activate();
                 billasSobrantes = ComprobadorScript.BolosCant;
+
                 time += Time.deltaTime;
                 seconds = (int)time % 60;
+                UIPoints.SetActive(true);
+
+
                 if (seconds == 2)
                 {
-                    if (billasSobrantes == 0)
+                    if (billasSobrantes != BolosTotales)
+                    {
+                        BolosTirados = BolosTotales - billasSobrantes;
+                        BolosTotales = billasSobrantes;
+                        
+                    }else
+                    {
+                        BolosTirados = 0;
+                    }
+                        if (billasSobrantes == 0)
                     {
                         
-                        Debug.Log("Strike!!!");
-                        win();
+                        
+                        if(intentsos == 9)
+                        {
+                            Points1text.text = "X";
+                        }
+                        else if(intentsos == 8)
+                        {
+                            Points2text.text = "-";
+                        }
+                        else if(intentsos == 7)
+                        {
+                            Points3text.text = BolosTirados.ToString();
+                        }
+                        else if(intentsos == 6)
+                        {
+                            Points4text.text = BolosTirados.ToString();
+                        }
+                        else if(intentsos == 5)
+                        {
+                            Points5text.text = BolosTirados.ToString();
+                        }
+                        else if(intentsos == 4)
+                        {
+                            Points6text.text = BolosTirados.ToString();
+                        }
+                        else if(intentsos == 3)
+                        {
+                            Points7text.text = BolosTirados.ToString();
+                        }
+                        else if(intentsos == 2)
+                        {
+                            Points8text.text = BolosTirados.ToString();
+                        }
+                        else if(intentsos == 1)
+                        {
+                            Points9text.text = BolosTirados.ToString();
+                        }
+                        else
+                        {
+                            Points9text.text = BolosTirados.ToString();
+                        }
+                            win();
                     }
                     else
                     {
                         
                         if(intentsos == 0)
                         {
-                            lose();
+                            
+                                lose();
+                            
                         }
                         else
                         {
-                            Debug.Log(billasSobrantes);
-                            secondintent();
-
+                            if(intentsos == 9)
+                            {
+                                Points1text.text = BolosTirados.ToString();
+                            }
+                            else if(intentsos == 8)
+                            {
+                                Points2text.text = BolosTirados.ToString();
+                            }
+                            else if(intentsos == 7)
+                            {
+                                Points3text.text = BolosTirados.ToString();
+                            }
+                            else if (intentsos == 6)
+                            {
+                                Points4text.text = BolosTirados.ToString();
+                            }
+                            else if (intentsos == 5)
+                            {
+                                Points5text.text = BolosTirados.ToString();
+                            }
+                            else if (intentsos == 4)
+                            {
+                                Points6text.text = BolosTirados.ToString();
+                            }
+                            else if (intentsos == 3)
+                            {
+                                Points7text.text = BolosTirados.ToString();
+                            }
+                            else if (intentsos == 2)
+                            {
+                                Points8text.text = BolosTirados.ToString();
+                            }
+                            else if (intentsos == 1)
+                            {
+                                Points9text.text = BolosTirados.ToString();
+                            }
+                            else
+                            {
+                                Points9text.text = BolosTirados.ToString();
+                            }
+                            
+                                secondintent();
+                            
                         }
                     }
                 }

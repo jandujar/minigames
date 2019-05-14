@@ -11,6 +11,7 @@ namespace Bolos
         private bool activecount;
         private List<Collider> Bolos = new List<Collider>();
 
+
         // Start is called before the first frame update
         void Start()
         {
@@ -23,25 +24,41 @@ namespace Bolos
         {
             if(activecount == true)
             {
+                
                 BolosCant = Bolos.Count;
+                
 
                 activecount = false;
+            }
+            
+            if(BolosCant != Bolos.Count)
+            {
+
+
+                BolosCant = Bolos.Count;
+
             }
         }
         void OnTriggerStay(Collider col)
         {
+            
             if (active == true)
             {
+                Debug.Log(active);
                 if(!Bolos.Contains(col) && col.name == "Billas")
                 {
                     Bolos.Add(col);
-                    activecount = true;
+                    
                 }
+                
+                activecount = true;
+                
             }
         }
 
         public void activate()
         {
+            
             active = true;
         }
 
@@ -49,6 +66,8 @@ namespace Bolos
         {
             active = false;
             activecount = false;
+            Bolos.Clear();
+            
         }
 
     }
