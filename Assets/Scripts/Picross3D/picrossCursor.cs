@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class picrossCursor : MonoBehaviour {
 
-    bool left;
-    bool right;
-    bool up;
-    bool down;
-    bool tope;
-    bool shoot;
     float speed;
     float horizontal;
     float vertical;
+    bool moving;
     // Start is called before the first frame update
     void Start() {
-        right = false;
-        left = false;
-        tope = false;
-        shoot = false;
         speed = 0.01f;
+        moving = false;
     }
 
     // Update is called once per frame
     void Update() {
-        horizontal = speed * InputManager.Instance.GetAxisHorizontal();
-        vertical = speed * InputManager.Instance.GetAxisVertical();
+        if (!moving) {
+            horizontal = speed * InputManager.Instance.GetAxisHorizontal();
+            vertical = speed * InputManager.Instance.GetAxisVertical();
 
-        transform.position = new Vector3(transform.position.x + horizontal, transform.position.y + vertical, transform.position.z);
+            transform.position = new Vector3(transform.position.x + horizontal, transform.position.y + vertical, transform.position.z);
+        }
+        if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON3)) {
+            moving = true;
+        }
+        else if (InputManager.Instance.GetButtonUp(InputManager.MiniGameButtons.BUTTON3)) {
+            moving = false;
+        }
     }
 }
