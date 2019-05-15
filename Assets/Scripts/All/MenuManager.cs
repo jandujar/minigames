@@ -82,6 +82,7 @@ public class MenuManager : Singleton<MenuManager> {
         GOLF,
         ALCHEMYWARS,
         OCTOPUS,
+        ARKANOID,
 
         //2017-2019 Minigames 3
         AMUCHALIPSIS,
@@ -389,7 +390,10 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.AMUCHALIPSIS:
             SceneManager.LoadScene("Amuchalipsis");
             break;
-        case MINIGAMES_ENUM.END:
+           case MINIGAMES_ENUM.ARKANOID:
+               SceneManager.LoadScene("Arkanoid");
+               break;
+            case MINIGAMES_ENUM.END:
             break;
         default:
 			SceneManager.LoadScene ("Pong");
