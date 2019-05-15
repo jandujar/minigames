@@ -8,19 +8,30 @@ namespace Bolos
     {
 
         private Rigidbody rgbBola;
+        public bool activateSound;
 
 
         // Start is called before the first frame update
         void Start()
         {
             rgbBola = GetComponent<Rigidbody>();
-           
+            activateSound = false;
+
+
         }
 
         // Update is called once per frame
         void Update()
         {
             
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if(collision.collider.name == "Billas")
+            {
+                activateSound = true;
+            }
         }
 
         public void LauchBall(float force,Vector3 direction)
