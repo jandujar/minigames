@@ -9,12 +9,12 @@ namespace joan_Bogunya_Piferrer
     {
         public override void beginGame()
         {
-            throw new System.NotImplementedException();
+           
         }
 
         public override void initGame(MiniGameDificulty difficulty, GameManager gm)
         {
-            throw new System.NotImplementedException();
+           
         }
     }
 }
