@@ -44,7 +44,7 @@ namespace Bolos
             
             if (active == true)
             {
-                Debug.Log(active);
+
                 if(!Bolos.Contains(col) && col.name == "Billas")
                 {
                     Bolos.Add(col);
