@@ -1,18 +1,27 @@
-﻿using System.Collections;
+﻿using HyperJump;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class BallController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float breakVelocity;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        Debug.Log(GetComponent<Rigidbody>().velocity);
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.GetComponent<MeshRenderer>().material.color == Color.red)
+        {
+            Debug.Log("Game Over");
+            if(GetComponent<Rigidbody>().velocity.z > breakVelocity)
+            {
+                collision.transform.parent.gameObject.GetComponent<ObstacleController>().Shoot();
+            }
+        }
     }
 }

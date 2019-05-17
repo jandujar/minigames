@@ -10,6 +10,8 @@ namespace Eric_Sanchez_Verges
         [SerializeField] protected float speed;
         [SerializeField] protected float forwardSpeed;
 
+        
+
         protected float x, y, z;
         protected float angularSpeed = 0f;
 
@@ -52,7 +54,7 @@ namespace Eric_Sanchez_Verges
 
         protected virtual void Initialize()
         {
-            transform.position = Vector3.forward * 25f;
+            transform.position = new Vector3(0,0,transform.position.z);
             z = transform.position.z;
             PickDirection();
             render.enabled = true;
@@ -61,7 +63,7 @@ namespace Eric_Sanchez_Verges
         protected virtual void UpdateObject()
         {
             if(transform.position.z < -1f)render.enabled = false;
-            if (transform.position.z < -5) Initialize();
+            if (transform.position.z < -5) Destroy(gameObject);//Initialize();
         }
 
         protected virtual void OnTriggerEnter(Collider other)

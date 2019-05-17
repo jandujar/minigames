@@ -53,7 +53,7 @@ namespace HyperJump
         void Update()
         {
             if(isEnemy)Rotate();
-            if (ball.transform.position.y < transform.position.y) Destroy();
+            if (ball.transform.position.y < transform.position.y) Shoot();
         }
 
         void Rotate()
@@ -61,7 +61,7 @@ namespace HyperJump
             transform.RotateAround(orbitPoint, Vector3.up, speed*Time.deltaTime);
         }
 
-        void Destroy()
+        public void Shoot()
         {
             for (int i = 0; i < transform.childCount; i++)
             {
