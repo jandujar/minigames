@@ -14,6 +14,7 @@ namespace SpaceShooter
 
         public override void beginGame()
         {
+            Debug.Log("Begin Game");
             score = 0;
             foreach (MonoBehaviour mb in allGameObjectsWithScript)
             {
@@ -23,7 +24,8 @@ namespace SpaceShooter
 
         public override void initGame(MiniGameDificulty difficulty, GameManager gm)
         {
-            gm = gameManager;
+            Debug.Log("Init Game");
+            gameManager = gm;
         }
 
         // Start is called before the first frame update

@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 7284218167102844403}
   - component: {fileID: 20394698118979608}
   - component: {fileID: 4146790174615090185}
+  - component: {fileID: 3901533178259029299}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: NaveShoot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletType: 0
   bulletOwner: 0
+  explosionCollider: {fileID: 3901533178259029299}
 --- !u!54 &4146790174615090185
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -122,4 +124,17 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
+--- !u!135 &3901533178259029299
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3886919767009335712}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 7.5
+  m_Center: {x: 0, y: 0, z: 0}

@@ -64,9 +64,15 @@ namespace SpaceShooter
             GameObject tempBullet = Instantiate(spaceManager.bulletPrefab, transform.position + transform.forward * 2, transform.rotation);
             tempBullet.GetComponent<Bullet>().InitBullet(bulletType, characterType, bulletSpeed);   
         }
-        protected void Death()
+        protected virtual void Death()
         {
 
+        }
+
+        public void GetDamage()
+        {
+            Debug.Log("PIMBA!");
+            if (--health == 0) Death();
         }
 
         protected void Accelerate()
