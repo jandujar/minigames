@@ -38,7 +38,10 @@ namespace SpaceShooter {
             if(InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON4)){
                 Accelerate();
             }
-            
+
+            inputRotation.y = Input.GetAxis("Mouse X");
+            inputRotation.x = -Input.GetAxis("Mouse Y");
+
         }
         void OnTriggerEnter(Collider other){
             if(other.name.ToLower().Contains("ring")){

@@ -13,9 +13,10 @@ namespace SpaceShooter
         [SerializeField] protected Bullet.BulletOwner characterType;
         [SerializeField] protected float minSpeed = 0;
         [SerializeField] protected float maxSpeed = 0, acceleration = 0, deceleration = 0;
+        [SerializeField] protected float rotationSpeed = 0;
 
         protected float currentSpeed;
-        protected Vector2 inputMovement;
+        protected Vector2 inputMovement, inputRotation;
 
         [Header("Bullet")]
         [SerializeField] protected Bullet.BulletType bulletType;
@@ -24,7 +25,6 @@ namespace SpaceShooter
 
         protected Rigidbody rb;
         protected Vector2 rotation;
-        protected Vector2 cameraSpeed = new Vector2(5, 5); 
         protected int health = 3;
         protected void Awake()
         {
@@ -41,6 +41,10 @@ namespace SpaceShooter
         protected virtual void FixedUpdate()
         {
             rb.velocity = transform.forward * currentSpeed;
+
+            rotation += inputRotation * rotationSpeed * Time.deltaTime;
+
+            transform.eulerAngles = new Vector3(rotation.x, rotation.y, 0.0f);
         }
 
         protected virtual void ResetVariables()
@@ -53,10 +57,6 @@ namespace SpaceShooter
         {
             ResetVariables();
             UpdateControlls();
-            rotation.y += cameraSpeed.x * Input.GetAxis("Mouse X");
-            rotation.x -= cameraSpeed.y * Input.GetAxis("Mouse Y");
-
-            transform.eulerAngles = new Vector3(rotation.x, rotation.y, 0.0f);
         }
 
         protected void Shoot()
