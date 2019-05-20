@@ -104,7 +104,7 @@ namespace Bolos
                 UIPoints.SetActive(false);
                 hor = InputManager.Instance.GetAxisHorizontal();
                 Vector3 Direct = (flecha.transform.position - Bola.transform.position).normalized;
-                Quaternion LookRotation = Quaternion.LookRotation(Direct); 
+                
 
                 if(hor > 0)
                 {
@@ -197,7 +197,7 @@ namespace Bolos
                         }
                         else
                         {
-                            Points9text.text = BolosTirados.ToString();
+                            Points10text.text = BolosTirados.ToString();
                         }
                             win();
                     }
@@ -250,7 +250,7 @@ namespace Bolos
                             }
                             else
                             {
-                                Points9text.text = BolosTirados.ToString();
+                                Points10text.text = BolosTirados.ToString();
                             }
                             
                                 secondintent();

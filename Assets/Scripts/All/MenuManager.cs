@@ -78,18 +78,14 @@ public class MenuManager : Singleton<MenuManager> {
         SUPERHEXAGON,
         DONKEYKONG,
         BULLETGUIDE,
-<<<<<<< HEAD
-        BOLERA,
-=======
         PANG,
         GOLF,
         ALCHEMYWARS,
         OCTOPUS,
-
         //2017-2019 Minigames 3
         AMUCHALIPSIS,
->>>>>>> d97c80d2330e670e002b1929f6db194eb0df444c
-		END };
+        BOLERA,
+        END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
 
@@ -378,10 +374,9 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.BULLETGUIDE:
             SceneManager.LoadScene("BulletGuide");
             break;
-<<<<<<< HEAD
         case MINIGAMES_ENUM.BOLERA:
             SceneManager.LoadScene("Bolos");
-=======
+            break;
         case MINIGAMES_ENUM.PANG:
             SceneManager.LoadScene("Pang");
             break;
@@ -396,7 +391,6 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.AMUCHALIPSIS:
             SceneManager.LoadScene("Amuchalipsis");
->>>>>>> d97c80d2330e670e002b1929f6db194eb0df444c
             break;
         case MINIGAMES_ENUM.END:
             break;
