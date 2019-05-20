@@ -74,7 +74,7 @@ public class Amuchalipsis_Player : MonoBehaviour
         TimeSurviveTEXT.text = ((int)TimeSurvive % 60).ToString();
     }
 
-    private void moreStamina()
+    public void moreStamina()
     {
         if (stamina + staminaWithRabbit <= maxStamina)
             stamina += staminaWithRabbit;
@@ -82,7 +82,7 @@ public class Amuchalipsis_Player : MonoBehaviour
             stamina = maxStamina;
 
     }
-    private void lessStamina()
+    public void lessStamina()
     {
         stamina -= staminaWithMeteor;
 
