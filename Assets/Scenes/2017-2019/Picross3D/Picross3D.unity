@@ -587,6 +587,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paint: 0
   broke: 0
+--- !u!114 &311208276 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114722861804383310, guid: accbdb4284a3cc84db41e410c0d99900,
+    type: 3}
+  m_PrefabInstance: {fileID: 1704637349}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4814a70c6e7b294195d0d485f34da63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &311785219 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 908095345397721739, guid: 52247870e0a9e41468e632939fa5f6d7,
@@ -858,7 +870,6 @@ GameObject:
   - component: {fileID: 468649741}
   - component: {fileID: 468649740}
   - component: {fileID: 468649739}
-  - component: {fileID: 468649743}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -946,20 +957,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &468649743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468649738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26d122d2bb51aef429074f9aeebdea4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxlifes: 3
-  fatherLife: {fileID: 1299632150}
 --- !u!1 &488138298 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 908095345886683499, guid: 52247870e0a9e41468e632939fa5f6d7,
@@ -1901,7 +1898,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1460516886064934, guid: 3ead1508950f7e94c921970a52af1be5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4962569895473770, guid: 3ead1508950f7e94c921970a52af1be5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2611,7 +2608,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1693045668524228, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2687,10 +2684,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1704692375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02f46ab5ab3ea9c4097577739a5c8e30, type: 3}
+  m_Script: {fileID: 11500000, guid: 26d122d2bb51aef429074f9aeebdea4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 543205654}
+  gameManagerInstance: {fileID: 311208276}
+  maxlifes: 0
+  fatherLife: {fileID: 0}
 --- !u!1 &1709954620 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 908095346308261885, guid: 52247870e0a9e41468e632939fa5f6d7,
@@ -2858,7 +2857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectiveObject: {fileID: 1378504111}
   paintColor: {r: 0, g: 1, b: 0.17216468, a: 1}
-  Engine: {fileID: 468649743}
+  Engine: {fileID: 1704692377}
 --- !u!1 &1880776095 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 908095346172091911, guid: 52247870e0a9e41468e632939fa5f6d7,

@@ -11,6 +11,7 @@ public class CursorTargetPoint : MonoBehaviour {
     bool painting;
     [SerializeField] EngPicross3D Engine;
 
+
     // Start is called before the first frame update
     void Start() {
         shoot = false;
@@ -19,15 +20,20 @@ public class CursorTargetPoint : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        //Boton disparar
-        if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)) {
-            shoot = true;
-        }
-        if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON3)) {
-            painting = true;
-        }
-        else if(InputManager.Instance.GetButtonUp(InputManager.MiniGameButtons.BUTTON3)) {
-            painting = false;
+
+        if (Engine.startofGame) { 
+
+            //Boton disparar
+            if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)) {
+                shoot = true;
+            }
+            if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON3)) {
+                painting = true;
+            }
+            else if(InputManager.Instance.GetButtonUp(InputManager.MiniGameButtons.BUTTON3)) {
+                painting = false;
+            }
+
         }
 
         if (shoot) {
