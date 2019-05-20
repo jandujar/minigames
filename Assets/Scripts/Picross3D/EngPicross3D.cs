@@ -28,6 +28,8 @@ public class EngPicross3D : IMiniGame
 
     public override void beginGame()
     {
+
+        gameObject.GetComponent<AudioSource>().Play();
         startofGame = true;
     }
 
@@ -43,8 +45,7 @@ public class EngPicross3D : IMiniGame
         if (maxlifes <= 0) maxlifes = 3;
         lifes = maxlifes;
         badCubes = GameObject.FindGameObjectsWithTag("Walls").Length;
-        //badCubesNum = GameObject.FindGameObjectsWithTag("Walls").Length;
-        badCubesNum = 2;
+        badCubesNum = GameObject.FindGameObjectsWithTag("Walls").Length;
     }
 
     // Update is called once per frame
