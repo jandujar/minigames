@@ -13,10 +13,14 @@ namespace SpaceShooter
         [SerializeField] protected Bullet.BulletOwner characterType;
         [SerializeField] protected float minSpeed = 0;
         [SerializeField] protected float maxSpeed = 0, acceleration = 0, deceleration = 0;
-        [SerializeField] protected float rotationSpeed = 0;
+        [SerializeField] protected float maxRollSpeed = 0;
+        [SerializeField] protected float maxPitchSpeed = 0;
+        [SerializeField] protected float cameraRotationSpeed = 0;
 
         protected float currentSpeed;
-        protected Vector2 inputMovement, inputRotation;
+        protected float currentRollSpeed;
+        protected float currentPitchSpeed;
+        protected Vector2 inputMovement, inputCameraRotation;
 
         [Header("Bullet")]
         [SerializeField] protected Bullet.BulletType bulletType;
@@ -24,7 +28,7 @@ namespace SpaceShooter
         [SerializeField] protected float bulletSpeed;
 
         protected Rigidbody rb;
-        protected Vector2 rotation;
+        protected Vector2 cameraRotation;
         protected int health = 3;
         protected void Awake()
         {
@@ -42,9 +46,10 @@ namespace SpaceShooter
         {
             rb.velocity = transform.forward * currentSpeed;
 
-            rotation += inputRotation * rotationSpeed * Time.deltaTime;
+            cameraRotation += inputCameraRotation * cameraRotationSpeed * Time.deltaTime;
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x + currentPitchSpeed, transform.localEulerAngles.y, transform.localEulerAngles.z + currentRollSpeed);
 
-            transform.eulerAngles = new Vector3(rotation.x, rotation.y, 0.0f);
+            transform.GetChild(0).eulerAngles = new Vector3(cameraRotation.x, cameraRotation.y, 0.0f);
         }
 
         protected virtual void ResetVariables()

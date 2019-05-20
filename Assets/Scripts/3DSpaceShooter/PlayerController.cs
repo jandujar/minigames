@@ -38,9 +38,11 @@ namespace SpaceShooter {
             if(InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON4)){
                 Accelerate();
             }
+            currentPitchSpeed = maxPitchSpeed * InputManager.Instance.GetAxisVertical();
+            currentRollSpeed = maxRollSpeed * -InputManager.Instance.GetAxisHorizontal();
 
-            inputRotation.y = Input.GetAxis("Mouse X");
-            inputRotation.x = -Input.GetAxis("Mouse Y");
+            inputCameraRotation.y = Input.GetAxis("Mouse X") * mouseSensitivty;
+            inputCameraRotation.x = -Input.GetAxis("Mouse Y") * mouseSensitivty;
 
         }
         void OnTriggerEnter(Collider other){
