@@ -36,7 +36,8 @@ public class CursorTargetPoint : MonoBehaviour {
                 //Debug.DrawRay(transform.position, (objectiveObject.transform.position - transform.position), Color.yellow);
                 //Debug.Log("Golpeo a: " + hit.collider.gameObject.name);
                 if(hit.collider.gameObject.name == "redCube") {
-                    if (!painting && !hit.collider.gameObject.GetComponent<DeleteCube>().paint) { 
+                    if (!painting && !hit.collider.gameObject.GetComponent<DeleteCube>().paint) {
+                        hit.collider.gameObject.GetComponent<BoxCollider>().enabled = false;
                         hit.collider.gameObject.GetComponent<Animator>().enabled = true;
                         Engine.SetTotalCubes();
                     }
