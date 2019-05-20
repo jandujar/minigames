@@ -22,14 +22,14 @@ public class Rolling : MonoBehaviour {
     }
 
     void go() {
-        transform.position = new Vector3(transform.position.x + (0.02f * direction),
+        transform.position = new Vector3(transform.position.x + (0.04f * direction),
                                          transform.position.y, transform.position.z);
     }
 
     void falling() {
         if(fallingTimes < 11) {
             transform.position = new Vector3(transform.position.x,
-                                         transform.position.y - 0.127f,
+                                         transform.position.y - 0.170545f,
                                          transform.position.z);
             fallingTimes++;
         }
@@ -46,6 +46,10 @@ public class Rolling : MonoBehaviour {
             moving = false;
             CancelInvoke("go");
             InvokeRepeating("falling", 0f, 0.02f);
+        }
+
+        if(collision.gameObject.name == "delete") {
+            Destroy(this.gameObject);
         }
     }
 }

@@ -10,7 +10,7 @@ public class CameraRotation : MonoBehaviour
 
     private float yaw = 0.0f;
     private float pitch = 0.0f;
-
+    private float oldyaw, oldpitch;
 
     public Camera CameraChild;
 
@@ -18,6 +18,8 @@ public class CameraRotation : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
     }
 
@@ -25,13 +27,25 @@ public class CameraRotation : MonoBehaviour
     void Update()
     {
 
-        yaw += speedH * Input.GetAxis("Mouse X");
-        pitch -= speedV * Input.GetAxis("Mouse Y");
+        yaw += speedH * InputManager.Instance.GetAxisHorizontal();
+        pitch -= speedV * InputManager.Instance.GetAxisVertical();
 
         transform.eulerAngles = new Vector3(0.0f, yaw, 0.0f);
 
+
+        if (pitch < -80) {
+
+            pitch = -80;
+        }
+        else  if(pitch > 80)
+        {
+            pitch = 80;
+        }
+
         
         CameraChild.transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+
+        
 
 
     }
