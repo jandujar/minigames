@@ -54,7 +54,9 @@ public class AmuchalipsisRabbit : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.tag=="Player"){
+            other.gameObject.GetComponent<Amuchalipsis_Player>().moreStamina();
             Die();
+            
         }
     }
 }

@@ -8,7 +8,7 @@ namespace ivan_mario_finalminigame
 public class AmuchalipsisMeteorito : MonoBehaviour
 {
     public float rayRange=5000;
-    private float size=1;
+    
     private float Velocity=0;
     private GameObject CircleParticle;
  void OnDrawGizmosSelected()
@@ -21,11 +21,11 @@ public class AmuchalipsisMeteorito : MonoBehaviour
     void Start()
     {
         int layerMask = 1 << 9;
-        size=Random.Range(1,10);
-        gameObject.transform.localScale*=size;
+       
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 30000, layerMask))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
         {
+            Debug.LogError(hit.collider.gameObject.name);
             CircleParticle=Instantiate(Resources.Load("Amuchalipsis/CircleCollisionPart"), hit.point-new Vector3(0,-0.2f,0), Quaternion.FromToRotation(Vector3.forward, hit.normal)) as GameObject;
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward)*rayRange , Color.yellow,2F);
             Debug.Log("Did Hit");
@@ -33,9 +33,9 @@ public class AmuchalipsisMeteorito : MonoBehaviour
         else
         {
             
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward)*rayRange, Color.white,2F);
+           
             Destroy(gameObject);
-            Debug.Log("Did not Hit");
+           
         }
 
         
