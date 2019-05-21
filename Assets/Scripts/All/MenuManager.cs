@@ -82,11 +82,11 @@ public class MenuManager : Singleton<MenuManager> {
         GOLF,
         ALCHEMYWARS,
         OCTOPUS,
-
         //2017-2019 Minigames 3
         AMUCHALIPSIS,
+        BOLERA,
         HYPERJUMP,
-		END };
+		    END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
 
@@ -374,6 +374,9 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.BULLETGUIDE:
             SceneManager.LoadScene("BulletGuide");
+            break;
+        case MINIGAMES_ENUM.BOLERA:
+            SceneManager.LoadScene("Bolos");
             break;
         case MINIGAMES_ENUM.PANG:
             SceneManager.LoadScene("Pang");
