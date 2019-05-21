@@ -38,6 +38,12 @@ namespace SpaceShooter
             }
 
         }
+
+        protected override void Death()
+        {
+            base.Death();
+            Destroy(gameObject);
+        }
     }
 
 }

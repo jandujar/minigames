@@ -31,7 +31,10 @@ namespace SpaceShooter {
         {
             base.FixedUpdate();
             cameraRotation += inputCameraRotation * cameraRotationSpeed * Time.deltaTime;
-            transform.GetChild(0).localRotation = Quaternion.Euler(cameraRotation.x, cameraRotation.y, 0.0f);
+            Camera.main.transform.parent.localRotation = 
+                Quaternion.Euler(transform.rotation.eulerAngles.x + cameraRotation.x,
+                    transform.rotation.eulerAngles.y + cameraRotation.y, 
+                        0);
         }
 
         // Update is called once per frame

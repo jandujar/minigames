@@ -7,7 +7,7 @@ namespace SpaceShooter
 {
     public class SpaceShip : MonoBehaviour
     {
-        const float LERP_SPEED = 5;
+        const float ROTATION_MULTIPLY = 10F;
 
         [SerializeField] protected SpaceShooterManager spaceManager = null;
 
@@ -51,7 +51,8 @@ namespace SpaceShooter
 
             transform.eulerAngles =  
                 new Vector3(Mathf.Clamp(RealRotationToEditorRotation(transform.eulerAngles.x), -60, 60), 
-                transform.eulerAngles.y, 0);
+                transform.eulerAngles.y, 
+                    currentRollSpeed * ROTATION_MULTIPLY);
         }
 
         protected virtual void ResetVariables()
@@ -68,7 +69,7 @@ namespace SpaceShooter
 
         protected void Shoot()
         {
-            GameObject tempBullet = Instantiate(spaceManager.bulletPrefab, transform.position + transform.forward * 2, transform.rotation);
+            GameObject tempBullet = Instantiate(spaceManager.bulletPrefab, transform.position + transform.forward * 3.5f, transform.rotation);
             tempBullet.GetComponent<Bullet>().InitBullet(bulletType, characterType, bulletSpeed);   
         }
         protected virtual void Death()
@@ -78,7 +79,8 @@ namespace SpaceShooter
 
         public void GetDamage()
         {
-            Debug.Log("PIMBA!");
+
+            Debug.Log(gameObject.name + ": PIMBA!");
             if (--health == 0) Death();
         }
 
