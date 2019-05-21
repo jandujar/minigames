@@ -16,12 +16,22 @@ namespace SpaceShooter {
         [SerializeField] float minAngle = -60;
         [SerializeField] float maxAngle = 60;
 	    [SerializeField] float mouseSensitivty = 3.0f;
+
+        protected Vector2 cameraRotation;
+
         // Start is called before the first frame update
         protected override void Start()
         {
             base.Start();
 		    Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+        }
+
+        protected override void FixedUpdate()
+        {
+            base.FixedUpdate();
+            cameraRotation += inputCameraRotation * cameraRotationSpeed * Time.deltaTime;
+            transform.GetChild(0).localRotation = Quaternion.Euler(cameraRotation.x, cameraRotation.y, 0.0f);
         }
 
         // Update is called once per frame
@@ -38,6 +48,7 @@ namespace SpaceShooter {
             if(InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON4)){
                 Accelerate();
             }
+
             currentPitchSpeed = maxPitchSpeed * InputManager.Instance.GetAxisVertical();
             currentRollSpeed = maxRollSpeed * -InputManager.Instance.GetAxisHorizontal();
 

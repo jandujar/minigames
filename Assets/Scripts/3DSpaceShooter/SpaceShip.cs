@@ -7,6 +7,8 @@ namespace SpaceShooter
 {
     public class SpaceShip : MonoBehaviour
     {
+        const float LERP_SPEED = 5;
+
         [SerializeField] protected SpaceShooterManager spaceManager = null;
 
         [Header("Ship Properties")]
@@ -28,7 +30,6 @@ namespace SpaceShooter
         [SerializeField] protected float bulletSpeed;
 
         protected Rigidbody rb;
-        protected Vector2 cameraRotation;
         protected int health = 3;
         protected void Awake()
         {
@@ -45,11 +46,11 @@ namespace SpaceShooter
         protected virtual void FixedUpdate()
         {
             rb.velocity = transform.forward * currentSpeed;
+            
+            transform.Rotate(currentPitchSpeed,-currentRollSpeed,0);
 
-            cameraRotation += inputCameraRotation * cameraRotationSpeed * Time.deltaTime;
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x + currentPitchSpeed, transform.localEulerAngles.y, transform.localEulerAngles.z + currentRollSpeed);
-
-            transform.GetChild(0).eulerAngles = new Vector3(cameraRotation.x, cameraRotation.y, 0.0f);
+            transform.eulerAngles =  
+                new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0));
         }
 
         protected virtual void ResetVariables()
