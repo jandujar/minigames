@@ -50,7 +50,8 @@ namespace SpaceShooter
             transform.Rotate(currentPitchSpeed,-currentRollSpeed,0);
 
             transform.eulerAngles =  
-                new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0));
+                new Vector3(Mathf.Clamp(RealRotationToEditorRotation(transform.eulerAngles.x), -60, 60), 
+                transform.eulerAngles.y, 0);
         }
 
         protected virtual void ResetVariables()
@@ -95,5 +96,12 @@ namespace SpaceShooter
         {
             Gizmos.DrawSphere(transform.position + bulletSpawnPoint, 0.25f);
         }
+
+        //Para convertir la rotacion que va de 0 a 360 a una rotacion de -180 a 180
+        public static float RealRotationToEditorRotation(float rotation)
+        {
+            return rotation - 360 * System.Convert.ToSByte(rotation > 180);
+        }
+
     }
 }
