@@ -82,6 +82,11 @@ public class MenuManager : Singleton<MenuManager> {
         GOLF,
         ALCHEMYWARS,
         OCTOPUS,
+<<<<<<< HEAD
+        TUBERACER,
+
+=======
+>>>>>>> Jandu/master
         //2017-2019 Minigames 3
         AMUCHALIPSIS,
         BOLERA,
@@ -126,6 +131,7 @@ public class MenuManager : Singleton<MenuManager> {
         games.Add(MINIGAMES_ENUM.GOLF);
         games.Add(MINIGAMES_ENUM.ALCHEMYWARS);
         games.Add(MINIGAMES_ENUM.OCTOPUS);
+        games.Add(MINIGAMES_ENUM.TUBERACER);
 
         foreach(MINIGAMES_ENUM m in games){
             gamesCopy.Add(m);
@@ -184,6 +190,9 @@ public class MenuManager : Singleton<MenuManager> {
 		case MINIGAMES_ENUM.BOTTLEFLIP:
 			SceneManager.LoadScene("BottleFlip");
 			break;
+        case MINIGAMES_ENUM.TUBERACER:
+            SceneManager.LoadScene("TubeRacer");
+            break;
 		case MINIGAMES_ENUM.CARROT:
 			SceneManager.LoadScene("Carrot");
 			break;
