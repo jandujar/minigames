@@ -85,6 +85,7 @@ public class MenuManager : Singleton<MenuManager> {
 
         //2017-2019 Minigames 3
         AMUCHALIPSIS,
+        HYPERJUMP,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -388,6 +389,9 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.AMUCHALIPSIS:
             SceneManager.LoadScene("Amuchalipsis");
+            break;
+        case MINIGAMES_ENUM.HYPERJUMP:
+            SceneManager.LoadScene("HyperJump");
             break;
         case MINIGAMES_ENUM.END:
             break;
