@@ -13,8 +13,10 @@ namespace oscar_vergara_jimenez2
             Debug.Log("BEGIN");
             for(int i = 0; i < GameObject.Find("Player").GetComponent<Player>().balls.Length; i++){
                 GameObject.Find("Player").GetComponent<Player>().balls[i].gameObject.SetActive(true);
+                GameObject.Find("Player").GetComponent<Player>().gameStart = true;
             }            
             gameStart = true;
+            GameObject.Find("Music").GetComponent<AudioSource>().Play();
         }
         public override void initGame(MiniGameDificulty difficulty, GameManager _gm)
         {
@@ -30,6 +32,7 @@ namespace oscar_vergara_jimenez2
         void Update()
         {
             if(GameObject.FindObjectsOfType<Ball>().Length == 0 && gameStart){
+                GameObject.Find("Music").GetComponent<AudioSource>().Stop();
                 gm.EndGame(IMiniGame.MiniGameResult.WIN);
             }
         }
