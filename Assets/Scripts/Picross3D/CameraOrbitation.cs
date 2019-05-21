@@ -15,19 +15,14 @@ public class CameraOrbitation : MonoBehaviour
     public Vector3 EulerInitRotation;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         EulerInitRotation = transform.rotation.eulerAngles;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-
-        if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON3))
-        {
-
+    void Update() {
+        
+        if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON3)) {
             InputAxisX = 0;
             InputAxisY = 0;
             InputAxisX = InputManager.Instance.GetAxisHorizontal();
@@ -36,7 +31,9 @@ public class CameraOrbitation : MonoBehaviour
         }
 
         if (InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON1))
-            transform.rotation = Quaternion.Euler(EulerInitRotation); 
+            transform.rotation = Quaternion.Euler(EulerInitRotation);
+        
+            
 
     }
 }

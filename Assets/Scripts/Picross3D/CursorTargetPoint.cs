@@ -9,16 +9,17 @@ public class CursorTargetPoint : MonoBehaviour {
     GameObject parent;
     [SerializeField] Color paintColor;
     bool painting;
+    bool ocultado;
     [SerializeField] EngPicross3D Engine;
-
-
     [SerializeField] AudioClip[] Effects;
+    [SerializeField] GameObject controlCanvas;
 
 
     // Start is called before the first frame update
     void Start() {
         shoot = false;
         painting = false;
+        ocultado = false;
     }
 
     // Update is called once per frame
@@ -26,15 +27,34 @@ public class CursorTargetPoint : MonoBehaviour {
 
         if (Engine.startofGame) { 
 
+            if(InputManager.Instance.GetAxisHorizontal() != 0 || InputManager.Instance.GetAxisVertical() != 0) {
+                if (!ocultado) {
+                    controlCanvas.SetActive(false);
+                    ocultado = true;
+                }
+            }
+
             //Boton disparar
             if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4)) {
                 shoot = true;
+                if (!ocultado) {
+                    controlCanvas.SetActive(false);
+                    ocultado = true;
+                }
             }
             if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON3)) {
                 painting = true;
+                if (!ocultado) {
+                    controlCanvas.SetActive(false);
+                    ocultado = true;
+                }
             }
             else if(InputManager.Instance.GetButtonUp(InputManager.MiniGameButtons.BUTTON3)) {
                 painting = false;
+                if (!ocultado) {
+                    controlCanvas.SetActive(false);
+                    ocultado = true;
+                }
             }
 
         }
@@ -102,10 +122,8 @@ public class CursorTargetPoint : MonoBehaviour {
         }
     }
 
-    void PlaySound(AudioClip clip)
-    {
+    void PlaySound(AudioClip clip) {
         AudioSource as_clip = gameObject.GetComponent<AudioSource>();
-
         as_clip.Stop();
         as_clip.clip = clip;
         as_clip.Play();
