@@ -28,7 +28,8 @@ namespace SpaceShooter
         [SerializeField] protected Bullet.BulletType bulletType;
         [SerializeField] protected Vector3 bulletSpawnPoint;
         [SerializeField] protected float bulletSpeed;
-
+        Vector3 rotation;
+        [SerializeField] Vector2 cameraSpeed; 
         protected Rigidbody rb;
         protected int health = 3;
         protected void Awake()
@@ -47,12 +48,17 @@ namespace SpaceShooter
         {
             rb.velocity = transform.forward * currentSpeed;
             
-            transform.Rotate(currentPitchSpeed,-currentRollSpeed,0);
+            // transform.Rotate(currentPitchSpeed,-currentRollSpeed,0);
 
-            transform.eulerAngles =  
-                new Vector3(Mathf.Clamp(RealRotationToEditorRotation(transform.eulerAngles.x), -60, 60), 
-                transform.eulerAngles.y, 
-                    currentRollSpeed * ROTATION_MULTIPLY);
+            // transform.eulerAngles =  
+            //     new Vector3(Mathf.Clamp(RealRotationToEditorRotation(transform.eulerAngles.x), -60, 60), 
+            //     transform.eulerAngles.y, 
+            //         currentRollSpeed * ROTATION_MULTIPLY);
+            
+            rotation.y += cameraSpeed.x * Input.GetAxis("Mouse X");
+            rotation.x -= cameraSpeed.y * Input.GetAxis("Mouse Y");
+
+            transform.eulerAngles = new Vector3(rotation.x, rotation.y, 0.0f);
         }
 
         protected virtual void ResetVariables()

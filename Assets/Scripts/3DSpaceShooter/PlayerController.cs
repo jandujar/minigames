@@ -30,17 +30,18 @@ namespace SpaceShooter {
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            cameraRotation += inputCameraRotation * cameraRotationSpeed * Time.deltaTime;
-            Camera.main.transform.parent.localRotation = 
-                Quaternion.Euler(transform.rotation.eulerAngles.x + cameraRotation.x,
-                    transform.rotation.eulerAngles.y + cameraRotation.y, 
-                        0);
+            // cameraRotation += inputCameraRotation * cameraRotationSpeed * Time.deltaTime;
+            // Camera.main.transform.parent.localRotation = 
+            //     Quaternion.Euler(transform.rotation.eulerAngles.x + cameraRotation.x,
+            //         transform.rotation.eulerAngles.y + cameraRotation.y, 
+            //             0);
         }
 
         // Update is called once per frame
         protected override void Update()
         {
             base.Update();
+            spaceManager.health = health;
         }
 
         protected override void UpdateControlls() 
@@ -52,11 +53,11 @@ namespace SpaceShooter {
                 Accelerate();
             }
 
-            currentPitchSpeed = maxPitchSpeed * InputManager.Instance.GetAxisVertical();
-            currentRollSpeed = maxRollSpeed * -InputManager.Instance.GetAxisHorizontal();
+            // currentPitchSpeed = maxPitchSpeed * InputManager.Instance.GetAxisVertical();
+            // currentRollSpeed = maxRollSpeed * -InputManager.Instance.GetAxisHorizontal();
 
-            inputCameraRotation.y = Input.GetAxis("Mouse X") * mouseSensitivty;
-            inputCameraRotation.x = -Input.GetAxis("Mouse Y") * mouseSensitivty;
+            // inputCameraRotation.y = Input.GetAxis("Mouse X") * mouseSensitivty;
+            // inputCameraRotation.x = -Input.GetAxis("Mouse Y") * mouseSensitivty;
 
         }
         void OnTriggerEnter(Collider other){
@@ -68,12 +69,17 @@ namespace SpaceShooter {
             }
             else if(other.name.ToLower().Contains("innerzone")){
                 Debug.Log("SCORE");
-                spaceManager.score++;
+                spaceManager.score += 250;
+                Destroy(other.transform.parent.gameObject);
             }
             else if(other.name.ToLower().Contains("bullet")){
                 if(health <= 0)
                     spaceManager.EndGame(false);
             }
+        }
+        IEnumerator DestroyRing(GameObject _ring){
+            yield return new WaitForSeconds(1);
+            Destroy(_ring);
         }
     }
 }
