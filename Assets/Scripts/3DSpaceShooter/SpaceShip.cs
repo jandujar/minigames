@@ -25,6 +25,7 @@ namespace SpaceShooter
         protected Vector2 inputMovement, inputCameraRotation;
 
         [Header("Bullet")]
+        public Vector3 forward;
         [SerializeField] protected Bullet.BulletType bulletType;
         [SerializeField] protected Vector3 bulletSpawnPoint;
         [SerializeField] protected float bulletSpeed;
@@ -46,19 +47,25 @@ namespace SpaceShooter
 
         protected virtual void FixedUpdate()
         {
-            rb.velocity = transform.forward * currentSpeed;
-            
-            // transform.Rotate(currentPitchSpeed,-currentRollSpeed,0);
+            forward = transform.forward;
 
-            // transform.eulerAngles =  
-            //     new Vector3(Mathf.Clamp(RealRotationToEditorRotation(transform.eulerAngles.x), -60, 60), 
-            //     transform.eulerAngles.y, 
-            //         currentRollSpeed * ROTATION_MULTIPLY);
-            
-            rotation.y += cameraSpeed.x * Input.GetAxis("Mouse X");
-            rotation.x -= cameraSpeed.y * Input.GetAxis("Mouse Y");
 
-            transform.eulerAngles = new Vector3(rotation.x, rotation.y, 0.0f);
+
+            //rb.velocity = transform.forward * currentSpeed;
+
+            transform.position = transform.position + transform.forward * currentSpeed * Time.deltaTime;
+            
+            transform.Rotate(currentPitchSpeed,-currentRollSpeed,0);
+
+            transform.eulerAngles =  
+                 new Vector3(Mathf.Clamp(RealRotationToEditorRotation(transform.eulerAngles.x), -60, 60), 
+                 transform.eulerAngles.y, 
+                     0);
+            transform.GetChild(0).localEulerAngles = Vector3.forward * currentRollSpeed * ROTATION_MULTIPLY;
+            /*rotation.y += cameraSpeed.x * Input.GetAxis("Mouse X");
+            rotation.x -= cameraSpeed.y * Input.GetAxis("Mouse Y");*/
+
+            //transform.eulerAngles = new Vector3(rotation.x, rotation.y, 0.0f);
         }
 
         protected virtual void ResetVariables()

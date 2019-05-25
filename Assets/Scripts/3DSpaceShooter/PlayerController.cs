@@ -17,6 +17,8 @@ namespace SpaceShooter {
         [SerializeField] float maxAngle = 60;
 	    [SerializeField] float mouseSensitivty = 3.0f;
 
+        [SerializeField] Vector2 axisDirection;
+
         protected Vector2 cameraRotation;
 
         // Start is called before the first frame update
@@ -30,11 +32,11 @@ namespace SpaceShooter {
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            // cameraRotation += inputCameraRotation * cameraRotationSpeed * Time.deltaTime;
-            // Camera.main.transform.parent.localRotation = 
-            //     Quaternion.Euler(transform.rotation.eulerAngles.x + cameraRotation.x,
-            //         transform.rotation.eulerAngles.y + cameraRotation.y, 
-            //             0);
+            cameraRotation += inputCameraRotation * cameraRotationSpeed * Time.deltaTime;
+            Camera.main.transform.parent.localRotation =
+                Quaternion.Euler(transform.rotation.eulerAngles.x + cameraRotation.x,
+                    transform.rotation.eulerAngles.y + cameraRotation.y,
+                        0);
         }
 
         // Update is called once per frame
@@ -53,14 +55,14 @@ namespace SpaceShooter {
                 Accelerate();
             }
 
-            // currentPitchSpeed = maxPitchSpeed * InputManager.Instance.GetAxisVertical();
-            // currentRollSpeed = maxRollSpeed * -InputManager.Instance.GetAxisHorizontal();
+            currentPitchSpeed = axisDirection.y * maxPitchSpeed * InputManager.Instance.GetAxisVertical();
+            currentRollSpeed = axisDirection.x * maxRollSpeed * -InputManager.Instance.GetAxisHorizontal();
 
-            // inputCameraRotation.y = Input.GetAxis("Mouse X") * mouseSensitivty;
-            // inputCameraRotation.x = -Input.GetAxis("Mouse Y") * mouseSensitivty;
+            inputCameraRotation.y = axisDirection.x *  Input.GetAxis("Mouse X") * mouseSensitivty;
+            inputCameraRotation.x = axisDirection.y * Input.GetAxis("Mouse Y") * mouseSensitivty;
 
         }
-        void OnTriggerEnter(Collider other){
+        void OnTriggerEnter(Collider other) {
             if(other.name.ToLower().Contains("ring")){
                 Debug.Log("HIT");
                 health--;
