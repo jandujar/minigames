@@ -78,6 +78,7 @@ public class MenuManager : Singleton<MenuManager> {
         SUPERHEXAGON,
         DONKEYKONG,
         BULLETGUIDE,
+        SPACE_SHOOTER,
 		END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -323,6 +324,9 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.BULLETGUIDE:
             SceneManager.LoadScene("BulletGuide");
             break;
+            case MINIGAMES_ENUM.SPACE_SHOOTER:
+                SceneManager.LoadScene("3DSpaceShooter");
+                break;
         case MINIGAMES_ENUM.END:
             break;
         default:
