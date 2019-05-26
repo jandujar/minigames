@@ -16,6 +16,9 @@ namespace SpaceShooter
         [SerializeField] GameObject hudCanvas;
         public GameObject bulletPrefab = null;
 
+        [SerializeField] AudioSource music;
+        [SerializeField] AudioSource fireSound;
+
         public override void beginGame()
         {
             Debug.Log("Begin Game");
@@ -25,6 +28,8 @@ namespace SpaceShooter
             {
                 mb.enabled = true;
             }
+            music.Play();
+            fireSound.Play();
         }
 
         public override void initGame(MiniGameDificulty difficulty, GameManager gm)

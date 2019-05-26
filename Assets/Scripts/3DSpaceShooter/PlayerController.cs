@@ -21,6 +21,12 @@ namespace SpaceShooter {
 
         protected Vector2 cameraRotation;
 
+        [Header("Sounds")]
+        [SerializeField] AudioSource hitSound;
+        [SerializeField] AudioSource ringSound;
+        [SerializeField] AudioSource deathSound;
+        [SerializeField] AudioSource shootSound;
+
         // Start is called before the first frame update
         protected override void Start()
         {
@@ -32,11 +38,10 @@ namespace SpaceShooter {
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            cameraRotation += inputCameraRotation * cameraRotationSpeed * Time.deltaTime;
+            //cameraRotation += inputCameraRotation * cameraRotationSpeed * Time.deltaTime;
             Camera.main.transform.parent.localRotation =
                 Quaternion.Euler(transform.rotation.eulerAngles.x + cameraRotation.x,
-                    transform.rotation.eulerAngles.y + cameraRotation.y,
-                        0);
+                    transform.rotation.eulerAngles.y + cameraRotation.y, 0);
         }
 
         // Update is called once per frame
@@ -46,10 +51,17 @@ namespace SpaceShooter {
             spaceManager.health = health;
         }
 
+        public override void GetDamage()
+        {
+            base.GetDamage();
+            hitSound.Play();
+        }
+
         protected override void UpdateControlls() 
         {
             if(InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)){
                 Shoot();
+                shootSound.Play();
             }
             if(InputManager.Instance.GetButton(InputManager.MiniGameButtons.BUTTON4)){
                 Accelerate();
@@ -62,19 +74,29 @@ namespace SpaceShooter {
             inputCameraRotation.x = axisDirection.y * Input.GetAxis("Mouse Y") * mouseSensitivty;
 
         }
+
+        protected override void Death()
+        {
+            base.Death();
+            deathSound.Play();
+            spaceManager.EndGame(false);
+        }
+
         void OnTriggerEnter(Collider other) {
             if(other.name.ToLower().Contains("ring")){
                 Debug.Log("HIT");
                 health--;
-                if(health <= 0)
-                    spaceManager.EndGame(false);
+                if (health <= 0)
+                    Death();
             }
             else if(other.name.ToLower().Contains("innerzone")){
                 Debug.Log("SCORE");
                 spaceManager.score += 250;
+                ringSound.Play();
                 Destroy(other.transform.parent.gameObject);
             }
             else if(other.name.ToLower().Contains("bullet")){
+                hitSound.Play();
                 if(health <= 0)
                     spaceManager.EndGame(false);
             }

@@ -90,7 +90,7 @@ namespace SpaceShooter
 
         }
 
-        public void GetDamage()
+        public virtual void GetDamage()
         {
 
             Debug.Log(gameObject.name + ": PIMBA!");
