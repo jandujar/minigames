@@ -83,10 +83,19 @@ public class MenuManager : Singleton<MenuManager> {
         ALCHEMYWARS,
         OCTOPUS,
         TUBERACER,
+<<<<<<< HEAD
         AMUCHALIPSIS,
         BOLERA,
         HYPERJUMP,
 	 END };
+=======
+        //2017-2019 Minigames 3
+        AMUCHALIPSIS,
+        BOLERA,
+        HYPERJUMP,
+        PICROSS3D,
+		    END };
+>>>>>>> Jandu/master
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
 
@@ -400,6 +409,8 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.HYPERJUMP:
             SceneManager.LoadScene("HyperJump");
             break;
+        case MINIGAMES_ENUM.PICROSS3D:
+            SceneManager.LoadScene("Picross3D");
         case MINIGAMES_ENUM.END:
             break;
         default:
