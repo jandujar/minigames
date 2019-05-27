@@ -82,16 +82,11 @@ public class MenuManager : Singleton<MenuManager> {
         GOLF,
         ALCHEMYWARS,
         OCTOPUS,
-<<<<<<< HEAD
         TUBERACER,
-
-=======
->>>>>>> Jandu/master
-        //2017-2019 Minigames 3
         AMUCHALIPSIS,
         BOLERA,
         HYPERJUMP,
-		    END };
+	 END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
 
