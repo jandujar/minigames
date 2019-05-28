@@ -11,7 +11,7 @@ namespace HyperJump
 
         Vector3 orbitPoint;
 
-        public bool isEnemy;
+        public bool isEnemy, isShooting;
 
         public GameObject ball;
 
@@ -52,8 +52,14 @@ namespace HyperJump
         // Update is called once per frame
         void Update()
         {
-            if(isEnemy)Rotate();
-            if (ball.transform.position.y < transform.position.y) Shoot();
+            
+        }
+
+        private void FixedUpdate()
+        {
+            if (isEnemy && !isShooting) Rotate();
+            if (ball.transform.position.y < transform.position.y)isShooting = true;
+            if (isShooting) Shoot();
         }
 
         void Rotate()
@@ -63,14 +69,18 @@ namespace HyperJump
 
         public void Shoot()
         {
+            transform.parent = null;
             for (int i = 0; i < transform.childCount; i++)
             {
                 Transform tf = transform.GetChild(i);
+                
                 Rigidbody rb = tf.gameObject.GetComponent<Rigidbody>();
                 tf.gameObject.GetComponent<MeshCollider>().enabled = false;
-                rb.isKinematic = false;
-                rb.AddForce(tf.rotation.eulerAngles * impulseForce);
-                tf.parent = null;
+                //rb.isKinematic = false;
+                //rb.AddForce(tf.rotation.eulerAngles * impulseForce);
+                
+                tf.position += new Vector3(0,0, tf.rotation.z) * Time.deltaTime * impulseForce;
+                
             }
         }
     }
