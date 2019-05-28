@@ -52,7 +52,7 @@ public class AmuchalipsisRabbit : MonoBehaviour
         HorizontalInput=Random.Range(-1,2);
         
     }
-    private void OnCollisionEnter(Collision other) {
+    private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag=="Player"){
             other.gameObject.GetComponent<Amuchalipsis_Player>().moreStamina();
             Die();
