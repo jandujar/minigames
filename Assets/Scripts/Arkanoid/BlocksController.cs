@@ -42,7 +42,7 @@ public class BlocksController : MonoBehaviour
     {
         if(col.gameObject.name == "Ball")
         {
-            GameObject.Find("MusicContoller").AddComponent<AudioContoller>().activateSound = true;
+            GameObject.Find("MusicContoller").AddComponent<AudioContollerArkaoid>().activateSound = true;
             gameObject.SetActive(false);
             GameObject.Find("GameController").GetComponent<GameContoller>().points += 10;
             GameObject.Find("GameController").GetComponent<GameContoller>().Score.text = "Score: " + GameObject.Find("GameController").GetComponent<GameContoller>().points.ToString();

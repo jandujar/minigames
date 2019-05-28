@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioContoller : MonoBehaviour
+public class AudioContollerArkaoid : MonoBehaviour
 {
-    [SerializeField] private ScriptableMusicClass musicClass;
+    [SerializeField] private ScriptableMusicClassArkanoid musicClassArkaoid;
     private AudioSource[] audioSources;
     public bool activateSound;
 // Start is called before the first frame update
@@ -12,8 +12,8 @@ void Start()
     {
         audioSources = gameObject.GetComponents<AudioSource>();
 
-        audioSources[0].clip = musicClass.audioClips[0];
-        audioSources[1].clip = musicClass.audioClips[1];
+        audioSources[0].clip = musicClassArkaoid.audioClips[0];
+        audioSources[1].clip = musicClassArkaoid.audioClips[1];
         audioSources[0].Play();
 
         activateSound = false;
