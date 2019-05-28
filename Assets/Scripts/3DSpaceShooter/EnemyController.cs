@@ -27,9 +27,11 @@ namespace SpaceShooter
 
         protected override void UpdateControlls()
         {
+            if (!GetComponent<Renderer>().isVisible) return;
+
             base.UpdateControlls();
             //inputRotation = 
-            transform.LookAt(player.transform.position);
+            transform.LookAt(player.transform.position + 2 * player.transform.forward);
 
             if((currentCoolDownShoot += Time.deltaTime) >= coolDownShoot)
             {

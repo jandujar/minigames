@@ -25,10 +25,12 @@ namespace SpaceShooter
         protected Vector2 inputMovement, inputCameraRotation;
 
         [Header("Bullet")]
+        public Vector3 forward;
         [SerializeField] protected Bullet.BulletType bulletType;
         [SerializeField] protected Vector3 bulletSpawnPoint;
         [SerializeField] protected float bulletSpeed;
-
+        Vector3 rotation;
+        [SerializeField] Vector2 cameraSpeed; 
         protected Rigidbody rb;
         protected int health = 3;
         protected void Awake()
@@ -45,14 +47,25 @@ namespace SpaceShooter
 
         protected virtual void FixedUpdate()
         {
-            rb.velocity = transform.forward * currentSpeed;
+            forward = transform.forward;
+
+
+
+            //rb.velocity = transform.forward * currentSpeed;
+
+            transform.position = transform.position + transform.forward * currentSpeed * Time.deltaTime;
             
             transform.Rotate(currentPitchSpeed,-currentRollSpeed,0);
 
             transform.eulerAngles =  
-                new Vector3(Mathf.Clamp(RealRotationToEditorRotation(transform.eulerAngles.x), -60, 60), 
-                transform.eulerAngles.y, 
-                    currentRollSpeed * ROTATION_MULTIPLY);
+                 new Vector3(Mathf.Clamp(RealRotationToEditorRotation(transform.eulerAngles.x), -60, 60), 
+                 transform.eulerAngles.y, 
+                     0);
+            transform.GetChild(0).localEulerAngles = Vector3.forward * currentRollSpeed * ROTATION_MULTIPLY;
+            /*rotation.y += cameraSpeed.x * Input.GetAxis("Mouse X");
+            rotation.x -= cameraSpeed.y * Input.GetAxis("Mouse Y");*/
+
+            //transform.eulerAngles = new Vector3(rotation.x, rotation.y, 0.0f);
         }
 
         protected virtual void ResetVariables()
@@ -77,7 +90,7 @@ namespace SpaceShooter
 
         }
 
-        public void GetDamage()
+        public virtual void GetDamage()
         {
 
             Debug.Log(gameObject.name + ": PIMBA!");
