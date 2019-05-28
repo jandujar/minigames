@@ -82,11 +82,14 @@ public class MenuManager : Singleton<MenuManager> {
         GOLF,
         ALCHEMYWARS,
         OCTOPUS,
-        ARKANOID,
-
-        //2017-2019 Minigames 3
+        TUBERACER,
         AMUCHALIPSIS,
-		END };
+        BOLERA,
+        HYPERJUMP,
+        PICROSS3D,
+        SPACE_SHOOTER,
+
+     END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
 
@@ -126,6 +129,7 @@ public class MenuManager : Singleton<MenuManager> {
         games.Add(MINIGAMES_ENUM.GOLF);
         games.Add(MINIGAMES_ENUM.ALCHEMYWARS);
         games.Add(MINIGAMES_ENUM.OCTOPUS);
+        games.Add(MINIGAMES_ENUM.TUBERACER);
 
         foreach(MINIGAMES_ENUM m in games){
             gamesCopy.Add(m);
@@ -140,6 +144,10 @@ public class MenuManager : Singleton<MenuManager> {
         gamesCopy = new ArrayList();
 
         games.Add(MINIGAMES_ENUM.AMUCHALIPSIS);
+        games.Add(MINIGAMES_ENUM.HYPERJUMP);
+        games.Add(MINIGAMES_ENUM.BOLERA);
+        games.Add(MINIGAMES_ENUM.PICROSS3D);
+        games.Add(MINIGAMES_ENUM.SPACE_SHOOTER);
 
         foreach(MINIGAMES_ENUM m in games){
             gamesCopy.Add(m);
@@ -184,6 +192,9 @@ public class MenuManager : Singleton<MenuManager> {
 		case MINIGAMES_ENUM.BOTTLEFLIP:
 			SceneManager.LoadScene("BottleFlip");
 			break;
+        case MINIGAMES_ENUM.TUBERACER:
+            SceneManager.LoadScene("TubeRacer");
+            break;
 		case MINIGAMES_ENUM.CARROT:
 			SceneManager.LoadScene("Carrot");
 			break;
@@ -375,6 +386,9 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.BULLETGUIDE:
             SceneManager.LoadScene("BulletGuide");
             break;
+        case MINIGAMES_ENUM.BOLERA:
+            SceneManager.LoadScene("Bolos");
+            break;
         case MINIGAMES_ENUM.PANG:
             SceneManager.LoadScene("Pang");
             break;
@@ -390,10 +404,16 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.AMUCHALIPSIS:
             SceneManager.LoadScene("Amuchalipsis");
             break;
-           case MINIGAMES_ENUM.ARKANOID:
-               SceneManager.LoadScene("Arkanoid");
-               break;
-            case MINIGAMES_ENUM.END:
+        case MINIGAMES_ENUM.HYPERJUMP:
+            SceneManager.LoadScene("HyperJump");
+            break;
+        case MINIGAMES_ENUM.PICROSS3D:
+            SceneManager.LoadScene("Picross3D");
+            break;
+        case MINIGAMES_ENUM.SPACE_SHOOTER:
+            SceneManager.LoadScene("3DSpaceShooter");
+            break;
+        case MINIGAMES_ENUM.END:
             break;
         default:
 			SceneManager.LoadScene ("Pong");
