@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
+using TMPro;
+[RequireComponent (typeof(CharacterController))]
 public class Amuchalipsis_Player : MonoBehaviour
 {
     float controlH;
@@ -15,6 +16,8 @@ public class Amuchalipsis_Player : MonoBehaviour
     public float staminaWithMeteor;
     public bool StartPlay;
     public float TimeSurvive;
+    public float speed=10F;
+    public Image Daño;
     Vector3 StartPos;
     [SerializeField] Amuchalipsis amuchalipsis;
     [SerializeField] Canvas AmuchalipsisCanvas;
@@ -30,8 +33,8 @@ public class Amuchalipsis_Player : MonoBehaviour
         StartPos = this.transform.position;
         stamina = maxStamina;
 
-        BarraStamina = AmuchalipsisCanvas.transform.GetChild(0).GetComponent<Image>();
-        TimeSurviveTEXT = AmuchalipsisCanvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        BarraStamina = AmuchalipsisCanvas.transform.GetChild(1).GetComponent<Image>();
+        TimeSurviveTEXT = AmuchalipsisCanvas.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
 
     }
 
@@ -45,17 +48,19 @@ public class Amuchalipsis_Player : MonoBehaviour
         }
 
         //"alt!!"
-        if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2))
-            moreStamina();
+        // if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2))
+        //     moreStamina();
             //this.transform.position = StartPos;
     }
 
     private void Move()
     {
-        controlH = InputManager.Instance.GetAxisHorizontal();
-        controlV = InputManager.Instance.GetAxisVertical();
+        controlH = InputManager.Instance.GetAxisHorizontal()*speed;
+        controlV = InputManager.Instance.GetAxisVertical()*speed;
 
-        gameObject.GetComponent<Rigidbody>().AddExplosionForce(force, gameObject.transform.position - new Vector3(controlH, -0.5F, controlV), 10, 0, ForceMode.Force);
+        GetComponent<CharacterController>().SimpleMove(new Vector3(controlH,0,controlV));
+
+        GetComponentInChildren<Rigidbody>().AddExplosionForce(force, gameObject.transform.position - new Vector3(controlH, -0.5F, controlV), 10, 0, ForceMode.Force);
     }
 
     private void reduceStamina()
@@ -85,7 +90,18 @@ public class Amuchalipsis_Player : MonoBehaviour
     public void lessStamina()
     {
         stamina -= staminaWithMeteor;
-
+        StartCoroutine(corDaño());
+    }
+    public IEnumerator corDaño(){
+        Debug.Log("Daño");
+        while(Daño.color.a<1){
+            Daño.color=new Color(1,1,1,Daño.color.a+0.1F);
+            yield return new WaitForSeconds(0.01F);
+        }
+        while(Daño.color.a>0){
+            Daño.color=new Color(1,1,1,Daño.color.a-0.01F);
+            yield return new WaitForSeconds(0.01F);
+        }
     }
 }
 

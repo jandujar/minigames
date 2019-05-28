@@ -21,11 +21,10 @@ public class AmuchalipsisMeteorito : MonoBehaviour
     void Start()
     {
         int layerMask = 1 << 9;
-       
+        //gameObject.transform.localScale*=Random.Range(1,10);
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
         {
-            Debug.LogError(hit.collider.gameObject.name);
             CircleParticle=Instantiate(Resources.Load("Amuchalipsis/CircleCollisionPart"), hit.point-new Vector3(0,-0.2f,0), Quaternion.FromToRotation(Vector3.forward, hit.normal)) as GameObject;
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward)*rayRange , Color.yellow,2F);
             Debug.Log("Did Hit");
@@ -54,7 +53,7 @@ public class AmuchalipsisMeteorito : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Velocity+=Time.deltaTime*0.1F;
+        Velocity+=Time.deltaTime*0.8F;
         gameObject.transform.Translate((Vector3.forward)*Velocity);  
     }
     void Explode(){
