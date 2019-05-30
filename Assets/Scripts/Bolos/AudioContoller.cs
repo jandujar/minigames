@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioContoller : MonoBehaviour
+public class AudioContollerArkanoid : MonoBehaviour
 {
     [SerializeField] private ScriptableMusicClass musicClass;
     private AudioSource[] audioSources;
