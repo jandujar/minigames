@@ -48,7 +48,6 @@ using UnityEngine.SceneManagement;
         public void EndGame(IMiniGame.MiniGameResult result)
         {
             //Minigame end Status
-            Debug.Log("Result of " + game.ToString() + " = " + result.ToString());
 
             if (result == IMiniGame.MiniGameResult.LOSE)
             {

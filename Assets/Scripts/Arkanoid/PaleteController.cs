@@ -10,7 +10,7 @@ public class PaleteController : MonoBehaviour
     private Vector3 ActualPosition;
     public float maxPositionX;
     public GameObject ball;
-    public int ballSpeed;
+    public float ballSpeed;
     public bool activateBall;
     public bool followPale;
     public GameObject beginText;
@@ -95,8 +95,31 @@ public class PaleteController : MonoBehaviour
         }
     }
 
-   void ScalePale()
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.name == "Ball")
+        {
+            Vector3 ContactPoint = col.contacts[0].point;
+            Vector3 CenterPadle = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y);
+
+            ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+            float difference = CenterPadle.x - ContactPoint.x;
+
+            if(ContactPoint.x < CenterPadle.x)
+            {
+                ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-(Mathf.Abs(250)), ballSpeed * 75));
+            }else
+            {
+                ball.GetComponent<Rigidbody2D>().AddForce(new Vector2((Mathf.Abs(250)), ballSpeed * 75));
+            }
+
+        }
+    }
+
+    void ScalePale()
     {
         this.transform.localScale = new Vector3(this.transform.localScale.x / 2, this.transform.localScale.y, this.transform.localScale.z);
     }
+
 }
