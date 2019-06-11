@@ -31,9 +31,8 @@ namespace Eric_Sanchez_Verges
             //rotation = transform.rotation.eulerAngles;
             //rotation += Vector3.forward * Input.GetAxisRaw("Horizontal") * 5.73f;
             //transform.rotation = Quaternion.Euler(rotation);
-            if (angularSpeed <= 20 && InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)) angularSpeed = Time.deltaTime * speed;
-            else if (angularSpeed >= -20 && InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON2)) angularSpeed = Time.deltaTime * speed * -1;
-            else angularSpeed = 0;
+            angularSpeed = Time.deltaTime * speed * InputManager.Instance.GetAxisHorizontal();
+           
 
         }
         public override void beginGame()
