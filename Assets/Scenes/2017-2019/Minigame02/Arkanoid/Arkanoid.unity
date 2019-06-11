@@ -1271,10 +1271,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3224,7 +3224,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 872831369}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.3, y: 0, z: 0}
+  m_LocalPosition: {x: 22.63, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 26.00452, z: 1}
   m_Children: []
   m_Father: {fileID: 670871186}
@@ -3674,7 +3674,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 951591499}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -27.31, y: 0.01, z: 0}
+  m_LocalPosition: {x: -22.64, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 25.94348, z: 1}
   m_Children: []
   m_Father: {fileID: 670871186}
@@ -4213,7 +4213,7 @@ Transform:
   m_GameObject: {fileID: 1085091630}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 7.7298784, y: 4.1545987, z: -0.26103052}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.78757, y: 0.78757, z: 0.78757}
   m_Children:
   - {fileID: 326753335}
   - {fileID: 324709091}
@@ -4872,7 +4872,7 @@ Transform:
   m_GameObject: {fileID: 1250082483}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -12.5, z: 0}
-  m_LocalScale: {x: 1.0000005, y: 53.63437, z: 1}
+  m_LocalScale: {x: 1.0000005, y: 46.138966, z: 1}
   m_Children: []
   m_Father: {fileID: 670871186}
   m_RootOrder: 3
@@ -5721,7 +5721,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -9.55}
+  m_AnchoredPosition: {x: 0, y: -77}
   m_SizeDelta: {x: 453.33, y: 49.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1408453221
@@ -6495,8 +6495,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1649826004}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 12.51, z: 0}
-  m_LocalScale: {x: 1, y: 53.63432, z: 1}
+  m_LocalPosition: {x: 0, y: 12.51, z: 0}
+  m_LocalScale: {x: 1, y: 46.23847, z: 1}
   m_Children: []
   m_Father: {fileID: 670871186}
   m_RootOrder: 2
@@ -8408,7 +8408,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 6
 --- !u!61 &2134775954
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8498,7 +8498,7 @@ MonoBehaviour:
   velocityX: 15
   maxPositionX: 23.12837
   ball: {fileID: 2001999774}
-  ballSpeed: 25
+  ballSpeed: 10
   activateBall: 0
   followPale: 0
   beginText: {fileID: 1408453219}
