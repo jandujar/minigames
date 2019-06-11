@@ -14,7 +14,6 @@ public class PaleteController : MonoBehaviour
     public bool activateBall;
     public bool followPale;
     public GameObject beginText;
-   
 
 
 
@@ -25,15 +24,18 @@ public class PaleteController : MonoBehaviour
     {
         activateBall = true;
         followPale = true;
-       
+
+     
        
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+
         move = InputManager.Instance.GetAxisHorizontal();
+
+
 
         transform.Translate(move * velocityX * Time.deltaTime, 0, 0);
 
@@ -53,10 +55,10 @@ public class PaleteController : MonoBehaviour
            
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && activateBall == true)
+        if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4) && activateBall == true)
         {
             followPale = false;
-            ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f,Vector2.up.y * ballSpeed), ForceMode2D.Impulse);
+            ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f,Vector2.up.y * ballSpeed * 75));
             beginText.SetActive(false);
             activateBall = false;
            
@@ -70,11 +72,11 @@ public class PaleteController : MonoBehaviour
 
         if (IsInvoking() == false)
         {  
-            maxPositionX = 23.12837f;
+            maxPositionX = 18.61f;
         }
         else
         {
-            maxPositionX = 19.6f;
+            maxPositionX = 15.11f;
             
         }
 
