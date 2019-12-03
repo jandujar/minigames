@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fishing : MonoBehaviour
+public class Fishing : IMiniGame
 {
-    // Start is called before the first frame update
-    void Start()
+     GameManager game;
+    public override void beginGame()
     {
-        
+       game.EndGame(MiniGameResult.WIN);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        
+        game = gm;
     }
+
 }
