@@ -17,6 +17,10 @@ public class MenuLauncher : MonoBehaviour {
         MenuManager.Instance.Launch_2017_2019_Minigames_3();
     }
 
+    public void Launch_2019_2020_Minigames_1(){
+        MenuManager.Instance.Launch_2019_2020_Minigames_1();
+    }
+
     /*
     public void Update(){
         if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON1)) {

@@ -156,6 +156,24 @@ public class MenuManager : Singleton<MenuManager> {
         LaunchMiniGame();
     }
 
+    public void Launch_2019_2020_Minigames_1(){
+        currentScore = 0;
+        games = new ArrayList();
+        gamesCopy = new ArrayList();
+
+        //games.Add(MINIGAMES_ENUM.AMUCHALIPSIS);
+        //games.Add(MINIGAMES_ENUM.HYPERJUMP);
+        //games.Add(MINIGAMES_ENUM.BOLERA);
+        //games.Add(MINIGAMES_ENUM.PICROSS3D);
+        games.Add(MINIGAMES_ENUM.PONG);
+
+        foreach(MINIGAMES_ENUM m in games){
+            gamesCopy.Add(m);
+        }
+
+        LaunchMiniGame();
+    }
+
     public void LaunchMiniGame(){
         if (games == null)
         {
