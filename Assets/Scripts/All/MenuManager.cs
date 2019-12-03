@@ -143,10 +143,10 @@ public class MenuManager : Singleton<MenuManager> {
         games = new ArrayList();
         gamesCopy = new ArrayList();
 
-        games.Add(MINIGAMES_ENUM.AMUCHALIPSIS);
+        //games.Add(MINIGAMES_ENUM.AMUCHALIPSIS);
         games.Add(MINIGAMES_ENUM.HYPERJUMP);
-        games.Add(MINIGAMES_ENUM.BOLERA);
-        games.Add(MINIGAMES_ENUM.PICROSS3D);
+        //games.Add(MINIGAMES_ENUM.BOLERA);
+        //games.Add(MINIGAMES_ENUM.PICROSS3D);
         games.Add(MINIGAMES_ENUM.SPACE_SHOOTER);
 
         foreach(MINIGAMES_ENUM m in games){
