@@ -6,12 +6,10 @@ public class CocheEnemigo : MonoBehaviour
 {
     [SerializeField] private float speed = 0f;
     private GameManager gameManager;
-
-    public BoxCollider frenar;
-    public BoxCollider giroIzq;
-    public BoxCollider giroDer;
-
+    public GameObject[] points;
     public bool enableCar = false;
+
+    int nextPoint = 0;
 
     public void init(GameManager gm)
     {
@@ -22,22 +20,22 @@ public class CocheEnemigo : MonoBehaviour
     {
         if (enableCar)
         {
-            transform.Translate(0, speed * Time.deltaTime, 0);
-        }
-
-        Ray ray = new Ray(transform.position, transform.up);
-        RaycastHit hit;
-        if (frenar.Raycast(ray, out hit, 5f))
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * hit.distance, Color.yellow);
-            Debug.Log("Did Hit");
-        }
-        else
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * 1000, Color.white);
-            Debug.Log("Did not Hit");
+            moveToNextPosition();
+            transform.Translate(0, 0, speed * Time.deltaTime, Space.Self);
+            Debug.Log(nextPoint);
         }
     }
 
+    void moveToNextPosition()
+    {
+        transform.LookAt(points[nextPoint].transform);
+    }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (nextPoint + 1 != points.Length)
+        {
+            nextPoint++;
+        }
+    }
 }
