@@ -20,18 +20,6 @@ public class Manzana : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if(other.tag == "Body" || other.tag == "Wall" || other.tag == "Player"){
-            posX = Random.Range(-14, extension);
-
-            int posY = Random.Range(-7, 7);
-            a = new Vector3(posX, posY, 0);
-            transform.position = a;
-
-        }
-    }
-
 
     public void setPosX(int pos){
         extension = pos;
