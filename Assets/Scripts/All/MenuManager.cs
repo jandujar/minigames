@@ -90,6 +90,15 @@ public class MenuManager : Singleton<MenuManager> {
         SPACE_SHOOTER,
         ARKANOID,
         CARMADISIMO,
+        RUNNERALEX,
+        FISHINGARNAU,
+        TANK,
+        BOBERMAN,
+        GEOMETRY,
+        SNAKEKIKE,
+        ARCHEDUEL,
+        RACINGCARS,
+        LODERUNNER,
      END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -166,7 +175,16 @@ public class MenuManager : Singleton<MenuManager> {
         //games.Add(MINIGAMES_ENUM.HYPERJUMP);
         //games.Add(MINIGAMES_ENUM.BOLERA);
         //games.Add(MINIGAMES_ENUM.PICROSS3D);
-        games.Add(MINIGAMES_ENUM.PONG);
+        //games.Add(MINIGAMES_ENUM.PONG);
+        games.Add(MINIGAMES_ENUM.RUNNERALEX);
+        games.Add(MINIGAMES_ENUM.FISHINGARNAU);
+        games.Add(MINIGAMES_ENUM.TANK);
+        games.Add(MINIGAMES_ENUM.BOBERMAN);
+        games.Add(MINIGAMES_ENUM.GEOMETRY);
+        games.Add(MINIGAMES_ENUM.SNAKEKIKE);
+        games.Add(MINIGAMES_ENUM.ARCHEDUEL);
+        games.Add(MINIGAMES_ENUM.RACINGCARS);
+        games.Add(MINIGAMES_ENUM.LODERUNNER);
 
         foreach(MINIGAMES_ENUM m in games){
             gamesCopy.Add(m);
