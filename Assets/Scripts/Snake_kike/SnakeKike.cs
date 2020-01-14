@@ -5,14 +5,16 @@ using System;
 
 public class SnakeKike : IMiniGame
 {
-   GameManager game;
+
+   [SerializeField]
+   private SnakeControllerKike snk;
     public override void beginGame()
     {
-       game.EndGame(MiniGameResult.WIN);
+         snk.startGame();
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        game = gm;
+        snk.init(gm);
     }
 }
