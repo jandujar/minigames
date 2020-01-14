@@ -89,6 +89,7 @@ public class MenuManager : Singleton<MenuManager> {
         PICROSS3D,
         SPACE_SHOOTER,
         ARKANOID,
+        CARMADISIMO,
      END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -430,6 +431,9 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.SPACE_SHOOTER:
             SceneManager.LoadScene("3DSpaceShooter");
+            break;
+        case MINIGAMES_ENUM.CARMADISIMO:
+            SceneManager.LoadScene("Carmadisimo");
             break;
             case MINIGAMES_ENUM.ARKANOID:
                 SceneManager.LoadScene("Arkanoid");
