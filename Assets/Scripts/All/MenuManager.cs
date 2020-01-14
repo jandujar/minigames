@@ -100,6 +100,7 @@ public class MenuManager : Singleton<MenuManager> {
         RACINGCARS,
         LODERUNNER,
         PANGDANI,
+        ICECLIMBER,
      END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -457,8 +458,8 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.CARMADISIMO:
             SceneManager.LoadScene("Carmadisimo");
             break;
-        case MINIGAMES_ENUM.ARKANOID:
-            SceneManager.LoadScene("Arkanoid");
+        case MINIGAMES_ENUM.ICECLIMBER:
+            SceneManager.LoadScene("IceClimber");
             break;
         case MINIGAMES_ENUM.PANGDANI:
             SceneManager.LoadScene("PangDani");
