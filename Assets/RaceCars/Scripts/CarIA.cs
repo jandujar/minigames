@@ -18,7 +18,7 @@ public class CarIA : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         Vector3 v3Force = (mAcceleration * transform.forward) * Time.deltaTime;
@@ -27,13 +27,18 @@ public class CarIA : MonoBehaviour
         {
             mRb.AddForce(-v3Force);
         }
-        goLeft();
 
     }
 
-    void goLeft()
+    public void goLeft()
     {
-        transform.Rotate(0, 1 * mRotationSpeed * Time.deltaTime, 0);
+        transform.Rotate(0, 1 * 300 * Time.deltaTime, 0);
+
+    }
+
+    public void goRight()
+    {
+        transform.Rotate(0, 1 * -300 * Time.deltaTime, 0);
 
     }
 }
