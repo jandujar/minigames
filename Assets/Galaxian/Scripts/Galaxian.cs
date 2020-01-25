@@ -7,18 +7,20 @@ using UnityEngine;
 public class Galaxian : IMiniGame
 {
     public NaveGalaxian nave;
+    public int enemyCount;
     GameObject[] enemyList;
     GameManager gameManagerInstance;
     void Awake()
     {
         //Init Juego
         enemyList = GameObject.FindGameObjectsWithTag("GalaxianEnemy");
+        enemyCount = enemyList.Length;
     }
 
     public override void beginGame()
     {
         Debug.Log(this.ToString() + " game Begin");
-        
+
         foreach (GameObject enemy in enemyList)
         {
             enemy.GetComponent<EnemyGalaxian>().alive = true;
@@ -39,6 +41,13 @@ public class Galaxian : IMiniGame
         {
             gameManagerInstance.EndGame(MiniGameResult.LOSE);
         }
+
+        if (enemyCount == 0)
+        {
+            gameManagerInstance.EndGame(MiniGameResult.WIN);
+        }
+     
+        enemyCount = GameObject.FindGameObjectsWithTag("GalaxianEnemy").Length;
     }
 
     public override string ToString()

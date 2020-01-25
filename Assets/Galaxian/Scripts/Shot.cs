@@ -9,7 +9,7 @@ public class Shot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        ManejadorDeSonido.Instance.playShootSound();
     }
 
     // Update is called once per frame

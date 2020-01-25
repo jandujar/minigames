@@ -9,7 +9,7 @@ public class EnemyGalaxian : MonoBehaviour
     int contVer = 0;
     int seconds = 0;
     public bool alive = false;
-    [SerializeField] float shootChance = 20f;
+    [SerializeField] float shootChance = 10f;
     public GameObject enemyShot;
     [SerializeField] Sprite sprite1;
     [SerializeField] Sprite sprite2;
@@ -55,6 +55,11 @@ public class EnemyGalaxian : MonoBehaviour
             }
 
             Shoot();
+
+            if (transform.position.y < -2)
+            {
+                GameObject.FindGameObjectWithTag("Player").GetComponent<NaveGalaxian>().alive = false;
+            }
         }
     }
 
@@ -75,7 +80,7 @@ public class EnemyGalaxian : MonoBehaviour
 
     void Shoot()
     {
-        var rnd = Random.Range(0, 100);
+        var rnd = Random.Range(0, 10000);
         if (rnd < shootChance)
         {
             GameObject bullet = Instantiate(enemyShot, transform.position, Quaternion.identity);
@@ -88,6 +93,7 @@ public class EnemyGalaxian : MonoBehaviour
         if (other.gameObject.tag != "GalaxianEnemyShot")
         {
             anim.SetBool("alive", false);
+            ManejadorDeSonido.Instance.playEnemyDeath();
             Invoke("Die", 0.4f);
         }
     }

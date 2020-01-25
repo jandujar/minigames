@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7814034229523450312}
   - component: {fileID: 61379180772492466}
   - component: {fileID: 95652909679289354}
+  - component: {fileID: 50554244456357962}
   m_Layer: 11
   m_Name: enemy1
   m_TagString: GalaxianEnemy
@@ -100,11 +101,6 @@ MonoBehaviour:
     type: 3}
   sprite1: {fileID: 21300000, guid: 18292c864c31ee84790aca9e6130f1fe, type: 3}
   sprite2: {fileID: 21300000, guid: 71fe9d2f320d60d438f16f4b147a4e23, type: 3}
-  dieAnimation:
-  - {fileID: 21300000, guid: cbfe30d9e84156242970f5045bb9d883, type: 3}
-  - {fileID: 21300000, guid: c0df62aae24e6d04987f32bdfa6daff7, type: 3}
-  - {fileID: 21300000, guid: 9ddcf3cadeddcfc43a826a6c75bdece1, type: 3}
-  - {fileID: 21300000, guid: 8541aa87127fa6f499adcaa0dd033cc6, type: 3}
 --- !u!61 &61379180772492466
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -150,3 +146,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!50 &50554244456357962
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6211571657128389651}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

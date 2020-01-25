@@ -40,16 +40,15 @@ public class NaveGalaxian : MonoBehaviour
     void Die()
     {
         alive = false;
-        Destroy(gameObject);
     }
 
     void Movement()
     {
-        if (InputManager.Instance.GetAxisHorizontal() > 0)
+        if (InputManager.Instance.GetAxisHorizontal() > 0 && transform.position.x < 3)
         {
             transform.Translate(new Vector3(speed * Time.deltaTime * InputManager.Instance.GetAxisHorizontal(), 0, 0));
         }
-        else if (InputManager.Instance.GetAxisHorizontal() < 0)
+        else if (InputManager.Instance.GetAxisHorizontal() < 0 && transform.position.x > -3)
         {
             transform.Translate(new Vector3(-speed * Time.deltaTime * -InputManager.Instance.GetAxisHorizontal(), 0, 0));
         }
@@ -57,7 +56,12 @@ public class NaveGalaxian : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        animator.SetBool("alive", false);
-        Invoke("Die", 1f);
+        if (other.gameObject.tag != "DestroyBullet")
+        {
+            animator.SetBool("alive", false);
+            ManejadorDeSonido.Instance.playPlayerDeath();
+            Invoke("Die", 1f);
+        }
+
     }
 }
