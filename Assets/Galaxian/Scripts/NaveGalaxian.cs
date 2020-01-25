@@ -24,7 +24,7 @@ public class NaveGalaxian : MonoBehaviour
         }
         else
         {
-            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+            //gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
         }
     }
 
@@ -34,7 +34,6 @@ public class NaveGalaxian : MonoBehaviour
         {
             Instantiate(bullet, transform.position, Quaternion.identity);
         }
-
     }
 
     void Die()
