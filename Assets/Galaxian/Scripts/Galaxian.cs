@@ -7,16 +7,16 @@ using UnityEngine;
 public class Galaxian : IMiniGame
 {
     public NaveGalaxian nave;
-
+    GameManager gameManagerInstance;
     void Awake()
     {
         //Init Juego
+        nave.alive = true;
     }
 
     public override void beginGame()
     {
-        Debug.Log(this.ToString() + " game Begin");
-        nave.enableNave = true;
+        Debug.Log(this.ToString() + " game Begin");        
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
@@ -28,4 +28,5 @@ public class Galaxian : IMiniGame
     {
         return "Galaxian";
     }
+
 }
