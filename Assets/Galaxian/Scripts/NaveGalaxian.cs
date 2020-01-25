@@ -9,11 +9,15 @@ public class NaveGalaxian : MonoBehaviour
     public GameObject bullet;
     public bool alive = false;
 
+    Animator animator;
+
     int nextPoint = 0;
 
     public void init(GameManager gm)
     {
         gameManager = gm;
+        animator = GetComponent<Animator>();
+        animator.SetBool("alive", true);
     }
     void Update()
     {
@@ -22,23 +26,21 @@ public class NaveGalaxian : MonoBehaviour
             Movement();
             Shoot();
         }
-        else
-        {
-            //gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
-        }
     }
 
     void Shoot()
     {
         if (InputManager.Instance.GetButtonDown(InputManager.MiniGameButtons.BUTTON4))
         {
-            Instantiate(bullet, transform.position, Quaternion.identity);
+            var shot = Instantiate(bullet, transform.position, Quaternion.identity);
+            Physics2D.IgnoreCollision(shot.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 
     void Die()
     {
         alive = false;
+        Destroy(gameObject);
     }
 
     void Movement()
@@ -51,5 +53,11 @@ public class NaveGalaxian : MonoBehaviour
         {
             transform.Translate(new Vector3(-speed * Time.deltaTime * -InputManager.Instance.GetAxisHorizontal(), 0, 0));
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        animator.SetBool("alive", false);
+        Invoke("Die", 1f);
     }
 }

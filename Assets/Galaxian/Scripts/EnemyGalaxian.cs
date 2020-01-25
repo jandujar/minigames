@@ -13,10 +13,12 @@ public class EnemyGalaxian : MonoBehaviour
     public GameObject enemyShot;
     [SerializeField] Sprite sprite1;
     [SerializeField] Sprite sprite2;
+    Animator anim;
     // Start is called before the first frame update
     void Start()
     {
-
+        anim = gameObject.GetComponent<Animator>();
+        anim.SetBool("alive", true);
     }
 
     // Update is called once per frame
@@ -53,7 +55,6 @@ public class EnemyGalaxian : MonoBehaviour
             }
 
             Shoot();
-
         }
     }
 
@@ -80,6 +81,20 @@ public class EnemyGalaxian : MonoBehaviour
             GameObject bullet = Instantiate(enemyShot, transform.position, Quaternion.identity);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
+    }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag != "GalaxianEnemyShot")
+        {
+            anim.SetBool("alive", false);
+            Invoke("Die", 0.4f);
+        }
+    }
+
+    void Die()
+    {
+        alive = false;
+        Destroy(gameObject);
     }
 }
