@@ -18,6 +18,7 @@ public class EnemyGalaxian : MonoBehaviour
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
+        anim.enabled = false;
         anim.SetBool("alive", true);
     }
 
@@ -92,6 +93,7 @@ public class EnemyGalaxian : MonoBehaviour
     {
         if (other.gameObject.tag != "GalaxianEnemyShot")
         {
+            anim.enabled = true;
             anim.SetBool("alive", false);
             ManejadorDeSonido.Instance.playEnemyDeath();
             Invoke("Die", 0.4f);
