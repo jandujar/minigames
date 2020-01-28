@@ -3,30 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class RacingCars : IMiniGame
 {
-    public Ball ball;
+    public CocheEnemigo coche;
 
     void Awake()
     {
-        //Init Pong
-
+        //Init Juego
     }
 
     public override void beginGame()
     {
-        //Pong Begins
         Debug.Log(this.ToString() + " game Begin");
-        ball.enableBall = true;
+        coche.enableCar = true;
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        ball.init(gm);
+        coche.init(gm);
     }
 
     public override string ToString()
     {
-        return "Pong by Jandujar";
+        return "Racing Cars";
     }
 }
