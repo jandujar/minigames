@@ -101,6 +101,8 @@ public class MenuManager : Singleton<MenuManager> {
         LODERUNNER,
         PANGDANI,
         ICECLIMBER,
+        GALAXIAN,
+        RACECARS,
      END };
 	
     private MINIGAMES_ENUM currentGame = MINIGAMES_ENUM.PONG;
@@ -188,6 +190,24 @@ public class MenuManager : Singleton<MenuManager> {
         games.Add(MINIGAMES_ENUM.RACINGCARS);
         games.Add(MINIGAMES_ENUM.LODERUNNER);
         games.Add(MINIGAMES_ENUM.PANGDANI);
+
+        foreach(MINIGAMES_ENUM m in games){
+            gamesCopy.Add(m);
+        }
+
+        LaunchMiniGame();
+    }
+
+    public void Launch_2019_2020_Minigames_2(){
+        currentScore = 0;
+        games = new ArrayList();
+        gamesCopy = new ArrayList();
+
+        games.Add(MINIGAMES_ENUM.RACECARS);
+        games.Add(MINIGAMES_ENUM.GALAXIAN);
+        games.Add(MINIGAMES_ENUM.ICECLIMBER);
+        games.Add(MINIGAMES_ENUM.PANGDANI);
+        games.Add(MINIGAMES_ENUM.CARMADISIMO);
 
         foreach(MINIGAMES_ENUM m in games){
             gamesCopy.Add(m);
@@ -464,6 +484,12 @@ public class MenuManager : Singleton<MenuManager> {
             break;
         case MINIGAMES_ENUM.PANGDANI:
             SceneManager.LoadScene("PangDani");
+            break;
+        case MINIGAMES_ENUM.GALAXIAN:
+            SceneManager.LoadScene("Galaxian");
+            break;
+        case MINIGAMES_ENUM.RACECARS:
+            SceneManager.LoadScene("RaceCars");
             break;
         case MINIGAMES_ENUM.END:
             break;

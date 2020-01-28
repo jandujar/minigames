@@ -28,12 +28,18 @@ public class CarMove : MonoBehaviour
 
     public Text scoreText;
 
-    void Start(){
+    bool playing = false;
+
+    public void InitGame(GameManager gm){
         
-        
+        gameManager = gm;
+        playing = true;
     }
 
     void FixedUpdate(){
+
+        if(!playing){return;}
+
         //Inputs
         CharacterController controller = GetComponent<CharacterController>();
         
@@ -50,7 +56,6 @@ public class CarMove : MonoBehaviour
 
         //Rotate Player
         transform.Rotate(0, moveH* rotateSpeed, 0);
-        Debug.Log(nitro);
 
         if(Input.GetKey("space") && isCarmadisimo){
             if(nitro > 0){
@@ -129,6 +134,7 @@ public class CarMove : MonoBehaviour
         //Spawn Enemy
         Vector3 spawnPoint = new Vector3(transform.position.x +spawnXPoint, transform.position.y, transform.position.z + spawnZPoint);
         GameObject EnemyCar = Instantiate(enemyCarPrefab, spawnPoint, transform.rotation);
+        EnemyCar.GetComponent<EnemyCar>().carPlayer = this;
     }
 
     void SpawnPowerUp(){
@@ -195,9 +201,9 @@ public class CarMove : MonoBehaviour
         
     }
     void Win(){
-        gameManager.GetComponent<Fishing>().Win();         
+        gameManager.EndGame(IMiniGame.MiniGameResult.WIN);         
     }
     void Lose(){
-        gameManager.GetComponent<Fishing>().Lose();    
+        gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);            
     }
 }

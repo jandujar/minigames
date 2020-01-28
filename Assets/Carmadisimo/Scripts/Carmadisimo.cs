@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Carmadisimo : MonoBehaviour
+public class Carmadisimo : IMiniGame
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] CarMove carMove;
+    GameManager gm;
+    public override void beginGame()
     {
-        
+        carMove.InitGame(gm);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        
+       this.gm = gm;
     }
 }

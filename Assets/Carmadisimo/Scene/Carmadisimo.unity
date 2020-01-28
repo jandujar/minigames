@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8775,7 +8775,7 @@ PrefabInstance:
     - target: {fileID: 5923498104126052219, guid: 2ed318a094994a44db049c63dafc0e37,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5917992826884737591, guid: 2ed318a094994a44db049c63dafc0e37,
         type: 3}
@@ -9782,6 +9782,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4677968279667261878}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &996239103 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2204900270023213144, guid: 54c20547d5c50d94d8f4502cfd804917,
+    type: 3}
+  m_PrefabInstance: {fileID: 4677968279667261878}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996239100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb35f5b37bca5b418b24118b464b52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &996239107
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14521,6 +14533,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4752628035985442576, guid: accbdb4284a3cc84db41e410c0d99900,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -14552,11 +14569,6 @@ PrefabInstance:
     - target: {fileID: 4639723064915694, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4752628035985442576, guid: accbdb4284a3cc84db41e410c0d99900,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: accbdb4284a3cc84db41e410c0d99900, type: 3}
@@ -14603,6 +14615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020202379f44a7b4bad2e53b22e21b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carMove: {fileID: 996239103}
 --- !u!1 &1720446087
 GameObject:
   m_ObjectHideFlags: 0

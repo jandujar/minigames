@@ -6,11 +6,7 @@ using System;
 
 public class EnemyCar : MonoBehaviour
 {
-    //private GameManager gameManager;
     private Transform target;
-
-    public GameObject Manager;
-
     public float speed = 5;
 
     float Timer = 1f, TimerVelocity = 10f;
@@ -26,10 +22,6 @@ public class EnemyCar : MonoBehaviour
     GameObject Explosion;
 
     public  AudioSource audioBoom;
-    public AudioClip clipBoom;
-
-    public GameObject player;
-
     public CarMove carPlayer;
 
    
@@ -74,25 +66,24 @@ public class EnemyCar : MonoBehaviour
         if (other.gameObject.name == "EnemyCar(Clone)"){
             explosionExists = true;
             Explosion = Instantiate(explosionPrefab, transform.position, transform.rotation);
-            GameObject.Destroy(gameObject);
-            audioBoom.clip =  clipBoom;
             audioBoom.Play();
             carPlayer.scoreCarmadisimo += 10; 
+            GameObject.Destroy(gameObject);
         }    
         if (other.gameObject.tag == "Wall"){
             explosionExists = true; 
             Explosion = Instantiate(explosionPrefab, transform.position, transform.rotation); 
-            GameObject.Destroy(gameObject);  
-            GameObject.Destroy(other.gameObject);
             audioBoom.Play();
             carPlayer.scoreCarmadisimo += 10; 
+            GameObject.Destroy(other.gameObject);
+            GameObject.Destroy(gameObject);
         }  
         if (other.gameObject.tag == "Explosion"){
             explosionExists = true;
             Explosion = Instantiate(explosionPrefab, transform.position, transform.rotation);
-            GameObject.Destroy(gameObject); 
             audioBoom.Play();
             carPlayer.scoreCarmadisimo += 10; 
+            GameObject.Destroy(gameObject);
         }    
     }
 }
