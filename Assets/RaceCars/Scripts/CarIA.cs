@@ -9,7 +9,7 @@ public class CarIA : MonoBehaviour
     public int backTopSpeed = 5;
     private int mRotationSpeed = 130;
     private Rigidbody mRb;
-
+    public GameManager gameManager;
 
     // Use this for initialization
     void Start()
@@ -40,5 +40,13 @@ public class CarIA : MonoBehaviour
     {
         transform.Rotate(0, 1 * -300 * Time.deltaTime, 0);
 
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Goal")
+        {
+            gameManager.EndGame(IMiniGame.MiniGameResult.LOSE);
+        }
     }
 }
