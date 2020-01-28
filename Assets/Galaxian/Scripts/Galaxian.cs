@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class RacingCars : IMiniGame
+public class Galaxian : IMiniGame
 {
-    public CocheEnemigo coche;
+    public NaveGalaxian nave;
 
     void Awake()
     {
@@ -16,16 +16,16 @@ public class RacingCars : IMiniGame
     public override void beginGame()
     {
         Debug.Log(this.ToString() + " game Begin");
-        coche.enableCar = true;
+        nave.enableNave = true;
     }
 
     public override void initGame(MiniGameDificulty difficulty, GameManager gm)
     {
-        coche.init(gm);
+        nave.init(gm);
     }
 
     public override string ToString()
     {
-        return "Racing Cars";
+        return "Galaxian";
     }
 }
