@@ -87,12 +87,12 @@ public class IceClimberPlayer : MonoBehaviour
     void FixedUpdate()
     {   
         if(!dead && start){
-            if(move < -0.5f){
+            if(move*2 < -0.5f){
                 transform.Translate(Vector3.left * -speed);
                 transform.localRotation = Quaternion.Euler(0, 180, 0);
                 anim.SetBool("Walk", true);
                 lastDir = move;
-            } else if(move > 0.5f){
+            } else if(move*2 > 0.5f){
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
                 transform.Translate(Vector3.right * speed);
                 anim.SetBool("Walk", true);

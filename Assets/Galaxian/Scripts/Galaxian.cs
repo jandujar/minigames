@@ -37,6 +37,7 @@ public class Galaxian : IMiniGame
 
     private void Update()
     {
+        if(nave == null){ return; }
         if (!nave.alive)
         {
             gameManagerInstance.EndGame(MiniGameResult.LOSE);
