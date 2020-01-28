@@ -26,6 +26,7 @@ public class EnemyCar : MonoBehaviour
     GameObject Explosion;
 
     public  AudioSource audioBoom;
+    public AudioClip clipBoom;
 
     public GameObject player;
 
@@ -73,7 +74,8 @@ public class EnemyCar : MonoBehaviour
         if (other.gameObject.name == "EnemyCar(Clone)"){
             explosionExists = true;
             Explosion = Instantiate(explosionPrefab, transform.position, transform.rotation);
-            GameObject.Destroy(gameObject); 
+            GameObject.Destroy(gameObject);
+            audioBoom.clip =  clipBoom;
             audioBoom.Play();
             carPlayer.scoreCarmadisimo += 10; 
         }    
