@@ -186,6 +186,7 @@ public class MenuManager : Singleton<MenuManager> {
         games.Add(MINIGAMES_ENUM.ARCHEDUEL);
         games.Add(MINIGAMES_ENUM.RACINGCARS);
         games.Add(MINIGAMES_ENUM.LODERUNNER);
+        games.Add(MINIGAMES_ENUM.PANGDANI);
 
         foreach(MINIGAMES_ENUM m in games){
             gamesCopy.Add(m);
@@ -457,9 +458,9 @@ public class MenuManager : Singleton<MenuManager> {
         case MINIGAMES_ENUM.CARMADISIMO:
             SceneManager.LoadScene("Carmadisimo");
             break;
-        case MINIGAMES_ENUM.ARKANOID:
+        /*case MINIGAMES_ENUM.ARKANOID:
             SceneManager.LoadScene("Arkanoid");
-            break;
+            break;*/
         case MINIGAMES_ENUM.PANGDANI:
             SceneManager.LoadScene("PangDani");
             break;
